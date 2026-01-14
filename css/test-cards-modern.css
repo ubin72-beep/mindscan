@@ -1,0 +1,368 @@
+/* ==============================================
+   Test Cards - MindScan V3.0
+   그린 + 골드 테마 검사 카드
+   ============================================== */
+
+.tests-section {
+    padding: 4rem 2rem;
+    background: #f5f7fa;
+}
+
+.tests-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 섹션 헤더 */
+.tests-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.tests-header h2 {
+    font-size: 2.5rem;
+    color: #2c5f4f;
+    margin-bottom: 1rem;
+}
+
+.tests-header p {
+    font-size: 1.125rem;
+    color: #666666;
+}
+
+/* 필터 및 검색 */
+.tests-filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.filter-button {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: #2c5f4f;
+    border: 2px solid #e8ecef;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover,
+.filter-button.active {
+    background: #2c5f4f;
+    color: white;
+    border-color: #2c5f4f;
+}
+
+.search-box {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid #e8ecef;
+    border-radius: 12px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #2c5f4f;
+    box-shadow: 0 0 0 4px rgba(44, 95, 79, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999999;
+}
+
+/* 검사 카드 그리드 */
+.tests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* 카드 스타일 */
+.test-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(44, 95, 79, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.test-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2c5f4f, #d4af37);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.test-card:hover {
+    box-shadow: 0 8px 32px rgba(44, 95, 79, 0.2);
+    transform: translateY(-8px);
+}
+
+.test-card:hover::before {
+    opacity: 1;
+}
+
+/* 카드 헤더 */
+.test-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.test-icon {
+    font-size: 2.5rem;
+    color: #2c5f4f;
+}
+
+.test-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-new {
+    background: linear-gradient(135deg, #ff6b6b, #ff5252);
+    color: white;
+}
+
+.badge-popular {
+    background: linear-gradient(135deg, #d4af37, #b8962f);
+    color: #1a1a1a;
+}
+
+.badge-premium {
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    color: white;
+}
+
+/* 카드 본문 */
+.test-card-body h3 {
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+}
+
+.test-category {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #f5f7fa;
+    color: #666666;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.test-description {
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* 통계 */
+.test-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f5f7fa;
+    border-radius: 8px;
+}
+
+.test-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.test-stat-label {
+    font-size: 0.75rem;
+    color: #999999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.test-stat-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #2c5f4f;
+}
+
+/* 리뷰 */
+.test-reviews {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stars {
+    color: #d4af37;
+    font-size: 1rem;
+}
+
+.review-count {
+    font-size: 0.875rem;
+    color: #666666;
+}
+
+.review-author {
+    font-size: 0.875rem;
+    color: #999999;
+}
+
+/* 카드 푸터 */
+.test-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.test-info {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: #666666;
+}
+
+.test-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.test-button {
+    padding: 0.875rem 1.75rem;
+    background: linear-gradient(135deg, #d4af37, #b8962f);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.test-button:hover {
+    background: linear-gradient(135deg, #e6c255, #d4af37);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+    transform: translateY(-2px);
+}
+
+/* 로딩 상태 */
+.loading {
+    text-align: center;
+    padding: 3rem;
+    color: #666666;
+}
+
+/* 빈 상태 */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    color: #e8ecef;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    color: #666666;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: #999999;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .tests-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .tests-header h2 {
+        font-size: 2rem;
+    }
+    
+    .tests-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .tests-filters {
+        flex-direction: column;
+    }
+    
+    .filter-button {
+        width: 100%;
+    }
+    
+    .test-card-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .test-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .tests-section {
+        padding: 2rem 1rem;
+    }
+    
+    .test-card {
+        padding: 1.5rem;
+    }
+    
+    .test-stats {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .test-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
