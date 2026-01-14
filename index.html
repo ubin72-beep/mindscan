@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마인드스캔 (MindScan) - 마음을 읽는 과학 | AI 기반 성격 검사</title>
+    <title>Mentora (멘토라) - 당신 내면의 빛을 찾다 | 12가지 전문 심리검사</title>
     <meta name="description" content="100만 명이 선택한 과학적 심리검사. MBTI, 에니어그램, Big Five 등 12가지 전문 검사를 10분 만에 무료로 체험하세요. AI 분석과 실시간 통계 제공.">
-    <meta name="keywords" content="마인드스캔, MindScan, MBTI, 에니어그램, 성격검사, 심리테스트, AI분석, 성격유형, EQ, IQ, SQ">
+    <meta name="keywords" content="Mentora, 멘토라, MBTI, 에니어그램, 성격검사, 심리테스트, AI분석, 성격유형, EQ, IQ, SQ">
     
-    <meta property="og:title" content="마인드스캔 (MindScan) - AI 기반 성격 검사">
+    <meta property="og:title" content="Mentora - 당신 내면의 빛을 찾다">
     <meta property="og:description" content="100만 명이 선택한 과학적 심리검사. 10분이면 당신의 숨겨진 재능을 발견할 수 있습니다.">
     <meta property="og:image" content="images/banner-social.png">
-    <meta property="og:url" content="https://ubin72-beep.github.io/mindscan/">
+    <meta property="og:url" content="https://mentora.co.kr">
     <meta property="og:type" content="website">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="마인드스캔 (MindScan) - AI 기반 성격 검사">
+    <meta name="twitter:title" content="Mentora - 당신 내면의 빛을 찾다">
     <meta name="twitter:description" content="100만 명이 선택한 과학적 심리검사">
     <meta name="twitter:image" content="images/banner-social.png">
     
-    <link rel="icon" type="image/png" sizes="32x32" href="images/logo-brain-green.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logo-brain-green.png">
-    <link rel="apple-touch-icon" href="images/logo-brain-green.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo-brain-hd.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo-brain-hd.png">
+    <link rel="apple-touch-icon" href="images/logo-brain-hd.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="css/hero-modern.css">
     <link rel="stylesheet" href="css/test-cards-modern.css">
     <link rel="stylesheet" href="css/pricing-modern.css">
+    <link rel="stylesheet" href="css/reviews-modern.css">
+    <link rel="stylesheet" href="css/statistics-modern.css">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -36,8 +38,8 @@
     <header class="header">
         <nav class="nav">
             <a href="index.html" class="nav-logo">
-                <img src="images/logo-brain-green.png" alt="MindScan Logo" class="logo-icon">
-                <span class="logo-text">MindScan</span>
+                <img src="images/logo-brain-hd.png" alt="Mentora" class="logo-icon">
+                <span class="logo-text">Mentora</span>
             </a>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">홈</a></li>
@@ -53,30 +55,59 @@
         </nav>
     </header>
 
-    <section class="hero" id="home">
+    <section class="hero-section" id="home">
         <div class="hero-content">
-            <h1 class="hero-title">진짜 나를 만나는<br>가장 정확한 방법</h1>
-            <p class="hero-subtitle">100만 명이 선택한 과학적 심리검사<br>10분이면 당신의 숨겨진 재능을 발견할 수 있습니다</p>
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                <span>100만 명이 선택한 심리검사 플랫폼</span>
+            </div>
+            
+            <h1 class="hero-title">
+                진짜 <span class="highlight">나</span>를 만나는<br>
+                가장 <span class="highlight">정확한</span> 방법
+            </h1>
+            
+            <p class="hero-subtitle">
+                12가지 과학적 심리검사로 당신의 성격, 지능, 감정을 깊이 있게 분석합니다.<br>
+                <strong>Mentora</strong>와 함께 당신 내면의 빛을 발견하세요.
+            </p>
+            
             <div class="hero-buttons">
-                <a href="#tests" class="btn btn-primary">
+                <a href="#tests" class="btn btn-primary hero-button-primary">
                     <i class="fas fa-play-circle"></i> 지금 무료로 시작하기
                 </a>
-                <a href="#pricing" class="btn btn-secondary">
+                <a href="#pricing" class="btn btn-secondary hero-button-secondary">
                     <i class="fas fa-crown"></i> 프리미엄 보기
                 </a>
             </div>
+            
             <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-number" data-count="1000000">0</div>
-                    <div class="stat-label">참여자</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-text">
+                        <div class="stat-number" data-count="1000000">0</div>
+                        <div class="stat-label">참여자</div>
+                    </div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" data-count="12">0</div>
-                    <div class="stat-label">전문 검사</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="stat-text">
+                        <div class="stat-number" data-count="12">0</div>
+                        <div class="stat-label">전문 검사</div>
+                    </div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" data-count="10">0</div>
-                    <div class="stat-label">평균 소요</div>
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-text">
+                        <div class="stat-number" data-count="10">0</div>
+                        <div class="stat-label">평균 소요</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,8 +116,8 @@
     <section class="tests" id="tests">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">성격유형 검사</h2>
-                <p class="section-description">자신에게 맞는 검사를 선택하고 시작해보세요</p>
+                <h2 class="section-title">12가지 전문 심리검사</h2>
+                <p class="section-description">과학적으로 검증된 검사로 당신의 모든 면을 탐색하세요</p>
             </div>
             
             <div class="test-search">
@@ -310,6 +341,45 @@
                     </div>
                     <button class="btn btn-test" onclick="startTest('sq')">검사 시작</button>
                 </div>
+
+                <div class="test-card" data-test="selfesteem" data-time="8" data-category="personality">
+                    <div class="test-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3 class="test-title">자존감검사</h3>
+                    <p class="test-description">자신을 존중하고 가치있게 여기는 정도를 측정합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 5-8분</span>
+                        <span><i class="far fa-question-circle"></i> 10문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('selfesteem')">검사 시작</button>
+                </div>
+
+                <div class="test-card" data-test="depression" data-time="10" data-category="mental">
+                    <div class="test-icon">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <h3 class="test-title">우울증검사</h3>
+                    <p class="test-description">우울 증상의 정도를 파악하고 조기 대응합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 8-10분</span>
+                        <span><i class="far fa-question-circle"></i> 9문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('depression')">검사 시작</button>
+                </div>
+
+                <div class="test-card" data-test="burnout" data-time="12" data-category="mental">
+                    <div class="test-icon">
+                        <i class="fas fa-battery-quarter"></i>
+                    </div>
+                    <h3 class="test-title">번아웃검사</h3>
+                    <p class="test-description">직업적 소진 상태를 측정하고 회복 방법을 제시합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 10-12분</span>
+                        <span><i class="far fa-question-circle"></i> 22문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('burnout')">검사 시작</button>
+                </div>
             </div>
         </div>
     </section>
@@ -359,28 +429,29 @@
                         <li><i class="fas fa-check"></i> 이메일 전송</li>
                         <li><i class="fas fa-check"></i> 평생 보관</li>
                     </ul>
-                    <button class="btn-pricing featured" onclick="alert('프리미엄 구매 기능은 준비 중입니다!')">
+                    <button class="btn-pricing featured" onclick="window.location.href='payment/checkout.html?plan=premium'">
                         지금 구매하기
                     </button>
                 </div>
 
                 <div class="pricing-card">
                     <div class="pricing-header">
-                        <h3 class="pricing-name">기업</h3>
+                        <h3 class="pricing-name">AI 상담</h3>
                         <div class="pricing-price">
-                            <span class="price-amount">문의</span>
+                            <span class="price-amount">₩19,900</span>
+                            <span class="price-period">/월</span>
                         </div>
                     </div>
                     <ul class="pricing-features">
                         <li><i class="fas fa-check"></i> 모든 프리미엄 기능</li>
-                        <li><i class="fas fa-check"></i> 팀 대시보드</li>
-                        <li><i class="fas fa-check"></i> 관리자 계정</li>
-                        <li><i class="fas fa-check"></i> 맞춤형 리포트</li>
-                        <li><i class="fas fa-check"></i> 전담 지원</li>
-                        <li><i class="fas fa-check"></i> API 연동</li>
+                        <li><i class="fas fa-check"></i> 24시간 AI 상담</li>
+                        <li><i class="fas fa-check"></i> 무제한 질문</li>
+                        <li><i class="fas fa-check"></i> 실시간 피드백</li>
+                        <li><i class="fas fa-check"></i> 맞춤형 솔루션</li>
+                        <li><i class="fas fa-check"></i> 7일 무료 체험</li>
                     </ul>
-                    <button class="btn-pricing" onclick="alert('기업 문의: 0502-1909-7788')">
-                        문의하기
+                    <button class="btn-pricing" onclick="alert('AI 상담 문의: 0502-1909-7788')">
+                        7일 무료 체험
                     </button>
                 </div>
             </div>
@@ -391,7 +462,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">실시간 통계</h2>
-                <p class="section-description">MindScan 사용자들의 검사 결과를 확인해보세요</p>
+                <p class="section-description">Mentora 사용자들의 검사 결과를 확인해보세요</p>
             </div>
             
             <div class="stats-grid">
@@ -449,8 +520,8 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="review-avatar">K</div>
-                        <div class="review-info">
-                            <h4>김민지</h4>
+                        <div class="review-user">
+                            <h4 class="review-name">김민지</h4>
                             <div class="review-stars">⭐⭐⭐⭐⭐</div>
                         </div>
                     </div>
@@ -464,8 +535,8 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="review-avatar">L</div>
-                        <div class="review-info">
-                            <h4>이준혁</h4>
+                        <div class="review-user">
+                            <h4 class="review-name">이준혁</h4>
                             <div class="review-stars">⭐⭐⭐⭐⭐</div>
                         </div>
                     </div>
@@ -479,8 +550,8 @@
                 <div class="review-card">
                     <div class="review-header">
                         <div class="review-avatar">P</div>
-                        <div class="review-info">
-                            <h4>박서연</h4>
+                        <div class="review-user">
+                            <h4 class="review-name">박서연</h4>
                             <div class="review-stars">⭐⭐⭐⭐⭐</div>
                         </div>
                     </div>
@@ -498,12 +569,12 @@
         <div class="footer-content">
             <div class="footer-section">
                 <div class="footer-logo">
-                    <img src="images/logo-brain-green.png" alt="MindScan Logo" class="footer-logo-image">
-                    <h3>MindScan</h3>
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="footer-logo-image">
+                    <h3>Mentora</h3>
                 </div>
-                <p>진짜 나를 발견하는 가장 정확한 방법</p>
+                <p class="footer-tagline">당신 내면의 빛을 찾다</p>
                 <div class="company-info">
-                    <p><strong style="color: #d4af37;">큐브박스 (CubeBox)</strong></p>
+                    <p><strong style="color: #d4af37;">Mentora (멘토라)</strong></p>
                     <p>📍 서울 송파구 송파대로14길 7-10 2층</p>
                     <p>☎️ 0502-1909-7788</p>
                     <p>📠 0504-1509-7783</p>
@@ -511,22 +582,22 @@
             </div>
             
             <div class="footer-section">
-                <h4>바로가기</h4>
+                <h4>검사 도구</h4>
                 <ul class="footer-links">
-                    <li><a href="#home">홈</a></li>
-                    <li><a href="#tests">검사하기</a></li>
-                    <li><a href="#pricing">프리미엄</a></li>
-                    <li><a href="#statistics">통계</a></li>
+                    <li><a href="#tests">MBTI 검사</a></li>
+                    <li><a href="#tests">에니어그램</a></li>
+                    <li><a href="#tests">Big Five</a></li>
+                    <li><a href="#tests">DISC 검사</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
-                <h4>고객지원</h4>
+                <h4>정보</h4>
                 <ul class="footer-links">
-                    <li><a href="#">자주 묻는 질문</a></li>
-                    <li><a href="#">이용약관</a></li>
-                    <li><a href="#">개인정보처리방침</a></li>
-                    <li><a href="#">문의하기</a></li>
+                    <li><a href="#home">서비스 소개</a></li>
+                    <li><a href="#tests">검사 안내</a></li>
+                    <li><a href="mypage.html">내 결과</a></li>
+                    <li><a href="#pricing">프리미엄</a></li>
                 </ul>
             </div>
             
@@ -542,7 +613,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2026 큐브박스(CubeBox). All rights reserved.</p>
+            <p>&copy; 2026 Mentora. All rights reserved.</p>
         </div>
     </footer>
 
