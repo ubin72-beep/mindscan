@@ -5,7 +5,7 @@
 
 .tests-section {
     padding: 4rem 2rem;
-    background: #f5f7fa;
+    background: #e8f2ef;
 }
 
 .tests-container {
@@ -20,13 +20,13 @@
 }
 
 .tests-header h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #2c5f4f;
     margin-bottom: 1rem;
 }
 
 .tests-header p {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     color: #666666;
 }
 
@@ -43,7 +43,7 @@
     padding: 0.75rem 1.5rem;
     background: white;
     color: #2c5f4f;
-    border: 2px solid #e8ecef;
+    border: 2px solid #2c5f4f;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
@@ -55,6 +55,8 @@
     background: #2c5f4f;
     color: white;
     border-color: #2c5f4f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 95, 79, 0.3);
 }
 
 .search-box {
@@ -100,10 +102,11 @@
     background: white;
     border-radius: 16px;
     padding: 2rem;
-    box-shadow: 0 4px 16px rgba(44, 95, 79, 0.1);
+    box-shadow: 0 4px 16px rgba(44, 95, 79, 0.15);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(44, 95, 79, 0.1);
 }
 
 .test-card::before {
@@ -112,15 +115,16 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 5px;
     background: linear-gradient(90deg, #2c5f4f, #d4af37);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .test-card:hover {
-    box-shadow: 0 8px 32px rgba(44, 95, 79, 0.2);
+    box-shadow: 0 12px 40px rgba(44, 95, 79, 0.25);
     transform: translateY(-8px);
+    border-color: rgba(44, 95, 79, 0.2);
 }
 
 .test-card:hover::before {
@@ -138,6 +142,13 @@
 .test-icon {
     font-size: 2.5rem;
     color: #2c5f4f;
+    background: rgba(44, 95, 79, 0.1);
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
 }
 
 .test-badges {
@@ -172,17 +183,19 @@
 
 /* 카드 본문 */
 .test-card-body h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: #1a1a1a;
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
 .test-category {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background: #f5f7fa;
-    color: #666666;
-    font-size: 0.875rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(44, 95, 79, 0.1);
+    color: #2c5f4f;
+    font-size: 0.95rem;
+    font-weight: 600;
     border-radius: 6px;
     margin-bottom: 1rem;
 }
@@ -191,6 +204,7 @@
     color: #666666;
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    font-size: 1.05rem;
 }
 
 /* 통계 */
@@ -210,14 +224,14 @@
 }
 
 .test-stat-label {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: #999999;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .test-stat-value {
-    font-size: 1.125rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #2c5f4f;
 }
@@ -232,16 +246,16 @@
 
 .stars {
     color: #d4af37;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .review-count {
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     color: #666666;
 }
 
 .review-author {
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     color: #999999;
 }
 
@@ -256,7 +270,7 @@
 .test-info {
     display: flex;
     gap: 1rem;
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     color: #666666;
 }
 
@@ -267,11 +281,12 @@
 }
 
 .test-button {
-    padding: 0.875rem 1.75rem;
+    padding: 1rem 2rem;
     background: linear-gradient(135deg, #d4af37, #b8962f);
     color: #1a1a1a;
     border: none;
     border-radius: 8px;
+    font-size: 1.05rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -283,6 +298,61 @@
     background: linear-gradient(135deg, #e6c255, #d4af37);
     box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
     transform: translateY(-2px);
+}
+
+/* AI 추천 배너 */
+.ai-recommendation {
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin: 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    box-shadow: 0 8px 32px rgba(44, 95, 79, 0.2);
+}
+
+.ai-recommendation-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: white;
+}
+
+.ai-recommendation-content i {
+    font-size: 3rem;
+    color: #d4af37;
+}
+
+.ai-recommendation-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.ai-recommendation-content p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.ai-recommendation-actions .btn {
+    background: #d4af37;
+    color: #1a1a1a;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-recommendation-actions .btn:hover {
+    background: #e6c255;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
 }
 
 /* 로딩 상태 */
