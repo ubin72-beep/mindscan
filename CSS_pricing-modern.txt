@@ -1,0 +1,357 @@
+/* ==============================================
+   Pricing Section - MindScan V3.0
+   그린 + 골드 테마 가격표
+   ============================================== */
+
+.pricing-section {
+    padding: 4rem 2rem;
+    background: white;
+}
+
+.pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 섹션 헤더 */
+.pricing-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.pricing-header h2 {
+    font-size: 3rem;
+    color: #2c5f4f;
+    margin-bottom: 1rem;
+}
+
+.pricing-header p {
+    font-size: 1.25rem;
+    color: #666666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 가격 카드 그리드 */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* 가격 카드 */
+.pricing-card {
+    background: white;
+    border: 2px solid #e8ecef;
+    border-radius: 16px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.pricing-card:hover {
+    border-color: #2c5f4f;
+    box-shadow: 0 8px 32px rgba(44, 95, 79, 0.15);
+    transform: translateY(-8px);
+}
+
+/* 추천 플랜 */
+.pricing-card.featured {
+    background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+    color: white;
+    border-color: #2c5f4f;
+    transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-8px);
+}
+
+.pricing-card.featured .pricing-card-title,
+.pricing-card.featured .pricing-card-price,
+.pricing-card.featured .pricing-feature {
+    color: white;
+}
+
+.pricing-card.featured .pricing-badge {
+    background: linear-gradient(135deg, #d4af37, #b8962f);
+    color: #1a1a1a;
+}
+
+/* 배지 */
+.pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.6rem 1.75rem;
+    background: linear-gradient(135deg, #d4af37, #b8962f);
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 카드 헤더 */
+.pricing-card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #e8ecef;
+}
+
+.pricing-card.featured .pricing-card-header {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.pricing-card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.pricing-card.featured .pricing-card-icon {
+    color: #d4af37;
+}
+
+.pricing-card-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #2c5f4f;
+    margin-bottom: 0.5rem;
+}
+
+.pricing-card-subtitle {
+    font-size: 1rem;
+    color: #666666;
+}
+
+.pricing-card.featured .pricing-card-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 가격 */
+.pricing-card-price {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #2c5f4f;
+    line-height: 1;
+}
+
+.pricing-card.featured .price {
+    color: #d4af37;
+}
+
+.price-currency {
+    font-size: 1.5rem;
+    vertical-align: super;
+}
+
+.price-period {
+    font-size: 1rem;
+    color: #999999;
+    display: block;
+    margin-top: 0.5rem;
+}
+
+.pricing-card.featured .price-period {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.price-original {
+    text-decoration: line-through;
+    color: #999999;
+    font-size: 1.25rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* 기능 목록 */
+.pricing-features {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.pricing-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: #666666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.pricing-feature-icon {
+    color: #2c5f4f;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.pricing-card.featured .pricing-feature-icon {
+    color: #d4af37;
+}
+
+.pricing-feature.disabled {
+    opacity: 0.4;
+}
+
+/* 버튼 */
+.pricing-button {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.pricing-button-primary {
+    background: linear-gradient(135deg, #d4af37, #b8962f);
+    color: #1a1a1a;
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+}
+
+.pricing-button-primary:hover {
+    background: linear-gradient(135deg, #e6c255, #d4af37);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+    transform: translateY(-2px);
+}
+
+.pricing-button-secondary {
+    background: white;
+    color: #2c5f4f;
+    border: 2px solid #2c5f4f;
+}
+
+.pricing-button-secondary:hover {
+    background: #2c5f4f;
+    color: white;
+}
+
+.pricing-card.featured .pricing-button-secondary {
+    background: transparent;
+    color: white;
+    border-color: white;
+}
+
+.pricing-card.featured .pricing-button-secondary:hover {
+    background: white;
+    color: #2c5f4f;
+}
+
+/* FAQ 섹션 */
+.pricing-faq {
+    max-width: 800px;
+    margin: 4rem auto 0;
+}
+
+.pricing-faq h3 {
+    text-align: center;
+    color: #2c5f4f;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.faq-item {
+    background: #f5f7fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    background: #e8ecef;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0;
+}
+
+.faq-icon {
+    color: #2c5f4f;
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    color: #666666;
+    line-height: 1.6;
+    margin-top: 1rem;
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+    .pricing-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .pricing-card.featured {
+        transform: scale(1);
+    }
+    
+    .pricing-card.featured:hover {
+        transform: translateY(-8px);
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing-section {
+        padding: 3rem 1.5rem;
+    }
+    
+    .pricing-header h2 {
+        font-size: 2rem;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .pricing-card {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pricing-section {
+        padding: 2rem 1rem;
+    }
+    
+    .pricing-card {
+        padding: 1.5rem;
+    }
+    
+    .price {
+        font-size: 2.5rem;
+    }
+}
