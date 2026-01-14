@@ -521,6 +521,29 @@ body {
     color: var(--text-secondary);
 }
 
+.btn-pricing {
+    width: 100%;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+    color: var(--primary-dark);
+}
+
+.btn-pricing:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-pricing.featured {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+}
+
 .statistics {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: white;
@@ -589,6 +612,12 @@ body {
     opacity: 0.9;
 }
 
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .charts-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -651,6 +680,16 @@ body {
     font-size: 1.3rem;
 }
 
+.review-user {
+    flex: 1;
+}
+
+.review-name {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
 .review-info h4 {
     color: var(--primary-color);
     font-weight: 600;
@@ -681,6 +720,10 @@ body {
     padding: 5px 12px;
     border-radius: 15px;
     font-weight: 500;
+}
+
+.review-date {
+    color: var(--text-secondary);
 }
 
 .footer {
@@ -721,6 +764,11 @@ body {
     opacity: 0.9;
     line-height: 1.7;
     margin-bottom: 10px;
+}
+
+.footer-tagline {
+    font-style: italic;
+    opacity: 0.8;
 }
 
 .company-info {
@@ -821,6 +869,10 @@ body {
     gap: 20px;
 }
 
+.ai-recommendation-actions {
+    flex-shrink: 0;
+}
+
 .ai-recommendation i {
     font-size: 3rem;
     color: var(--primary-color);
@@ -834,6 +886,12 @@ body {
 
 .ai-recommendation p {
     color: var(--text-secondary);
+    margin: 0;
+}
+
+.tests {
+    padding: 80px 20px;
+    background: var(--bg-secondary);
 }
 
 @media (max-width: 768px) {
