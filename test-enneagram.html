@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에니어그램 검사 - MindScan</title>
+    <meta name="description" content="9가지 성격 유형으로 나를 이해하는 에니어그램 검사">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/test-common.css">
+    <style>
+        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
+        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🎭 에니어그램 검사</h1>
+            <p>9가지 성격 유형으로 나를 이해하기</p>
+        </div>
+
+        <div id="startScreen" class="start-screen">
+            <div class="start-icon">🎭</div>
+            <h2>에니어그램 검사를 시작합니다</h2>
+            <p>18개의 질문으로 당신의 핵심 성격 유형을 찾아드립니다.<br>각 문장이 얼마나 자신과 일치하는지 솔직하게 답변해주세요.</p>
+
+            <div class="test-info">
+                <div class="info-item">
+                    <div class="info-icon">⏱️</div>
+                    <div class="info-label">소요 시간</div>
+                    <div class="info-value">20분</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📊</div>
+                    <div class="info-label">질문 수</div>
+                    <div class="info-value">18개</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🎯</div>
+                    <div class="info-label">유형</div>
+                    <div class="info-value">9가지</div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
+        </div>
+
+        <div id="testScreen" style="display: none;">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progressText">질문 1 / 18</span>
+                    <span id="progressPercent">6%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="question-area">
+                <div class="question-number" id="questionNumber">Question 1</div>
+                <div class="question-text" id="questionText"></div>
+                <div class="scale-options" id="optionsContainer">
+                    <div class="scale-option" data-score="1">전혀 아니다</div>
+                    <div class="scale-option" data-score="2">아니다</div>
+                    <div class="scale-option" data-score="3">보통이다</div>
+                    <div class="scale-option" data-score="4">그렇다</div>
+                    <div class="scale-option" data-score="5">매우 그렇다</div>
+                </div>
+            </div>
+
+            <div class="button-area">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">이전</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
+            </div>
+        </div>
+
+        <div id="resultScreen" style="display: none;">
+            <div class="result-screen">
+                <div class="result-type">
+                    <div class="result-badge" id="resultType">Type 1</div>
+                    <h2 class="result-title" id="resultTitle">완벽주의자</h2>
+                    <p class="result-description" id="resultDescription"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>📊 핵심 동기</h3>
+                    <p id="resultMotivation"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>💪 강점</h3>
+                    <p id="resultStrengths"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>⚠️ 약점</h3>
+                    <p id="resultWeaknesses"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>🌱 성장 방향</h3>
+                    <p id="resultGrowth"></p>
+                </div>
+
+                <div class="result-actions">
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">홈으로</button>
+                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">프리미엄 리포트</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/test-enneagram.js"></script>
+</body>
+</html>
