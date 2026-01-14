@@ -1,0 +1,250 @@
+/* ==============================================
+   Hero Section - MindScan V3.0
+   그린 #2c5f4f 배경 + 골드 #d4af37 타이틀
+   ============================================== */
+
+.hero {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+    overflow: hidden;
+    padding: 4rem 2rem;
+}
+
+/* 배경 패턴 */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* 애니메이션 요소 */
+.hero::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    top: -300px;
+    right: -300px;
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-50px, 50px) scale(1.1);
+    }
+}
+
+/* Hero 콘텐츠 */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 타이틀 스타일 */
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #d4af37;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title span {
+    display: inline-block;
+    background: linear-gradient(135deg, #d4af37, #e6c255);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 서브타이틀 */
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+/* 버튼 그룹 */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    animation: fadeInUp 1.2s ease-out 0.4s both;
+}
+
+.hero-button {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.hero-button-primary {
+    background: linear-gradient(135deg, #d4af37, #b8962f);
+    color: #1a1a1a;
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+}
+
+.hero-button-primary:hover {
+    background: linear-gradient(135deg, #e6c255, #d4af37);
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
+    transform: translateY(-2px);
+}
+
+.hero-button-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.hero-button-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-2px);
+}
+
+/* 통계 카드 */
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 4rem;
+    animation: fadeInUp 1.4s ease-out 0.6s both;
+}
+
+.hero-stat {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.hero-stat:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(212, 175, 55, 0.5);
+    transform: translateY(-4px);
+}
+
+.hero-stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #d4af37;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.hero-stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 500px;
+        padding: 3rem 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .hero-button {
+        width: 100%;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 450px;
+        padding: 2rem 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .hero-stat-number {
+        font-size: 2rem;
+    }
+}
