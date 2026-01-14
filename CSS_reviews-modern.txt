@@ -1,0 +1,175 @@
+/* ============================================
+   Reviews Section - Mentora
+   이미지 디자인 기반 깔끔한 후기 카드
+   ============================================ */
+
+.reviews {
+    padding: 5rem 2rem;
+    background: #f5f7fa;
+}
+
+.reviews .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.reviews .section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2c5f4f;
+    margin-bottom: 1rem;
+}
+
+.reviews .section-description {
+    font-size: 1.25rem;
+    color: #666;
+}
+
+/* 후기 그리드 */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 후기 카드 */
+.review-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(44, 95, 79, 0.12);
+}
+
+/* 후기 헤더 */
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.review-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #2c5f4f;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.review-user {
+    flex: 1;
+}
+
+.review-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 0.25rem 0;
+}
+
+.review-stars {
+    font-size: 1.1rem;
+    line-height: 1;
+    color: #d4af37;
+}
+
+/* 후기 텍스트 */
+.review-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+}
+
+/* 후기 푸터 */
+.review-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e8ecef;
+}
+
+.review-test {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #2c5f4f;
+    background: rgba(44, 95, 79, 0.1);
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+}
+
+.review-date {
+    font-size: 0.95rem;
+    color: #999;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .reviews {
+        padding: 3rem 1.5rem;
+    }
+
+    .reviews .section-title {
+        font-size: 2rem;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .review-card {
+        padding: 1.5rem;
+    }
+
+    .review-avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+
+    .review-name {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .reviews {
+        padding: 2rem 1rem;
+    }
+
+    .reviews .section-title {
+        font-size: 1.75rem;
+    }
+
+    .review-card {
+        padding: 1.25rem;
+    }
+
+    .review-text {
+        font-size: 0.9375rem;
+    }
+
+    .review-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
