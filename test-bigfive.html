@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Five 성격검사 - MindScan</title>
+    <meta name="description" content="과학적으로 검증된 5가지 성격 요인 분석">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/test-common.css">
+    <style>
+        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
+        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🔬 Big Five 성격검사</h1>
+            <p>과학적으로 검증된 5가지 성격 요인</p>
+        </div>
+
+        <div id="startScreen" class="start-screen">
+            <div class="start-icon">🔬</div>
+            <h2>Big Five 검사를 시작합니다</h2>
+            <p>5가지 성격 차원(개방성, 성실성, 외향성, 친화성, 신경증)을<br>과학적으로 측정합니다.</p>
+
+            <div class="test-info">
+                <div class="info-item">
+                    <div class="info-icon">⏱️</div>
+                    <div class="info-label">소요 시간</div>
+                    <div class="info-value">15분</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📊</div>
+                    <div class="info-label">질문 수</div>
+                    <div class="info-value">20개</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🎯</div>
+                    <div class="info-label">차원</div>
+                    <div class="info-value">5가지</div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
+        </div>
+
+        <div id="testScreen" style="display: none;">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progressText">질문 1 / 20</span>
+                    <span id="progressPercent">5%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="question-area">
+                <div class="question-number" id="questionNumber">Question 1</div>
+                <div class="question-text" id="questionText"></div>
+                <div class="scale-options" id="optionsContainer">
+                    <div class="scale-option" data-score="1">전혀 아니다</div>
+                    <div class="scale-option" data-score="2">아니다</div>
+                    <div class="scale-option" data-score="3">보통이다</div>
+                    <div class="scale-option" data-score="4">그렇다</div>
+                    <div class="scale-option" data-score="5">매우 그렇다</div>
+                </div>
+            </div>
+
+            <div class="button-area">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">이전</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
+            </div>
+        </div>
+
+        <div id="resultScreen" style="display: none;">
+            <div class="result-screen">
+                <div class="result-type">
+                    <h2 class="result-title">Big Five 성격 분석 결과</h2>
+                </div>
+
+                <div class="result-details">
+                    <h3>📊 개방성 (Openness)</h3>
+                    <div class="score-bar">
+                        <div class="score-fill" id="scoreO" style="width: 0%"></div>
+                    </div>
+                    <p id="descO"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>✅ 성실성 (Conscientiousness)</h3>
+                    <div class="score-bar">
+                        <div class="score-fill" id="scoreC" style="width: 0%"></div>
+                    </div>
+                    <p id="descC"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>👥 외향성 (Extraversion)</h3>
+                    <div class="score-bar">
+                        <div class="score-fill" id="scoreE" style="width: 0%"></div>
+                    </div>
+                    <p id="descE"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>🤝 친화성 (Agreeableness)</h3>
+                    <div class="score-bar">
+                        <div class="score-fill" id="scoreA" style="width: 0%"></div>
+                    </div>
+                    <p id="descA"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>😰 신경증 (Neuroticism)</h3>
+                    <div class="score-bar">
+                        <div class="score-fill" id="scoreN" style="width: 0%"></div>
+                    </div>
+                    <p id="descN"></p>
+                </div>
+
+                <div class="result-actions">
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">홈으로</button>
+                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">프리미엄 리포트</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/test-bigfive.js"></script>
+</body>
+</html>
