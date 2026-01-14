@@ -1,6 +1,16 @@
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
 desktop.ini
+
+# Editors
 .vscode/
 .idea/
 *.sublime-project
@@ -8,22 +18,33 @@ desktop.ini
 *.swp
 *.swo
 *~
+
+# Logs
 *.log
 logs/
 npm-debug.log*
-*.tmp
-*.temp
-*.bak
-*.cache
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies
 node_modules/
 package-lock.json
 yarn.lock
+
+# Environment
 .env
 .env.local
 .env.production
+
+# Build
 dist/
 build/
 out/
+
+# Testing
 coverage/
 .nyc_output/
+
+# Deployment
 .vercel
+.netloc
