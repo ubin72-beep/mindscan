@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 완료 - MindScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .success-container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-header {
+            background: linear-gradient(135deg, #d4af37, #b8962f);
+            color: #1a1a1a;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .success-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-header p {
+            opacity: 0.8;
+        }
+
+        .success-body {
+            padding: 3rem;
+        }
+
+        .order-info {
+            background: #f5f7fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .order-info h3 {
+            color: #2c5f4f;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e8ecef;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+        }
+
+        .info-value {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .next-steps {
+            margin-bottom: 2rem;
+        }
+
+        .next-steps h3 {
+            color: #2c5f4f;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            padding: 1rem;
+            background: #f5f7fa;
+            border-radius: 12px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #2c5f4f;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content p {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-button {
+            padding: 1.25rem;
+            border: 2px solid #e8ecef;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
+
+        .action-button:hover {
+            border-color: #2c5f4f;
+            background: #e8f5f1;
+        }
+
+        .action-button .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-button .title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .action-button .desc {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .primary-button {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #2c5f4f, #1a4838);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .primary-button:hover {
+            box-shadow: 0 8px 24px rgba(44, 95, 79, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-header">
+            <div class="success-icon">🎉</div>
+            <h1>결제가 완료되었습니다!</h1>
+            <p>프리미엄 리포트를 구매해주셔서 감사합니다</p>
+        </div>
+
+        <div class="success-body">
+            <div class="order-info">
+                <h3>주문 정보</h3>
+                <div class="info-row">
+                    <span class="info-label">주문번호</span>
+                    <span class="info-value" id="orderId">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">상품명</span>
+                    <span class="info-value">프리미엄 리포트 - MBTI</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">결제금액</span>
+                    <span class="info-value" id="amount">₩4,900</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">결제수단</span>
+                    <span class="info-value" id="paymentMethod">신용카드</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">구매자</span>
+                    <span class="info-value" id="buyerName">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">이메일</span>
+                    <span class="info-value" id="buyerEmail">-</span>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h3>다음 단계</h3>
+
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>이메일 확인</h4>
+                        <p>구매 영수증과 프리미엄 리포트 다운로드 링크가 발송되었습니다</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>리포트 확인</h4>
+                        <p>마이페이지에서 언제든지 리포트를 확인하고 다운로드할 수 있습니다</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>추가 혜택</h4>
+                        <p>평생 무료 재검사와 1회 무료 Q&A 서비스를 이용하실 수 있습니다</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="../mypage.html" class="action-button">
+                    <div class="icon">📊</div>
+                    <div class="title">마이페이지</div>
+                    <div class="desc">리포트 확인하기</div>
+                </a>
+
+                <a href="../index.html" class="action-button">
+                    <div class="icon">🏠</div>
+                    <div class="title">홈으로</div>
+                    <div class="desc">메인 페이지</div>
+                </a>
+
+                <a href="mailto:support@mindscan.kr" class="action-button">
+                    <div class="icon">💬</div>
+                    <div class="title">1:1 문의</div>
+                    <div class="desc">궁금한 점 질문하기</div>
+                </a>
+
+                <a href="../marketing/ai-counsel.html" class="action-button">
+                    <div class="icon">🤖</div>
+                    <div class="title">AI 상담</div>
+                    <div class="desc">무료 상담 받기</div>
+                </a>
+            </div>
+
+            <button class="primary-button" onclick="window.location.href='../index.html'">
+                홈으로 돌아가기
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // URL에서 주문번호 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId');
+
+        // 주문 정보 표시
+        if (orderId) {
+            document.getElementById('orderId').textContent = orderId;
+            
+            // LocalStorage에서 결제 정보 가져오기
+            const paymentData = JSON.parse(localStorage.getItem('mindscan_last_payment') || '{}');
+            
+            if (paymentData.orderId === orderId) {
+                document.getElementById('amount').textContent = '₩' + paymentData.amount.toLocaleString();
+                document.getElementById('buyerName').textContent = paymentData.buyerName;
+                document.getElementById('buyerEmail').textContent = paymentData.buyerEmail;
+                
+                const paymentMethodMap = {
+                    'card': '신용/체크카드',
+                    'kakaopay': '카카오페이',
+                    'naverpay': '네이버페이',
+                    'tosspay': '토스페이'
+                };
+                document.getElementById('paymentMethod').textContent = paymentMethodMap[paymentData.paymentMethod] || '신용카드';
+            }
+        }
+
+        // 이메일 발송 시뮬레이션
+        setTimeout(() => {
+            console.log('📧 구매 영수증 이메일 발송 완료');
+            console.log('📊 프리미엄 리포트 다운로드 링크 발송 완료');
+        }, 1000);
+    </script>
+</body>
+</html>
