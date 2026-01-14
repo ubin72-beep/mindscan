@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오톡 챗봇 - MindScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2c5f4f;
+            --accent-gold: #d4af37;
+            --kakao-yellow: #FEE500;
+            --bg-light: #f5f7fa;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .chatbot-container {
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* 왼쪽: 챗봇 정보 */
+        .chatbot-info {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(44, 95, 79, 0.15);
+        }
+
+        .chatbot-info h1 {
+            color: var(--primary-green);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chatbot-info p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .kakao-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--kakao-yellow);
+            color: #381E1E;
+            padding: 1.25rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(254, 229, 0, 0.3);
+        }
+
+        .kakao-button:hover {
+            background: #f9dd00;
+            box-shadow: 0 8px 24px rgba(254, 229, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .kakao-icon {
+            font-size: 24px;
+        }
+
+        .features {
+            margin-top: 3rem;
+        }
+
+        .features h3 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f5f7fa;
+            border-radius: 12px;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text p {
+            color: #666;
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        /* 오른쪽: 챗봇 시뮬레이터 */
+        .chat-simulator {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(44, 95, 79, 0.15);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-header-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chat-header-info h3 {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .chat-header-info p {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            background: #f5f7fa;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 1rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 1rem;
+            border-radius: 12px;
+            line-height: 1.6;
+        }
+
+        .message.bot .message-bubble {
+            background: white;
+            color: #1a1a1a;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .message.user .message-bubble {
+            background: var(--accent-gold);
+            color: #1a1a1a;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.625rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .quick-reply {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: none;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-reply:hover {
+            background: #1a4838;
+            transform: scale(1.05);
+        }
+
+        .chat-input {
+            border-top: 1px solid #e8ecef;
+            padding: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            background: white;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.875rem;
+            border: 2px solid #e8ecef;
+            border-radius: 24px;
+            font-size: 0.875rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .chat-input input:focus {
+            border-color: var(--primary-green);
+        }
+
+        .chat-input button {
+            background: var(--accent-gold);
+            color: #1a1a1a;
+            border: none;
+            padding: 0.875rem 1.5rem;
+            border-radius: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chat-input button:hover {
+            background: #e6c255;
+            transform: scale(1.05);
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            width: fit-content;
+        }
+
+        .typing-indicator.show {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 968px) {
+            .chatbot-container {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-simulator {
+                order: -1;
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbot-container">
+        <!-- 왼쪽: 챗봇 정보 -->
+        <div class="chatbot-info">
+            <h1>💬 MindScan 카카오톡 챗봇</h1>
+            <p>24시간 자동 응답으로 언제든지 도움을 받으세요. 검사 추천, 결과 확인, 결제 문의 등 모든 것을 카카오톡으로!</p>
+
+            <a href="#" class="kakao-button" onclick="alert('카카오톡 채널: @mindscan (준비 중)')">
+                <span class="kakao-icon">💬</span>
+                카카오톡 채널 추가하기
+            </a>
+
+            <div class="features">
+                <h3>챗봇으로 할 수 있는 것들</h3>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">
+                        <h4>맞춤형 검사 추천</h4>
+                        <p>당신의 상황에 딱 맞는 심리검사를 추천해드립니다</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-text">
+                        <h4>즉시 결제 & 쿠폰</h4>
+                        <p>카카오톡에서 바로 결제하고 할인 쿠폰을 받으세요</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">
+                        <h4>결과 조회 & 다운로드</h4>
+                        <p>언제든지 내 검사 결과를 확인하고 다운로드하세요</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-text">
+                        <h4>AI 심리 상담</h4>
+                        <p>간단한 고민은 AI 챗봇이 즉시 답변해드립니다</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🔔</div>
+                    <div class="feature-text">
+                        <h4>맞춤형 알림</h4>
+                        <p>새로운 검사, 할인 정보, 추천 콘텐츠를 받아보세요</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 오른쪽: 챗봇 시뮬레이터 -->
+        <div class="chat-simulator">
+            <div class="chat-header">
+                <div class="chat-header-avatar">🧠</div>
+                <div class="chat-header-info">
+                    <h3>MindScan 챗봇</h3>
+                    <p>🟢 항상 답변 가능</p>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- 메시지들이 여기에 추가됩니다 -->
+            </div>
+
+            <div class="chat-input">
+                <input 
+                    type="text" 
+                    id="userInput" 
+                    placeholder="메시지를 입력하세요..."
+                    onkeypress="if(event.key === 'Enter') sendMessage()"
+                >
+                <button onclick="sendMessage()">전송</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+
+        // 챗봇 시나리오
+        const scenarios = {
+            greeting: {
+                keywords: ['안녕', '하이', '헬로', '처음', '시작'],
+                response: `안녕하세요! 👋 MindScan 챗봇입니다.
+
+저는 24시간 언제든지 도움을 드릴 수 있어요!
+
+무엇을 도와드릴까요?`,
+                quickReplies: ['검사 추천', '가격 문의', '내 결과 보기', 'AI 상담']
+            },
+            test_recommend: {
+                keywords: ['검사', '추천', '테스트', '뭐', '뭘', '어떤'],
+                response: `🎯 검사 추천을 원하시는군요!
+
+현재 가장 인기있는 검사는:
+
+1️⃣ MBTI 성격유형 (15분) - ⭐ 4.9
+2️⃣ 에니어그램 (20분) - ⭐ 4.8
+3️⃣ EQ 감성지능 (15분) - ⭐ 4.9
+
+어떤 검사가 궁금하신가요?`,
+                quickReplies: ['MBTI 하기', '에니어그램 하기', 'EQ 하기', '전체 보기']
+            },
+            price: {
+                keywords: ['가격', '얼마', '비용', '돈', '결제', '할인'],
+                response: `💰 가격 안내
+
+기본 검사: 무료
+프리미엄 리포트: ₩9,900
+
+🎁 지금 첫 구매 시 50% 할인!
+→ ₩4,900
+
+프리미엄 리포트는:
+📊 20페이지 상세 분석
+💼 맞춤형 진로 추천
+💑 연애 스타일 분석
+🎯 3개월 자기계발 플랜
+
+을 포함합니다!`,
+                quickReplies: ['지금 구매하기', '무료 검사 하기', '더 알아보기']
+            },
+            result: {
+                keywords: ['결과', '리포트', '확인', '내거', '조회'],
+                response: `📊 검사 결과 조회
+
+이메일을 입력하시면 바로 확인하실 수 있어요!
+
+또는 아래 링크로 접속하세요:
+👉 https://ubin72-beep.github.io/mindscan/mypage.html`,
+                quickReplies: ['이메일 입력', '웹사이트 가기']
+            },
+            ai_counsel: {
+                keywords: ['상담', 'AI', '고민', '질문', '물어'],
+                response: `🤖 AI 심리 상담
+
+어떤 고민이 있으신가요?
+
+저는 다음과 같은 주제로 상담해드릴 수 있어요:
+
+💼 진로 & 적성
+💑 연애 & 대인관계
+🎯 자기계발 & 성장
+😰 스트레스 & 불안
+
+무엇이 궁금하신가요?`,
+                quickReplies: ['진로 고민', '연애 고민', '스트레스', '자기계발']
+            }
+        };
+
+        // 초기 메시지
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                addBotMessage(scenarios.greeting.response, scenarios.greeting.quickReplies);
+            }, 500);
+        });
+
+        // 메시지 전송
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            // 사용자 메시지 추가
+            addUserMessage(message);
+            userInput.value = '';
+
+            // 챗봇 응답 (1초 후)
+            setTimeout(() => {
+                const response = getResponse(message);
+                addBotMessage(response.text, response.quickReplies);
+            }, 1000);
+        }
+
+        // 응답 찾기
+        function getResponse(message) {
+            const lowerMessage = message.toLowerCase();
+
+            for (const [key, scenario] of Object.entries(scenarios)) {
+                for (const keyword of scenario.keywords) {
+                    if (lowerMessage.includes(keyword)) {
+                        return {
+                            text: scenario.response,
+                            quickReplies: scenario.quickReplies
+                        };
+                    }
+                }
+            }
+
+            // 기본 응답
+            return {
+                text: `죄송합니다. 잘 이해하지 못했어요 😅
+
+다음 중 하나를 선택해주세요:`,
+                quickReplies: ['검사 추천', '가격 문의', '내 결과 보기', 'AI 상담']
+            };
+        }
+
+        // 사용자 메시지 추가
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.innerHTML = `
+                <div class="message-bubble">
+                    ${text}
+                    <div class="message-time">${getCurrentTime()}</div>
+                </div>
+            `;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // 챗봇 메시지 추가
+        function addBotMessage(text, quickReplies = []) {
+            // 타이핑 인디케이터 표시
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator show';
+            typingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+
+            // 1초 후 실제 메시지 표시
+            setTimeout(() => {
+                typingDiv.remove();
+
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot';
+                
+                let quickRepliesHTML = '';
+                if (quickReplies.length > 0) {
+                    quickRepliesHTML = '<div class="quick-replies">';
+                    quickReplies.forEach(reply => {
+                        quickRepliesHTML += `<button class="quick-reply" onclick="handleQuickReply('${reply}')">${reply}</button>`;
+                    });
+                    quickRepliesHTML += '</div>';
+                }
+
+                messageDiv.innerHTML = `
+                    <div class="message-bubble">
+                        ${text.replace(/\n/g, '<br>')}
+                        <div class="message-time">${getCurrentTime()}</div>
+                        ${quickRepliesHTML}
+                    </div>
+                `;
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
+            }, 1000);
+        }
+
+        // Quick Reply 처리
+        function handleQuickReply(text) {
+            userInput.value = text;
+            sendMessage();
+        }
+
+        // 현재 시간
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        // 스크롤 하단으로
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
