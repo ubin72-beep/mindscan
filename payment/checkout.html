@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프리미엄 결제 - MindScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- 토스페이먼츠 SDK -->
+    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2c5f4f;
+            --accent-gold: #d4af37;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .payment-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .payment-header h1 {
+            color: var(--primary-green);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .payment-header p {
+            color: #666;
+            font-size: 1.125rem;
+        }
+
+        .payment-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* 왼쪽: 상품 정보 */
+        .product-info {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 4px 16px rgba(44, 95, 79, 0.1);
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f5f7fa;
+        }
+
+        .product-image {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary-green), #1a4838);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .product-details h2 {
+            color: var(--primary-green);
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-details .subtitle {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+        }
+
+        .original-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 1.25rem;
+        }
+
+        .discount-price {
+            color: var(--accent-gold);
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .discount-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff5252);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        .features-list {
+            margin-top: 2rem;
+        }
+
+        .features-list h3 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            padding: 1rem;
+            background: #f5f7fa;
+            border-radius: 12px;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            color: #1a1a1a;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text p {
+            color: #666;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .guarantee-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-radius: 12px;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .guarantee-box h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .guarantee-box p {
+            color: #666;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        /* 오른쪽: 결제 정보 */
+        .payment-box {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(44, 95, 79, 0.15);
+            position: sticky;
+            top: 2rem;
+        }
+
+        .payment-box h3 {
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f5f7fa;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #666;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e8ecef;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        .coupon-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .coupon-input-group input {
+            flex: 1;
+        }
+
+        .apply-coupon-btn {
+            padding: 0.875rem 1.25rem;
+            background: #666;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .apply-coupon-btn:hover {
+            background: #444;
+        }
+
+        .price-summary {
+            background: #f5f7fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            color: #666;
+        }
+
+        .price-row.total {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #e8ecef;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .price-row.total .amount {
+            color: var(--accent-gold);
+            font-size: 1.75rem;
+        }
+
+        .payment-methods {
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-methods h4 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid #e8ecef;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-green);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-green);
+            background: #e8f5f1;
+        }
+
+        .payment-method input[type="radio"] {
+            margin-right: 1rem;
+        }
+
+        .payment-method-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .payment-method-info {
+            flex: 1;
+        }
+
+        .payment-method-name {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .payment-method-desc {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .agree-box {
+            margin-bottom: 1.5rem;
+        }
+
+        .agree-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .agree-item input[type="checkbox"] {
+            margin-top: 2px;
+        }
+
+        .agree-item label {
+            color: #666;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .agree-item label a {
+            color: var(--primary-green);
+            text-decoration: underline;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--accent-gold), #b8962f);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pay-button:hover {
+            background: linear-gradient(135deg, #e6c255, var(--accent-gold));
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .pay-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .secure-badge {
+            text-align: center;
+            margin-top: 1rem;
+            color: #999;
+            font-size: 0.75rem;
+        }
+
+        .secure-badge .icon {
+            color: #4caf50;
+        }
+
+        @media (max-width: 968px) {
+            .payment-content {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-box {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1>💎 프리미엄 리포트 구매</h1>
+            <p>더 깊이 있는 자기 이해의 여정</p>
+        </div>
+
+        <div class="payment-content">
+            <!-- 왼쪽: 상품 정보 -->
+            <div class="product-info">
+                <div class="product-header">
+                    <div class="product-image">📊</div>
+                    <div class="product-details">
+                        <h2>프리미엄 리포트</h2>
+                        <p class="subtitle">MBTI 성격유형검사</p>
+                        <div class="product-price">
+                            <span class="original-price">₩9,900</span>
+                            <span class="discount-price">₩4,900</span>
+                            <span class="discount-badge">50% OFF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="features-list">
+                    <h3>프리미엄 리포트에 포함된 것들</h3>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-text">
+                            <h4>20페이지 상세 분석</h4>
+                            <p>기본 리포트보다 5배 더 자세한 성격 분석과 그래프로 당신을 깊이 있게 이해합니다</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">💼</div>
+                        <div class="feature-text">
+                            <h4>맞춤형 진로 추천</h4>
+                            <p>당신의 성격에 꼭 맞는 직업 TOP 10과 구체적인 커리어 로드맵을 제시합니다</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">💑</div>
+                        <div class="feature-text">
+                            <h4>연애 & 대인관계 가이드</h4>
+                            <p>최고의 파트너 유형, 궁합 분석, 소통 전략 등 관계를 위한 실용적 조언</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">📈</div>
+                        <div class="feature-text">
+                            <h4>강점 & 약점 분석</h4>
+                            <p>구체적인 개선 방법과 함께 당신만의 강점을 최대화하는 전략 제공</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-text">
+                            <h4>3개월 자기계발 플랜</h4>
+                            <p>맞춤형 목표 설정과 실행 계획으로 실제로 성장할 수 있는 로드맵</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">📚</div>
+                        <div class="feature-text">
+                            <h4>추천 도서 & 콘텐츠</h4>
+                            <p>당신의 성격 유형에 맞는 엄선된 책, 강의, 유튜브 채널 추천</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">🔄</div>
+                        <div class="feature-text">
+                            <h4>평생 무료 재검사</h4>
+                            <p>시간이 지나 성격이 변할 때마다 무료로 다시 검사하고 비교할 수 있습니다</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">💬</div>
+                        <div class="feature-text">
+                            <h4>1:1 Q&A (1회)</h4>
+                            <p>결과에 대한 궁금증을 전문가에게 직접 물어보고 답변을 받을 수 있습니다</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guarantee-box">
+                    <h4>🛡️ 100% 만족 보장</h4>
+                    <p>프리미엄 리포트가 기대에 미치지 못하면 7일 이내 전액 환불해드립니다. 이유를 묻지 않습니다.</p>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 결제 정보 -->
+            <div class="payment-box">
+                <h3>결제 정보</h3>
+
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="buyerName">구매자 이름 *</label>
+                        <input 
+                            type="text" 
+                            id="buyerName" 
+                            name="buyerName"
+                            placeholder="홍길동"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="buyerEmail">이메일 *</label>
+                        <input 
+                            type="email" 
+                            id="buyerEmail" 
+                            name="buyerEmail"
+                            placeholder="your@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="buyerPhone">휴대폰 번호 *</label>
+                        <input 
+                            type="tel" 
+                            id="buyerPhone" 
+                            name="buyerPhone"
+                            placeholder="010-1234-5678"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="couponCode">쿠폰 코드 (선택)</label>
+                        <div class="coupon-input-group">
+                            <input 
+                                type="text" 
+                                id="couponCode" 
+                                name="couponCode"
+                                placeholder="쿠폰 코드 입력"
+                            >
+                            <button type="button" class="apply-coupon-btn" onclick="applyCoupon()">
+                                적용
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="price-summary">
+                        <div class="price-row">
+                            <span>상품 금액</span>
+                            <span id="originalAmount">₩9,900</span>
+                        </div>
+                        <div class="price-row">
+                            <span>첫 구매 할인 (50%)</span>
+                            <span style="color: #ff5252;">-₩5,000</span>
+                        </div>
+                        <div class="price-row" id="couponRow" style="display: none;">
+                            <span>쿠폰 할인</span>
+                            <span id="couponDiscount" style="color: #ff5252;">-₩0</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>최종 결제금액</span>
+                            <span class="amount" id="finalAmount">₩4,900</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <h4>결제 수단</h4>
+
+                        <label class="payment-method selected">
+                            <input type="radio" name="paymentMethod" value="card" checked>
+                            <span class="payment-method-icon">💳</span>
+                            <div class="payment-method-info">
+                                <div class="payment-method-name">신용/체크카드</div>
+                                <div class="payment-method-desc">모든 카드 사용 가능</div>
+                            </div>
+                        </label>
+
+                        <label class="payment-method">
+                            <input type="radio" name="paymentMethod" value="kakaopay">
+                            <span class="payment-method-icon">💬</span>
+                            <div class="payment-method-info">
+                                <div class="payment-method-name">카카오페이</div>
+                                <div class="payment-method-desc">간편하고 빠른 결제</div>
+                            </div>
+                        </label>
+
+                        <label class="payment-method">
+                            <input type="radio" name="paymentMethod" value="naverpay">
+                            <span class="payment-method-icon">🅝</span>
+                            <div class="payment-method-info">
+                                <div class="payment-method-name">네이버페이</div>
+                                <div class="payment-method-desc">네이버 포인트 사용 가능</div>
+                            </div>
+                        </label>
+
+                        <label class="payment-method">
+                            <input type="radio" name="paymentMethod" value="tosspay">
+                            <span class="payment-method-icon">💙</span>
+                            <div class="payment-method-info">
+                                <div class="payment-method-name">토스페이</div>
+                                <div class="payment-method-desc">토스 앱으로 간편결제</div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="agree-box">
+                        <div class="agree-item">
+                            <input type="checkbox" id="agreeAll" onchange="toggleAllAgree(this)">
+                            <label for="agreeAll"><strong>전체 동의</strong></label>
+                        </div>
+                        <div class="agree-item">
+                            <input type="checkbox" class="agree-check" required>
+                            <label>구매조건 확인 및 결제 진행 동의 (필수)</label>
+                        </div>
+                        <div class="agree-item">
+                            <input type="checkbox" class="agree-check" required>
+                            <label>개인정보 제3자 제공 동의 (필수) <a href="#">보기</a></label>
+                        </div>
+                        <div class="agree-item">
+                            <input type="checkbox" class="agree-check">
+                            <label>마케팅 정보 수신 동의 (선택)</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="pay-button">
+                        ₩4,900 결제하기
+                    </button>
+
+                    <div class="secure-badge">
+                        <span class="icon">🔒</span> 안전한 결제 시스템 (PG: 토스페이먼츠)
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 결제 수단 선택
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                this.classList.add('selected');
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        // 전체 동의
+        function toggleAllAgree(checkbox) {
+            document.querySelectorAll('.agree-check').forEach(check => {
+                check.checked = checkbox.checked;
+            });
+        }
+
+        // 쿠폰 적용
+        function applyCoupon() {
+            const couponCode = document.getElementById('couponCode').value.trim().toUpperCase();
+            
+            if (!couponCode) {
+                alert('쿠폰 코드를 입력해주세요');
+                return;
+            }
+
+            // 쿠폰 검증 (LocalStorage에서 확인)
+            const coupons = JSON.parse(localStorage.getItem('mindscan_coupons') || '[]');
+            const coupon = coupons.find(c => c.code === couponCode && !c.used);
+
+            if (!coupon) {
+                alert('유효하지 않은 쿠폰 코드입니다');
+                return;
+            }
+
+            // 쿠폰 적용
+            const currentPrice = 4900;
+            const discountAmount = Math.floor(currentPrice * coupon.discount / 100);
+            const finalPrice = currentPrice - discountAmount;
+
+            document.getElementById('couponRow').style.display = 'flex';
+            document.getElementById('couponDiscount').textContent = `-₩${discountAmount.toLocaleString()}`;
+            document.getElementById('finalAmount').textContent = `₩${finalPrice.toLocaleString()}`;
+            document.querySelector('.pay-button').textContent = `₩${finalPrice.toLocaleString()} 결제하기`;
+
+            alert(`쿠폰이 적용되었습니다! (${coupon.discount}% 할인)`);
+        }
+
+        // 결제 처리
+        document.getElementById('paymentForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const buyerName = document.getElementById('buyerName').value;
+            const buyerEmail = document.getElementById('buyerEmail').value;
+            const buyerPhone = document.getElementById('buyerPhone').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const finalAmount = document.getElementById('finalAmount').textContent.replace(/[^0-9]/g, '');
+
+            // 필수 동의 확인
+            const requiredChecks = document.querySelectorAll('.agree-check[required]');
+            const allAgreed = Array.from(requiredChecks).every(check => check.checked);
+
+            if (!allAgreed) {
+                alert('필수 약관에 동의해주세요');
+                return;
+            }
+
+            // 결제 데이터
+            const paymentData = {
+                orderId: 'ORDER_' + Date.now(),
+                orderName: 'MindScan 프리미엄 리포트 - MBTI',
+                amount: parseInt(finalAmount),
+                buyerName: buyerName,
+                buyerEmail: buyerEmail,
+                buyerPhone: buyerPhone,
+                paymentMethod: paymentMethod,
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('결제 데이터:', paymentData);
+
+            // 실제 환경에서는 토스페이먼츠 API 호출
+            // 여기서는 시뮬레이션
+            alert('결제 처리 중...');
+
+            setTimeout(() => {
+                // 결제 성공
+                localStorage.setItem('mindscan_last_payment', JSON.stringify(paymentData));
+                
+                alert(`결제가 완료되었습니다!\n주문번호: ${paymentData.orderId}`);
+                
+                // 성공 페이지로 이동
+                window.location.href = '../payment/success.html?orderId=' + paymentData.orderId;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
