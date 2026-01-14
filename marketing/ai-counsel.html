@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 심리 상담 - MindScan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2c5f4f;
+            --accent-gold: #d4af37;
+            --bg-light: #f5f7fa;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .ai-counsel-container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            height: 700px;
+        }
+
+        /* 왼쪽: 상담 이력 -->
+        .counsel-sidebar {
+            background: #f5f7fa;
+            border-right: 1px solid #e8ecef;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 2rem;
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-header p {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .counsel-sessions {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .new-session-btn {
+            margin: 0 1rem 1rem;
+            padding: 1rem;
+            background: var(--accent-gold);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .new-session-btn:hover {
+            background: #e6c255;
+            transform: translateY(-2px);
+        }
+
+        .session-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .session-item:hover {
+            border-color: var(--accent-gold);
+        }
+
+        .session-item.active {
+            border-color: var(--primary-green);
+            background: #e8f5f1;
+        }
+
+        .session-title {
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .session-time {
+            font-size: 0.75rem;
+            color: #999;
+        }
+
+        .session-preview {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* 오른쪽: 상담 채팅 */
+        .counsel-main {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .counsel-header {
+            padding: 2rem;
+            border-bottom: 1px solid #e8ecef;
+            background: white;
+        }
+
+        .counsel-header h1 {
+            color: var(--primary-green);
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .counsel-header .subtitle {
+            color: #666;
+            font-size: 0.875rem;
+        }
+
+        .counsel-topics {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .topic-tag {
+            padding: 0.5rem 1rem;
+            background: #f5f7fa;
+            border: 2px solid #e8ecef;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .topic-tag:hover,
+        .topic-tag.active {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+
+        .counsel-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            background: #f5f7fa;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .counsel-message {
+            display: flex;
+            margin-bottom: 1.5rem;
+            animation: messageSlide 0.3s ease;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .counsel-message.user {
+            justify-content: flex-end;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .counsel-message.ai .message-avatar {
+            background: var(--primary-green);
+            margin-right: 1rem;
+        }
+
+        .counsel-message.user .message-avatar {
+            background: var(--accent-gold);
+            margin-left: 1rem;
+            order: 2;
+        }
+
+        .message-content {
+            max-width: 70%;
+        }
+
+        .message-bubble {
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            line-height: 1.7;
+        }
+
+        .counsel-message.ai .message-bubble {
+            background: white;
+            color: #1a1a1a;
+            border-bottom-left-radius: 4px;
+        }
+
+        .counsel-message.user .message-bubble {
+            background: var(--accent-gold);
+            color: #1a1a1a;
+            border-bottom-right-radius: 4px;
+        }
+
+        .message-time {
+            font-size: 0.625rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        .counsel-input {
+            padding: 1.5rem;
+            border-top: 1px solid #e8ecef;
+            background: white;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .input-wrapper textarea {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e8ecef;
+            border-radius: 12px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.875rem;
+            resize: none;
+            min-height: 60px;
+            max-height: 120px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-wrapper textarea:focus {
+            border-color: var(--primary-green);
+        }
+
+        .send-button {
+            padding: 1rem 2rem;
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .send-button:hover {
+            background: #1a4838;
+            transform: scale(1.05);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            width: fit-content;
+            margin-bottom: 1.5rem;
+        }
+
+        .typing-indicator.show {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .suggest-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .suggest-question {
+            padding: 0.75rem 1.25rem;
+            background: white;
+            border: 2px solid #e8ecef;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .suggest-question:hover {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+
+        @media (max-width: 968px) {
+            .ai-counsel-container {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: 600px;
+            }
+
+            .counsel-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-counsel-container">
+        <!-- 왼쪽: 상담 이력 -->
+        <div class="counsel-sidebar">
+            <div class="sidebar-header">
+                <h2>🤖 AI 상담</h2>
+                <p>당신의 고민을 들어드립니다</p>
+            </div>
+
+            <button class="new-session-btn" onclick="startNewSession()">
+                ➕ 새 상담 시작
+            </button>
+
+            <div class="counsel-sessions" id="counselSessions">
+                <!-- 상담 세션들이 여기에 추가됩니다 -->
+            </div>
+        </div>
+
+        <!-- 오른쪽: 상담 채팅 -->
+        <div class="counsel-main">
+            <div class="counsel-header">
+                <h1>AI 심리 상담</h1>
+                <p class="subtitle">무엇이든 편하게 말씀해주세요. 24시간 언제든지 도와드립니다.</p>
+
+                <div class="counsel-topics">
+                    <div class="topic-tag" onclick="selectTopic(this, '진로')">💼 진로 고민</div>
+                    <div class="topic-tag" onclick="selectTopic(this, '연애')">💑 연애 고민</div>
+                    <div class="topic-tag" onclick="selectTopic(this, '대인관계')">👥 대인관계</div>
+                    <div class="topic-tag" onclick="selectTopic(this, '스트레스')">😰 스트레스</div>
+                    <div class="topic-tag" onclick="selectTopic(this, '자기계발')">🎯 자기계발</div>
+                </div>
+            </div>
+
+            <div class="counsel-messages" id="counselMessages">
+                <div class="empty-state">
+                    <div class="empty-state-icon">🤖</div>
+                    <h3>AI 상담사가 대기 중입니다</h3>
+                    <p>어떤 고민이든 편하게 말씀해주세요</p>
+
+                    <div class="suggest-questions">
+                        <button class="suggest-question" onclick="askQuestion(this.textContent)">
+                            직업을 바꾸고 싶은데 용기가 나지 않아요
+                        </button>
+                        <button class="suggest-question" onclick="askQuestion(this.textContent)">
+                            사람들과 깊은 대화를 나누기 어려워요
+                        </button>
+                        <button class="suggest-question" onclick="askQuestion(this.textContent)">
+                            나만 뒤처지는 것 같아서 불안해요
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="counsel-input">
+                <div class="input-wrapper">
+                    <textarea 
+                        id="counselInput" 
+                        placeholder="고민을 입력해주세요..."
+                        onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendCounselMessage(); }"
+                    ></textarea>
+                    <button class="send-button" onclick="sendCounselMessage()" id="sendBtn">
+                        전송
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSession = null;
+        let sessions = [];
+        let selectedTopic = null;
+
+        // AI 응답 데이터베이스
+        const aiResponses = {
+            '진로': {
+                keywords: ['직업', '진로', '취업', '이직', '커리어', '일', '회사'],
+                responses: [
+                    `진로에 대한 고민이시군요. 먼저 자신의 강점과 가치관을 명확히 하는 것이 중요합니다.
+
+당신의 MBTI 유형을 알고 계신가요? 성격 유형에 따라 잘 맞는 직업이 다를 수 있습니다.
+
+예를 들어:
+• ENFP: 창의적이고 사람 중심적인 일 (마케터, 상담사)
+• INTJ: 전략적이고 분석적인 일 (분석가, 기획자)
+• ESFJ: 조직적이고 협력적인 일 (HR, 교사)
+
+홀랜드 직업적성검사를 해보시는 것도 추천드려요!`,
+                    `용기를 내기 어려우시다니, 충분히 이해합니다.
+
+변화는 항상 두렵죠. 하지만 다음을 생각해보세요:
+
+1️⃣ 최악의 경우 어떻게 될까?
+→ 대부분 생각보다 괜찮습니다
+
+2️⃣ 지금 안 하면 5년 후엔?
+→ 후회할 가능성이 높습니다
+
+3️⃣ 작은 첫걸음부터 시작하기
+→ 이력서 작성, 사람 만나기 등
+
+당신의 성격 유형을 파악하면 더 명확한 방향을 찾을 수 있어요!`
+                ]
+            },
+            '연애': {
+                keywords: ['연애', '사랑', '이별', '짝사랑', '남자친구', '여자친구', '파트너'],
+                responses: [
+                    `연애 고민이시군요. 관계에서 가장 중요한 것은 서로를 이해하는 것입니다.
+
+당신과 상대방의 성격 유형을 알면 훨씬 수월해질 수 있어요.
+
+예를 들어:
+• ENFP + INFJ: 이상적인 조합 (서로를 깊이 이해)
+• ESTJ + ISFP: 다른 점이 매력이 될 수 있음
+• INTP + ENTJ: 지적 교류가 활발함
+
+MBTI 검사를 같이 해보시는 건 어떨까요?`,
+                    `대인관계는 자신을 이해하는 것부터 시작됩니다.
+
+당신의 애착 유형을 알고 계신가요?
+
+• 안정형: 건강한 관계 형성
+• 회피형: 거리두기 경향
+• 불안형: 과도한 관심 요구
+• 혼란형: 예측 불가능한 행동
+
+애착유형검사로 자신의 패턴을 파악하면 관계가 훨씬 쉬워집니다!`
+                ]
+            },
+            '대인관계': {
+                keywords: ['친구', '사람', '소통', '대화', '관계', '모임'],
+                responses: [
+                    `대인관계에서 어려움을 겪고 계시는군요.
+
+먼저 자신의 소통 스타일을 파악하는 것이 중요합니다.
+
+DISC 행동유형으로 보면:
+• D(주도형): 직설적이고 목표 지향적
+• I(사교형): 열정적이고 사교적
+• S(안정형): 협조적이고 일관성 있음
+• C(신중형): 분석적이고 체계적
+
+상대방의 스타일을 이해하면 갈등을 줄일 수 있어요!`,
+                    `깊은 대화가 어렵다면, 먼저 경청하는 법을 배워보세요.
+
+EQ(감성지능)가 높은 사람들의 특징:
+1️⃣ 상대방의 감정을 먼저 공감
+2️⃣ 판단보다는 이해
+3️⃣ 열린 질문으로 대화 유도
+4️⃣ 비언어적 신호 파악
+
+EQ 검사를 통해 자신의 감성지능을 파악해보세요!`
+                ]
+            },
+            '스트레스': {
+                keywords: ['스트레스', '불안', '우울', '힘들', '지쳐', '번아웃'],
+                responses: [
+                    `스트레스를 많이 받고 계시는군요. 먼저 깊게 숨을 쉬어보세요. 🧘‍♀️
+
+스트레스 관리법:
+
+1️⃣ 신체적 방법
+• 규칙적인 운동
+• 충분한 수면
+• 명상과 호흡
+
+2️⃣ 심리적 방법
+• 긍정적 사고
+• 감사 일기
+• 전문가 상담
+
+3️⃣ 사회적 방법
+• 친구와 대화
+• 취미 활동
+• 휴식과 여행
+
+당신의 성격 유형별 스트레스 관리법을 알려드릴 수 있어요!`,
+                    `불안감이 크시군요. 먼저 그 감정을 인정하는 것이 중요합니다.
+
+불안을 다스리는 법:
+
+🌱 지금 이 순간에 집중하기
+• 5-4-3-2-1 기법 (5개 보이는 것, 4개 만질 수 있는 것...)
+
+🌱 생각 기록하기
+• 불안한 생각을 글로 쓰면 객관화됨
+
+🌱 전문가 도움
+• 심한 경우 전문 상담 필요
+
+정신건강 자가진단을 해보시는 것도 좋습니다.`
+                ]
+            },
+            '자기계발': {
+                keywords: ['자기계발', '성장', '목표', '계획', '습관', '동기부여'],
+                responses: [
+                    `자기계발에 관심이 많으시군요! 👏
+
+성공적인 자기계발 3단계:
+
+1️⃣ 자기 이해
+• 강점과 약점 파악
+• 가치관과 목표 명확화
+• 성격 유형 이해
+
+2️⃣ 목표 설정
+• SMART 목표 (구체적, 측정 가능, 달성 가능...)
+• 작은 단계로 나누기
+
+3️⃣ 실행과 습관화
+• 21일 법칙
+• 환경 만들기
+• 기록과 피드백
+
+당신의 성격 유형에 맞는 자기계발 방법을 찾아보세요!`,
+                    `뒤처진다고 느끼시는군요. 하지만 각자의 속도가 있습니다. 🌱
+
+비교하지 말고 자신에게 집중하세요:
+
+✨ 타인과 비교 → 나의 과거와 비교
+✨ 완벽주의 → 점진적 개선
+✨ 큰 목표 → 작은 성공 경험
+
+성격 유형별 맞춤 자기계발:
+• ENFP: 아이디어를 실행으로
+• INTJ: 체계적 계획 실행
+• ISFP: 감각적 경험 중시
+
+당신의 유형을 알면 더 효과적으로 성장할 수 있어요!`
+                ]
+            }
+        };
+
+        // 페이지 로드 시
+        window.addEventListener('load', function() {
+            loadSessions();
+            addWelcomeMessage();
+        });
+
+        // 환영 메시지
+        function addWelcomeMessage() {
+            setTimeout(() => {
+                addAIMessage(`안녕하세요! 👋 MindScan AI 상담사입니다.
+
+무엇이든 편하게 말씀해주세요. 24시간 언제든지 도와드립니다.
+
+어떤 주제에 대해 이야기하고 싶으신가요?`);
+            }, 500);
+        }
+
+        // 토픽 선택
+        function selectTopic(element, topic) {
+            document.querySelectorAll('.topic-tag').forEach(tag => tag.classList.remove('active'));
+            element.classList.add('active');
+            selectedTopic = topic;
+        }
+
+        // 제안 질문 클릭
+        function askQuestion(question) {
+            document.getElementById('counselInput').value = question;
+            sendCounselMessage();
+        }
+
+        // 메시지 전송
+        function sendCounselMessage() {
+            const input = document.getElementById('counselInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Empty state 제거
+            const emptyState = document.querySelector('.empty-state');
+            if (emptyState) emptyState.remove();
+
+            // 사용자 메시지 추가
+            addUserMessage(message);
+            input.value = '';
+
+            // AI 응답 (1.5초 후)
+            showTypingIndicator();
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = getAIResponse(message);
+                addAIMessage(response);
+                
+                // 세션 저장
+                saveCurrentSession();
+            }, 1500);
+        }
+
+        // AI 응답 생성
+        function getAIResponse(message) {
+            const lowerMessage = message.toLowerCase();
+
+            // 토픽별 응답
+            for (const [topic, data] of Object.entries(aiResponses)) {
+                for (const keyword of data.keywords) {
+                    if (lowerMessage.includes(keyword)) {
+                        const responses = data.responses;
+                        return responses[Math.floor(Math.random() * responses.length)];
+                    }
+                }
+            }
+
+            // 기본 응답
+            return `고민을 나눠주셔서 감사합니다.
+
+조금 더 구체적으로 말씀해주시면 더 도움이 될 것 같아요.
+
+다음 중 하나를 선택해주시면 좋겠습니다:
+💼 진로/적성 고민
+💑 연애/대인관계 고민
+🎯 자기계발/성장 고민
+😰 스트레스/불안 고민
+
+또는 심리검사를 통해 자신을 더 깊이 이해해보세요!`;
+        }
+
+        // 사용자 메시지 추가
+        function addUserMessage(text) {
+            const messagesDiv = document.getElementById('counselMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'counsel-message user';
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    <div class="message-bubble">
+                        ${text}
+                    </div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                </div>
+                <div class="message-avatar">👤</div>
+            `;
+            messagesDiv.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // AI 메시지 추가
+        function addAIMessage(text) {
+            const messagesDiv = document.getElementById('counselMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'counsel-message ai';
+            messageDiv.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="message-bubble">
+                        ${text.replace(/\n/g, '<br>')}
+                    </div>
+                    <div class="message-time">${getCurrentTime()}</div>
+                </div>
+            `;
+            messagesDiv.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // 타이핑 인디케이터
+        function showTypingIndicator() {
+            const messagesDiv = document.getElementById('counselMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'counsel-message ai';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="typing-indicator show">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            messagesDiv.appendChild(typingDiv);
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            const typingDiv = document.getElementById('typingIndicator');
+            if (typingDiv) typingDiv.remove();
+        }
+
+        // 세션 관리
+        function startNewSession() {
+            const sessionId = Date.now();
+            currentSession = {
+                id: sessionId,
+                title: '새 상담',
+                messages: [],
+                createdAt: new Date().toISOString()
+            };
+            
+            // 메시지 초기화
+            document.getElementById('counselMessages').innerHTML = '';
+            addWelcomeMessage();
+        }
+
+        function saveCurrentSession() {
+            if (!currentSession) return;
+
+            const messages = Array.from(document.querySelectorAll('.counsel-message')).map(msg => {
+                return {
+                    type: msg.classList.contains('ai') ? 'ai' : 'user',
+                    content: msg.querySelector('.message-bubble').textContent.trim()
+                };
+            });
+
+            currentSession.messages = messages;
+            
+            // 첫 메시지로 제목 설정
+            if (messages.length > 1) {
+                currentSession.title = messages[1].content.substring(0, 30) + '...';
+            }
+
+            // LocalStorage에 저장
+            const savedSessions = JSON.parse(localStorage.getItem('mindscan_counsel_sessions') || '[]');
+            const existingIndex = savedSessions.findIndex(s => s.id === currentSession.id);
+            
+            if (existingIndex >= 0) {
+                savedSessions[existingIndex] = currentSession;
+            } else {
+                savedSessions.unshift(currentSession);
+            }
+            
+            localStorage.setItem('mindscan_counsel_sessions', JSON.stringify(savedSessions.slice(0, 20))); // 최대 20개
+            
+            loadSessions();
+        }
+
+        function loadSessions() {
+            const sessionsDiv = document.getElementById('counselSessions');
+            const savedSessions = JSON.parse(localStorage.getItem('mindscan_counsel_sessions') || '[]');
+            
+            if (savedSessions.length === 0) {
+                sessionsDiv.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">아직 상담 이력이 없습니다</p>';
+                return;
+            }
+            
+            sessionsDiv.innerHTML = savedSessions.map(session => `
+                <div class="session-item" onclick="loadSession(${session.id})">
+                    <div class="session-title">${session.title}</div>
+                    <div class="session-time">${formatDate(session.createdAt)}</div>
+                    <div class="session-preview">${session.messages[0]?.content || ''}</div>
+                </div>
+            `).join('');
+        }
+
+        function loadSession(sessionId) {
+            const savedSessions = JSON.parse(localStorage.getItem('mindscan_counsel_sessions') || '[]');
+            const session = savedSessions.find(s => s.id === sessionId);
+            
+            if (!session) return;
+            
+            currentSession = session;
+            
+            // 메시지 복원
+            const messagesDiv = document.getElementById('counselMessages');
+            messagesDiv.innerHTML = '';
+            
+            session.messages.forEach(msg => {
+                if (msg.type === 'ai') {
+                    addAIMessage(msg.content);
+                } else {
+                    addUserMessage(msg.content);
+                }
+            });
+        }
+
+        // 유틸리티
+        function getCurrentTime() {
+            return new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) return '방금 전';
+            if (diff < 3600000) return Math.floor(diff / 60000) + '분 전';
+            if (diff < 86400000) return Math.floor(diff / 3600000) + '시간 전';
+            return date.toLocaleDateString('ko-KR');
+        }
+
+        function scrollToBottom() {
+            const messagesDiv = document.getElementById('counselMessages');
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
