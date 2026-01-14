@@ -3,7 +3,7 @@
    그린 #2c5f4f 배경 + 골드 #d4af37 타이틀
    ============================================== */
 
-.hero {
+.hero-section {
     position: relative;
     min-height: 600px;
     display: flex;
@@ -15,7 +15,7 @@
 }
 
 /* 배경 패턴 */
-.hero::before {
+.hero-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -29,7 +29,7 @@
 }
 
 /* 애니메이션 요소 */
-.hero::after {
+.hero-section::after {
     content: '';
     position: absolute;
     width: 600px;
@@ -60,16 +60,48 @@
     margin: 0 auto;
 }
 
+.hero-text {
+    margin-bottom: 2rem;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    color: #d4af37;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.hero-badge i {
+    color: #d4af37;
+}
+
 /* 타이틀 스타일 */
 .hero-title {
     font-size: 4rem;
     font-weight: 800;
-    color: #d4af37;
+    color: #ffffff;
     margin-bottom: 1.5rem;
     line-height: 1.2;
     letter-spacing: -0.02em;
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title .highlight {
+    display: inline-block;
+    background: linear-gradient(135deg, #d4af37, #e6c255);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
 }
 
 .hero-title span {
@@ -82,11 +114,31 @@
 
 /* 서브타이틀 */
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2rem;
-    line-height: 1.6;
+    line-height: 1.7;
     animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero-subtitle strong {
+    color: #d4af37;
+    font-weight: 700;
+}
+
+/* CTA 버튼 그룹 */
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    animation: fadeInUp 1.2s ease-out 0.4s both;
+}
+
+.hero-cta .btn {
+    padding: 1.25rem 2.75rem;
+    font-size: 1.2rem;
 }
 
 /* 버튼 그룹 */
@@ -137,40 +189,59 @@
 /* 통계 카드 */
 .hero-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
     animation: fadeInUp 1.4s ease-out 0.6s both;
 }
 
-.hero-stat {
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     padding: 1.5rem;
-    border-radius: 12px;
+    border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
 }
 
-.hero-stat:hover {
+.stat-item:hover {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(212, 175, 55, 0.5);
     transform: translateY(-4px);
 }
 
-.hero-stat-number {
-    font-size: 2.5rem;
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    font-size: 1.5rem;
+    color: #d4af37;
+}
+
+.stat-text {
+    flex: 1;
+    text-align: left;
+}
+
+.stat-number {
+    font-size: 2rem;
     font-weight: 800;
     color: #d4af37;
     line-height: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
-.hero-stat-label {
+.stat-label {
     font-size: 0.875rem;
     color: rgba(255, 255, 255, 0.8);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 /* 애니메이션 */
@@ -187,6 +258,10 @@
 
 /* 반응형 */
 @media (max-width: 1024px) {
+    .hero-section {
+        padding: 3.5rem 2rem;
+    }
+    
     .hero-title {
         font-size: 3.5rem;
     }
@@ -197,7 +272,7 @@
 }
 
 @media (max-width: 768px) {
-    .hero {
+    .hero-section {
         min-height: 500px;
         padding: 3rem 1.5rem;
     }
@@ -223,10 +298,24 @@
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+    
+    .stat-item {
+        padding: 1rem;
+    }
+    
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+    
+    .stat-number {
+        font-size: 1.75rem;
+    }
 }
 
 @media (max-width: 480px) {
-    .hero {
+    .hero-section {
         min-height: 450px;
         padding: 2rem 1rem;
     }
@@ -244,7 +333,37 @@
         font-size: 1rem;
     }
     
-    .hero-stat-number {
-        font-size: 2rem;
+    .hero-cta {
+        flex-direction: column;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+    
+    .stat-item {
+        padding: 1rem;
+    }
+    
+    .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.125rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
     }
 }
