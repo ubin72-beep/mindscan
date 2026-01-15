@@ -1,284 +1,354 @@
-// 심리 데이터 대시보드 JavaScript
+// ================================
+// 대시보드 JavaScript
+// ================================
 
-// 페이지 로드 시 실행
-document.addEventListener('DOMContentLoaded', function() {
-    initializeCharts();
-    loadDashboardData();
+// Sample User Data
+const userData = {
+    name: '김민지',
+    joinDate: '2025-11-15',
+    testsCompleted: 8,
+    totalTests: 12,
+    premium: true
+};
+
+// Test Results Data
+const testResults = [
+    {
+        id: 1,
+        name: 'MBTI',
+        result: 'INFP',
+        date: '2026-01-10',
+        score: 92,
+        category: 'personality'
+    },
+    {
+        id: 2,
+        name: '에니어그램',
+        result: '4번 예술가',
+        date: '2026-01-08',
+        score: 88,
+        category: 'personality'
+    },
+    {
+        id: 3,
+        name: 'Big Five',
+        result: '개방성 높음',
+        date: '2026-01-05',
+        score: 85,
+        category: 'personality'
+    },
+    {
+        id: 4,
+        name: 'EQ',
+        result: '감성지능 우수',
+        date: '2026-01-03',
+        score: 90,
+        category: 'intelligence'
+    },
+    {
+        id: 5,
+        name: 'IQ',
+        result: '지능지수 128',
+        date: '2025-12-28',
+        score: 128,
+        category: 'intelligence'
+    },
+    {
+        id: 6,
+        name: 'SQ',
+        result: '사회지능 보통',
+        date: '2025-12-25',
+        score: 75,
+        category: 'intelligence'
+    },
+    {
+        id: 7,
+        name: '자존감',
+        result: '보통 수준',
+        date: '2025-12-20',
+        score: 68,
+        category: 'mental'
+    },
+    {
+        id: 8,
+        name: '번아웃',
+        result: '경증',
+        date: '2025-12-15',
+        score: 45,
+        category: 'mental'
+    }
+];
+
+// Strengths & Weaknesses
+const strengthsData = [
+    { name: '창의성', score: 95 },
+    { name: '공감능력', score: 92 },
+    { name: '직관력', score: 88 },
+    { name: '예술적 감각', score: 90 },
+    { name: '심미안', score: 87 }
+];
+
+const weaknessesData = [
+    { name: '실용성', score: 45 },
+    { name: '대인관계', score: 52 },
+    { name: '자기주장', score: 48 },
+    { name: '스트레스 관리', score: 50 },
+    { name: '계획성', score: 55 }
+];
+
+// Goals Data
+const goalsData = [
+    {
+        id: 1,
+        title: '자존감 향상',
+        progress: 65,
+        target: '2026-03-15',
+        status: 'active'
+    },
+    {
+        id: 2,
+        title: '대인관계 개선',
+        progress: 40,
+        target: '2026-04-01',
+        status: 'active'
+    },
+    {
+        id: 3,
+        title: '스트레스 관리',
+        progress: 80,
+        target: '2026-02-28',
+        status: 'active'
+    }
+];
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    loadUserInfo();
+    loadTestHistory();
+    loadStrengthsWeaknesses();
+    loadGoals();
+    createRadarChart();
+    createProgressChart();
+    setupThemeToggle();
 });
 
-// 대시보드로 스크롤
-function scrollToDashboard() {
-    document.getElementById('dashboardDemo').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+// Load User Info
+function loadUserInfo() {
+    document.getElementById('userName').textContent = userData.name;
+    document.getElementById('joinDate').textContent = `가입일: ${userData.joinDate}`;
+    document.getElementById('testsCompleted').textContent = userData.testsCompleted;
+    document.getElementById('totalTests').textContent = userData.totalTests;
+    
+    const progressPercent = Math.round((userData.testsCompleted / userData.totalTests) * 100);
+    document.getElementById('completionRate').textContent = `${progressPercent}%`;
+}
+
+// Load Test History
+function loadTestHistory() {
+    const tbody = document.getElementById('testHistoryBody');
+    tbody.innerHTML = testResults.map(test => `
+        <tr>
+            <td>${test.name}</td>
+            <td><strong>${test.result}</strong></td>
+            <td>${test.date}</td>
+            <td>
+                <div class="score-badge score-${getScoreLevel(test.score)}">
+                    ${test.score}점
+                </div>
+            </td>
+            <td>
+                <button class="btn-sm btn-primary" onclick="viewTestDetail(${test.id})">
+                    <i class="fas fa-eye"></i> 보기
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function getScoreLevel(score) {
+    if (score >= 85) return 'high';
+    if (score >= 70) return 'medium';
+    return 'low';
+}
+
+// Load Strengths & Weaknesses
+function loadStrengthsWeaknesses() {
+    const strengthsList = document.getElementById('strengthsList');
+    strengthsList.innerHTML = strengthsData.map(item => `
+        <div class="strength-item">
+            <div class="strength-header">
+                <span class="strength-name">${item.name}</span>
+                <span class="strength-score">${item.score}점</span>
+            </div>
+            <div class="strength-bar">
+                <div class="strength-fill" style="width: ${item.score}%"></div>
+            </div>
+        </div>
+    `).join('');
+
+    const weaknessesList = document.getElementById('weaknessesList');
+    weaknessesList.innerHTML = weaknessesData.map(item => `
+        <div class="weakness-item">
+            <div class="weakness-header">
+                <span class="weakness-name">${item.name}</span>
+                <span class="weakness-score">${item.score}점</span>
+            </div>
+            <div class="weakness-bar">
+                <div class="weakness-fill" style="width: ${item.score}%"></div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Load Goals
+function loadGoals() {
+    const container = document.getElementById('goalsContainer');
+    container.innerHTML = goalsData.map(goal => `
+        <div class="goal-card">
+            <div class="goal-header">
+                <h4>${goal.title}</h4>
+                <span class="goal-progress-percent">${goal.progress}%</span>
+            </div>
+            <div class="goal-progress-bar">
+                <div class="goal-progress-fill" style="width: ${goal.progress}%"></div>
+            </div>
+            <div class="goal-footer">
+                <span class="goal-target">목표일: ${goal.target}</span>
+                <button class="btn-sm btn-secondary" onclick="updateGoal(${goal.id})">
+                    <i class="fas fa-edit"></i> 수정
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Create Radar Chart
+function createRadarChart() {
+    const ctx = document.getElementById('radarChart').getContext('2d');
+    
+    new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['창의성', '공감능력', '논리력', '리더십', '소통능력', '자기관리'],
+            datasets: [{
+                label: '나의 능력',
+                data: [95, 92, 70, 65, 75, 68],
+                backgroundColor: 'rgba(44, 95, 79, 0.2)',
+                borderColor: '#2c5f4f',
+                borderWidth: 2,
+                pointBackgroundColor: '#d4af37',
+                pointBorderColor: '#fff',
+                pointBorderWidth: 2,
+                pointRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        stepSize: 20,
+                        font: { size: 12 }
+                    },
+                    pointLabels: {
+                        font: { size: 14, weight: '600' }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
     });
 }
 
-// 차트 초기화
-function initializeCharts() {
-    // 성장 추이 차트
-    const growthCtx = document.getElementById('growthChart');
-    if (growthCtx) {
-        new Chart(growthCtx, {
-            type: 'line',
-            data: {
-                labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
-                datasets: [{
-                    label: '성장 점수',
-                    data: [65, 70, 75, 78, 82, 85],
+// Create Progress Chart
+function createProgressChart() {
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['11월', '12월', '1월'],
+            datasets: [
+                {
+                    label: '자존감',
+                    data: [50, 58, 68],
                     borderColor: '#2c5f4f',
                     backgroundColor: 'rgba(44, 95, 79, 0.1)',
                     tension: 0.4,
                     fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
                 },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 50,
-                        max: 100
-                    }
+                {
+                    label: 'EQ',
+                    data: [75, 82, 90],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                },
+                {
+                    label: '번아웃',
+                    data: [65, 55, 45],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    tension: 0.4,
+                    fill: true
                 }
-            }
-        });
-    }
-
-    // 검사 분포 차트
-    const distributionCtx = document.getElementById('testDistributionChart');
-    if (distributionCtx) {
-        new Chart(distributionCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['MBTI', 'EQ', '에니어그램', 'DISC', '기타'],
-                datasets: [{
-                    data: [30, 25, 20, 15, 10],
-                    backgroundColor: [
-                        '#2c5f4f',
-                        '#d4af37',
-                        '#5c7cfa',
-                        '#4caf50',
-                        '#9c27b0'
-                    ]
-                }]
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                }
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
                 }
             }
-        });
-    }
-}
-
-// 대시보드 데이터 로드
-function loadDashboardData() {
-    // LocalStorage에서 저장된 데이터 불러오기
-    const savedData = localStorage.getItem('dashboardData');
-    
-    if (savedData) {
-        const data = JSON.parse(savedData);
-        updateDashboard(data);
-    } else {
-        // 기본 데이터 생성
-        const defaultData = {
-            tests: 8,
-            goals: 5,
-            score: 85,
-            streak: 12,
-            activities: [],
-            goals: []
-        };
-        saveDashboardData(defaultData);
-    }
-}
-
-// 대시보드 데이터 저장
-function saveDashboardData(data) {
-    localStorage.setItem('dashboardData', JSON.stringify(data));
-}
-
-// 대시보드 업데이트
-function updateDashboard(data) {
-    // 통계 카드 업데이트
-    // 실제 구현에서는 DOM 조작으로 숫자 업데이트
-    console.log('Dashboard updated:', data);
-}
-
-// 대시보드 새로고침
-function refreshDashboard() {
-    const button = event.target.closest('.btn-icon');
-    button.classList.add('rotating');
-    
-    setTimeout(() => {
-        button.classList.remove('rotating');
-        loadDashboardData();
-        alert('대시보드가 새로고침되었습니다!');
-    }, 1000);
-}
-
-// 리포트 다운로드
-function downloadReport() {
-    alert('리포트를 다운로드합니다.\n\nPDF 형식으로 저장됩니다.');
-    // 실제 구현: PDF 생성 및 다운로드
-}
-
-// 무료 시작
-function startFree() {
-    alert('무료 대시보드를 시작합니다!');
-    window.location.href = 'mypage.html';
-}
-
-// 프리미엄 구독
-function subscribePremium() {
-    if (confirm('프리미엄 대시보드를 구독하시겠습니까?\n\n월 9,900원')) {
-        alert('결제 페이지로 이동합니다.');
-        // window.location.href = 'payment/checkout.html?plan=dashboard-premium';
-    }
-}
-
-// 목표 추가
-function addGoal(goalData) {
-    const dashboardData = JSON.parse(localStorage.getItem('dashboardData')) || {};
-    
-    if (!dashboardData.goals) {
-        dashboardData.goals = [];
-    }
-    
-    dashboardData.goals.push({
-        ...goalData,
-        id: Date.now(),
-        createdAt: new Date().toISOString(),
-        progress: 0
-    });
-    
-    saveDashboardData(dashboardData);
-    updateDashboard(dashboardData);
-}
-
-// 목표 업데이트
-function updateGoal(goalId, progress) {
-    const dashboardData = JSON.parse(localStorage.getItem('dashboardData'));
-    
-    const goal = dashboardData.goals.find(g => g.id === goalId);
-    if (goal) {
-        goal.progress = progress;
-        goal.updatedAt = new Date().toISOString();
-        
-        saveDashboardData(dashboardData);
-        updateDashboard(dashboardData);
-    }
-}
-
-// 활동 기록 추가
-function logActivity(activityType, activityData) {
-    const dashboardData = JSON.parse(localStorage.getItem('dashboardData')) || {};
-    
-    if (!dashboardData.activities) {
-        dashboardData.activities = [];
-    }
-    
-    dashboardData.activities.unshift({
-        type: activityType,
-        data: activityData,
-        timestamp: new Date().toISOString()
-    });
-    
-    // 최근 20개만 유지
-    dashboardData.activities = dashboardData.activities.slice(0, 20);
-    
-    saveDashboardData(dashboardData);
-}
-
-// 통계 계산
-function calculateStats() {
-    const dashboardData = JSON.parse(localStorage.getItem('dashboardData')) || {};
-    
-    return {
-        totalTests: dashboardData.tests || 0,
-        completedGoals: dashboardData.goals?.filter(g => g.progress === 100).length || 0,
-        currentScore: dashboardData.score || 0,
-        streak: dashboardData.streak || 0,
-        averageProgress: dashboardData.goals?.reduce((acc, g) => acc + g.progress, 0) / (dashboardData.goals?.length || 1) || 0
-    };
-}
-
-// 데이터 내보내기
-function exportData() {
-    const dashboardData = localStorage.getItem('dashboardData');
-    
-    if (!dashboardData) {
-        alert('내보낼 데이터가 없습니다.');
-        return;
-    }
-    
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(dashboardData);
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "mentora-dashboard-data.json");
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-    
-    alert('데이터가 다운로드되었습니다!');
-}
-
-// 데이터 가져오기
-function importData(file) {
-    const reader = new FileReader();
-    
-    reader.onload = function(e) {
-        try {
-            const data = JSON.parse(e.target.result);
-            localStorage.setItem('dashboardData', JSON.stringify(data));
-            loadDashboardData();
-            alert('데이터를 성공적으로 불러왔습니다!');
-        } catch (error) {
-            alert('데이터 형식이 올바르지 않습니다.');
         }
-    };
-    
-    reader.readAsText(file);
+    });
 }
 
-// CSS 애니메이션 추가
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes rotating {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    
-    .rotating {
-        animation: rotating 1s linear infinite;
-    }
-`;
-document.head.appendChild(style);
+// Actions
+function viewTestDetail(id) {
+    alert(`검사 ${id}의 상세 결과를 보는 중...`);
+}
 
-// Export functions
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        loadDashboardData,
-        refreshDashboard,
-        downloadReport,
-        startFree,
-        subscribePremium,
-        addGoal,
-        updateGoal,
-        logActivity,
-        calculateStats,
-        exportData,
-        importData
-    };
+function updateGoal(id) {
+    alert(`목표 ${id}를 수정합니다.`);
+}
+
+function addNewGoal() {
+    alert('새 목표를 추가합니다!');
+}
+
+function exportData() {
+    alert('데이터를 PDF로 내보내는 중...');
+}
+
+// Theme Toggle
+function setupThemeToggle() {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const icon = toggle.querySelector('i');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
+    });
 }
