@@ -44,7 +44,6 @@
                 <span class="logo-text">Mentora</span>
             </a>
             
-            <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
@@ -676,7 +675,6 @@
         </div>
     </section>
 
-    <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
         <a href="#home" class="nav-item active">
             <i class="fas fa-home"></i>
@@ -755,7 +753,6 @@
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script>
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
             const menuToggle = document.getElementById('mobileMenuToggle');
@@ -781,7 +778,6 @@
             icon.classList.add('fa-bars');
         }
 
-        // Mobile Bottom Nav Active State
         document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
             item.addEventListener('click', function() {
                 document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(i => i.classList.remove('active'));
