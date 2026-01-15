@@ -1,0 +1,660 @@
+/* ===========================
+   커뮤니티 페이지 스타일
+   =========================== */
+
+/* Hero Section */
+.community-hero {
+    padding: 120px 20px 80px;
+    background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.community-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+}
+
+.community-hero .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.community-hero .hero-title {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.community-hero .hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 40px;
+}
+
+.community-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 50px;
+}
+
+.community-stats .stat-item {
+    text-align: center;
+}
+
+.community-stats .stat-number {
+    font-size: 36px;
+    font-weight: 800;
+    color: #d4af37;
+    margin-bottom: 8px;
+}
+
+.community-stats .stat-label {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Groups Section */
+.groups-section {
+    padding: 80px 20px;
+    background: #f8f9fa;
+}
+
+.groups-filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 28px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    border-color: #2c5f4f;
+    color: #2c5f4f;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    border-color: #2c5f4f;
+    color: white;
+}
+
+.groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.group-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.group-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.group-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.group-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.group-icon i {
+    font-size: 28px;
+    color: #d4af37;
+}
+
+.group-info h3 {
+    font-size: 20px;
+    color: #1a4838;
+    margin-bottom: 5px;
+}
+
+.group-info .members {
+    font-size: 14px;
+    color: #888;
+}
+
+.group-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.group-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.group-activity {
+    font-size: 13px;
+    color: #888;
+}
+
+.btn-join-group {
+    padding: 8px 20px;
+    background: #d4af37;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-join-group:hover {
+    background: #c19b2f;
+}
+
+/* Posts Section */
+.posts-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.posts-section .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.posts-container {
+    margin-top: 40px;
+}
+
+.post-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.post-card:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+.post-user h4 {
+    font-size: 16px;
+    color: #1a4838;
+    margin-bottom: 3px;
+}
+
+.post-meta {
+    font-size: 13px;
+    color: #888;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a4838;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.post-footer {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+.post-footer span i {
+    margin-right: 5px;
+}
+
+/* Mentoring Section */
+.mentoring-section {
+    padding: 80px 20px;
+    background: #f8f9fa;
+}
+
+.mentoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.mentor-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.mentor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.mentor-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 40px;
+    color: #d4af37;
+    font-weight: 700;
+}
+
+.mentor-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a4838;
+    margin-bottom: 5px;
+}
+
+.mentor-title {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.mentor-bio {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.mentor-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tag {
+    padding: 5px 12px;
+    background: #f0f0f0;
+    border-radius: 15px;
+    font-size: 12px;
+    color: #666;
+}
+
+.btn-request-mentoring {
+    width: 100%;
+    padding: 12px;
+    background: #d4af37;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-request-mentoring:hover {
+    background: #c19b2f;
+}
+
+/* Workshops Section */
+.workshops-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.workshops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.workshop-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.workshop-card:hover {
+    border-color: #2c5f4f;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.workshop-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    color: #d4af37;
+}
+
+.workshop-body {
+    padding: 25px;
+}
+
+.workshop-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    background: #d4af37;
+    color: white;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.workshop-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a4838;
+    margin-bottom: 10px;
+}
+
+.workshop-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.workshop-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+.workshop-info span i {
+    margin-right: 8px;
+    color: #2c5f4f;
+}
+
+.btn-register-workshop {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-register-workshop:hover {
+    background: linear-gradient(135deg, #1a4838, #2c5f4f);
+}
+
+/* Join CTA */
+.join-cta {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #2c5f4f, #1a4838);
+    text-align: center;
+    color: white;
+}
+
+.cta-content h2 {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.cta-content p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+}
+
+.btn-cta {
+    padding: 18px 40px;
+    background: #d4af37;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: #f4d03f;
+    transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h3 {
+    font-size: 22px;
+    color: #1a4838;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a4838;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #2c5f4f;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.pagination button {
+    padding: 10px 18px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    border-color: #2c5f4f;
+    color: #2c5f4f;
+}
+
+.pagination button.active {
+    background: #2c5f4f;
+    border-color: #2c5f4f;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .community-hero .hero-title {
+        font-size: 32px;
+    }
+
+    .community-hero .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .community-stats {
+        gap: 30px;
+    }
+
+    .community-stats .stat-number {
+        font-size: 28px;
+    }
+
+    .groups-grid,
+    .mentoring-grid,
+    .workshops-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .posts-section .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cta-content h2 {
+        font-size: 28px;
+    }
+
+    .cta-content p {
+        font-size: 16px;
+    }
+}
