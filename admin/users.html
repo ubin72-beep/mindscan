@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용자 관리 | Mentora Admin</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/logo-brain-hd.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <div class="admin-logo">
+                <i class="fas fa-brain"></i>
+                <span>Mentora Admin</span>
+            </div>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>대시보드</span>
+            </a>
+            <a href="users.html" class="nav-item active">
+                <i class="fas fa-users"></i>
+                <span>사용자 관리</span>
+            </a>
+            <a href="tests.html" class="nav-item">
+                <i class="fas fa-clipboard-list"></i>
+                <span>검사 관리</span>
+            </a>
+            <a href="refunds.html" class="nav-item">
+                <i class="fas fa-receipt"></i>
+                <span>환불 관리</span>
+                <span class="badge">신규</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>설정</span>
+            </a>
+            
+            <div class="nav-divider"></div>
+            
+            <a href="../index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>사이트로 이동</span>
+            </a>
+            <a href="#" class="nav-item" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>로그아웃</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">사용자 관리</h1>
+                <p class="page-subtitle">전체 사용자 정보를 관리하세요</p>
+            </div>
+            <div class="topbar-right">
+                <button class="topbar-btn primary" onclick="openAddUserModal()">
+                    <i class="fas fa-user-plus"></i>
+                    사용자 추가
+                </button>
+                <div class="admin-profile">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="profile-info">
+                        <span class="profile-name">관리자</span>
+                        <span class="profile-role">Master Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Users Content -->
+        <div class="users-content">
+            <!-- Filter & Search -->
+            <div class="filter-section">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="userSearch" placeholder="이름, 이메일로 검색..." onkeyup="searchUsers()">
+                </div>
+                <div class="filter-group">
+                    <select id="statusFilter" onchange="filterUsers()">
+                        <option value="">전체 상태</option>
+                        <option value="active">활성</option>
+                        <option value="inactive">비활성</option>
+                        <option value="suspended">정지</option>
+                    </select>
+                    <select id="planFilter" onchange="filterUsers()">
+                        <option value="">전체 플랜</option>
+                        <option value="free">무료</option>
+                        <option value="premium">프리미엄</option>
+                        <option value="ai">AI 상담</option>
+                    </select>
+                    <button class="filter-btn" onclick="resetFilters()">
+                        <i class="fas fa-redo"></i>
+                        필터 초기화
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Summary -->
+            <div class="users-stats">
+                <div class="stat-item">
+                    <span class="stat-label">전체 사용자</span>
+                    <span class="stat-number" id="totalUsersCount">로딩 중...</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">활성 사용자</span>
+                    <span class="stat-number" id="activeUsersCount">로딩 중...</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">프리미엄 사용자</span>
+                    <span class="stat-number" id="premiumUsersCount">로딩 중...</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">신규 사용자 (이번 달)</span>
+                    <span class="stat-number" id="newUsersCount">로딩 중...</span>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                            </th>
+                            <th>사용자 ID</th>
+                            <th>이름</th>
+                            <th>이메일</th>
+                            <th>플랜</th>
+                            <th>가입일</th>
+                            <th>마지막 접속</th>
+                            <th>검사 완료</th>
+                            <th>상태</th>
+                            <th>작업</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users will be loaded here -->
+                        <tr>
+                            <td colspan="10" class="table-loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                사용자 목록을 불러오는 중...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="page-btn" onclick="previousPage()" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                    이전
+                </button>
+                <div class="page-numbers" id="pageNumbers">
+                    <!-- Page numbers will be loaded here -->
+                </div>
+                <button class="page-btn" onclick="nextPage()" id="nextBtn">
+                    다음
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- User Detail Modal -->
+    <div id="userDetailModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>사용자 상세 정보</h2>
+                <button class="modal-close" onclick="closeUserDetailModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="userDetailBody">
+                <!-- User details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>사용자 정보 수정</h2>
+                <button class="modal-close" onclick="closeEditUserModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editUserForm" onsubmit="updateUser(event)">
+                    <div class="form-group">
+                        <label>이름</label>
+                        <input type="text" id="editUserName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>이메일</label>
+                        <input type="email" id="editUserEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>플랜</label>
+                        <select id="editUserPlan" required>
+                            <option value="free">무료</option>
+                            <option value="premium">프리미엄</option>
+                            <option value="ai">AI 상담</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>상태</label>
+                        <select id="editUserStatus" required>
+                            <option value="active">활성</option>
+                            <option value="inactive">비활성</option>
+                            <option value="suspended">정지</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>메모</label>
+                        <textarea id="editUserMemo" rows="3"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" onclick="closeEditUserModal()">취소</button>
+                        <button type="submit" class="btn-submit">저장</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin JS -->
+    <script src="js/admin.js"></script>
+    <script src="js/users.js"></script>
+</body>
+</html>
