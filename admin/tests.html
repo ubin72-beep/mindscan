@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검사 관리 | Mentora Admin</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/logo-brain-hd.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <div class="admin-logo">
+                <i class="fas fa-brain"></i>
+                <span>Mentora Admin</span>
+            </div>
+            <button class="sidebar-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>대시보드</span>
+            </a>
+            <a href="users.html" class="nav-item">
+                <i class="fas fa-users"></i>
+                <span>사용자 관리</span>
+            </a>
+            <a href="tests.html" class="nav-item active">
+                <i class="fas fa-clipboard-list"></i>
+                <span>검사 관리</span>
+            </a>
+            <a href="refunds.html" class="nav-item">
+                <i class="fas fa-receipt"></i>
+                <span>환불 관리</span>
+                <span class="badge">신규</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>설정</span>
+            </a>
+            
+            <div class="nav-divider"></div>
+            
+            <a href="../index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>사이트로 이동</span>
+            </a>
+            <a href="#" class="nav-item" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>로그아웃</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <h1 class="page-title">검사 관리</h1>
+                <p class="page-subtitle">검사 결과 및 통계를 관리하세요</p>
+            </div>
+            <div class="topbar-right">
+                <button class="topbar-btn primary" onclick="openAddTestModal()">
+                    <i class="fas fa-plus-circle"></i>
+                    검사 추가
+                </button>
+                <div class="admin-profile">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="profile-info">
+                        <span class="profile-name">관리자</span>
+                        <span class="profile-role">Master Admin</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tests Content -->
+        <div class="tests-content">
+            <!-- Test Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon tests">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 class="stat-title">전체 검사 완료</h3>
+                        <p class="stat-value" id="totalCompletedTests">로딩 중...</p>
+                        <p class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            지속 증가 중
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon users">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 class="stat-title">평균 완료율</h3>
+                        <p class="stat-value" id="avgCompletionRate">로딩 중...</p>
+                        <p class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            완료율 상승
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon star">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 class="stat-title">평균 만족도</h3>
+                        <p class="stat-value" id="avgSatisfaction">로딩 중...</p>
+                        <p class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            만족도 증가
+                        </p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon time">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 class="stat-title">평균 소요 시간</h3>
+                        <p class="stat-value" id="avgDuration">로딩 중...</p>
+                        <p class="stat-change neutral">
+                            <i class="fas fa-minus"></i>
+                            평균 유지
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test Charts -->
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">검사별 완료 현황</h3>
+                        <select class="chart-filter" onchange="updateTestCompletionChart(this.value)">
+                            <option value="30" selected>최근 한 달</option>
+                            <option value="90">최근 분기</option>
+                            <option value="365">최근 일 년</option>
+                        </select>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="testCompletionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3 class="chart-title">검사 만족도 분포</h3>
+                        <button class="chart-action" onclick="exportSatisfactionData()">
+                            <i class="fas fa-download"></i>
+                            내보내기
+                        </button>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="satisfactionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tests List -->
+            <div class="tests-list-section">
+                <div class="section-header">
+                    <h3 class="section-title">검사 목록</h3>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="testSearch" placeholder="검사명으로 검색..." onkeyup="searchTests()">
+                        </div>
+                        <select id="categoryFilter" onchange="filterTests()">
+                            <option value="">전체 카테고리</option>
+                            <option value="personality">성격 유형</option>
+                            <option value="emotion">감정/정서</option>
+                            <option value="relationship">대인관계</option>
+                            <option value="career">진로/적성</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tests-grid" id="testsGrid">
+                    <!-- Tests will be loaded here -->
+                    <div class="loading-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        검사 목록을 불러오는 중...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Test Results -->
+            <div class="recent-results-section">
+                <div class="section-header">
+                    <h3 class="section-title">최근 검사 결과</h3>
+                    <a href="#" class="section-link">전체보기 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>사용자</th>
+                                <th>검사명</th>
+                                <th>결과</th>
+                                <th>완료 시간</th>
+                                <th>소요 시간</th>
+                                <th>만족도</th>
+                                <th>작업</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentResultsBody">
+                            <!-- Results will be loaded here -->
+                            <tr>
+                                <td colspan="7" class="table-loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    최근 결과를 불러오는 중...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Test Detail Modal -->
+    <div id="testDetailModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2>검사 상세 정보</h2>
+                <button class="modal-close" onclick="closeTestDetailModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="testDetailBody">
+                <!-- Test details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Test Modal -->
+    <div id="editTestModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="editTestModalTitle">검사 정보 수정</h2>
+                <button class="modal-close" onclick="closeEditTestModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editTestForm" onsubmit="saveTest(event)">
+                    <div class="form-group">
+                        <label>검사명</label>
+                        <input type="text" id="editTestName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>카테고리</label>
+                        <select id="editTestCategory" required>
+                            <option value="personality">성격 유형</option>
+                            <option value="emotion">감정/정서</option>
+                            <option value="relationship">대인관계</option>
+                            <option value="career">진로/적성</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>소요 시간 (분)</label>
+                        <input type="text" id="editTestDuration" required>
+                    </div>
+                    <div class="form-group">
+                        <label>문항 수</label>
+                        <input type="text" id="editTestQuestions" required>
+                    </div>
+                    <div class="form-group">
+                        <label>설명</label>
+                        <textarea id="editTestDescription" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>상태</label>
+                        <select id="editTestStatus" required>
+                            <option value="active">활성</option>
+                            <option value="inactive">비활성</option>
+                            <option value="maintenance">점검중</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" onclick="closeEditTestModal()">취소</button>
+                        <button type="submit" class="btn-submit">저장</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin JS -->
+    <script src="js/admin.js"></script>
+    <script src="js/tests.js"></script>
+</body>
+</html>
