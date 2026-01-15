@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentora (멘토라) - 당신 내면의 빛을 찾다 | 전문 심리검사</title>
-    <meta name="description" content="많은 사람이 선택한 과학적 심리검사. MBTI, 에니어그램, DISC 등 다양한 전문 검사를 짧은 시간에 무료로 체험하세요. AI 분석과 실시간 통계 제공.">
-    <meta name="keywords" content="Mentora, 멘토라, MBTI, 에니어그램, 성격검사, 심리테스트, AI분석, 성격유형, EQ, 자존감, 우울증, 번아웃">
+    <title>Mentora (멘토라) - 당신 내면의 빛을 찾다 | 12가지 전문 심리검사</title>
+    <meta name="description" content="100만 명이 선택한 과학적 심리검사. MBTI, 에니어그램, Big Five 등 12가지 전문 검사를 10분 만에 무료로 체험하세요. AI 분석과 실시간 통계 제공.">
+    <meta name="keywords" content="Mentora, 멘토라, MBTI, 에니어그램, 성격검사, 심리테스트, AI분석, 성격유형, EQ, IQ, SQ">
     
     <meta property="og:title" content="Mentora - 당신 내면의 빛을 찾다">
-    <meta property="og:description" content="많은 사람이 선택한 과학적 심리검사. 짧은 시간에 당신의 숨겨진 재능을 발견할 수 있습니다.">
+    <meta property="og:description" content="100만 명이 선택한 과학적 심리검사. 10분 만에 당신의 숨겨진 재능을 발견할 수 있습니다.">
     <meta property="og:image" content="images/banner-social.png">
     <meta property="og:url" content="https://mentora.co.kr">
     <meta property="og:type" content="website">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mentora - 당신 내면의 빛을 찾다">
-    <meta name="twitter:description" content="많은 사람이 선택한 과학적 심리검사">
+    <meta name="twitter:description" content="100만 명이 선택한 과학적 심리검사">
     <meta name="twitter:image" content="images/banner-social.png">
     
-    <link rel="icon" type="image/png" href="images/logo-brain-hd.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/logo-brain-hd.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo-brain-hd.png">
     <link rel="apple-touch-icon" href="images/logo-brain-hd.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -36,7 +37,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <nav class="nav">
             <a href="index.html" class="nav-logo">
@@ -58,19 +58,17 @@
                 <li><a href="#reviews" class="nav-link" onclick="closeMobileMenu()">후기</a></li>
                 <li><a href="mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
             </ul>
-            
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
                 <i class="fas fa-moon"></i>
             </button>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero-section" id="home">
         <div class="hero-content">
             <div class="hero-badge">
                 <i class="fas fa-star"></i>
-                <span>많은 사람이 선택한 심리검사 플랫폼</span>
+                <span>100만 명이 선택한 심리검사 플랫폼</span>
             </div>
             
             <h1 class="hero-title">
@@ -79,7 +77,7 @@
             </h1>
             
             <p class="hero-subtitle">
-                다양한 과학적 심리검사로 당신의 성격, 지능, 감정을 깊이 있게 분석합니다.<br>
+                12가지 과학적 심리검사로 당신의 성격, 지능, 감정을 깊이 있게 분석합니다.<br>
                 <strong>Mentora</strong>와 함께 당신 내면의 빛을 발견하세요.
             </p>
             
@@ -98,7 +96,7 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="stat-text">
-                        <div class="stat-number">많은</div>
+                        <div class="stat-number" data-count="1000000">0</div>
                         <div class="stat-label">참여자</div>
                     </div>
                 </div>
@@ -107,7 +105,7 @@
                         <i class="fas fa-clipboard-check"></i>
                     </div>
                     <div class="stat-text">
-                        <div class="stat-number">다양한</div>
+                        <div class="stat-number" data-count="12">0</div>
                         <div class="stat-label">전문 검사</div>
                     </div>
                 </div>
@@ -116,759 +114,567 @@
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="stat-text">
-                        <div class="stat-number">짧은 시간</div>
-                        <div class="stat-label">평균 소요</div>
+                        <div class="stat-number" data-count="10">0</div>
+                        <div class="stat-label">평균 소요 (분)</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tests Section -->
-    <section class="tests-section" id="tests">
-        <div class="section-header">
-            <h2 class="section-title">전문 심리검사</h2>
-            <p class="section-subtitle">과학적으로 검증된 다양한 심리검사를 무료로 체험하세요</p>
-        </div>
-
-        <!-- Search & Filter -->
-        <div class="test-controls">
-            <div class="search-box">
+    <section class="tests" id="tests">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">12가지 전문 심리검사</h2>
+                <p class="section-description">과학적으로 검증된 12가지 검사로 당신의 모든 면을 탐색하세요</p>
+            </div>
+            
+            <div class="test-search">
+                <input type="text" id="testSearch" placeholder="검사 이름 또는 키워드 검색..." onkeyup="filterTests()">
                 <i class="fas fa-search"></i>
-                <input type="text" id="testSearch" placeholder="검사 이름으로 검색..." onkeyup="searchTests()">
             </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-category="all" onclick="filterTests('all')">전체</button>
-                <button class="filter-btn" data-category="personality" onclick="filterTests('personality')">성격</button>
-                <button class="filter-btn" data-category="intelligence" onclick="filterTests('intelligence')">지능</button>
-                <button class="filter-btn" data-category="emotion" onclick="filterTests('emotion')">감정</button>
-                <button class="filter-btn" data-category="career" onclick="filterTests('career')">진로</button>
-            </div>
-        </div>
-
-        <!-- AI Recommendation -->
-        <div class="ai-recommendation">
-            <div class="ai-icon">
-                <i class="fas fa-magic"></i>
-            </div>
-            <div class="ai-content">
-                <h3>AI 맞춤 추천</h3>
-                <p>당신에게 딱 맞는 검사를 AI가 추천해드립니다</p>
-            </div>
-            <button class="btn btn-primary" onclick="startRecommendedTest()">
-                <i class="fas fa-robot"></i> AI 추천 받기
-            </button>
-        </div>
-
-        <!-- Test Cards Grid -->
-        <div class="tests-grid" id="testsGrid">
-            <!-- MBTI -->
-            <div class="test-card" data-test="mbti" data-category="personality" data-time="짧은 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-badge new">인기</div>
-                    <div class="test-icon mbti-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                </div>
-                <h3 class="test-name">MBTI 성격유형검사</h3>
-                <p class="test-description">당신의 성격 유형을 정확하게 분석하여 강점과 약점, 적합한 직업을 알려드립니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>짧은 시간</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
-                    </div>
-                </div>
-                <button class="btn btn-test" onclick="startTest('mbti')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
+            
+            <div class="test-filters">
+                <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">
+                    <i class="fas fa-th"></i> 전체
+                </button>
+                <button class="filter-btn" data-filter="quick" onclick="setFilter('quick')">
+                    <i class="fas fa-bolt"></i> 빠른 검사
+                </button>
+                <button class="filter-btn" data-filter="career" onclick="setFilter('career')">
+                    <i class="fas fa-briefcase"></i> 진로/직업
+                </button>
+                <button class="filter-btn" data-filter="relationship" onclick="setFilter('relationship')">
+                    <i class="fas fa-heart"></i> 관계/소통
                 </button>
             </div>
 
-            <!-- Enneagram -->
-            <div class="test-card" data-test="enneagram" data-category="personality" data-time="중간 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-badge">인기</div>
-                    <div class="test-icon enneagram-icon">
-                        <i class="fas fa-star"></i>
+            <div class="ai-recommendation">
+                <div class="ai-recommendation-content">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h3>AI 추천 검사</h3>
+                        <p>당신에게 가장 적합한 검사를 AI가 추천합니다</p>
                     </div>
                 </div>
-                <h3 class="test-name">에니어그램</h3>
-                <p class="test-description">아홉 가지 성격 유형으로 당신의 핵심 동기와 행동 패턴을 이해합니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
+                <div class="ai-recommendation-actions">
+                    <button class="btn btn-primary" id="aiRecommendationBtn" onclick="startRecommendedTest()">
+                        추천 검사 시작하기
+                    </button>
                 </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>중간 시간</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
-                    </div>
-                </div>
-                <button class="btn btn-test" onclick="startTest('enneagram')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
             </div>
-
-            <!-- DISC -->
-            <div class="test-card" data-test="disc" data-category="personality" data-time="짧은 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-icon disc-icon">
-                        <i class="fas fa-chart-pie"></i>
-                    </div>
-                </div>
-                <h3 class="test-name">DISC 행동유형검사</h3>
-                <p class="test-description">업무 스타일과 대인관계 패턴을 분석하여 커리어 개발에 도움을 드립니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>짧은 시간</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
-                    </div>
-                </div>
-                <button class="btn btn-test" onclick="startTest('disc')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
-            </div>
-
-            <!-- Holland -->
-            <div class="test-card" data-test="holland" data-category="career" data-time="중간 시간" data-questions="많은 문항">
-                <div class="test-card-header">
-                    <div class="test-icon holland-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                </div>
-                <h3 class="test-name">Holland 직업적성검사</h3>
-                <p class="test-description">여섯 가지 직업적 흥미 유형으로 당신에게 맞는 직업과 진로를 찾아드립니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>중간 시간</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>많은 문항</span>
-                    </div>
-                </div>
-                <button class="btn btn-test" onclick="startTest('holland')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
-            </div>
-
-            <!-- Attachment -->
-            <div class="test-card" data-test="attachment" data-category="emotion" data-time="짧은 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-badge new">NEW</div>
-                    <div class="test-icon attachment-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                </div>
-                <h3 class="test-name">애착유형검사</h3>
-                <p class="test-description">관계 맺는 방식과 사랑의 스타일을 분석하여 건강한 관계를 만들도록 돕습니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 최고 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>짧은 시간</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
-                    </div>
-                </div>
-                <button class="btn btn-test" onclick="startTest('attachment')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
-            </div>
-
-            <!-- EQ -->
-            <div class="test-card" data-test="eq" data-category="emotion" data-time="짧은 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-icon eq-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                </div>
-                <h3 class="test-name">EQ 감성지능검사</h3>
-                <p class="test-description">감정 인식과 조절 능력을 측정하여 대인관계 개선에 도움을 드립니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>짧은 시간</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
-                    </div>
-                </div>
-                <button class="btn btn-test" onclick="startTest('eq')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
-            </div>
-
-            <!-- SQ -->
-            <div class="test-card" data-test="sq" data-category="intelligence" data-time="짧은 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-icon sq-icon">
+            
+            <div class="tests-grid">
+                <div class="test-card" data-test="mbti" data-time="15" data-category="relationship" data-keywords="성향 파악, 에너지의 방향, 정보 처리 방식, 선호도, 외향, 내향, 직관, 감각">
+                    <div class="test-badge-hot">가장 인기</div>
+                    <div class="test-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                </div>
-                <h3 class="test-name">SQ 사회성지능검사</h3>
-                <p class="test-description">사회적 상황 이해력과 대인관계 역량을 평가합니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>짧은 시간</span>
+                    <h3 class="test-title">MBTI 성격유형검사</h3>
+                    <p class="test-description">16가지 성격유형으로 당신의 선호 경향을 파악합니다</p>
+                    
+                    <div class="test-stats">
+                        <div class="test-stat-item">
+                            <div class="test-stat-number">350,000+</div>
+                            <div class="test-stat-label">참여자</div>
+                        </div>
+                        <div class="test-stat-item">
+                            <div class="test-stat-number">4.9⭐</div>
+                            <div class="test-stat-label">평균 평점</div>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
+                    
+                    <div class="test-review">
+                        <div class="test-review-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="test-review-text">"결과가 소름돋을 정도로 정확해요! 친구들한테 다 추천했습니다 👍"</p>
+                        <p class="test-review-author">- 김민지, 28세</p>
                     </div>
+                    
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 15분</span>
+                        <span><i class="far fa-question-circle"></i> 60문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('mbti')">
+                        <span>지금 무료로 시작</span>
+                    </button>
                 </div>
-                <button class="btn btn-test" onclick="startTest('sq')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
-            </div>
 
-            <!-- Self Esteem -->
-            <div class="test-card" data-test="selfesteem" data-category="emotion" data-time="짧은 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-icon selfesteem-icon">
+                <div class="test-card" data-test="enneagram" data-time="20" data-category="relationship" data-keywords="동기 분석, 내면의 깊은 두려움, 욕구, 집착, 핵심 동기, 성장 방향">
+                    <div class="test-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3 class="test-title">에니어그램</h3>
+                    <p class="test-description">9가지 성격유형으로 핵심 동기와 두려움을 이해합니다</p>
+                    <div class="test-stats">
+                        <div class="test-stat-item">
+                            <div class="test-stat-number">280,000+</div>
+                            <div class="test-stat-label">참여자</div>
+                        </div>
+                        <div class="test-stat-item">
+                            <div class="test-stat-number">4.8⭐</div>
+                            <div class="test-stat-label">평균 평점</div>
+                        </div>
+                    </div>
+                    <div class="test-review">
+                        <div class="test-review-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="test-review-text">"내 두려움의 근원을 알게 되어 큰 깨달음을 얻었어요!"</p>
+                        <p class="test-review-author">- 이준혁, 32세</p>
+                    </div>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 20분</span>
+                        <span><i class="far fa-question-circle"></i> 90문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('enneagram')">지금 무료로 시작</button>
+                </div>
+
+                <div class="test-card" data-test="bigfive" data-time="15" data-category="all">
+                    <div class="test-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="test-title">Big Five 성격검사</h3>
+                    <p class="test-description">5가지 주요 성격 특성의 정도를 과학적으로 측정합니다</p>
+                    <div class="test-stats">
+                        <div class="test-stat-item">
+                            <div class="test-stat-number">210,000+</div>
+                            <div class="test-stat-label">참여자</div>
+                        </div>
+                        <div class="test-stat-item">
+                            <div class="test-stat-number">4.7⭐</div>
+                            <div class="test-stat-label">평균 평점</div>
+                        </div>
+                    </div>
+                    <div class="test-review">
+                        <div class="test-review-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="test-review-text">"과학적 근거가 탄탄해서 믿고 봤습니다. 추천!"</p>
+                        <p class="test-review-author">- 박서연, 26세</p>
+                    </div>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 15분</span>
+                        <span><i class="far fa-question-circle"></i> 50문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('bigfive')">지금 무료로 시작</button>
+                </div>
+
+                <div class="test-card" data-test="disc" data-time="12" data-category="relationship">
+                    <div class="test-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3 class="test-title">DISC 행동유형검사</h3>
+                    <p class="test-description">4가지 행동 스타일로 소통 방식을 파악합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 12분</span>
+                        <span><i class="far fa-question-circle"></i> 28문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('disc')">검사 시작</button>
+                </div>
+
+                <div class="test-card" data-test="holland" data-time="15" data-category="career">
+                    <div class="test-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="test-title">Holland 적성검사</h3>
+                    <p class="test-description">6가지 직업 흥미 유형으로 진로를 탐색합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 15분</span>
+                        <span><i class="far fa-question-circle"></i> 60문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('holland')">검사 시작</button>
+                </div>
+
+                <div class="test-card" data-test="attachment" data-time="10" data-category="relationship">
+                    <div class="test-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="test-title">애착유형검사</h3>
+                    <p class="test-description">관계 패턴과 애착 스타일을 이해합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 10분</span>
+                        <span><i class="far fa-question-circle"></i> 36문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('attachment')">검사 시작</button>
+                </div>
+
+                <div class="test-card" data-test="eq" data-time="15" data-category="personality" data-keywords="정서 지능, 자신과 타인의 감정 인식, 감정 조절, 공감, 감성, 정서적 능력">
+                    <div class="test-badge">NEW</div>
+                    <div class="test-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="test-title">EQ 감성지능검사</h3>
+                    <p class="test-description">감정을 인식하고 관리하는 능력을 측정합니다</p>
+                    <div class="test-stats">
+                        <div class="test-stat-item">
+                            <div class="test-stat-number">95,000+</div>
+                            <div class="test-stat-label">참여자</div>
+                        </div>
+                        <div class="test-stat-item">
+                            <div class="test-stat-number">4.8⭐</div>
+                            <div class="test-stat-label">평균 평점</div>
+                        </div>
+                    </div>
+                    <div class="test-review">
+                        <div class="test-review-stars">⭐⭐⭐⭐⭐</div>
+                        <p class="test-review-text">"감정 조절이 어려웠는데 많은 도움이 됐어요!"</p>
+                        <p class="test-review-author">- 최지우, 24세</p>
+                    </div>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 15분</span>
+                        <span><i class="far fa-question-circle"></i> 33문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('eq')">지금 무료로 시작</button>
+                </div>
+
+                <div class="test-card" data-test="iq" data-time="20" data-category="intelligence" data-keywords="지적 능력, 논리, 추리, 수리, 인지적 해결 능력, 문제 해결">
+                    <div class="test-badge">NEW</div>
+                    <div class="test-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="test-title">IQ 지능검사</h3>
+                    <p class="test-description">논리적 사고와 문제 해결 능력을 측정합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 20분</span>
+                        <span><i class="far fa-question-circle"></i> 30문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('iq')">검사 시작</button>
+                </div>
+
+                <div class="test-card" data-test="sq" data-time="12" data-category="personality" data-keywords="사회적 지능, 타인과의 관계, 소통, 협력, 대인관계 능력">
+                    <div class="test-badge">NEW</div>
+                    <div class="test-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3 class="test-title">SQ 사회지능검사</h3>
+                    <p class="test-description">타인과의 관계에서 소통하고 협력하는 능력을 측정합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 12분</span>
+                        <span><i class="far fa-question-circle"></i> 40문항</span>
+                    </div>
+                    <button class="btn btn-test" onclick="startTest('sq')">검사 시작</button>
+                </div>
+
+                <div class="test-card" data-test="selfesteem" data-time="8" data-category="personality">
+                    <div class="test-icon">
                         <i class="fas fa-smile"></i>
                     </div>
-                </div>
-                <h3 class="test-name">자존감 검사</h3>
-                <p class="test-description">자기 가치감과 자신감 수준을 측정하여 긍정적 자아 형성을 돕습니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>짧은 시간</span>
+                    <h3 class="test-title">자존감검사</h3>
+                    <p class="test-description">자신을 존중하고 가치있게 여기는 정도를 측정합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 8분</span>
+                        <span><i class="far fa-question-circle"></i> 10문항</span>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
-                    </div>
+                    <button class="btn btn-test" onclick="startTest('selfesteem')">검사 시작</button>
                 </div>
-                <button class="btn btn-test" onclick="startTest('selfesteem')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
-            </div>
 
-            <!-- Depression -->
-            <div class="test-card" data-test="depression" data-category="emotion" data-time="짧은 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-icon depression-icon">
+                <div class="test-card" data-test="depression" data-time="10" data-category="mental">
+                    <div class="test-icon">
                         <i class="fas fa-cloud-rain"></i>
                     </div>
-                </div>
-                <h3 class="test-name">우울증 자가진단</h3>
-                <p class="test-description">우울 증상의 정도를 확인하고 전문적 도움이 필요한지 판단합니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>짧은 시간</span>
+                    <h3 class="test-title">우울증검사</h3>
+                    <p class="test-description">우울 증상의 정도를 파악하고 조기 대응합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 10분</span>
+                        <span><i class="far fa-question-circle"></i> 20문항</span>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
-                    </div>
+                    <button class="btn btn-test" onclick="startTest('depression')">검사 시작</button>
                 </div>
-                <button class="btn btn-test" onclick="startTest('depression')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
-            </div>
 
-            <!-- Burnout -->
-            <div class="test-card" data-test="burnout" data-category="emotion" data-time="짧은 시간" data-questions="적당한 문항">
-                <div class="test-card-header">
-                    <div class="test-badge">추천</div>
-                    <div class="test-icon burnout-icon">
+                <div class="test-card" data-test="burnout" data-time="12" data-category="mental">
+                    <div class="test-icon">
                         <i class="fas fa-battery-quarter"></i>
                     </div>
-                </div>
-                <h3 class="test-name">번아웃 증후군 검사</h3>
-                <p class="test-description">직업적 스트레스와 소진 상태를 점검하여 회복 방법을 제시합니다.</p>
-                <div class="test-meta">
-                    <span><i class="fas fa-users"></i> 많은 참여</span>
-                    <span><i class="fas fa-star"></i> 높은 평점</span>
-                    <span><i class="fas fa-comment-dots"></i> 많은 후기</span>
-                </div>
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>짧은 시간</span>
+                    <h3 class="test-title">번아웃검사</h3>
+                    <p class="test-description">직업적 소진 상태를 측정하고 회복 방법을 제시합니다</p>
+                    <div class="test-info">
+                        <span><i class="far fa-clock"></i> 12분</span>
+                        <span><i class="far fa-question-circle"></i> 22문항</span>
                     </div>
-                    <div class="info-item">
-                        <i class="fas fa-list"></i>
-                        <span>적당한 문항</span>
-                    </div>
+                    <button class="btn btn-test" onclick="startTest('burnout')">검사 시작</button>
                 </div>
-                <button class="btn btn-test" onclick="startTest('burnout')">
-                    <i class="fas fa-play-circle"></i> 검사 시작
-                </button>
             </div>
         </div>
     </section>
 
-    <!-- Premium Features Section -->
-    <section class="premium-features-section" id="premium-features">
-        <div class="section-header">
-            <h2 class="section-title">프리미엄 기능</h2>
-            <p class="section-subtitle">더 깊이 있는 자기 이해를 위한 특별한 기능들</p>
-        </div>
-
-        <div class="premium-features-grid">
-            <!-- AI 맞춤형 성장 로드맵 -->
-            <div class="premium-feature-card">
-                <div class="feature-icon roadmap">
-                    <i class="fas fa-route"></i>
-                </div>
-                <h3 class="feature-title">AI 맞춤형 성장 로드맵</h3>
-                <p class="feature-description">검사 결과를 바탕으로 당신만의 개인 성장 계획을 AI가 설계합니다</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> 성격 기반 목표 설정</li>
-                    <li><i class="fas fa-check"></i> 단계별 실행 계획</li>
-                    <li><i class="fas fa-check"></i> 진행 상황 추적</li>
-                </ul>
-                <a href="roadmap.html" class="btn btn-feature">
-                    <i class="fas fa-arrow-right"></i> 체험하기
-                </a>
+    <section class="premium-features" id="premium-features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">프리미엄 기능</h2>
+                <p class="section-description">AI 기술로 더욱 깊이 있는 분석과 맞춤형 솔루션을 제공합니다</p>
             </div>
-
-            <!-- 커플/팀 매칭 분석 -->
-            <div class="premium-feature-card">
-                <div class="feature-icon couple">
-                    <i class="fas fa-heart"></i>
+            
+            <div class="premium-grid">
+                <div class="premium-card">
+                    <div class="premium-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3 class="premium-title">AI 맞춤형 성장 로드맵</h3>
+                    <p class="premium-description">당신의 검사 결과를 분석하여 단계별 성장 계획과 실천 가이드를 제공합니다</p>
+                    <ul class="premium-features-list">
+                        <li><i class="fas fa-check"></i> 개인 맞춤 목표 설정</li>
+                        <li><i class="fas fa-check"></i> 단계별 실천 플랜</li>
+                        <li><i class="fas fa-check"></i> 주간 진도 체크</li>
+                        <li><i class="fas fa-check"></i> AI 피드백</li>
+                    </ul>
+                    <a href="roadmap.html" class="btn btn-premium">시작하기</a>
                 </div>
-                <h3 class="feature-title">커플/팀 매칭 분석</h3>
-                <p class="feature-description">두 사람의 성격 궁합과 팀워크를 과학적으로 분석합니다</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> 성격 궁합도 분석</li>
-                    <li><i class="fas fa-check"></i> 갈등 예방 조언</li>
-                    <li><i class="fas fa-check"></i> 소통 개선 팁</li>
-                </ul>
-                <a href="couple-analysis.html" class="btn btn-feature">
-                    <i class="fas fa-arrow-right"></i> 체험하기
-                </a>
-            </div>
 
-            <!-- AI 코칭 챗봇 -->
-            <div class="premium-feature-card featured">
-                <div class="featured-badge">인기</div>
-                <div class="feature-icon chatbot">
-                    <i class="fas fa-robot"></i>
+                <div class="premium-card featured">
+                    <div class="premium-badge">인기</div>
+                    <div class="premium-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="premium-title">커플/팀 매칭 분석</h3>
+                    <p class="premium-description">두 사람의 성격을 비교 분석하여 관계 개선 방법과 소통 전략을 제시합니다</p>
+                    <ul class="premium-features-list">
+                        <li><i class="fas fa-check"></i> 성격 궁합도 분석</li>
+                        <li><i class="fas fa-check"></i> 갈등 해결 가이드</li>
+                        <li><i class="fas fa-check"></i> 소통 개선 팁</li>
+                        <li><i class="fas fa-check"></i> 관계 성장 플랜</li>
+                    </ul>
+                    <a href="couple-analysis.html" class="btn btn-premium featured">체험하기</a>
                 </div>
-                <h3 class="feature-title">AI 코칭 챗봇</h3>
-                <p class="feature-description">연중무휴 AI 심리 코치가 당신의 고민을 들어드립니다</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> 실시간 상담</li>
-                    <li><i class="fas fa-check"></i> 맞춤형 조언</li>
-                    <li><i class="fas fa-check"></i> 무제한 대화</li>
-                </ul>
-                <a href="ai-chatbot.html" class="btn btn-feature">
-                    <i class="fas fa-arrow-right"></i> 체험하기
-                </a>
-            </div>
 
-            <!-- 심리 데이터 대시보드 -->
-            <div class="premium-feature-card">
-                <div class="feature-icon dashboard">
-                    <i class="fas fa-chart-line"></i>
+                <div class="premium-card">
+                    <div class="premium-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="premium-title">AI 코칭 챗봇</h3>
+                    <p class="premium-description">언제든지 AI 전문가와 대화하며 고민을 상담하고 해결책을 찾습니다</p>
+                    <ul class="premium-features-list">
+                        <li><i class="fas fa-check"></i> 24/7 상시 상담 가능</li>
+                        <li><i class="fas fa-check"></i> 무제한 대화</li>
+                        <li><i class="fas fa-check"></i> 맞춤형 조언</li>
+                        <li><i class="fas fa-check"></i> 대화 기록 저장</li>
+                    </ul>
+                    <a href="ai-chatbot.html" class="btn btn-premium">상담하기</a>
                 </div>
-                <h3 class="feature-title">심리 데이터 대시보드</h3>
-                <p class="feature-description">당신의 심리 상태 변화를 시각화된 차트로 확인하세요</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> 시간별 추이 분석</li>
-                    <li><i class="fas fa-check"></i> 비교 리포트</li>
-                    <li><i class="fas fa-check"></i> 인사이트 제공</li>
-                </ul>
-                <a href="dashboard.html" class="btn btn-feature">
-                    <i class="fas fa-arrow-right"></i> 체험하기
-                </a>
-            </div>
 
-            <!-- B2B 기업 솔루션 -->
-            <div class="premium-feature-card">
-                <div class="feature-icon b2b">
-                    <i class="fas fa-building"></i>
+                <div class="premium-card">
+                    <div class="premium-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="premium-title">심리 데이터 대시보드</h3>
+                    <p class="premium-description">검사 결과를 시각화하고 변화 추이를 추적하여 성장을 한눈에 확인합니다</p>
+                    <ul class="premium-features-list">
+                        <li><i class="fas fa-check"></i> 통합 대시보드</li>
+                        <li><i class="fas fa-check"></i> 변화 추이 분석</li>
+                        <li><i class="fas fa-check"></i> 강점/약점 리포트</li>
+                        <li><i class="fas fa-check"></i> 목표 달성률 추적</li>
+                    </ul>
+                    <a href="dashboard.html" class="btn btn-premium">확인하기</a>
                 </div>
-                <h3 class="feature-title">B2B 기업 솔루션</h3>
-                <p class="feature-description">조직의 인재 관리와 팀 빌딩을 위한 전문 솔루션</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> 조직 문화 진단</li>
-                    <li><i class="fas fa-check"></i> 팀 역량 분석</li>
-                    <li><i class="fas fa-check"></i> 맞춤 교육 제공</li>
-                </ul>
-                <a href="b2b.html" class="btn btn-feature">
-                    <i class="fas fa-arrow-right"></i> 문의하기
-                </a>
-            </div>
 
-            <!-- 멘토라 커뮤니티 -->
-            <div class="premium-feature-card">
-                <div class="feature-icon community">
-                    <i class="fas fa-users"></i>
+                <div class="premium-card">
+                    <div class="premium-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="premium-title">B2B 기업 솔루션</h3>
+                    <p class="premium-description">조직 분석, 팀 빌딩, 리더십 개발 등 기업 맞춤형 심리 분석 서비스를 제공합니다</p>
+                    <ul class="premium-features-list">
+                        <li><i class="fas fa-check"></i> 조직문화 진단</li>
+                        <li><i class="fas fa-check"></i> 팀 빌딩 분석</li>
+                        <li><i class="fas fa-check"></i> 리더십 코칭</li>
+                        <li><i class="fas fa-check"></i> 맞춤형 교육</li>
+                    </ul>
+                    <a href="b2b.html" class="btn btn-premium">문의하기</a>
                 </div>
-                <h3 class="feature-title">멘토라 커뮤니티</h3>
-                <p class="feature-description">같은 성격 유형의 사람들과 경험을 나누고 성장하세요</p>
-                <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> 유형별 모임</li>
-                    <li><i class="fas fa-check"></i> 경험 공유</li>
-                    <li><i class="fas fa-check"></i> 전문가 Q&A</li>
-                </ul>
-                <a href="community.html" class="btn btn-feature">
-                    <i class="fas fa-arrow-right"></i> 참여하기
-                </a>
+
+                <div class="premium-card">
+                    <div class="premium-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="premium-title">멘토라 커뮤니티</h3>
+                    <p class="premium-description">비슷한 성향의 사람들과 만나고, 경험을 공유하며 함께 성장합니다</p>
+                    <ul class="premium-features-list">
+                        <li><i class="fas fa-check"></i> 성향별 그룹</li>
+                        <li><i class="fas fa-check"></i> 경험 공유</li>
+                        <li><i class="fas fa-check"></i> 멘토링 매칭</li>
+                        <li><i class="fas fa-check"></i> 월간 워크샵</li>
+                    </ul>
+                    <a href="community.html" class="btn btn-premium">참여하기</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing-section" id="pricing">
-        <div class="section-header">
-            <h2 class="section-title">요금제</h2>
-            <p class="section-subtitle">당신에게 맞는 플랜을 선택하세요</p>
-        </div>
-
-        <div class="pricing-grid">
-            <!-- Free Plan -->
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3 class="plan-name">무료 플랜</h3>
-                    <div class="plan-price">
-                        <span class="price">무료</span>
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">프리미엄 플랜</h2>
+                <p class="section-description">더 깊이 있는 분석과 맞춤형 조언을 받아보세요</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">무료</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">₩0</span>
+                        </div>
                     </div>
-                    <p class="plan-description">기본 심리검사를 무료로 이용하세요</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 기본 검사 12가지 모두</li>
+                        <li><i class="fas fa-check"></i> 간단한 결과 확인</li>
+                        <li><i class="fas fa-check"></i> 통계 확인</li>
+                        <li class="disabled"><i class="fas fa-times"></i> 상세 분석 리포트</li>
+                        <li class="disabled"><i class="fas fa-times"></i> AI 맞춤 조언</li>
+                        <li class="disabled"><i class="fas fa-times"></i> PDF 다운로드</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="window.location.href='#tests'">
+                        무료로 시작하기
+                    </button>
                 </div>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 다양한 기본 검사</li>
-                    <li><i class="fas fa-check"></i> 기본 결과 리포트</li>
-                    <li><i class="fas fa-check"></i> PDF 다운로드</li>
-                    <li><i class="fas fa-check"></i> 이메일 전송</li>
-                    <li><i class="fas fa-check"></i> 평생 결과 보관</li>
-                </ul>
-                <button class="btn btn-plan" onclick="selectPlan('free')">
-                    무료 시작하기
-                </button>
-            </div>
 
-            <!-- Premium Plan -->
-            <div class="pricing-card featured">
-                <div class="popular-badge">인기</div>
-                <div class="pricing-header">
-                    <h3 class="plan-name">프리미엄 검사</h3>
-                    <div class="plan-price">
-                        <span class="price">합리적 가격</span>
-                        <span class="period">/ 검사당</span>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">추천</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">프리미엄</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">₩9,900</span>
+                            <span class="price-period">/ 검사당</span>
+                        </div>
                     </div>
-                    <p class="plan-description">깊이 있는 분석 리포트를 받아보세요</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 모든 무료 기능</li>
+                        <li><i class="fas fa-check"></i> 20페이지 상세 분석 리포트</li>
+                        <li><i class="fas fa-check"></i> AI 맞춤형 조언</li>
+                        <li><i class="fas fa-check"></i> PDF 다운로드</li>
+                        <li><i class="fas fa-check"></i> 이메일 전송</li>
+                        <li><i class="fas fa-check"></i> 평생 보관</li>
+                    </ul>
+                    <button class="btn-pricing featured" onclick="window.location.href='payment/checkout.html?plan=premium'">
+                        지금 구매하기
+                    </button>
                 </div>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 무료 플랜 전체 기능</li>
-                    <li><i class="fas fa-check"></i> 상세 분석 리포트</li>
-                    <li><i class="fas fa-check"></i> AI 맞춤 조언</li>
-                    <li><i class="fas fa-check"></i> 성장 로드맵</li>
-                    <li><i class="fas fa-check"></i> 우선 고객 지원</li>
-                </ul>
-                <button class="btn btn-plan primary" onclick="selectPlan('premium')">
-                    프리미엄 시작하기
-                </button>
-            </div>
 
-            <!-- AI Coaching Plan -->
-            <div class="pricing-card">
-                <div class="pricing-header">
-                    <h3 class="plan-name">AI 상담 플랜</h3>
-                    <div class="plan-price">
-                        <span class="price">특별 가격</span>
-                        <span class="period">/ 월</span>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-name">AI 상담</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">₩29,900</span>
+                            <span class="price-period">/ 월</span>
+                        </div>
                     </div>
-                    <p class="plan-description">AI 심리 코치와 함께 성장하세요</p>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 모든 프리미엄 기능</li>
+                        <li><i class="fas fa-check"></i> 24/7 AI 상담</li>
+                        <li><i class="fas fa-check"></i> 무제한 질문</li>
+                        <li><i class="fas fa-check"></i> 실시간 피드백</li>
+                        <li><i class="fas fa-check"></i> 맞춤형 솔루션</li>
+                        <li><i class="fas fa-check"></i> 7일 무료 체험</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="alert('AI 상담 문의: 0502-1909-7788')">
+                        7일 무료 체험
+                    </button>
                 </div>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 프리미엄 플랜 전체 기능</li>
-                    <li><i class="fas fa-check"></i> 연중무휴 AI 상담</li>
-                    <li><i class="fas fa-check"></i> 무제한 질문</li>
-                    <li><i class="fas fa-check"></i> 맞춤형 성장 코칭</li>
-                    <li><i class="fas fa-check"></i> 월간 진행 리포트</li>
-                    <li><i class="fas fa-check"></i> 체험 기간 제공</li>
-                </ul>
-                <button class="btn btn-plan" onclick="selectPlan('ai-coaching')">
-                    체험 시작하기
-                </button>
-            </div>
-        </div>
-
-        <div class="pricing-note">
-            <i class="fas fa-info-circle"></i>
-            <p>모든 플랜은 언제든지 변경 가능합니다. 환불 정책은 <a href="refund.html">환불 정책 페이지</a>를 참고하세요.</p>
-        </div>
-    </section>
-
-    <!-- Statistics Section -->
-    <section class="statistics-section" id="statistics">
-        <div class="section-header">
-            <h2 class="section-title">실시간 통계</h2>
-            <p class="section-subtitle">Mentora와 함께하는 사람들의 이야기</p>
-        </div>
-
-        <!-- Stats Overview -->
-        <div class="stats-overview">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="stat-content">
-                    <div class="stat-number">많은</div>
-                    <div class="stat-label">총 검사 참여자</div>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-smile"></i>
-                </div>
-                <div class="stat-content">
-                    <div class="stat-number">높은</div>
-                    <div class="stat-label">만족도</div>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="stat-content">
-                    <div class="stat-number">우수한</div>
-                    <div class="stat-label">평균 평점</div>
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-comment-dots"></i>
-                </div>
-                <div class="stat-content">
-                    <div class="stat-number">많은</div>
-                    <div class="stat-label">사용자 후기</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Charts -->
-        <div class="charts-grid">
-            <div class="chart-card">
-                <h3 class="chart-title">인기 검사 TOP</h3>
-                <canvas id="mbtiChart"></canvas>
-            </div>
-
-            <div class="chart-card">
-                <h3 class="chart-title">연령대별 참여율</h3>
-                <canvas id="ageChart"></canvas>
             </div>
         </div>
     </section>
 
-    <!-- Reviews Section -->
-    <section class="reviews-section" id="reviews">
-        <div class="section-header">
-            <h2 class="section-title">사용자 후기</h2>
-            <p class="section-subtitle">Mentora를 경험한 사람들의 진솔한 이야기</p>
-        </div>
-
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div>
-                            <div class="reviewer-name">김민준</div>
-                            <div class="reviewer-meta">대학생 · MBTI 검사</div>
-                        </div>
-                    </div>
-                    <div class="review-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <p class="review-text">
-                    "다른 MBTI 검사들보다 훨씬 정확하고 상세한 분석을 제공해주네요. 
-                    특히 AI 맞춤 조언이 실생활에 정말 도움이 되었습니다."
-                </p>
-                <div class="review-date">최근</div>
+    <section class="statistics" id="statistics">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">실시간 통계</h2>
+                <p class="section-description">Mentora 사용자들의 검사 결과를 확인해보세요</p>
             </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div>
-                            <div class="reviewer-name">이서윤</div>
-                            <div class="reviewer-meta">직장인 · 번아웃 검사</div>
-                        </div>
-                    </div>
-                    <div class="review-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users stat-icon"></i>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="1024850">0</h3>
+                        <p class="stat-label">총 검사 참여자</p>
                     </div>
                 </div>
-                <p class="review-text">
-                    "번아웃 증후군 검사를 통해 제 상태를 객관적으로 알 수 있었고, 
-                    구체적인 회복 방법까지 제시해줘서 큰 도움이 되었습니다."
-                </p>
-                <div class="review-date">최근</div>
+                <div class="stat-card">
+                    <i class="fas fa-heart stat-icon"></i>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="98">0</h3>
+                        <p class="stat-label">만족도 (%)</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star stat-icon"></i>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="4.9">0</h3>
+                        <p class="stat-label">평균 평점</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-comment stat-icon"></i>
+                    <div class="stat-content">
+                        <h3 class="stat-number" data-count="52489">0</h3>
+                        <p class="stat-label">후기 수</p>
+                    </div>
+                </div>
             </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div>
-                            <div class="reviewer-name">박도윤</div>
-                            <div class="reviewer-meta">취업준비생 · Holland 검사</div>
-                        </div>
-                    </div>
-                    <div class="review-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+            
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3>MBTI 유형 분포</h3>
+                    <canvas id="mbtiChart"></canvas>
                 </div>
-                <p class="review-text">
-                    "진로 고민이 많았는데 Holland 검사가 제 적성을 명확히 보여줬어요. 
-                    이제 자신 있게 지원할 직무를 찾을 수 있게 되었습니다."
-                </p>
-                <div class="review-date">최근</div>
+                <div class="chart-card">
+                    <h3>연령대별 참여율</h3>
+                    <canvas id="ageChart"></canvas>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <img src="images/logo-brain-hd.png" alt="Mentora" class="footer-logo-img">
-                    <span class="footer-logo-text">Mentora</span>
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">사용자 후기</h2>
+                <p class="section-description">실제 사용자들의 생생한 후기를 확인해보세요</p>
+            </div>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">K</div>
+                        <div class="review-user">
+                            <h4 class="review-name">김민지</h4>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"MBTI 검사 결과가 너무 정확해서 놀랐어요! 친구들에게도 다 추천했습니다."</p>
+                    <div class="review-footer">
+                        <span class="review-test">MBTI 검사</span>
+                        <span class="review-date">2일 전</span>
+                    </div>
                 </div>
-                <p class="footer-description">
-                    당신 내면의 빛을 찾아드립니다.<br>
-                    과학적이고 정확한 심리검사 플랫폼
-                </p>
-                <div class="footer-social">
-                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">L</div>
+                        <div class="review-user">
+                            <h4 class="review-name">이준혁</h4>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"에니어그램으로 제 내면을 깊이 이해할 수 있었어요. 정말 도움이 많이 됐습니다."</p>
+                    <div class="review-footer">
+                        <span class="review-test">에니어그램</span>
+                        <span class="review-date">5일 전</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="footer-section">
-                <h4 class="footer-title">검사 도구</h4>
-                <ul class="footer-links">
-                    <li><a href="#tests">MBTI 검사</a></li>
-                    <li><a href="#tests">에니어그램</a></li>
-                    <li><a href="#tests">DISC 검사</a></li>
-                    <li><a href="#tests">Holland 검사</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4 class="footer-title">정보</h4>
-                <ul class="footer-links">
-                    <li><a href="terms.html">이용약관</a></li>
-                    <li><a href="privacy.html">개인정보처리방침</a></li>
-                    <li><a href="refund.html">환불정책</a></li>
-                    <li><a href="admin/index.html">관리자</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4 class="footer-title">연결</h4>
-                <ul class="footer-links">
-                    <li><a href="mypage.html">내 결과</a></li>
-                    <li><a href="community.html">커뮤니티</a></li>
-                    <li><a href="b2b.html">기업 문의</a></li>
-                    <li><a href="#premium-features">프리미엄 기능</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4 class="footer-title">고객센터</h4>
-                <ul class="footer-contact">
-                    <li><i class="fas fa-envelope"></i> contact@mentora.co.kr</li>
-                    <li><i class="fas fa-phone"></i> 평일 운영</li>
-                    <li><i class="fas fa-map-marker-alt"></i> 서울특별시</li>
-                </ul>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">P</div>
+                        <div class="review-user">
+                            <h4 class="review-name">박서연</h4>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"과학적 근거가 탄탄해서 신뢰가 갔어요. 프리미엄 리포트도 구매했습니다!"</p>
+                    <div class="review-footer">
+                        <span class="review-test">Big Five</span>
+                        <span class="review-date">1주일 전</span>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="footer-bottom">
-            <p>&copy; Mentora. 모든 권리 보유.</p>
-        </div>
-    </footer>
+    </section>
 
     <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
@@ -894,7 +700,58 @@
         </a>
     </nav>
 
-    <!-- Scripts -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="footer-logo-image">
+                    <h3>Mentora</h3>
+                </div>
+                <p class="footer-tagline">당신 내면의 빛을 찾다</p>
+                <div class="company-info">
+                    <p><strong style="color: #d4af37;">Mentora (멘토라)</strong></p>
+                    <p>📍 서울 송파구 송파대로14길 7-10 2층</p>
+                    <p>☎️ 문의: 0502-1909-7788</p>
+                    <p>📠 팩스: 0502-3143-7788</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>검사 도구</h4>
+                <ul class="footer-links">
+                    <li><a href="#tests">MBTI 검사</a></li>
+                    <li><a href="#tests">에니어그램</a></li>
+                    <li><a href="#tests">Big Five</a></li>
+                    <li><a href="#tests">DISC 검사</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>정보</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">서비스 소개</a></li>
+                    <li><a href="#tests">검사 안내</a></li>
+                    <li><a href="mypage.html">내 결과</a></li>
+                    <li><a href="#pricing">프리미엄</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>연결</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mentora. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script>
