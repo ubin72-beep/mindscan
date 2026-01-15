@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>멘토라 커뮤니티 - 함께 성장하는 공간 | Mentora</title>
+    <meta name="description" content="비슷한 성향의 사람들과 만나고, 경험을 공유하며 함께 성장하세요">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/community.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo-brain-hd.png" alt="Mentora" class="logo-icon">
+                <span class="logo-text">Mentora</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
+                <li><a href="community.html" class="nav-link active">커뮤니티</a></li>
+                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="community-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">멘토라 커뮤니티</h1>
+                <p class="hero-subtitle">비슷한 성향의 사람들과 만나고, 경험을 공유하며 함께 성장하세요</p>
+                
+                <div class="community-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">15,200+</div>
+                        <div class="stat-label">활동 멤버</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">42</div>
+                        <div class="stat-label">활성 그룹</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1,280+</div>
+                        <div class="stat-label">월간 게시글</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Groups Section -->
+    <section class="groups-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">성향별 그룹</h2>
+                <p class="section-description">당신과 비슷한 성향을 가진 사람들을 만나보세요</p>
+            </div>
+
+            <div class="groups-filter">
+                <button class="filter-btn active" data-filter="all">전체</button>
+                <button class="filter-btn" data-filter="mbti">MBTI</button>
+                <button class="filter-btn" data-filter="enneagram">에니어그램</button>
+                <button class="filter-btn" data-filter="topic">주제별</button>
+            </div>
+
+            <div class="groups-grid" id="groupsGrid">
+                <!-- Groups will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Posts Section -->
+    <section class="posts-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">최근 게시글</h2>
+                <p class="section-description">커뮤니티의 생생한 이야기를 만나보세요</p>
+                <button class="btn btn-primary" onclick="openCreatePostModal()">
+                    <i class="fas fa-pen"></i> 글쓰기
+                </button>
+            </div>
+
+            <div class="posts-container" id="postsContainer">
+                <!-- Posts will be dynamically loaded -->
+            </div>
+
+            <div class="pagination" id="pagination">
+                <!-- Pagination will be dynamically generated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentoring Section -->
+    <section class="mentoring-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">멘토링 매칭</h2>
+                <p class="section-description">경험 많은 멘토와 1:1 멘토링을 받아보세요</p>
+            </div>
+
+            <div class="mentoring-grid" id="mentoringGrid">
+                <!-- Mentors will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshops Section -->
+    <section class="workshops-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">월간 워크샵</h2>
+                <p class="section-description">전문가와 함께하는 성장 워크샵에 참여하세요</p>
+            </div>
+
+            <div class="workshops-grid" id="workshopsGrid">
+                <!-- Workshops will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Join CTA -->
+    <section class="join-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>지금 멘토라 커뮤니티에 가입하세요</h2>
+                <p>15,000명 이상의 멤버들이 함께 성장하고 있습니다</p>
+                <button class="btn btn-cta" onclick="joinCommunity()">
+                    <i class="fas fa-user-plus"></i> 무료 가입하기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Post Modal -->
+    <div class="modal" id="createPostModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>새 게시글 작성</h3>
+                <button class="modal-close" onclick="closeCreatePostModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>그룹 선택</label>
+                    <select id="postGroup" class="form-control">
+                        <option value="">그룹을 선택하세요</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>제목</label>
+                    <input type="text" id="postTitle" class="form-control" placeholder="게시글 제목을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label>내용</label>
+                    <textarea id="postContent" class="form-control" rows="8" placeholder="내용을 입력하세요"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeCreatePostModal()">취소</button>
+                    <button class="btn btn-primary" onclick="createPost()">게시하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="footer-logo-image">
+                    <h3>Mentora</h3>
+                </div>
+                <p class="footer-tagline">당신 내면의 빛을 찾다</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>커뮤니티</h4>
+                <ul class="footer-links">
+                    <li><a href="#groups">성향별 그룹</a></li>
+                    <li><a href="#posts">게시판</a></li>
+                    <li><a href="#mentoring">멘토링</a></li>
+                    <li><a href="#workshops">워크샵</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>연결</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mentora. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/community.js"></script>
+</body>
+</html>
