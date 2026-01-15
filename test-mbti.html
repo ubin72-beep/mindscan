@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 성격유형검사 - Mentora</title>
+    <meta name="description" content="16가지 성격 유형으로 나를 이해하는 MBTI 검사">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/test-common.css">
+    <style>
+        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
+        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>👥 MBTI 성격유형검사</h1>
+            <p>16가지 성격 유형으로 나를 이해하기</p>
+        </div>
+
+        <div id="startScreen" class="start-screen">
+            <div class="start-icon">👥</div>
+            <h2>MBTI 성격유형검사를 시작합니다</h2>
+            <p>60개의 질문으로 당신의 성격 유형을 찾아드립니다.<br>각 문장이 얼마나 자신과 일치하는지 솔직하게 답변해주세요.</p>
+
+            <div class="test-info">
+                <div class="info-item">
+                    <div class="info-icon">⏱️</div>
+                    <div class="info-label">소요 시간</div>
+                    <div class="info-value">15분</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📊</div>
+                    <div class="info-label">질문 수</div>
+                    <div class="info-value">60개</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🎯</div>
+                    <div class="info-label">유형</div>
+                    <div class="info-value">16가지</div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
+            <a href="index.html" class="btn btn-secondary" style="margin-top: 1rem;">홈으로 돌아가기</a>
+        </div>
+
+        <div id="testScreen" style="display: none;">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progressText">질문 1 / 60</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <h3 class="question-text" id="questionText"></h3>
+                <div class="answer-options" id="answerOptions"></div>
+            </div>
+        </div>
+
+        <div id="resultScreen" style="display: none;">
+            <div class="result-container">
+                <div class="result-icon" id="resultIcon">🎉</div>
+                <h2 class="result-title" id="resultTitle">당신의 성격 유형은</h2>
+                <div class="result-type" id="resultType">INFP</div>
+                <div class="result-nickname" id="resultNickname">열정적인 중재자</div>
+                <p class="result-description" id="resultDescription">
+                    이상주의적이고 창의적인 성격으로, 다른 사람들을 돕는 것에 큰 기쁨을 느낍니다.
+                </p>
+
+                <div class="result-actions">
+                    <button class="btn btn-primary" onclick="saveAndView()">결과 저장하기</button>
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">다른 검사하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/test-mbti.js"></script>
+</body>
+</html>
