@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 맞춤형 성장 로드맵 | Mentora</title>
+    <meta name="description" content="검사 결과 기반 AI 맞춤형 성장 로드맵으로 체계적인 자기 개발을 시작하세요.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/roadmap.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo-brain-hd.png" alt="Mentora" class="logo-icon">
+                <span class="logo-text">Mentora</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
+                <li><a href="index.html#pricing" class="nav-link">프리미엄</a></li>
+                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-roadmap">
+        <div class="container">
+            <div class="hero-roadmap-content">
+                <div class="hero-badge">
+                    <i class="fas fa-route"></i>
+                    <span>AI 맞춤형 성장 로드맵</span>
+                </div>
+                <h1>당신만의 <span class="highlight">성장 여정</span>을<br>AI가 함께 설계합니다</h1>
+                <p class="hero-description">
+                    검사 결과를 분석하여 단계별 성장 계획을 생성합니다.<br>
+                    매주 맞춤형 미션과 피드백으로 지속 가능한 성장을 돕습니다.
+                </p>
+                <div class="hero-stats-row">
+                    <div class="stat-box">
+                        <div class="stat-number">3개월</div>
+                        <div class="stat-label">평균 성장 기간</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">92%</div>
+                        <div class="stat-label">목표 달성률</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">4.8⭐</div>
+                        <div class="stat-label">만족도</div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large" onclick="scrollToForm()">
+                    <i class="fas fa-magic"></i> 나의 로드맵 생성하기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">로드맵의 특별한 기능</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI 분석 기반</h3>
+                    <p>당신의 검사 결과를 AI가 깊이 분석하여 강점과 개선점을 정확히 파악합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>단계별 미션</h3>
+                    <p>주간 미션부터 월간 목표까지, 체계적으로 설계된 성장 계획을 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>성장 추적</h3>
+                    <p>실시간 진행도와 성취 그래프로 성장 과정을 시각적으로 확인하세요.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>성취 보상</h3>
+                    <p>마일스톤 달성 시 배지와 인증서를 받고 동기를 유지하세요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="roadmap-preview">
+        <div class="container">
+            <h2 class="section-title">로드맵 미리보기</h2>
+            <p class="section-description">실제 로드맵이 어떻게 구성되는지 확인해보세요</p>
+            
+            <div class="roadmap-timeline">
+                <div class="timeline-item" data-phase="1">
+                    <div class="timeline-marker">
+                        <div class="marker-circle">1</div>
+                        <div class="marker-line"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">1주차</div>
+                        <h3>자기 인식 강화</h3>
+                        <p>검사 결과를 바탕으로 자신의 강점과 약점을 명확히 파악합니다.</p>
+                        <ul class="mission-list">
+                            <li><i class="fas fa-check-circle"></i> 강점 3가지 구체화하기</li>
+                            <li><i class="fas fa-check-circle"></i> 개선 목표 설정하기</li>
+                            <li><i class="fas fa-check-circle"></i> 일일 성찰 노트 작성</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-phase="2">
+                    <div class="timeline-marker">
+                        <div class="marker-circle">2</div>
+                        <div class="marker-line"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">2-4주차</div>
+                        <h3>습관 형성 단계</h3>
+                        <p>작은 변화부터 시작하여 지속 가능한 습관을 만듭니다.</p>
+                        <ul class="mission-list">
+                            <li><i class="fas fa-check-circle"></i> 루틴 3가지 정착시키기</li>
+                            <li><i class="fas fa-check-circle"></i> 주간 점검 및 조정</li>
+                            <li><i class="fas fa-check-circle"></i> 실천 일지 기록</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-phase="3">
+                    <div class="timeline-marker">
+                        <div class="marker-circle">3</div>
+                        <div class="marker-line"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">5-8주차</div>
+                        <h3>역량 강화</h3>
+                        <p>집중적인 훈련으로 목표 역량을 향상시킵니다.</p>
+                        <ul class="mission-list">
+                            <li><i class="fas fa-check-circle"></i> 실전 프로젝트 수행</li>
+                            <li><i class="fas fa-check-circle"></i> 피드백 수집 및 개선</li>
+                            <li><i class="fas fa-check-circle"></i> 중간 평가 및 재설정</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-phase="4">
+                    <div class="timeline-marker">
+                        <div class="marker-circle">4</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">9-12주차</div>
+                        <h3>목표 달성 & 유지</h3>
+                        <p>성장한 자신을 확인하고 지속 가능한 시스템을 구축합니다.</p>
+                        <ul class="mission-list">
+                            <li><i class="fas fa-check-circle"></i> 최종 성과 평가</li>
+                            <li><i class="fas fa-check-circle"></i> 유지 계획 수립</li>
+                            <li><i class="fas fa-check-circle"></i> 다음 목표 설정</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">요금 안내</h2>
+            <div class="pricing-cards">
+                <div class="pricing-option">
+                    <div class="pricing-header">
+                        <h3>3개월 플랜</h3>
+                        <div class="price">
+                            <span class="amount">₩49,900</span>
+                            <span class="period">/3개월</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> AI 맞춤 로드맵 생성</li>
+                        <li><i class="fas fa-check"></i> 주간 미션 제공 (12주)</li>
+                        <li><i class="fas fa-check"></i> 진행도 추적 대시보드</li>
+                        <li><i class="fas fa-check"></i> 중간 평가 1회</li>
+                        <li><i class="fas fa-check"></i> 최종 성과 리포트</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="subscribe('3months')">시작하기</button>
+                </div>
+
+                <div class="pricing-option featured">
+                    <div class="pricing-badge">추천</div>
+                    <div class="pricing-header">
+                        <h3>6개월 플랜</h3>
+                        <div class="price">
+                            <span class="amount">₩79,900</span>
+                            <span class="period">/6개월</span>
+                        </div>
+                        <div class="save-badge">20% 할인</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 3개월 플랜 모든 기능</li>
+                        <li><i class="fas fa-check"></i> AI 코칭 세션 2회 추가</li>
+                        <li><i class="fas fa-check"></i> 개인 맞춤 콘텐츠 추천</li>
+                        <li><i class="fas fa-check"></i> 중간 평가 2회</li>
+                        <li><i class="fas fa-check"></i> 프리미엄 성취 인증서</li>
+                    </ul>
+                    <button class="btn-pricing featured" onclick="subscribe('6months')">시작하기</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="roadmapForm">
+        <div class="container">
+            <h2 class="section-title">나의 로드맵 생성하기</h2>
+            <p class="section-description">간단한 정보만 입력하면 AI가 맞춤형 로드맵을 생성합니다</p>
+            
+            <div class="form-container">
+                <form id="roadmapGenerateForm" onsubmit="generateRoadmap(event)">
+                    <div class="form-step active" data-step="1">
+                        <h3>1단계: 기본 정보</h3>
+                        <div class="form-group">
+                            <label>이름</label>
+                            <input type="text" name="name" placeholder="홍길동" required>
+                        </div>
+                        <div class="form-group">
+                            <label>이메일</label>
+                            <input type="email" name="email" placeholder="example@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>연령대</label>
+                            <select name="age" required>
+                                <option value="">선택하세요</option>
+                                <option value="20s">20대</option>
+                                <option value="30s">30대</option>
+                                <option value="40s">40대</option>
+                                <option value="50s">50대 이상</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">다음</button>
+                    </div>
+
+                    <div class="form-step" data-step="2">
+                        <h3>2단계: 목표 설정</h3>
+                        <div class="form-group">
+                            <label>주요 개선 목표 (최대 3개)</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="goals" value="communication"> 소통 능력 향상</label>
+                                <label><input type="checkbox" name="goals" value="leadership"> 리더십 개발</label>
+                                <label><input type="checkbox" name="goals" value="emotional"> 감정 조절</label>
+                                <label><input type="checkbox" name="goals" value="confidence"> 자신감 향상</label>
+                                <label><input type="checkbox" name="goals" value="career"> 진로 개발</label>
+                                <label><input type="checkbox" name="goals" value="relationships"> 대인관계 개선</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>추가 목표 (선택사항)</label>
+                            <textarea name="additionalGoals" rows="3" placeholder="구체적인 목표를 자유롭게 작성해주세요"></textarea>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(1)">이전</button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep(3)">다음</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" data-step="3">
+                        <h3>3단계: 검사 결과 선택</h3>
+                        <div class="form-group">
+                            <label>완료한 검사 결과 선택</label>
+                            <select name="testResult" required>
+                                <option value="">선택하세요</option>
+                                <option value="mbti">MBTI 성격유형검사</option>
+                                <option value="enneagram">에니어그램</option>
+                                <option value="bigfive">Big Five 성격검사</option>
+                                <option value="disc">DISC 행동유형검사</option>
+                                <option value="eq">EQ 감성지능검사</option>
+                                <option value="other">기타</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>검사 결과 요약 (선택사항)</label>
+                            <textarea name="testSummary" rows="4" placeholder="예: ENFP, 외향적이고 직관적인 성향"></textarea>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn btn-secondary" onclick="prevStep(2)">이전</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-magic"></i> 로드맵 생성하기
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="form-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressBar"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1">기본정보</div>
+                        <div class="progress-step" data-step="2">목표설정</div>
+                        <div class="progress-step" data-step="3">검사선택</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">사용자 후기</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"3개월 로드맵을 따라가니 정말 변화가 느껴져요. AI가 내 상황에 딱 맞는 미션을 제시해줘서 실천하기 쉬웠습니다!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">K</div>
+                        <div class="author-info">
+                            <div class="author-name">김지현</div>
+                            <div class="author-meta">30대 · 마케터</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"단계별로 진행하다 보니 부담 없이 성장할 수 있었어요. 중간 평가 때마다 피드백을 받으니 동기부여가 됩니다."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">L</div>
+                        <div class="author-info">
+                            <div class="author-name">이준서</div>
+                            <div class="author-meta">20대 · 대학생</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"6개월 플랜으로 커리어 전환에 성공했습니다. 체계적인 로드맵 덕분에 목표를 잃지 않고 나아갈 수 있었어요."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">P</div>
+                        <div class="author-info">
+                            <div class="author-name">박민주</div>
+                            <div class="author-meta">40대 · 프리랜서</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="footer-logo-image">
+                    <h3>Mentora</h3>
+                </div>
+                <p>당신 내면의 빛을 찾다</p>
+            </div>
+            <div class="footer-section">
+                <h4>프리미엄 기능</h4>
+                <ul class="footer-links">
+                    <li><a href="roadmap.html">AI 성장 로드맵</a></li>
+                    <li><a href="couple-analysis.html">커플/팀 분석</a></li>
+                    <li><a href="ai-chatbot.html">AI 챗봇</a></li>
+                    <li><a href="dashboard.html">데이터 대시보드</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>고객지원</h4>
+                <p>☎️ 0502-1909-7788</p>
+                <p>📧 support@mentora.co.kr</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mentora. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/roadmap.js"></script>
+</body>
+</html>
