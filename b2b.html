@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B 기업 솔루션 | Mentora</title>
+    <meta name="description" content="Mentora의 기업용 심리검사 및 팀 빌딩 솔루션으로 조직의 성과를 높이세요.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/b2b.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo-brain-hd.png" alt="Mentora" class="logo-icon">
+                <span class="logo-text">Mentora</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
+                <li><a href="index.html#pricing" class="nav-link">프리미엄</a></li>
+                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero-b2b">
+        <div class="container">
+            <div class="hero-b2b-content">
+                <div class="hero-badge">
+                    <i class="fas fa-building"></i>
+                    <span>B2B 기업 솔루션</span>
+                </div>
+                <h1>팀의 잠재력을 극대화하는<br><span class="highlight">과학적 솔루션</span></h1>
+                <p class="hero-description">
+                    심리검사와 AI 분석으로 팀원의 강점을 파악하고, 최적의 협업 환경을 만드세요.<br>
+                    500개 이상 기업이 Mentora로 조직 문화를 혁신하고 있습니다.
+                </p>
+                <div class="hero-stats-row">
+                    <div class="stat-box">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">도입 기업</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">50,000+</div>
+                        <div class="stat-label">사용자</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">만족도</div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-large" onclick="scrollToContact()">
+                        <i class="fas fa-phone"></i> 도입 상담 신청
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="downloadBrochure()">
+                        <i class="fas fa-download"></i> 브로슈어 다운로드
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problems-section">
+        <div class="container">
+            <h2 class="section-title">이런 고민이 있으신가요?</h2>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-users-slash"></i>
+                    </div>
+                    <h3>팀워크 부족</h3>
+                    <p>팀원 간 소통이 원활하지 않아 협업에 어려움이 있습니다</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-battery-quarter"></i>
+                    </div>
+                    <h3>직원 번아웃</h3>
+                    <p>높은 이직률과 직원들의 정신 건강이 걱정됩니다</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>적재적소 배치</h3>
+                    <p>직원의 강점과 적성에 맞는 업무 배치가 어렵습니다</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>성과 향상</h3>
+                    <p>조직 생산성을 높이고 싶지만 방법을 모르겠습니다</p>
+                </div>
+            </div>
+            <div class="solution-box">
+                <h3><i class="fas fa-check-circle"></i> Mentora가 해결해드립니다!</h3>
+                <p>과학적 심리검사와 AI 분석으로 팀의 강점을 발견하고, 최적의 협업 환경을 만들어드립니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="solutions-section">
+        <div class="container">
+            <h2 class="section-title">Mentora 기업 솔루션</h2>
+            <p class="section-description">조직의 니즈에 맞춘 맞춤형 솔루션을 제공합니다</p>
+            
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-badge">BEST</div>
+                    <div class="solution-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>팀 빌딩 솔루션</h3>
+                    <p class="solution-description">팀원의 성격 유형을 분석하여 최적의 팀 구성과 역할 배치를 제안합니다.</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> MBTI, DISC 등 종합 검사</li>
+                        <li><i class="fas fa-check"></i> 팀 시너지 분석 리포트</li>
+                        <li><i class="fas fa-check"></i> 역할별 적합도 평가</li>
+                        <li><i class="fas fa-check"></i> 팀 빌딩 워크샵 자료</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <h3>직원 웰빙 프로그램</h3>
+                    <p class="solution-description">직원의 정신 건강을 관리하고 번아웃을 예방하는 종합 케어 시스템입니다.</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 스트레스/번아웃 검사</li>
+                        <li><i class="fas fa-check"></i> AI 코칭 챗봇 제공</li>
+                        <li><i class="fas fa-check"></i> 익명 상담 지원</li>
+                        <li><i class="fas fa-check"></i> 월간 웰빙 리포트</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>리더십 개발</h3>
+                    <p class="solution-description">관리자와 리더의 역량을 평가하고 맞춤형 성장 계획을 제공합니다.</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 리더십 스타일 분석</li>
+                        <li><i class="fas fa-check"></i> 360도 다면 평가</li>
+                        <li><i class="fas fa-check"></i> 개인별 성장 로드맵</li>
+                        <li><i class="fas fa-check"></i> 코칭 세션 제공</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>채용 지원</h3>
+                    <p class="solution-description">지원자의 성향과 적합도를 과학적으로 평가하여 최적의 인재를 선발합니다.</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 직무 적합도 검사</li>
+                        <li><i class="fas fa-check"></i> 조직 문화 적합성 평가</li>
+                        <li><i class="fas fa-check"></i> AI 기반 매칭 시스템</li>
+                        <li><i class="fas fa-check"></i> 면접 가이드 제공</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>교육 & 트레이닝</h3>
+                    <p class="solution-description">직원의 역량을 파악하고 맞춤형 교육 프로그램을 설계합니다.</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 역량 진단 평가</li>
+                        <li><i class="fas fa-check"></i> 맞춤형 교육 커리큘럼</li>
+                        <li><i class="fas fa-check"></i> 학습 진도 추적</li>
+                        <li><i class="fas fa-check"></i> 성과 측정 리포트</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>조직 진단</h3>
+                    <p class="solution-description">조직 전체의 건강도를 진단하고 개선 방안을 제시합니다.</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 조직 문화 진단</li>
+                        <li><i class="fas fa-check"></i> 팀 간 협업 분석</li>
+                        <li><i class="fas fa-check"></i> 개선 우선순위 제안</li>
+                        <li><i class="fas fa-check"></i> 분기별 리포트 제공</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Mentora만의 차별화된 기능</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI 기반 분석</h3>
+                    <p>최신 AI 기술로 심층적이고 정확한 분석 결과를 제공합니다</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>완벽한 보안</h3>
+                    <p>기업급 보안 시스템으로 민감한 직원 데이터를 안전하게 보호합니다</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>맞춤형 설정</h3>
+                    <p>기업의 특성과 니즈에 맞게 시스템을 커스터마이징할 수 있습니다</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>실시간 대시보드</h3>
+                    <p>관리자 전용 대시보드로 조직 현황을 실시간으로 모니터링합니다</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>API 연동</h3>
+                    <p>기존 HR 시스템과 쉽게 연동하여 통합 관리가 가능합니다</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>전담 지원</h3>
+                    <p>전담 컨설턴트가 도입부터 운영까지 밀착 지원합니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-studies">
+        <div class="container">
+            <h2 class="section-title">성공 사례</h2>
+            <p class="section-description">Mentora와 함께 성장한 기업들의 이야기</p>
+            
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-company">
+                        <div class="company-logo">A</div>
+                        <div class="company-info">
+                            <h4>A 테크놀로지</h4>
+                            <p>IT 스타트업 · 직원 150명</p>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <h3>팀 생산성 40% 향상</h3>
+                        <p>"Mentora의 팀 빌딩 솔루션으로 각 팀원의 강점을 파악하고 최적의 역할을 배치했더니 프로젝트 완료 속도가 크게 개선되었습니다."</p>
+                    </div>
+                    <div class="case-results">
+                        <div class="result-item">
+                            <strong>40%</strong>
+                            <span>생산성 향상</span>
+                        </div>
+                        <div class="result-item">
+                            <strong>25%</strong>
+                            <span>이직률 감소</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-company">
+                        <div class="company-logo">B</div>
+                        <div class="company-info">
+                            <h4>B 글로벌</h4>
+                            <p>제조업 · 직원 500명</p>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <h3>직원 만족도 35% 증가</h3>
+                        <p>"직원 웰빙 프로그램 도입 후 번아웃이 크게 감소하고, 직원들의 업무 만족도가 눈에 띄게 높아졌습니다."</p>
+                    </div>
+                    <div class="case-results">
+                        <div class="result-item">
+                            <strong>35%</strong>
+                            <span>만족도 증가</span>
+                        </div>
+                        <div class="result-item">
+                            <strong>50%</strong>
+                            <span>번아웃 감소</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-company">
+                        <div class="company-logo">C</div>
+                        <div class="company-info">
+                            <h4>C 컨설팅</h4>
+                            <p>컨설팅 · 직원 80명</p>
+                        </div>
+                    </div>
+                    <div class="case-content">
+                        <h3>채용 성공률 60% 향상</h3>
+                        <p>"채용 지원 솔루션으로 지원자의 적합도를 정확히 평가하여 조기 이직률이 크게 줄었습니다."</p>
+                    </div>
+                    <div class="case-results">
+                        <div class="result-item">
+                            <strong>60%</strong>
+                            <span>채용 성공률</span>
+                        </div>
+                        <div class="result-item">
+                            <strong>70%</strong>
+                            <span>이직 감소</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">요금 안내</h2>
+            <p class="section-description">기업 규모와 니즈에 맞는 플랜을 선택하세요</p>
+            
+            <div class="pricing-table">
+                <div class="pricing-col">
+                    <div class="pricing-header">
+                        <h3>스타터</h3>
+                        <div class="price">
+                            <span class="amount">₩2,990,000</span>
+                            <span class="period">/년</span>
+                        </div>
+                        <p class="pricing-subtitle">최대 50명</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 기본 심리검사 (MBTI, DISC)</li>
+                        <li><i class="fas fa-check"></i> 팀 분석 리포트</li>
+                        <li><i class="fas fa-check"></i> 관리자 대시보드</li>
+                        <li><i class="fas fa-check"></i> 이메일 지원</li>
+                        <li class="disabled"><i class="fas fa-times"></i> AI 코칭</li>
+                        <li class="disabled"><i class="fas fa-times"></i> API 연동</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="requestQuote('starter')">견적 문의</button>
+                </div>
+
+                <div class="pricing-col featured">
+                    <div class="pricing-badge">추천</div>
+                    <div class="pricing-header">
+                        <h3>프로페셔널</h3>
+                        <div class="price">
+                            <span class="amount">₩6,990,000</span>
+                            <span class="period">/년</span>
+                        </div>
+                        <p class="pricing-subtitle">최대 200명</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 전체 심리검사</li>
+                        <li><i class="fas fa-check"></i> 고급 분석 리포트</li>
+                        <li><i class="fas fa-check"></i> AI 코칭 챗봇</li>
+                        <li><i class="fas fa-check"></i> 맞춤형 대시보드</li>
+                        <li><i class="fas fa-check"></i> 전화/채팅 지원</li>
+                        <li><i class="fas fa-check"></i> API 연동</li>
+                        <li><i class="fas fa-check"></i> 분기별 컨설팅</li>
+                    </ul>
+                    <button class="btn-pricing featured" onclick="requestQuote('professional')">견적 문의</button>
+                </div>
+
+                <div class="pricing-col">
+                    <div class="pricing-header">
+                        <h3>엔터프라이즈</h3>
+                        <div class="price">
+                            <span class="amount">맞춤 견적</span>
+                        </div>
+                        <p class="pricing-subtitle">200명 이상</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 프로페셔널 모든 기능</li>
+                        <li><i class="fas fa-check"></i> 무제한 사용자</li>
+                        <li><i class="fas fa-check"></i> 전담 컨설턴트</li>
+                        <li><i class="fas fa-check"></i> 온사이트 교육</li>
+                        <li><i class="fas fa-check"></i> 24/7 지원</li>
+                        <li><i class="fas fa-check"></i> 커스텀 개발</li>
+                        <li><i class="fas fa-check"></i> SLA 보장</li>
+                    </ul>
+                    <button class="btn-pricing" onclick="requestQuote('enterprise')">견적 문의</button>
+                </div>
+            </div>
+
+            <div class="pricing-note">
+                <p><i class="fas fa-info-circle"></i> 모든 플랜은 부가세 별도이며, 계약 기간과 사용자 수에 따라 할인이 적용됩니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contactForm">
+        <div class="container">
+            <h2 class="section-title">도입 상담 신청</h2>
+            <p class="section-description">전문 컨설턴트가 기업에 최적화된 솔루션을 제안해드립니다</p>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="b2bContactForm" onsubmit="submitContact(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>회사명 *</label>
+                                <input type="text" name="company" required placeholder="주식회사 멘토라">
+                            </div>
+                            <div class="form-group">
+                                <label>담당자명 *</label>
+                                <input type="text" name="name" required placeholder="홍길동">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>이메일 *</label>
+                                <input type="email" name="email" required placeholder="contact@company.com">
+                            </div>
+                            <div class="form-group">
+                                <label>연락처 *</label>
+                                <input type="tel" name="phone" required placeholder="010-1234-5678">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>직원 규모</label>
+                                <select name="size">
+                                    <option value="">선택하세요</option>
+                                    <option value="1-50">1-50명</option>
+                                    <option value="51-200">51-200명</option>
+                                    <option value="201-500">201-500명</option>
+                                    <option value="501+">501명 이상</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>관심 솔루션</label>
+                                <select name="solution">
+                                    <option value="">선택하세요</option>
+                                    <option value="team-building">팀 빌딩</option>
+                                    <option value="wellbeing">직원 웰빙</option>
+                                    <option value="leadership">리더십 개발</option>
+                                    <option value="recruitment">채용 지원</option>
+                                    <option value="training">교육 & 트레이닝</option>
+                                    <option value="organization">조직 진단</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>문의 내용</label>
+                            <textarea name="message" rows="5" placeholder="도입 목적, 기대 효과 등을 자유롭게 작성해주세요"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="privacy" required>
+                                <span>개인정보 수집 및 이용에 동의합니다</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-paper-plane"></i> 상담 신청하기
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h3>빠른 상담</h3>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>전화 문의</strong>
+                            <p>0502-1909-7788</p>
+                            <span>평일 09:00 - 18:00</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>이메일 문의</strong>
+                            <p>enterprise@mentora.co.kr</p>
+                            <span>24시간 접수 가능</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>
+                            <strong>방문 상담</strong>
+                            <p>서울 송파구 송파대로14길 7-10</p>
+                            <span>사전 예약 필수</span>
+                        </div>
+                    </div>
+
+                    <div class="download-section">
+                        <h4>자료 다운로드</h4>
+                        <button class="download-btn" onclick="downloadBrochure()">
+                            <i class="fas fa-file-pdf"></i> 서비스 소개서
+                        </button>
+                        <button class="download-btn" onclick="downloadCaseStudy()">
+                            <i class="fas fa-file-alt"></i> 성공 사례집
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="footer-logo-image">
+                    <h3>Mentora</h3>
+                </div>
+                <p>당신 내면의 빛을 찾다</p>
+            </div>
+            <div class="footer-section">
+                <h4>기업 솔루션</h4>
+                <ul class="footer-links">
+                    <li><a href="#solutions">팀 빌딩</a></li>
+                    <li><a href="#solutions">직원 웰빙</a></li>
+                    <li><a href="#solutions">리더십 개발</a></li>
+                    <li><a href="#solutions">채용 지원</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>고객지원</h4>
+                <p>☎️ 0502-1909-7788</p>
+                <p>📧 enterprise@mentora.co.kr</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mentora. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/b2b.js"></script>
+</body>
+</html>
