@@ -660,17 +660,20 @@
                 </div>
             </div>
 
-            <div class="charts-container">
-                <div class="chart-card">
-                    <h3>📊 인기 검사 TOP 5</h3>
-                    <canvas id="popularTestsChart" style="height: 300px;"></canvas>
-                </div>
-                <div class="chart-card">
-                    <h3>📈 검사 완료 추이 (최근 7일)</h3>
-                    <canvas id="completionTrendChart" style="height: 300px;"></canvas>
-                </div>
-            </div>
+           <div class="charts-container">
+    <div class="chart-card">
+        <h3>📊 인기 검사 TOP 5</h3>
+        <div style="height: 400px; position: relative;">
+            <canvas id="popularTestsChart"></canvas>
         </div>
+    </div>
+    <div class="chart-card">
+        <h3>📈 검사 완료 추이 (최근 7일)</h3>
+        <div style="height: 400px; position: relative;">
+            <canvas id="completionTrendChart"></canvas>
+        </div>
+    </div>
+</div>
     </section>
 
     <section class="reviews section" id="reviews">
