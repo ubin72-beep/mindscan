@@ -386,6 +386,10 @@
                     <i class="fas fa-home"></i>
                     <span>사이트로 이동</span>
                 </a>
+                <a href="#" class="nav-item" onclick="logout(); return false;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>로그아웃</span>
+                </a>
             </nav>
         </aside>
 
@@ -614,6 +618,30 @@
     </div>
 
     <script>
+        // 로그인 확인
+        const adminAuth = localStorage.getItem('adminAuth') || sessionStorage.getItem('adminAuth');
+        
+        if (!adminAuth) {
+            alert('⚠️ 로그인이 필요합니다.');
+            window.location.href = 'login.html';
+        } else {
+            const authData = JSON.parse(adminAuth);
+            if (!authData.isLoggedIn) {
+                alert('⚠️ 로그인이 필요합니다.');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // 로그아웃 함수
+        function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+                localStorage.removeItem('adminAuth');
+                sessionStorage.removeItem('adminAuth');
+                alert('✅ 로그아웃 되었습니다.');
+                window.location.href = 'login.html';
+            }
+        }
+
         function saveSiteSettings() {
             alert('✅ 사이트 설정이 저장되었습니다!');
         }
