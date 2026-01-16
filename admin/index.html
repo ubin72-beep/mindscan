@@ -3,136 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentora Admin - 관리자 대시보드</title>
+    <title>관리자 대시보드 - Mentora</title>
     
-    <!-- Preconnect for better performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/admin.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(135deg, #2c5f4f, #1a4838);
+            color: white;
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .logo {
+            padding: 0 2rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .logo h2 {
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 2rem 0;
+        }
+
+        .nav-item {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(212, 175, 55, 0.2);
+            color: white;
+            border-left: 4px solid #d4af37;
+        }
+
+        .nav-item i {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .topbar {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar h1 {
+            font-size: 1.8rem;
+            color: #2c5f4f;
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #b8962f);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .stat-icon.users { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .stat-icon.tests { background: linear-gradient(135deg, #27ae60, #229954); }
+        .stat-icon.revenue { background: linear-gradient(135deg, #d4af37, #b8962f); }
+        .stat-icon.pending { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+
+        .stat-info h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-info p {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c5f4f;
+        }
+
+        /* Charts */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .chart-card h3 {
+            color: #2c5f4f;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .chart-canvas {
+            height: 300px;
+        }
+
+        /* Activities */
+        .activities {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .activities h3 {
+            color: #2c5f4f;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-item {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f5f7fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c5f4f;
+        }
+
+        .activity-info {
+            flex: 1;
+        }
+
+        .activity-text {
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                position: fixed;
+                z-index: 1000;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <aside class="admin-sidebar">
-        <div class="sidebar-header">
-            <img src="../images/logo-brain-hd.png" alt="Mentora Logo" class="sidebar-logo">
-            <h2>Mentora Admin</h2>
-        </div>
-        
-        <nav class="sidebar-nav">
-            <a href="index.html" class="nav-item active">
-                <i class="fas fa-chart-line"></i>
-                <span>대시보드</span>
-            </a>
-            <a href="users.html" class="nav-item">
-                <i class="fas fa-users"></i>
-                <span>사용자 관리</span>
-            </a>
-            <a href="tests.html" class="nav-item">
-                <i class="fas fa-clipboard-list"></i>
-                <span>검사 관리</span>
-            </a>
-            <a href="refunds.html" class="nav-item">
-                <i class="fas fa-undo"></i>
-                <span>환불 관리</span>
-            </a>
-            <a href="settings.html" class="nav-item">
-                <i class="fas fa-cog"></i>
-                <span>설정</span>
-            </a>
-            <a href="../index.html" class="nav-item nav-site">
-                <i class="fas fa-external-link-alt"></i>
-                <span>사이트로 이동</span>
-            </a>
-            <a href="#" class="nav-item nav-logout" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>로그아웃</span>
-            </a>
-        </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="admin-main">
-        <!-- Top Bar -->
-        <header class="admin-topbar">
-            <div class="topbar-left">
-                <h1>대시보드</h1>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2><i class="fas fa-brain"></i> Mentora Admin</h2>
             </div>
-            <div class="topbar-right">
-                <button class="btn-refresh" onclick="refreshDashboard()">
-                    <i class="fas fa-sync-alt"></i>
-                    새로고침
-                </button>
-                <div class="admin-profile">
-                    <img src="https://ui-avatars.com/api/?name=Admin&background=2c5f4f&color=fff" alt="Admin">
-                    <span>관리자</span>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>대시보드</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>사용자 관리</span>
+                </a>
+                <a href="tests.html" class="nav-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>검사 관리</span>
+                </a>
+                <a href="refunds.html" class="nav-item">
+                    <i class="fas fa-undo"></i>
+                    <span>환불 관리</span>
+                </a>
+                <a href="../index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>사이트로 이동</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="topbar">
+                <div>
+                    <h1>관리자 대시보드</h1>
+                    <p style="color: #666; margin-top: 0.5rem;">Mentora 플랫폼 전체 현황</p>
+                </div>
+                <div class="topbar-actions">
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <i class="fas fa-sync-alt"></i> 새로고침
+                    </button>
                 </div>
             </div>
-        </header>
 
-        <!-- Dashboard Content -->
-        <div class="dashboard-content">
-            <!-- Stats Cards -->
+            <!-- Stats -->
             <div class="stats-grid">
-                <div class="stat-card stat-users">
-                    <div class="stat-icon">
+                <div class="stat-card">
+                    <div class="stat-icon users">
                         <i class="fas fa-users"></i>
                     </div>
-                    <div class="stat-details">
+                    <div class="stat-info">
                         <h3>전체 사용자</h3>
-                        <p class="stat-number" id="totalUsers">로딩 중...</p>
-                        <span class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i> +12.5%
-                        </span>
+                        <p>1,250</p>
                     </div>
                 </div>
 
-                <div class="stat-card stat-tests">
-                    <div class="stat-icon">
+                <div class="stat-card">
+                    <div class="stat-icon tests">
                         <i class="fas fa-clipboard-check"></i>
                     </div>
-                    <div class="stat-details">
-                        <h3>검사 완료</h3>
-                        <p class="stat-number" id="totalTests">로딩 중...</p>
-                        <span class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i> +8.3%
-                        </span>
+                    <div class="stat-info">
+                        <h3>완료된 검사</h3>
+                        <p>8,542</p>
                     </div>
                 </div>
 
-                <div class="stat-card stat-revenue">
-                    <div class="stat-icon">
-                        <i class="fas fa-won-sign"></i>
+                <div class="stat-card">
+                    <div class="stat-icon revenue">
+                        <i class="fas fa-dollar-sign"></i>
                     </div>
-                    <div class="stat-details">
+                    <div class="stat-info">
                         <h3>총 매출</h3>
-                        <p class="stat-number" id="totalRevenue">로딩 중...</p>
-                        <span class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i> +15.7%
-                        </span>
+                        <p>₩2.5M</p>
                     </div>
                 </div>
 
-                <div class="stat-card stat-refunds">
-                    <div class="stat-icon">
+                <div class="stat-card">
+                    <div class="stat-icon pending">
                         <i class="fas fa-exclamation-circle"></i>
                     </div>
-                    <div class="stat-details">
+                    <div class="stat-info">
                         <h3>환불 대기</h3>
-                        <p class="stat-number" id="pendingRefunds">로딩 중...</p>
-                        <span class="stat-change negative">
-                            <i class="fas fa-arrow-down"></i> -3.2%
-                        </span>
+                        <p>12</p>
                     </div>
                 </div>
             </div>
@@ -140,116 +353,119 @@
             <!-- Charts -->
             <div class="charts-grid">
                 <div class="chart-card">
-                    <div class="chart-header">
-                        <h3>검사 완료 추이</h3>
-                        <select class="chart-filter" onchange="updateTestsChart(this.value)">
-                            <option value="7days">최근 7일</option>
-                            <option value="30days" selected>최근 30일</option>
-                            <option value="90days">최근 90일</option>
-                        </select>
-                    </div>
-                    <canvas id="testsChart"></canvas>
+                    <h3>검사 완료 추이 (최근 7일)</h3>
+                    <canvas id="testChart" class="chart-canvas"></canvas>
                 </div>
 
                 <div class="chart-card">
-                    <div class="chart-header">
-                        <h3>인기 검사 TOP 5</h3>
-                        <select class="chart-filter" onchange="updatePopularTestsChart(this.value)">
-                            <option value="today">오늘</option>
-                            <option value="week" selected>이번 주</option>
-                            <option value="month">이번 달</option>
-                        </select>
-                    </div>
-                    <canvas id="popularTestsChart"></canvas>
-                </div>
-
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h3>매출 현황</h3>
-                        <select class="chart-filter" onchange="updateRevenueChart(this.value)">
-                            <option value="7days">최근 7일</option>
-                            <option value="30days" selected>최근 30일</option>
-                            <option value="90days">최근 90일</option>
-                        </select>
-                    </div>
-                    <canvas id="revenueChart"></canvas>
-                </div>
-
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h3>사용자 통계</h3>
-                        <select class="chart-filter" onchange="updateUsersChart(this.value)">
-                            <option value="gender">성별</option>
-                            <option value="age" selected>연령대</option>
-                            <option value="plan">요금제</option>
-                        </select>
-                    </div>
-                    <canvas id="usersChart"></canvas>
+                    <h3>인기 검사 TOP 5</h3>
+                    <canvas id="popularChart" class="chart-canvas"></canvas>
                 </div>
             </div>
 
-            <!-- Recent Activities -->
-            <div class="recent-activities">
+            <!-- Activities -->
+            <div class="activities">
                 <h3>최근 활동</h3>
-                <div class="activity-list" id="activityList">
-                    <div class="activity-item">
-                        <i class="fas fa-user-plus activity-icon"></i>
-                        <div class="activity-details">
-                            <p class="activity-text">새로운 사용자 <strong>김민수</strong>님이 가입했습니다</p>
-                            <span class="activity-time">5분 전</span>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <i class="fas fa-clipboard-check activity-icon"></i>
-                        <div class="activity-details">
-                            <p class="activity-text"><strong>이지은</strong>님이 <strong>MBTI 검사</strong>를 완료했습니다</p>
-                            <span class="activity-time">12분 전</span>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <i class="fas fa-credit-card activity-icon"></i>
-                        <div class="activity-details">
-                            <p class="activity-text"><strong>박준호</strong>님이 <strong>프리미엄</strong> 플랜을 구매했습니다</p>
-                            <span class="activity-time">23분 전</span>
-                        </div>
-                    </div>
-                    <div class="activity-item">
-                        <i class="fas fa-undo activity-icon"></i>
-                        <div class="activity-details">
-                            <p class="activity-text"><strong>최수진</strong>님의 <strong>환불 요청</strong>이 접수되었습니다</p>
-                            <span class="activity-time">1시간 전</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Actions -->
-            <div class="quick-actions">
-                <h3>빠른 작업</h3>
-                <div class="actions-grid">
-                    <button class="action-btn" onclick="location.href='users.html?action=add'">
+                <div class="activity-item">
+                    <div class="activity-icon">
                         <i class="fas fa-user-plus"></i>
-                        <span>사용자 추가</span>
-                    </button>
-                    <button class="action-btn" onclick="location.href='tests.html?action=add'">
-                        <i class="fas fa-plus-circle"></i>
-                        <span>검사 등록</span>
-                    </button>
-                    <button class="action-btn" onclick="location.href='refunds.html'">
+                    </div>
+                    <div class="activity-info">
+                        <p class="activity-text"><strong>김민지</strong>님이 가입했습니다</p>
+                        <p class="activity-time">5분 전</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="activity-info">
+                        <p class="activity-text"><strong>이준호</strong>님이 <strong>MBTI 검사</strong>를 완료했습니다</p>
+                        <p class="activity-time">12분 전</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="activity-info">
+                        <p class="activity-text"><strong>박서연</strong>님이 프리미엄 플랜을 구매했습니다</p>
+                        <p class="activity-time">23분 전</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
                         <i class="fas fa-undo"></i>
-                        <span>환불 처리</span>
-                    </button>
-                    <button class="action-btn" onclick="exportData()">
-                        <i class="fas fa-download"></i>
-                        <span>데이터 내보내기</span>
-                    </button>
+                    </div>
+                    <div class="activity-info">
+                        <p class="activity-text"><strong>최지우</strong>님의 환불 요청이 접수되었습니다</p>
+                        <p class="activity-time">1시간 전</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
-    <!-- Scripts -->
-    <script src="js/admin.js"></script>
-    <script src="js/dashboard.js"></script>
+    <script>
+        // Test Trend Chart
+        const testCtx = document.getElementById('testChart').getContext('2d');
+        new Chart(testCtx, {
+            type: 'line',
+            data: {
+                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                datasets: [{
+                    label: '완료된 검사',
+                    data: [120, 150, 180, 170, 190, 210, 230],
+                    borderColor: '#2c5f4f',
+                    backgroundColor: 'rgba(44, 95, 79, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Popular Tests Chart
+        const popularCtx = document.getElementById('popularChart').getContext('2d');
+        new Chart(popularCtx, {
+            type: 'bar',
+            data: {
+                labels: ['MBTI', '에니어그램', 'Big Five', 'DISC', 'Holland'],
+                datasets: [{
+                    label: '완료 수',
+                    data: [2500, 1800, 1500, 1200, 1000],
+                    backgroundColor: [
+                        'rgba(44, 95, 79, 0.8)',
+                        'rgba(212, 175, 55, 0.8)',
+                        'rgba(52, 152, 219, 0.8)',
+                        'rgba(231, 76, 60, 0.8)',
+                        'rgba(39, 174, 96, 0.8)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
