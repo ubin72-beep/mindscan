@@ -6,12 +6,13 @@
     <title>Mentora (멘토라) - 당신 내면의 빛을 찾다 | 10가지 전문 심리검사</title>
     <meta name="description" content="100만 명이 선택한 과학적 심리검사. MBTI, 에니어그램, Big Five 등 10가지 전문 검사를 10분 만에 무료로 체험하세요. AI 분석과 실시간 통계 제공.">
     <meta name="keywords" content="Mentora, 멘토라, MBTI, 에니어그램, 성격검사, 심리테스트, AI분석, 성격유형, EQ, IQ, SQ">
-     <meta name="author" content="큐브박스 (CubeBox)">
-  	    <meta name="robots" content="index, follow">
-   <meta name="googlebot" content="index, follow">
-<meta name="naver-site-verification" content="aa559e0988ff947be8817a435332661308c7df19" />
- <meta name="google-site-verification" content="FUuvW2SCZYuQRYIm9oz66SXJEfAuA6HUX9lUTihlZkc" />
-<link rel="canonical" href="https://mentora.co.kr/">
+    <meta name="author" content="큐브박스 (CubeBox)">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="naver-site-verification" content="aa559e0988ff947be8817a435332661308c7df19" />
+    <meta name="google-site-verification" content="FUuvW2SCZYuQRYIm9oz66SXJEfAuA6HUX9lUTihlZkc" />
+    <link rel="canonical" href="https://mentora.co.kr/">
+    
     <meta property="og:title" content="Mentora - 당신 내면의 빛을 찾다">
     <meta property="og:description" content="100만 명이 선택한 과학적 심리검사. 10분 만에 당신의 숨겨진 재능을 발견할 수 있습니다.">
     <meta property="og:image" content="images/banner-social.png">
@@ -40,6 +41,108 @@
     <link rel="stylesheet" href="css/mobile-optimized.css">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- 구조화된 데이터 (Structured Data) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Mentora",
+      "alternateName": "멘토라",
+      "url": "https://mentora.co.kr",
+      "description": "100만 명이 선택한 과학적 심리검사 플랫폼. MBTI, 에니어그램, Big Five 등 10가지 전문 검사 제공",
+      "publisher": {
+        "@type": "Organization",
+        "name": "큐브박스 (CubeBox)",
+        "legalName": "큐브박스",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mentora.co.kr/images/logo-brain-hd.png"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "KR",
+          "addressRegion": "서울특별시",
+          "addressLocality": "송파구",
+          "streetAddress": "송파대로14길 7-10 2층",
+          "postalCode": "05854"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-502-1909-7788",
+          "contactType": "Customer Service",
+          "email": "mentora@gmail.com",
+          "availableLanguage": ["Korean"]
+        }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mentora.co.kr/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "심리검사 목록",
+      "description": "Mentora에서 제공하는 10가지 전문 심리검사",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "Product",
+            "name": "MBTI 성격유형검사",
+            "description": "16가지 성격 유형으로 나를 이해하는 가장 정확한 검사",
+            "url": "https://mentora.co.kr/test-mbti.html"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "Product",
+            "name": "에니어그램 검사",
+            "description": "9가지 성격 유형으로 심층 분석",
+            "url": "https://mentora.co.kr/test-enneagram.html"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "Product",
+            "name": "Big Five 성격검사",
+            "description": "과학적으로 검증된 5가지 성격 요인 분석",
+            "url": "https://mentora.co.kr/test-bigfive.html"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "Product",
+            "name": "DISC 행동유형검사",
+            "description": "직장과 대인관계에서의 행동 패턴 분석",
+            "url": "https://mentora.co.kr/test-disc.html"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "Product",
+            "name": "Holland 적성검사",
+            "description": "나에게 맞는 직업과 진로 찾기",
+            "url": "https://mentora.co.kr/test-holland.html"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -49,6 +152,7 @@
                 <span class="logo-text">Mentora</span>
             </a>
             
+            <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
@@ -61,7 +165,7 @@
                 <li><a href="#statistics" class="nav-link" onclick="closeMobileMenu()">통계</a></li>
                 <li><a href="#reviews" class="nav-link" onclick="closeMobileMenu()">후기</a></li>
                 <li><a href="mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
-                <li><a href="admin/" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+                <li><a href="admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
             </ul>
             <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
                 <i class="fas fa-moon"></i>
@@ -653,6 +757,7 @@
         </div>
     </section>
 
+    <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
         <a href="#home" class="nav-item active">
             <i class="fas fa-home"></i>
@@ -679,6 +784,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
+                <!-- Card 1: 회사 정보 -->
                 <div class="footer-section">
                     <div class="footer-logo">
                         <img src="images/logo-brain-hd.png" alt="Mentora Logo">
@@ -695,6 +801,7 @@
                     </div>
                 </div>
                 
+                <!-- Card 2: 빠른 링크 -->
                 <div class="footer-section">
                     <h4>빠른 링크</h4>
                     <ul>
@@ -705,10 +812,11 @@
                         <li><a href="#premium-features">프리미엄 기능</a></li>
                         <li><a href="#pricing">요금제</a></li>
                         <li><a href="mypage.html">내 결과</a></li>
-                        <li><a href="admin/">관리자</a></li>
+                        <li><a href="admin/index.html">관리자</a></li>
                     </ul>
                 </div>
                 
+                <!-- Card 3: 소셜 & 법적 고지 -->
                 <div class="footer-section">
                     <h4>연결하기</h4>
                     <div class="social-links">
@@ -741,6 +849,7 @@
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script>
+        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
             const menuToggle = document.getElementById('mobileMenuToggle');
@@ -766,6 +875,7 @@
             icon.classList.add('fa-bars');
         }
 
+        // Mobile Bottom Nav Active State
         document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
             item.addEventListener('click', function() {
                 document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(i => i.classList.remove('active'));
