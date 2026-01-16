@@ -11,7 +11,9 @@
     "legalName": "큐브박스",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://mentora.co.kr/images/logo-brain-hd.png"
+      "url": "https://mentora.co.kr/images/logo-brain-hd.png",
+      "width": 512,
+      "height": 512
     },
     "address": {
       "@type": "PostalAddress",
@@ -19,24 +21,3 @@
       "addressRegion": "서울특별시",
       "addressLocality": "송파구",
       "streetAddress": "송파대로14길 7-10 2층",
-      "postalCode": "05854"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+82-502-1909-7788",
-      "contactType": "Customer Service",
-      "email": "mentora@gmail.com",
-      "availableLanguage": ["Korean"]
-    }
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://mentora.co.kr/?s={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
-  "sameAs": [
-    "https://www.facebook.com/mentora",
-    "https://www.instagram.com/mentora",
-    "https://twitter.com/mentora"
-  ]
-}
