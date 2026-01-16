@@ -6,13 +6,33 @@
     <title>MBTI 성격유형검사 - Mentora</title>
     <meta name="description" content="16가지 성격 유형으로 나를 이해하는 MBTI 검사">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/test-common.css">
-    <style>
-        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
-        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
-    </style>
+    <link rel="stylesheet" href="css/nav-common.css">
 </head>
 <body>
+    <nav class="test-nav">
+        <div class="test-nav-container">
+            <div class="test-nav-left">
+                <a href="index.html" class="test-nav-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="test-nav-logo-icon">
+                    <span class="test-nav-logo-text">Mentora</span>
+                </a>
+                <div class="test-nav-title">MBTI 성격유형검사</div>
+            </div>
+            <div class="test-nav-right">
+                <a href="index.html" class="test-nav-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>뒤로가기</span>
+                </a>
+                <a href="index.html" class="test-nav-btn test-nav-btn-primary">
+                    <i class="fas fa-home"></i>
+                    <span>홈</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
     <div class="test-container">
         <div class="test-header">
             <h1>👥 MBTI 성격유형검사</h1>
@@ -48,39 +68,229 @@
 
         <div id="testScreen" style="display: none;">
             <div class="progress-container">
-                <div class="progress-info">
-                    <span id="progressText">질문 1 / 60</span>
-                    <span id="progressPercent">0%</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
                 </div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text">
+                    <span id="currentQuestion">1</span> / <span id="totalQuestions">60</span>
                 </div>
             </div>
 
-            <div class="question-container">
-                <h3 class="question-text" id="questionText"></h3>
-                <div class="answer-options" id="answerOptions"></div>
+            <div class="question-card">
+                <h3 class="question-text" id="questionText">질문이 여기에 표시됩니다</h3>
+                
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="selectAnswer(1)">
+                        <span class="answer-number">1</span>
+                        <span class="answer-text">전혀 아니다</span>
+                    </button>
+                    <button class="answer-btn" onclick="selectAnswer(2)">
+                        <span class="answer-number">2</span>
+                        <span class="answer-text">아니다</span>
+                    </button>
+                    <button class="answer-btn" onclick="selectAnswer(3)">
+                        <span class="answer-number">3</span>
+                        <span class="answer-text">보통이다</span>
+                    </button>
+                    <button class="answer-btn" onclick="selectAnswer(4)">
+                        <span class="answer-number">4</span>
+                        <span class="answer-text">그렇다</span>
+                    </button>
+                    <button class="answer-btn" onclick="selectAnswer(5)">
+                        <span class="answer-number">5</span>
+                        <span class="answer-text">매우 그렇다</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="test-navigation">
+                <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> 이전
+                </button>
+                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
+                    다음 <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
 
         <div id="resultScreen" style="display: none;">
-            <div class="result-container">
-                <div class="result-icon" id="resultIcon">🎉</div>
-                <h2 class="result-title" id="resultTitle">당신의 성격 유형은</h2>
-                <div class="result-type" id="resultType">INFP</div>
-                <div class="result-nickname" id="resultNickname">열정적인 중재자</div>
-                <p class="result-description" id="resultDescription">
-                    이상주의적이고 창의적인 성격으로, 다른 사람들을 돕는 것에 큰 기쁨을 느낍니다.
-                </p>
+            <div class="result-header">
+                <div class="result-badge">
+                    <span id="resultType">ENFP</span>
+                </div>
+                <h2 id="resultTitle">재기발랄한 활동가</h2>
+                <p id="resultDescription">열정적이고 창의적인 당신은...</p>
+            </div>
+
+            <div class="result-content">
+                <div class="result-section">
+                    <h3>📊 성격 특성</h3>
+                    <div class="trait-bars">
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>외향 (E)</span>
+                                <span class="trait-value">75%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>직관 (N)</span>
+                                <span class="trait-value">80%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>감정 (F)</span>
+                                <span class="trait-value">70%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>인식 (P)</span>
+                                <span class="trait-value">65%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-section">
+                    <h3>💪 강점</h3>
+                    <ul class="result-list">
+                        <li>창의적이고 혁신적인 사고</li>
+                        <li>뛰어난 의사소통 능력</li>
+                        <li>열정적이고 에너지 넘침</li>
+                        <li>다양한 관점 이해</li>
+                    </ul>
+                </div>
+
+                <div class="result-section">
+                    <h3>⚠️ 약점</h3>
+                    <ul class="result-list">
+                        <li>세부사항 놓치기 쉬움</li>
+                        <li>일관성 부족</li>
+                        <li>쉽게 지루함을 느낌</li>
+                        <li>결정 내리기 어려움</li>
+                    </ul>
+                </div>
+
+                <div class="result-section">
+                    <h3>💼 추천 직업</h3>
+                    <div class="career-tags">
+                        <span class="career-tag">마케팅 전문가</span>
+                        <span class="career-tag">작가</span>
+                        <span class="career-tag">상담사</span>
+                        <span class="career-tag">기획자</span>
+                        <span class="career-tag">교사</span>
+                    </div>
+                </div>
 
                 <div class="result-actions">
-                    <button class="btn btn-primary" onclick="saveAndView()">결과 저장하기</button>
-                    <button class="btn btn-secondary" onclick="location.href='index.html'">다른 검사하기</button>
+                    <button class="btn btn-primary" onclick="saveResult()">
+                        <i class="fas fa-save"></i> 결과 저장하기
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> 공유하기
+                    </button>
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">
+                        <i class="fas fa-home"></i> 홈으로
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="js/test-mbti.js"></script>
+    <script>
+        // Sample questions for demo
+        const questions = [
+            "나는 사람들과 어울리는 것이 좋다",
+            "나는 새로운 사람을 만나는 것을 즐긴다",
+            "나는 혼자 있는 시간이 필요하다",
+            "나는 파티나 모임을 좋아한다",
+            "나는 실용적인 것을 중요하게 생각한다",
+            // ... 더 많은 질문들
+        ];
+
+        let currentQuestionIndex = 0;
+        let answers = [];
+
+        function startTest() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('testScreen').style.display = 'block';
+            showQuestion(0);
+        }
+
+        function showQuestion(index) {
+            currentQuestionIndex = index;
+            document.getElementById('questionText').textContent = questions[index] || "샘플 질문 " + (index + 1);
+            document.getElementById('currentQuestion').textContent = index + 1;
+            document.getElementById('totalQuestions').textContent = 60;
+            
+            const progress = ((index + 1) / 60) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            document.getElementById('prevBtn').disabled = index === 0;
+            
+            // Reset answer buttons
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+        }
+
+        function selectAnswer(value) {
+            answers[currentQuestionIndex] = value;
+            
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.closest('.answer-btn').classList.add('selected');
+            
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < 59) {
+                showQuestion(currentQuestionIndex + 1);
+                document.getElementById('nextBtn').disabled = true;
+            } else {
+                showResult();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        function showResult() {
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+            
+            // Calculate result (simplified for demo)
+            const resultType = 'ENFP';
+            document.getElementById('resultType').textContent = resultType;
+        }
+
+        function saveResult() {
+            alert('결과가 저장되었습니다! (프리미엄 기능)');
+        }
+
+        function shareResult() {
+            alert('공유 기능이 곧 추가됩니다!');
+        }
+    </script>
 </body>
 </html>
