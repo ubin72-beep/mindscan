@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Mentora",
+  "alternateName": "멘토라",
+  "url": "https://mentora.co.kr",
+  "description": "100만 명이 선택한 과학적 심리검사 플랫폼. MBTI, 에니어그램, Big Five 등 10가지 전문 검사 제공",
+  "publisher": {
+    "@type": "Organization",
+    "name": "큐브박스 (CubeBox)",
+    "legalName": "큐브박스",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mentora.co.kr/images/logo-brain-hd.png"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "KR",
+      "addressRegion": "서울특별시",
+      "addressLocality": "송파구",
+      "streetAddress": "송파대로14길 7-10 2층",
+      "postalCode": "05854"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+82-502-1909-7788",
+      "contactType": "Customer Service",
+      "email": "mentora@gmail.com",
+      "availableLanguage": ["Korean"]
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://mentora.co.kr/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "sameAs": [
+    "https://www.facebook.com/mentora",
+    "https://www.instagram.com/mentora",
+    "https://twitter.com/mentora"
+  ]
+}
