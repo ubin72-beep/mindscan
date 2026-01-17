@@ -3,43 +3,670 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>번아웃 증후군 검사 - MindScan</title>
+    <title>번아웃 증후군 검사 - Mentora</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/test-common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
     <style>
-        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
-        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e8 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .test-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(44, 95, 79, 0.1);
+        }
+
+        .test-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .test-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .test-header p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .start-screen {
+            display: block;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px dashed #d4af37;
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: #2c5f4f;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c5f4f;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 95, 79, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2c5f4f;
+            border: 2px solid #2c5f4f;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .test-screen {
+            display: none;
+        }
+
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .question-container {
+            margin: 3rem 0;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option-btn {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            color: #333;
+        }
+
+        .option-btn:hover {
+            border-color: #d4af37;
+            background: #fffef8;
+            transform: translateX(5px);
+        }
+
+        .option-btn.selected {
+            border-color: #2c5f4f;
+            background: linear-gradient(135deg, #f0f8f5 0%, #fffef8 100%);
+            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.2);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .result-screen {
+            display: none;
+        }
+
+        .result-badge {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 800;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .result-description {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .burnout-dimensions {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .dimension-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+
+        .dimension-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .dimension-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c5f4f;
+        }
+
+        .dimension-score {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #d4af37;
+        }
+
+        .dimension-bar {
+            width: 100%;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .dimension-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .dimension-description {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .result-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-section h3 {
+            font-size: 1.3rem;
+            color: #2c5f4f;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .result-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .result-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #666;
+        }
+
+        .result-section li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2c5f4f;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .test-container {
+                padding: 1.5rem;
+            }
+
+            .test-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="test-container">
-        <div class="test-header">
-            <h1>🔥 번아웃 증후군 검사</h1>
-            <p>소진 상태 체크하기</p>
-        </div>
-        <div class="start-screen">
-            <div class="start-icon">🔥</div>
-            <h2>번아웃 검사 (MBI)</h2>
-            <p>정서적 소진, 비인간화, 개인 성취감 저하 등<br>번아웃 3요소를 측정합니다.</p>
-            <div class="test-info">
-                <div class="info-item">
-                    <div class="info-icon">⏱️</div>
-                    <div class="info-label">소요 시간</div>
-                    <div class="info-value">10분</div>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora Logo" class="logo-icon">
+                    <span class="logo-text">Mentora</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="test-container">
+            <div class="start-screen" id="startScreen">
+                <div class="test-header">
+                    <h1><i class="fas fa-fire"></i> 번아웃 증후군 검사</h1>
+                    <p>직업적, 정서적 소진 정도를 측정하세요</p>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">📊</div>
-                    <div class="info-label">질문 수</div>
-                    <div class="info-value">22개</div>
+
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>소요 시간</h3>
+                        <p>10분</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>질문 수</h3>
+                        <p>22개</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>영역</h3>
+                        <p>3가지</p>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">🎯</div>
-                    <div class="info-label">영역</div>
-                    <div class="info-value">3가지</div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="startTest()">
+                        <i class="fas fa-play"></i> 검사 시작하기
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> 홈으로 돌아가기
+                    </a>
                 </div>
             </div>
-            <button class="btn btn-primary" onclick="alert('준비 중입니다')">검사 시작하기</button>
+
+            <div class="test-screen" id="testScreen">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">22</span>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text" id="questionText"></div>
+                    <div class="options" id="optionsContainer"></div>
+                </div>
+
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn">
+                        <i class="fas fa-arrow-left"></i> 이전
+                    </button>
+                    <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">
+                        다음 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-screen" id="resultScreen">
+                <div class="test-header">
+                    <span class="result-badge" id="burnoutLevel">정상</span>
+                    <h2 class="result-title" id="resultTitle"></h2>
+                    <p class="result-description" id="resultDescription"></p>
+                </div>
+
+                <div class="burnout-dimensions" id="dimensionsContainer"></div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-lightbulb"></i> 회복 방법</h3>
+                    <ul id="recoveryTips"></ul>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="saveResult()">
+                        <i class="fas fa-save"></i> 결과 저장
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> 공유하기
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> 홈으로
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        const questions = [
+            { text: "일 때문에 정서적으로 지쳐있다고 느낀다", dimension: 'exhaustion' },
+            { text: "하루 일과가 끝나면 완전히 녹초가 된다", dimension: 'exhaustion' },
+            { text: "아침에 일어나면 또 일해야 한다는 생각에 피곤함을 느낀다", dimension: 'exhaustion' },
+            { text: "온종일 일하는 것이 정말 힘들다", dimension: 'exhaustion' },
+            { text: "일 때문에 지친다", dimension: 'exhaustion' },
+            { text: "일에 대한 열정이 사라졌다", dimension: 'exhaustion' },
+            { text: "일을 시작한 이후 일에 대한 관심이 줄어들었다", dimension: 'cynicism' },
+            { text: "일에 대한 열의가 줄어들었다", dimension: 'cynicism' },
+            { text: "내 일이 의미있는 일인지 의문이 든다", dimension: 'cynicism' },
+            { text: "내 일의 중요성에 대해 회의적이다", dimension: 'cynicism' },
+            { text: "일에 대해 냉소적으로 변했다", dimension: 'cynicism' },
+            { text: "문제를 효과적으로 해결할 수 있다", dimension: 'efficacy' },
+            { text: "내 일을 통해 조직에 효과적으로 기여한다고 느낀다", dimension: 'efficacy' },
+            { text: "내 일에서 가치있는 것을 많이 성취했다", dimension: 'efficacy' },
+            { text: "나는 업무를 효율적으로 처리할 수 있다", dimension: 'efficacy' },
+            { text: "일할 때 활력이 넘친다", dimension: 'efficacy' },
+            { text: "새로운 것을 배우는 것이 즐겁다", dimension: 'efficacy' },
+            { text: "직무와 관련된 정신적 피로도가 높다", dimension: 'exhaustion' },
+            { text: "업무 부담이 과중하다고 느낀다", dimension: 'exhaustion' },
+            { text: "일과 삶의 균형을 맞추기 어렵다", dimension: 'cynicism' },
+            { text: "직장에서의 성취감이 낮다", dimension: 'efficacy' },
+            { text: "업무 수행 능력이 떨어진 것 같다", dimension: 'efficacy' }
+        ];
+
+        const dimensions = {
+            exhaustion: { name: '정서적 소진', desc: '과도한 업무로 인한 감정적, 신체적 고갈 상태' },
+            cynicism: { name: '냉소적 태도', desc: '일에 대한 무관심과 부정적 태도' },
+            efficacy: { name: '성취감 저하', desc: '업무 능력과 성취에 대한 자신감 감소 (역채점)' }
+        };
+
+        const levels = {
+            low: {
+                title: '정상 (낮은 번아웃)',
+                description: '번아웃 증상이 거의 없는 건강한 상태입니다.',
+                tips: [
+                    '현재의 일과 삶의 균형을 잘 유지하세요',
+                    '스트레스 관리를 계속하세요',
+                    '정기적인 휴식을 취하세요',
+                    '취미와 여가 활동을 즐기세요'
+                ]
+            },
+            moderate: {
+                title: '경계 상태 (중간 번아웃)',
+                description: '번아웃 초기 증상이 나타나고 있습니다. 관리가 필요합니다.',
+                tips: [
+                    '업무 부담을 줄이는 방법을 찾아보세요',
+                    '충분한 수면과 휴식을 취하세요',
+                    '운동과 건강한 식습관을 유지하세요',
+                    '동료나 상사와 업무 부담에 대해 이야기하세요',
+                    '휴가를 계획하고 실천하세요'
+                ]
+            },
+            high: {
+                title: '위험 상태 (높은 번아웃)',
+                description: '심각한 번아웃 상태입니다. 즉각적인 조치가 필요합니다.',
+                tips: [
+                    '전문가 상담을 받으세요 (심리상담, EAP 프로그램)',
+                    '휴직이나 장기 휴가를 고려하세요',
+                    '업무 재배치나 전환을 상담하세요',
+                    '정신건강의학과 진료를 고려하세요',
+                    '일과 삶의 경계를 명확히 설정하세요',
+                    '사회적 지지망을 활용하세요',
+                    '스트레스 관리 기법을 배우세요'
+                ]
+            }
+        };
+
+        let currentQ = 0;
+        let answers = [];
+        let scores = { exhaustion: 0, cynicism: 0, efficacy: 0 };
+
+        function startTest() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('testScreen').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            document.getElementById('currentQuestion').textContent = currentQ + 1;
+            document.getElementById('totalQuestions').textContent = questions.length;
+            document.getElementById('questionText').textContent = questions[currentQ].text;
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            const options = ['전혀 아니다', '거의 아니다', '가끔 그렇다', '자주 그렇다', '매우 자주 그렇다'];
+
+            options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option;
+                btn.onclick = () => selectAnswer(index + 1);
+                if (answers[currentQ] === index + 1) {
+                    btn.classList.add('selected');
+                }
+                optionsContainer.appendChild(btn);
+            });
+
+            const progress = ((currentQ + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            document.getElementById('prevBtn').style.display = currentQ === 0 ? 'none' : 'inline-block';
+        }
+
+        function selectAnswer(value) {
+            answers[currentQ] = value;
+            const btns = document.querySelectorAll('.option-btn');
+            btns.forEach((btn, index) => {
+                btn.classList.toggle('selected', index === value - 1);
+            });
+        }
+
+        function nextQuestion() {
+            if (!answers[currentQ]) {
+                alert('답변을 선택해주세요!');
+                return;
+            }
+
+            const dimension = questions[currentQ].dimension;
+            let score = answers[currentQ];
+            
+            // efficacy는 역채점
+            if (dimension === 'efficacy') {
+                score = 6 - score;
+            }
+            
+            scores[dimension] += score;
+
+            if (currentQ < questions.length - 1) {
+                currentQ++;
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                showQuestion();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+
+            // 각 차원별 점수 계산
+            const exhaustionCount = questions.filter(q => q.dimension === 'exhaustion').length;
+            const cynicismCount = questions.filter(q => q.dimension === 'cynicism').length;
+            const efficacyCount = questions.filter(q => q.dimension === 'efficacy').length;
+
+            const exhaustionAvg = scores.exhaustion / exhaustionCount;
+            const cynicismAvg = scores.cynicism / cynicismCount;
+            const efficacyAvg = scores.efficacy / efficacyCount;
+
+            const totalAvg = (exhaustionAvg + cynicismAvg + efficacyAvg) / 3;
+
+            // 번아웃 수준 결정
+            let level;
+            if (totalAvg >= 3.5) level = 'high';
+            else if (totalAvg >= 2.5) level = 'moderate';
+            else level = 'low';
+
+            const resultData = levels[level];
+
+            const levelNames = { low: '정상', moderate: '경계', high: '위험' };
+
+            document.getElementById('burnoutLevel').textContent = levelNames[level];
+            document.getElementById('resultTitle').textContent = resultData.title;
+            document.getElementById('resultDescription').textContent = resultData.description;
+
+            // 각 영역별 점수 표시
+            const container = document.getElementById('dimensionsContainer');
+            container.innerHTML = '';
+
+            const dimScores = {
+                exhaustion: Math.round((exhaustionAvg / 5) * 100),
+                cynicism: Math.round((cynicismAvg / 5) * 100),
+                efficacy: Math.round((efficacyAvg / 5) * 100)
+            };
+
+            Object.keys(dimensions).forEach(key => {
+                const percentage = dimScores[key];
+                const card = document.createElement('div');
+                card.className = 'dimension-card';
+                card.innerHTML = `
+                    <div class="dimension-header">
+                        <span class="dimension-name">${dimensions[key].name}</span>
+                        <span class="dimension-score">${percentage}%</span>
+                    </div>
+                    <div class="dimension-bar">
+                        <div class="dimension-bar-fill" style="width: ${percentage}%"></div>
+                    </div>
+                    <p class="dimension-description">${dimensions[key].desc}</p>
+                `;
+                container.appendChild(card);
+            });
+
+            // 회복 방법
+            const tipsList = document.getElementById('recoveryTips');
+            tipsList.innerHTML = '';
+            resultData.tips.forEach(tip => {
+                const li = document.createElement('li');
+                li.textContent = tip;
+                tipsList.appendChild(li);
+            });
+        }
+
+        function saveResult() {
+            alert('결과 저장 기능은 프리미엄 회원에게 제공됩니다.');
+        }
+
+        function shareResult() {
+            alert('결과 공유 기능은 프리미엄 회원에게 제공됩니다.');
+        }
+    </script>
 </body>
 </html>
