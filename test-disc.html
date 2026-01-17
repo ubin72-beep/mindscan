@@ -4,782 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DISC 행동유형검사 - Mentora</title>
-    <meta name="description" content="당신의 행동 스타일과 의사소통 방식을 4가지 유형으로 분석합니다">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <meta name="description" content="당신의 행동 스타일과 의사소통 방식 분석">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="css/nav-common.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            min-height: 100vh;
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #d4af37, #b8962f);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .header-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-
-        .content {
-            padding: 3rem 2rem;
-        }
-
-        /* Start Screen */
-        .start-screen {
-            text-align: center;
-        }
-
-        .test-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .info-card {
-            background: #f5f7fa;
-            padding: 1.5rem;
-            border-radius: 16px;
-            text-align: center;
-        }
-
-        .info-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .info-label {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .info-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c5f4f;
-        }
-
-        .start-description {
-            background: #f5f7fa;
-            padding: 2rem;
-            border-radius: 16px;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .start-description h3 {
-            color: #2c5f4f;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .start-description ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .start-description li {
-            padding: 0.75rem 0;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .start-description li::before {
-            content: "✓";
-            color: #d4af37;
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            background: #e8ecef;
-            height: 8px;
-            border-radius: 4px;
-            margin-bottom: 2rem;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            background: linear-gradient(90deg, #2c5f4f, #d4af37);
-            height: 100%;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .question-counter {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-
-        /* Question */
-        .question-box {
-            margin-bottom: 2rem;
-        }
-
-        .question-text {
-            font-size: 1.5rem;
-            color: #2c5f4f;
-            margin-bottom: 2rem;
-            font-weight: 700;
-            line-height: 1.5;
-        }
-
-        .options {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .option-btn {
-            background: white;
-            border: 2px solid #e8ecef;
-            padding: 1.5rem;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-            color: #333;
-            font-family: 'Noto Sans KR', sans-serif;
-            font-weight: 500;
-        }
-
-        .option-btn:hover {
-            border-color: #d4af37;
-            background: #fffef8;
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
-        }
-
-        /* Result */
-        .result-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .result-icon {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-        }
-
-        .result-type {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .result-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-        }
-
-        .disc-chart {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .disc-bar {
-            text-align: center;
-        }
-
-        .bar-container {
-            height: 200px;
-            display: flex;
-            align-items: flex-end;
-            margin-bottom: 1rem;
-        }
-
-        .bar-fill {
-            width: 100%;
-            border-radius: 8px 8px 0 0;
-            transition: height 0.8s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .bar-d { background: linear-gradient(to top, #e74c3c, #c0392b); }
-        .bar-i { background: linear-gradient(to top, #f39c12, #e67e22); }
-        .bar-s { background: linear-gradient(to top, #27ae60, #229954); }
-        .bar-c { background: linear-gradient(to top, #3498db, #2980b9); }
-
-        .bar-label {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-
-        .bar-percent {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        .result-details {
-            background: #f5f7fa;
-            padding: 2rem;
-            border-radius: 16px;
-            margin: 2rem 0;
-        }
-
-        .result-section {
-            margin-bottom: 2rem;
-        }
-
-        .result-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .result-section h3 {
-            color: #2c5f4f;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .result-section p {
-            color: #333;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        /* Buttons */
-        .btn {
-            padding: 1.25rem 3rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Noto Sans KR', sans-serif;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #d4af37, #b8962f);
-            color: white;
-            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #2c5f4f;
-            border: 2px solid #2c5f4f;
-        }
-
-        .btn-secondary:hover {
-            background: #2c5f4f;
-            color: white;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-
-            .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .header p {
-                font-size: 1rem;
-            }
-
-            .content {
-                padding: 2rem 1.5rem;
-            }
-
-            .test-info {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .question-text {
-                font-size: 1.2rem;
-            }
-
-            .option-btn {
-                padding: 1.25rem;
-                font-size: 1rem;
-            }
-
-            .disc-chart {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .bar-container {
-                height: 150px;
-            }
-
-            .btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        .hidden {
-            display: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans KR', sans-serif; background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); min-height: 100vh; padding-top: 80px; }
+        .test-container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .start-screen { background: rgba(255, 255, 255, 0.95); border-radius: 24px; padding: 50px 40px; text-align: center; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
+        .start-icon { font-size: 5rem; margin-bottom: 30px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .start-screen h2 { font-size: 2rem; font-weight: 700; color: #2c5f4f; margin-bottom: 20px; }
+        .start-screen > p { font-size: 1.1rem; color: #666; line-height: 1.8; margin-bottom: 40px; }
+        .test-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+        .info-item { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); padding: 30px 20px; border-radius: 16px; color: white; transition: transform 0.3s ease; }
+        .info-item:hover { transform: translateY(-5px); }
+        .info-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .info-label { font-size: 0.95rem; opacity: 0.9; margin-bottom: 10px; }
+        .info-value { font-size: 1.8rem; font-weight: 700; color: #d4af37; }
+        .progress-container { background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        .progress-text { text-align: center; font-size: 1.3rem; font-weight: 600; color: #2c5f4f; margin-bottom: 15px; }
+        .progress-bar { width: 100%; height: 12px; background: #e0e0e0; border-radius: 10px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%); border-radius: 10px; transition: width 0.3s ease; box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        .question-card { background: rgba(255, 255, 255, 0.95); border-radius: 24px; padding: 50px 40px; margin-bottom: 25px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
+        .question-text { font-size: 1.8rem; font-weight: 700; color: #2c5f4f; text-align: center; margin-bottom: 50px; line-height: 1.6; }
+        .answer-options { display: flex; flex-direction: column; gap: 15px; }
+        .answer-btn { background: white; border: 3px solid #e0e0e0; border-radius: 16px; padding: 25px 30px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 20px; font-size: 1.1rem; color: #333; }
+        .answer-btn:hover { border-color: #d4af37; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%); transform: translateX(10px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3); }
+        .answer-btn.selected { border-color: #d4af37; background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); }
+        .answer-number { width: 45px; height: 45px; background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); color: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.3rem; flex-shrink: 0; }
+        .answer-btn.selected .answer-number { background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%); color: #2c5f4f; }
+        .answer-text { flex: 1; text-align: left; font-weight: 600; }
+        .test-navigation { display: flex; gap: 15px; justify-content: center; }
+        .btn { padding: 18px 40px; border: none; border-radius: 12px; font-size: 1.15rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-primary { background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%); color: #2c5f4f; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); }
+        .btn-primary:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-secondary { background: white; color: #2c5f4f; border: 3px solid #2c5f4f; }
+        .btn-secondary:hover:not(:disabled) { background: #2c5f4f; color: white; transform: translateY(-3px); }
+        .result-header { background: rgba(255, 255, 255, 0.95); border-radius: 24px; padding: 50px 40px; text-align: center; margin-bottom: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
+        .result-badge { display: inline-block; background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%); color: #2c5f4f; font-size: 3rem; font-weight: 900; padding: 20px 50px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); }
+        .result-header h2 { font-size: 2.2rem; font-weight: 800; color: #2c5f4f; margin-bottom: 15px; }
+        .result-content { background: rgba(255, 255, 255, 0.95); border-radius: 24px; padding: 40px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
+        .result-section { margin-bottom: 40px; }
+        .result-section h3 { font-size: 1.6rem; font-weight: 700; color: #2c5f4f; margin-bottom: 25px; }
+        .result-list { list-style: none; }
+        .result-list li { padding: 15px 20px; background: #f5f7fa; border-left: 4px solid #d4af37; margin-bottom: 12px; border-radius: 8px; font-size: 1.05rem; }
+        .result-actions { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; margin-top: 40px; }
+        @media (max-width: 768px) { body { padding-top: 70px; } .test-container { padding: 20px 15px; } .start-screen { padding: 40px 25px; } .test-info { grid-template-columns: 1fr; } .question-card { padding: 35px 25px; } .question-text { font-size: 1.4rem; } .answer-btn { padding: 20px; } .test-navigation { flex-direction: column; } .btn { width: 100%; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="header-icon">💼</div>
-            <h1>DISC 행동유형검사</h1>
-            <p>당신의 행동 스타일과 소통 방식을 파악합니다</p>
+    <nav class="test-nav">
+        <div class="test-nav-container">
+            <div class="test-nav-left">
+                <a href="index.html" class="test-nav-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="test-nav-logo-icon">
+                    <span class="test-nav-logo-text">Mentora</span>
+                </a>
+                <div class="test-nav-title">DISC 행동유형검사</div>
+            </div>
+            <div class="test-nav-right">
+                <a href="index.html" class="test-nav-btn"><i class="fas fa-arrow-left"></i><span>뒤로가기</span></a>
+                <a href="index.html" class="test-nav-btn test-nav-btn-primary"><i class="fas fa-home"></i><span>홈</span></a>
+            </div>
         </div>
-
-        <div class="content">
-            <!-- Start Screen -->
-            <div id="startScreen" class="start-screen">
-                <div class="test-info">
-                    <div class="info-card">
-                        <div class="info-icon">⏱️</div>
-                        <div class="info-label">소요 시간</div>
-                        <div class="info-value">12분</div>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-icon">📝</div>
-                        <div class="info-label">질문 수</div>
-                        <div class="info-value">15개</div>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-icon">🎯</div>
-                        <div class="info-label">유형</div>
-                        <div class="info-value">4가지</div>
-                    </div>
+    </nav>
+    <div class="test-container">
+        <div id="startScreen" class="start-screen">
+            <div class="start-icon">💼</div>
+            <h2>DISC 행동유형검사를 시작합니다</h2>
+            <p>4가지 행동 유형(주도형, 사교형, 안정형, 신중형)으로<br>당신의 커뮤니케이션 스타일을 분석합니다.</p>
+            <div class="test-info">
+                <div class="info-item"><div class="info-icon">⏱️</div><div class="info-label">소요 시간</div><div class="info-value">8분</div></div>
+                <div class="info-item"><div class="info-icon">📊</div><div class="info-label">질문 수</div><div class="info-value">28개</div></div>
+                <div class="info-item"><div class="info-icon">🎯</div><div class="info-label">유형</div><div class="info-value">4가지</div></div>
+            </div>
+            <button class="btn btn-primary" onclick="startTest()"><i class="fas fa-play-circle"></i> 검사 시작하기</button>
+            <button class="btn btn-secondary" onclick="location.href='index.html'" style="margin-top: 15px;"><i class="fas fa-home"></i> 홈으로 돌아가기</button>
+        </div>
+        <div id="testScreen" style="display: none;">
+            <div class="progress-container">
+                <div class="progress-text"><span id="currentQuestion">1</span> / <span id="totalQuestions">28</span></div>
+                <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
+            </div>
+            <div class="question-card">
+                <h3 class="question-text" id="questionText">질문이 여기에 표시됩니다</h3>
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="selectAnswer(1)"><span class="answer-number">1</span><span class="answer-text">전혀 아니다</span></button>
+                    <button class="answer-btn" onclick="selectAnswer(2)"><span class="answer-number">2</span><span class="answer-text">아니다</span></button>
+                    <button class="answer-btn" onclick="selectAnswer(3)"><span class="answer-number">3</span><span class="answer-text">보통이다</span></button>
+                    <button class="answer-btn" onclick="selectAnswer(4)"><span class="answer-number">4</span><span class="answer-text">그렇다</span></button>
+                    <button class="answer-btn" onclick="selectAnswer(5)"><span class="answer-number">5</span><span class="answer-text">매우 그렇다</span></button>
                 </div>
-
-                <div class="start-description">
-                    <h3>📊 DISC 유형</h3>
-                    <ul>
-                        <li><strong>D (Dominance)</strong> - 주도형: 목표 지향적이고 결단력이 강함</li>
-                        <li><strong>I (Influence)</strong> - 사교형: 사교적이고 열정적인 소통형</li>
-                        <li><strong>S (Steadiness)</strong> - 안정형: 협조적이고 신뢰할 수 있음</li>
-                        <li><strong>C (Conscientiousness)</strong> - 신중형: 분석적이고 정확성을 중시함</li>
+            </div>
+            <div class="test-navigation">
+                <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn" disabled><i class="fas fa-arrow-left"></i> 이전</button>
+                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>다음 <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+        <div id="resultScreen" style="display: none;">
+            <div class="result-header">
+                <div class="result-badge"><span id="resultType">D형</span></div>
+                <h2 id="resultTitle">주도형 (Dominance)</h2>
+                <p id="resultDescription">목표 지향적이고 결단력 있는 리더십을 가진 유형입니다</p>
+            </div>
+            <div class="result-content">
+                <div class="result-section">
+                    <h3>💪 특징</h3>
+                    <ul class="result-list">
+                        <li>빠른 결정과 실행력</li>
+                        <li>도전과 경쟁을 즐김</li>
+                        <li>직설적이고 솔직한 의사소통</li>
+                        <li>결과 중심적 사고</li>
                     </ul>
                 </div>
-
-                <button class="btn btn-primary" onclick="startTest()">
-                    <i class="fas fa-play"></i> 검사 시작하기
-                </button>
-            </div>
-
-            <!-- Test Screen -->
-            <div id="testScreen" class="hidden">
-                <div class="progress-container">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-                <div class="question-counter" id="questionCounter">1 / 15</div>
-                <div id="questionContainer"></div>
-            </div>
-
-            <!-- Result Screen -->
-            <div id="resultScreen" class="hidden">
-                <div class="result-header">
-                    <div class="result-icon" id="resultIcon">🎯</div>
-                    <div class="result-type" id="resultType">주도형 (D)</div>
-                    <div class="result-subtitle" id="resultSubtitle">목표 지향적이고 결단력이 강한 리더형</div>
-                </div>
-
-                <div class="disc-chart" id="discChart"></div>
-
-                <div class="result-details" id="resultDetails"></div>
-
-                <div class="button-group">
-                    <button class="btn btn-secondary" onclick="shareResult()">
-                        <i class="fas fa-share-alt"></i> 결과 공유하기
-                    </button>
-                    <button class="btn btn-primary" onclick="goToPremium()">
-                        <i class="fas fa-crown"></i> 프리미엄 리포트 받기
-                    </button>
+                <div class="result-actions">
+                    <button class="btn btn-primary" onclick="alert('결과 저장 (프리미엄)')"><i class="fas fa-save"></i> 결과 저장하기</button>
+                    <button class="btn btn-secondary" onclick="alert('공유 기능 준비중')"><i class="fas fa-share-alt"></i> 공유하기</button>
+                    <button class="btn btn-secondary" onclick="location.href='index.html'"><i class="fas fa-home"></i> 홈으로</button>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
-        const questions = [
-            {
-                q: "새로운 프로젝트를 시작할 때 나는",
-                options: [
-                    { text: "빠르게 결정하고 추진한다", type: "D" },
-                    { text: "사람들과 협력하며 진행한다", type: "I" },
-                    { text: "신중하게 계획을 세운다", type: "S" },
-                    { text: "정확한 데이터를 분석한다", type: "C" }
-                ]
-            },
-            {
-                q: "회의에서 나의 모습은",
-                options: [
-                    { text: "주도적으로 의견을 제시한다", type: "D" },
-                    { text: "분위기를 밝게 만든다", type: "I" },
-                    { text: "경청하고 지지한다", type: "S" },
-                    { text: "논리적으로 분석한다", type: "C" }
-                ]
-            },
-            {
-                q: "문제가 발생했을 때 나는",
-                options: [
-                    { text: "즉시 해결책을 찾는다", type: "D" },
-                    { text: "팀원들과 상의한다", type: "I" },
-                    { text: "차근차근 대응한다", type: "S" },
-                    { text: "원인을 철저히 분석한다", type: "C" }
-                ]
-            },
-            {
-                q: "업무 스타일에서 중요한 것은",
-                options: [
-                    { text: "빠른 성과 달성", type: "D" },
-                    { text: "즐거운 분위기", type: "I" },
-                    { text: "안정적인 진행", type: "S" },
-                    { text: "정확한 결과", type: "C" }
-                ]
-            },
-            {
-                q: "팀에서 나의 역할은",
-                options: [
-                    { text: "리더십을 발휘한다", type: "D" },
-                    { text: "소통을 활성화한다", type: "I" },
-                    { text: "안정감을 준다", type: "S" },
-                    { text: "품질을 관리한다", type: "C" }
-                ]
-            },
-            {
-                q: "스트레스를 받을 때 나는",
-                options: [
-                    { text: "더 강하게 밀고 나간다", type: "D" },
-                    { text: "주변에 이야기한다", type: "I" },
-                    { text: "조용히 시간을 갖는다", type: "S" },
-                    { text: "혼자 정리한다", type: "C" }
-                ]
-            },
-            {
-                q: "의사결정 시 나는",
-                options: [
-                    { text: "직관적으로 빠르게", type: "D" },
-                    { text: "사람들 의견을 듣고", type: "I" },
-                    { text: "충분히 고민한 후", type: "S" },
-                    { text: "데이터 분석 후", type: "C" }
-                ]
-            },
-            {
-                q: "변화에 대한 나의 태도는",
-                options: [
-                    { text: "적극적으로 받아들인다", type: "D" },
-                    { text: "새로운 기회로 본다", type: "I" },
-                    { text: "신중하게 적응한다", type: "S" },
-                    { text: "체계적으로 준비한다", type: "C" }
-                ]
-            },
-            {
-                q: "업무 목표 설정 시",
-                options: [
-                    { text: "도전적인 목표를 세운다", type: "D" },
-                    { text: "함께 성장할 목표", type: "I" },
-                    { text: "현실적인 목표", type: "S" },
-                    { text: "측정 가능한 목표", type: "C" }
-                ]
-            },
-            {
-                q: "갈등 상황에서 나는",
-                options: [
-                    { text: "직접적으로 해결한다", type: "D" },
-                    { text: "중재하려 노력한다", type: "I" },
-                    { text: "조화를 추구한다", type: "S" },
-                    { text: "공정하게 판단한다", type: "C" }
-                ]
-            },
-            {
-                q: "일의 속도에 대해",
-                options: [
-                    { text: "빠르게 처리한다", type: "D" },
-                    { text: "유연하게 조절한다", type: "I" },
-                    { text: "꾸준히 진행한다", type: "S" },
-                    { text: "정확히 완성한다", type: "C" }
-                ]
-            },
-            {
-                q: "피드백을 받을 때",
-                options: [
-                    { text: "결과 중심으로 듣는다", type: "D" },
-                    { text: "긍정적으로 받아들인다", type: "I" },
-                    { text: "차분히 수용한다", type: "S" },
-                    { text: "객관적으로 분석한다", type: "C" }
-                ]
-            },
-            {
-                q: "업무 환경에서 선호하는 것은",
-                options: [
-                    { text: "경쟁적 분위기", type: "D" },
-                    { text: "활발한 소통", type: "I" },
-                    { text: "안정적 구조", type: "S" },
-                    { text: "체계적 시스템", type: "C" }
-                ]
-            },
-            {
-                q: "새로운 사람을 만날 때",
-                options: [
-                    { text: "주도적으로 다가간다", type: "D" },
-                    { text: "친근하게 대화한다", type: "I" },
-                    { text: "편안하게 관찰한다", type: "S" },
-                    { text: "신중하게 접근한다", type: "C" }
-                ]
-            },
-            {
-                q: "나의 강점은",
-                options: [
-                    { text: "추진력과 결단력", type: "D" },
-                    { text: "친화력과 영향력", type: "I" },
-                    { text: "인내심과 협조성", type: "S" },
-                    { text: "정확성과 분석력", type: "C" }
-                ]
-            }
-        ];
-
-        const discTypes = {
-            D: {
-                name: "주도형 (Dominance)",
-                subtitle: "목표 지향적이고 결단력이 강한 리더형",
-                icon: "🎯",
-                color: "#e74c3c",
-                strengths: "목표 달성 능력, 빠른 의사결정, 리더십, 도전 정신, 문제 해결 능력",
-                development: "타인 의견 경청, 감정 표현, 인내심 키우기, 협력적 태도",
-                jobs: "CEO, 영업 관리자, 기업가, 프로젝트 매니저, 컨설턴트"
-            },
-            I: {
-                name: "사교형 (Influence)",
-                subtitle: "사교적이고 열정적인 소통형",
-                icon: "🌟",
-                color: "#f39c12",
-                strengths: "소통 능력, 친화력, 긍정적 에너지, 네트워킹, 설득력",
-                development: "세부사항 주의, 일관성 유지, 집중력 향상, 계획성",
-                jobs: "마케팅, 홍보, 영업, 이벤트 기획자, 강사, PR 전문가"
-            },
-            S: {
-                name: "안정형 (Steadiness)",
-                subtitle: "협조적이고 신뢰할 수 있는 지원형",
-                icon: "🤝",
-                color: "#27ae60",
-                strengths: "인내심, 협조성, 신뢰성, 팀워크, 안정감 제공",
-                development: "변화 수용, 자기주장, 빠른 결정, 새로운 도전",
-                jobs: "상담사, 인사 담당자, 고객 서비스, 의료인, 교사, 사회복지사"
-            },
-            C: {
-                name: "신중형 (Conscientiousness)",
-                subtitle: "분석적이고 정확성을 중시하는 전문가형",
-                icon: "📊",
-                color: "#3498db",
-                strengths: "분석력, 정확성, 체계성, 품질 관리, 논리적 사고",
-                development: "유연성, 신속한 결정, 감정 표현, 리스크 감수",
-                jobs: "회계사, 데이터 분석가, 연구원, 품질 관리자, 엔지니어, 감사"
-            }
-        };
-
-        let currentQuestion = 0;
-        let scores = { D: 0, I: 0, S: 0, C: 0 };
-
-        function startTest() {
-            document.getElementById('startScreen').classList.add('hidden');
-            document.getElementById('testScreen').classList.remove('hidden');
-            showQuestion();
-        }
-
-        function showQuestion() {
-            const q = questions[currentQuestion];
-            const container = document.getElementById('questionContainer');
-            
-            container.innerHTML = `
-                <div class="question-box">
-                    <h3 class="question-text">${q.q}</h3>
-                    <div class="options">
-                        ${q.options.map(opt => `
-                            <button class="option-btn" onclick="selectAnswer('${opt.type}')">
-                                ${opt.text}
-                            </button>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-            
-            updateProgress();
-        }
-
-        function selectAnswer(type) {
-            scores[type]++;
-            currentQuestion++;
-            
-            if (currentQuestion < questions.length) {
-                showQuestion();
-            } else {
-                showResult();
-            }
-        }
-
-        function updateProgress() {
-            const progress = ((currentQuestion + 1) / questions.length) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-            document.getElementById('questionCounter').textContent = `${currentQuestion + 1} / ${questions.length}`;
-        }
-
-        function showResult() {
-            document.getElementById('testScreen').classList.add('hidden');
-            document.getElementById('resultScreen').classList.remove('hidden');
-            
-            // 최고 점수 유형 찾기
-            const maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            const total = Object.values(scores).reduce((a, b) => a + b, 0);
-            const typeInfo = discTypes[maxType];
-            
-            // 결과 헤더
-            document.getElementById('resultIcon').textContent = typeInfo.icon;
-            document.getElementById('resultType').textContent = typeInfo.name;
-            document.getElementById('resultType').style.color = typeInfo.color;
-            document.getElementById('resultSubtitle').textContent = typeInfo.subtitle;
-            
-            // DISC 차트
-            const chartHTML = Object.keys(scores).map(type => {
-                const percentage = Math.round((scores[type] / total) * 100);
-                const height = (percentage / 100) * 200;
-                return `
-                    <div class="disc-bar">
-                        <div class="bar-container">
-                            <div class="bar-fill bar-${type.toLowerCase()}" style="height: ${height}px;">
-                                ${percentage}%
-                            </div>
-                        </div>
-                        <div class="bar-label">${type}</div>
-                        <div class="bar-percent">${discTypes[type].name.split('(')[0].trim()}</div>
-                    </div>
-                `;
-            }).join('');
-            document.getElementById('discChart').innerHTML = chartHTML;
-            
-            // 상세 결과
-            document.getElementById('resultDetails').innerHTML = `
-                <div class="result-section">
-                    <h3><i class="fas fa-star"></i> 강점</h3>
-                    <p>${typeInfo.strengths}</p>
-                </div>
-                <div class="result-section">
-                    <h3><i class="fas fa-arrow-up"></i> 개발 포인트</h3>
-                    <p>${typeInfo.development}</p>
-                </div>
-                <div class="result-section">
-                    <h3><i class="fas fa-briefcase"></i> 추천 직업</h3>
-                    <p>${typeInfo.jobs}</p>
-                </div>
-            `;
-            
-            // 결과 저장
-            saveResult(maxType, scores);
-        }
-
-        function saveResult(type, scores) {
-            const result = {
-                test: 'DISC',
-                type: type,
-                typeName: discTypes[type].name,
-                scores: scores,
-                date: new Date().toISOString(),
-                timestamp: Date.now()
-            };
-            
-            const results = JSON.parse(localStorage.getItem('testResults') || '[]');
-            results.push(result);
-            localStorage.setItem('testResults', JSON.stringify(results));
-        }
-
-        function shareResult() {
-            const maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            const typeInfo = discTypes[maxType];
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Mentora DISC 검사 결과',
-                    text: `나의 DISC 유형은 "${typeInfo.name}"입니다! ${typeInfo.subtitle}`,
-                    url: window.location.href
-                }).catch(() => {});
-            } else {
-                const text = `나의 DISC 유형은 "${typeInfo.name}"입니다!\n${window.location.origin}`;
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('결과가 클립보드에 복사되었습니다!');
-                });
-            }
-        }
-
-        function goToPremium() {
-            window.location.href = 'payment/checkout.html?product=disc-premium';
-        }
+        const questions = ["나는 주도적이고 결단력이 있다","나는 사교적이고 외향적이다","나는 안정적이고 협조적이다","나는 신중하고 분석적이다","나는 도전을 즐긴다","나는 사람들과 함께 있는 것을 좋아한다","나는 일관성을 중요하게 생각한다","나는 정확성을 추구한다"];
+        let currentQuestionIndex = 0;
+        let answers = [];
+        function startTest() { document.getElementById('startScreen').style.display = 'none'; document.getElementById('testScreen').style.display = 'block'; showQuestion(0); }
+        function showQuestion(index) { currentQuestionIndex = index; document.getElementById('questionText').textContent = questions[index % questions.length]; document.getElementById('currentQuestion').textContent = index + 1; document.getElementById('totalQuestions').textContent = 28; const progress = ((index + 1) / 28) * 100; document.getElementById('progressBar').style.width = progress + '%'; document.getElementById('prevBtn').disabled = index === 0; document.querySelectorAll('.answer-btn').forEach(btn => { btn.classList.remove('selected'); }); if (answers[index]) { document.querySelectorAll('.answer-btn')[answers[index] - 1].classList.add('selected'); document.getElementById('nextBtn').disabled = false; } else { document.getElementById('nextBtn').disabled = true; } }
+        function selectAnswer(value) { answers[currentQuestionIndex] = value; document.querySelectorAll('.answer-btn').forEach(btn => { btn.classList.remove('selected'); }); event.target.closest('.answer-btn').classList.add('selected'); document.getElementById('nextBtn').disabled = false; }
+        function nextQuestion() { if (currentQuestionIndex < 27) { showQuestion(currentQuestionIndex + 1); } else { showResult(); } }
+        function previousQuestion() { if (currentQuestionIndex > 0) { showQuestion(currentQuestionIndex - 1); } }
+        function showResult() { document.getElementById('testScreen').style.display = 'none'; document.getElementById('resultScreen').style.display = 'block'; }
     </script>
 </body>
 </html>
