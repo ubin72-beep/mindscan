@@ -3,43 +3,579 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IQ 지능검사 - MindScan</title>
+    <title>지능지수(IQ) 검사 - Mentora</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/test-common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
     <style>
-        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
-        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e8 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .test-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(44, 95, 79, 0.1);
+        }
+
+        .test-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .test-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .test-header p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .start-screen {
+            display: block;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px dashed #d4af37;
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: #2c5f4f;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c5f4f;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 95, 79, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2c5f4f;
+            border: 2px solid #2c5f4f;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .test-screen {
+            display: none;
+        }
+
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .question-container {
+            margin: 3rem 0;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .option-btn {
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            color: #333;
+        }
+
+        .option-btn:hover {
+            border-color: #d4af37;
+            background: #fffef8;
+            transform: translateY(-3px);
+        }
+
+        .option-btn.selected {
+            border-color: #2c5f4f;
+            background: linear-gradient(135deg, #f0f8f5 0%, #fffef8 100%);
+            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.2);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .result-screen {
+            display: none;
+        }
+
+        .result-badge {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
+            color: white;
+            font-size: 3rem;
+            font-weight: 800;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .result-description {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .iq-scale {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .iq-scale h3 {
+            font-size: 1.3rem;
+            color: #2c5f4f;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .scale-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .scale-item.active {
+            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .test-container {
+                padding: 1.5rem;
+            }
+
+            .test-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="test-container">
-        <div class="test-header">
-            <h1>🧠 IQ 지능검사</h1>
-            <p>인지 능력 측정하기</p>
-        </div>
-        <div class="start-screen">
-            <div class="start-icon">🧠</div>
-            <h2>IQ 지능 검사</h2>
-            <p>논리력, 공간지각, 언어능력, 수리력 등<br>다양한 인지 능력을 측정합니다.</p>
-            <div class="test-info">
-                <div class="info-item">
-                    <div class="info-icon">⏱️</div>
-                    <div class="info-label">소요 시간</div>
-                    <div class="info-value">30분</div>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora Logo" class="logo-icon">
+                    <span class="logo-text">Mentora</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="test-container">
+            <div class="start-screen" id="startScreen">
+                <div class="test-header">
+                    <h1><i class="fas fa-graduation-cap"></i> 지능지수(IQ) 검사</h1>
+                    <p>논리적 사고력과 문제해결 능력을 측정하세요</p>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">📊</div>
-                    <div class="info-label">질문 수</div>
-                    <div class="info-value">40개</div>
+
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>소요 시간</h3>
+                        <p>20분</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>질문 수</h3>
+                        <p>30개</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>측정 범위</h3>
+                        <p>IQ 점수</p>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">🎯</div>
-                    <div class="info-label">범위</div>
-                    <div class="info-value">85-145</div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="startTest()">
+                        <i class="fas fa-play"></i> 검사 시작하기
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> 홈으로 돌아가기
+                    </a>
                 </div>
             </div>
-            <button class="btn btn-primary" onclick="alert('준비 중입니다')">검사 시작하기</button>
+
+            <div class="test-screen" id="testScreen">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">30</span>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text" id="questionText"></div>
+                    <div class="options" id="optionsContainer"></div>
+                </div>
+
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn">
+                        <i class="fas fa-arrow-left"></i> 이전
+                    </button>
+                    <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">
+                        다음 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-screen" id="resultScreen">
+                <div class="test-header">
+                    <span class="result-badge" id="iqScore">120</span>
+                    <h2 class="result-title" id="iqLevel">평균 이상의 지능</h2>
+                    <p class="result-description" id="iqDescription"></p>
+                </div>
+
+                <div class="iq-scale">
+                    <h3><i class="fas fa-chart-bar"></i> IQ 점수 분포</h3>
+                    <div class="scale-item">
+                        <span>천재</span>
+                        <span>140 이상</span>
+                    </div>
+                    <div class="scale-item">
+                        <span>매우 우수</span>
+                        <span>130-139</span>
+                    </div>
+                    <div class="scale-item">
+                        <span>우수</span>
+                        <span>120-129</span>
+                    </div>
+                    <div class="scale-item active">
+                        <span>평균 이상</span>
+                        <span>110-119</span>
+                    </div>
+                    <div class="scale-item">
+                        <span>평균</span>
+                        <span>90-109</span>
+                    </div>
+                    <div class="scale-item">
+                        <span>평균 이하</span>
+                        <span>80-89</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="saveResult()">
+                        <i class="fas fa-save"></i> 결과 저장
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> 공유하기
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> 홈으로
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        const questions = [
+            { q: "2, 4, 6, 8, ? 다음 숫자는?", options: ["9", "10", "12", "14"], correct: 2 },
+            { q: "사과가 과일이라면, 강아지는?", options: ["동물", "식물", "광물", "곤충"], correct: 0 },
+            { q: "12 ÷ 3 × 2 = ?", options: ["2", "4", "6", "8"], correct: 3 },
+            { q: "다음 중 다른 것은?", options: ["개", "고양이", "토끼", "사과"], correct: 3 },
+            { q: "5, 10, 15, 20, ? 다음 숫자는?", options: ["22", "24", "25", "30"], correct: 2 },
+            { q: "A:B = C:? (B=2A, C=3A일 때)", options: ["A", "2C", "3B", "6A"], correct: 2 },
+            { q: "시계가 3시를 가리킬 때 시침과 분침이 이루는 각도는?", options: ["60°", "75°", "90°", "120°"], correct: 2 },
+            { q: "책:읽다 = 음악:?", options: ["듣다", "보다", "만들다", "쓰다"], correct: 0 },
+            { q: "3² + 4² = ?", options: ["7", "12", "25", "49"], correct: 2 },
+            { q: "1, 1, 2, 3, 5, ? (피보나치)", options: ["6", "7", "8", "9"], correct: 2 },
+            { q: "100 - 37 = ?", options: ["53", "63", "67", "73"], correct: 1 },
+            { q: "낮:밤 = 여름:?", options: ["봄", "가을", "겨울", "계절"], correct: 2 },
+            { q: "정사각형의 한 변이 5cm일 때 넓이는?", options: ["10cm²", "20cm²", "25cm²", "30cm²"], correct: 2 },
+            { q: "AB, CD, EF, ? 다음은?", options: ["GH", "HI", "IJ", "JK"], correct: 0 },
+            { q: "24의 약수가 아닌 것은?", options: ["3", "5", "6", "8"], correct: 1 },
+            { q: "물:얼음 = 기체:?", options: ["액체", "고체", "플라스마", "증기"], correct: 0 },
+            { q: "7 × 8 = ?", options: ["54", "56", "63", "64"], correct: 1 },
+            { q: "원의 지름이 10cm일 때 반지름은?", options: ["5cm", "10cm", "15cm", "20cm"], correct: 0 },
+            { q: "100을 4로 나눈 나머지는?", options: ["0", "1", "2", "3"], correct: 0 },
+            { q: "봄:꽃 = 가을:?", options: ["눈", "비", "단풍", "햇빛"], correct: 2 },
+            { q: "2³ = ?", options: ["4", "6", "8", "16"], correct: 2 },
+            { q: "36의 제곱근은?", options: ["4", "6", "8", "9"], correct: 1 },
+            { q: "손:장갑 = 발:?", options: ["신발", "양말", "샌들", "슬리퍼"], correct: 1 },
+            { q: "45 ÷ 5 = ?", options: ["7", "8", "9", "10"], correct: 2 },
+            { q: "1시간은 몇 초?", options: ["600초", "1800초", "3600초", "7200초"], correct: 2 },
+            { q: "의사:병원 = 선생님:?", options: ["학교", "도서관", "회사", "가게"], correct: 0 },
+            { q: "50%는 소수로?", options: ["0.5", "0.05", "5.0", "50.0"], correct: 0 },
+            { q: "삼각형의 내각의 합은?", options: ["90°", "180°", "270°", "360°"], correct: 1 },
+            { q: "72 ÷ 9 = ?", options: ["6", "7", "8", "9"], correct: 2 },
+            { q: "책의 반대말은?", options: ["공책", "노트", "없음", "연필"], correct: 2 }
+        ];
+
+        let currentQ = 0;
+        let answers = [];
+        let correctCount = 0;
+
+        function startTest() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('testScreen').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQ];
+            document.getElementById('currentQuestion').textContent = currentQ + 1;
+            document.getElementById('totalQuestions').textContent = questions.length;
+            document.getElementById('questionText').textContent = question.q;
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            question.options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option;
+                btn.onclick = () => selectAnswer(index);
+                if (answers[currentQ] === index) {
+                    btn.classList.add('selected');
+                }
+                optionsContainer.appendChild(btn);
+            });
+
+            const progress = ((currentQ + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            document.getElementById('prevBtn').style.display = currentQ === 0 ? 'none' : 'inline-block';
+        }
+
+        function selectAnswer(index) {
+            answers[currentQ] = index;
+            const btns = document.querySelectorAll('.option-btn');
+            btns.forEach((btn, i) => {
+                btn.classList.toggle('selected', i === index);
+            });
+        }
+
+        function nextQuestion() {
+            if (answers[currentQ] === undefined) {
+                alert('답변을 선택해주세요!');
+                return;
+            }
+
+            if (answers[currentQ] === questions[currentQ].correct) {
+                correctCount++;
+            }
+
+            if (currentQ < questions.length - 1) {
+                currentQ++;
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                showQuestion();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+
+            // IQ 계산 (정답률 기반)
+            const accuracy = correctCount / questions.length;
+            let iq = Math.round(100 + (accuracy - 0.5) * 60);
+            iq = Math.max(70, Math.min(150, iq)); // 70-150 범위로 제한
+
+            document.getElementById('iqScore').textContent = iq;
+
+            let level, description;
+            if (iq >= 140) {
+                level = '천재 수준';
+                description = '매우 뛰어난 지적 능력을 보유하고 있습니다. 복잡한 문제를 빠르게 해결하는 능력이 탁월합니다.';
+            } else if (iq >= 130) {
+                level = '매우 우수한 지능';
+                description = '일반인보다 훨씬 높은 지적 능력을 가지고 있으며, 학문이나 전문 분야에서 뛰어난 성과를 낼 수 있습니다.';
+            } else if (iq >= 120) {
+                level = '우수한 지능';
+                description = '평균보다 높은 논리적 사고력과 문제해결 능력을 가지고 있습니다.';
+            } else if (iq >= 110) {
+                level = '평균 이상의 지능';
+                description = '일반적인 과제를 잘 수행하며, 새로운 것을 배우는 능력이 좋습니다.';
+            } else if (iq >= 90) {
+                level = '평균 지능';
+                description = '일상생활과 학습에 필요한 적절한 지적 능력을 가지고 있습니다.';
+            } else {
+                level = '평균 이하의 지능';
+                description = '특정 영역에서 더 많은 연습과 학습이 필요할 수 있습니다.';
+            }
+
+            document.getElementById('iqLevel').textContent = level;
+            document.getElementById('iqDescription').textContent = description;
+
+            // 해당하는 범위 강조
+            const scaleItems = document.querySelectorAll('.scale-item');
+            scaleItems.forEach(item => item.classList.remove('active'));
+
+            if (iq >= 140) scaleItems[0].classList.add('active');
+            else if (iq >= 130) scaleItems[1].classList.add('active');
+            else if (iq >= 120) scaleItems[2].classList.add('active');
+            else if (iq >= 110) scaleItems[3].classList.add('active');
+            else if (iq >= 90) scaleItems[4].classList.add('active');
+            else scaleItems[5].classList.add('active');
+        }
+
+        function saveResult() {
+            alert('결과 저장 기능은 프리미엄 회원에게 제공됩니다.');
+        }
+
+        function shareResult() {
+            alert('결과 공유 기능은 프리미엄 회원에게 제공됩니다.');
+        }
+    </script>
 </body>
 </html>
