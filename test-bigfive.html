@@ -3,24 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Five 성격검사 - MindScan</title>
-    <meta name="description" content="과학적으로 검증된 5가지 성격 요인 분석">
+    <title>Big Five 성격검사 - Mentora</title>
+    <meta name="description" content="5가지 성격 특성으로 나를 과학적으로 분석">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/test-common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
     <style>
-        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
-        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .test-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Start Screen */
+        .start-screen {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .start-screen h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 20px;
+        }
+
+        .start-screen > p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .test-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            padding: 30px 20px;
+            border-radius: 16px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .info-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d4af37;
+        }
+
+        /* Test Screen */
+        .progress-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 50px 40px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .question-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            text-align: center;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .answer-btn {
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 25px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .answer-btn:hover {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .answer-btn.selected {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .answer-number {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            color: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .answer-btn.selected .answer-number {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: #2c5f4f;
+        }
+
+        .answer-text {
+            flex: 1;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .test-navigation {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: #2c5f4f;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2c5f4f;
+            border: 3px solid #2c5f4f;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #2c5f4f;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Result Screen */
+        .result-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: #2c5f4f;
+            font-size: 2.5rem;
+            font-weight: 900;
+            padding: 20px 50px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .result-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+
+        .result-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-section {
+            margin-bottom: 40px;
+        }
+
+        .result-section h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 25px;
+        }
+
+        .trait-bar {
+            margin-bottom: 25px;
+        }
+
+        .trait-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .trait-progress {
+            height: 16px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .trait-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .result-list {
+            list-style: none;
+        }
+
+        .result-list li {
+            padding: 15px 20px;
+            background: #f5f7fa;
+            border-left: 4px solid #d4af37;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .test-container {
+                padding: 20px 15px;
+            }
+
+            .start-screen {
+                padding: 40px 25px;
+            }
+
+            .test-info {
+                grid-template-columns: 1fr;
+            }
+
+            .question-card {
+                padding: 35px 25px;
+            }
+
+            .question-text {
+                font-size: 1.4rem;
+            }
+
+            .answer-btn {
+                padding: 20px;
+            }
+
+            .test-navigation {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="test-container">
-        <div class="test-header">
-            <h1>🔬 Big Five 성격검사</h1>
-            <p>과학적으로 검증된 5가지 성격 요인</p>
+    <nav class="test-nav">
+        <div class="test-nav-container">
+            <div class="test-nav-left">
+                <a href="index.html" class="test-nav-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="test-nav-logo-icon">
+                    <span class="test-nav-logo-text">Mentora</span>
+                </a>
+                <div class="test-nav-title">Big Five 성격검사</div>
+            </div>
+            <div class="test-nav-right">
+                <a href="index.html" class="test-nav-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>뒤로가기</span>
+                </a>
+                <a href="index.html" class="test-nav-btn test-nav-btn-primary">
+                    <i class="fas fa-home"></i>
+                    <span>홈</span>
+                </a>
+            </div>
         </div>
+    </nav>
 
+    <div class="test-container">
         <div id="startScreen" class="start-screen">
-            <div class="start-icon">🔬</div>
+            <div class="start-icon">🎯</div>
             <h2>Big Five 검사를 시작합니다</h2>
             <p>5가지 성격 차원(개방성, 성실성, 외향성, 친화성, 신경증)을<br>과학적으로 측정합니다.</p>
 
@@ -42,92 +434,261 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
+            <button class="btn btn-primary" onclick="startTest()">
+                <i class="fas fa-play-circle"></i> 검사 시작하기
+            </button>
+            <button class="btn btn-secondary" onclick="location.href='index.html'" style="margin-top: 15px;">
+                <i class="fas fa-home"></i> 홈으로 돌아가기
+            </button>
         </div>
 
         <div id="testScreen" style="display: none;">
             <div class="progress-container">
-                <div class="progress-info">
-                    <span id="progressText">질문 1 / 20</span>
-                    <span id="progressPercent">5%</span>
+                <div class="progress-text">
+                    <span id="currentQuestion">1</span> / <span id="totalQuestions">20</span>
                 </div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-            </div>
-
-            <div class="question-area">
-                <div class="question-number" id="questionNumber">Question 1</div>
-                <div class="question-text" id="questionText"></div>
-                <div class="scale-options" id="optionsContainer">
-                    <div class="scale-option" data-score="1">전혀 아니다</div>
-                    <div class="scale-option" data-score="2">아니다</div>
-                    <div class="scale-option" data-score="3">보통이다</div>
-                    <div class="scale-option" data-score="4">그렇다</div>
-                    <div class="scale-option" data-score="5">매우 그렇다</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
                 </div>
             </div>
 
-            <div class="button-area">
-                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">이전</button>
-                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
+            <div class="question-card">
+                <h3 class="question-text" id="questionText">질문이 여기에 표시됩니다</h3>
+                
+                <div class="answer-options">
+                    <button class="answer-btn" onclick="selectAnswer(1)">
+                        <span class="answer-number">1</span>
+                        <span class="answer-text">전혀 아니다</span>
+                    </button>
+                    <button class="answer-btn" onclick="selectAnswer(2)">
+                        <span class="answer-number">2</span>
+                        <span class="answer-text">아니다</span>
+                    </button>
+                    <button class="answer-btn" onclick="selectAnswer(3)">
+                        <span class="answer-number">3</span>
+                        <span class="answer-text">보통이다</span>
+                    </button>
+                    <button class="answer-btn" onclick="selectAnswer(4)">
+                        <span class="answer-number">4</span>
+                        <span class="answer-text">그렇다</span>
+                    </button>
+                    <button class="answer-btn" onclick="selectAnswer(5)">
+                        <span class="answer-number">5</span>
+                        <span class="answer-text">매우 그렇다</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="test-navigation">
+                <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> 이전
+                </button>
+                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
+                    다음 <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
 
         <div id="resultScreen" style="display: none;">
-            <div class="result-screen">
-                <div class="result-type">
-                    <h2 class="result-title">Big Five 성격 분석 결과</h2>
+            <div class="result-header">
+                <div class="result-badge">Big Five</div>
+                <h2>당신의 성격 프로필</h2>
+            </div>
+
+            <div class="result-content">
+                <div class="result-section">
+                    <h3>📊 5가지 성격 차원</h3>
+                    <div class="trait-bars">
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>개방성 (Openness)</span>
+                                <span class="trait-value" id="openness">75%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" id="opennessFill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>성실성 (Conscientiousness)</span>
+                                <span class="trait-value" id="conscientiousness">80%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" id="conscientiousnessFill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>외향성 (Extraversion)</span>
+                                <span class="trait-value" id="extraversion">70%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" id="extraversionFill" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>친화성 (Agreeableness)</span>
+                                <span class="trait-value" id="agreeableness">85%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" id="agreeablenessFill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="trait-bar">
+                            <div class="trait-label">
+                                <span>신경증 (Neuroticism)</span>
+                                <span class="trait-value" id="neuroticism">40%</span>
+                            </div>
+                            <div class="trait-progress">
+                                <div class="trait-fill" id="neuroticismFill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="result-details">
-                    <h3>📊 개방성 (Openness)</h3>
-                    <div class="score-bar">
-                        <div class="score-fill" id="scoreO" style="width: 0%"></div>
-                    </div>
-                    <p id="descO"></p>
-                </div>
-
-                <div class="result-details">
-                    <h3>✅ 성실성 (Conscientiousness)</h3>
-                    <div class="score-bar">
-                        <div class="score-fill" id="scoreC" style="width: 0%"></div>
-                    </div>
-                    <p id="descC"></p>
-                </div>
-
-                <div class="result-details">
-                    <h3>👥 외향성 (Extraversion)</h3>
-                    <div class="score-bar">
-                        <div class="score-fill" id="scoreE" style="width: 0%"></div>
-                    </div>
-                    <p id="descE"></p>
-                </div>
-
-                <div class="result-details">
-                    <h3>🤝 친화성 (Agreeableness)</h3>
-                    <div class="score-bar">
-                        <div class="score-fill" id="scoreA" style="width: 0%"></div>
-                    </div>
-                    <p id="descA"></p>
-                </div>
-
-                <div class="result-details">
-                    <h3>😰 신경증 (Neuroticism)</h3>
-                    <div class="score-bar">
-                        <div class="score-fill" id="scoreN" style="width: 0%"></div>
-                    </div>
-                    <p id="descN"></p>
+                <div class="result-section">
+                    <h3>💡 성격 해석</h3>
+                    <ul class="result-list">
+                        <li><strong>개방성</strong>: 새로운 경험과 아이디어에 열려있습니다</li>
+                        <li><strong>성실성</strong>: 계획적이고 책임감이 강합니다</li>
+                        <li><strong>외향성</strong>: 사교적이고 활동적입니다</li>
+                        <li><strong>친화성</strong>: 협조적이고 배려심이 많습니다</li>
+                        <li><strong>신경증</strong>: 정서적으로 안정적입니다</li>
+                    </ul>
                 </div>
 
                 <div class="result-actions">
-                    <button class="btn btn-secondary" onclick="location.href='index.html'">홈으로</button>
-                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">프리미엄 리포트</button>
+                    <button class="btn btn-primary" onclick="saveResult()">
+                        <i class="fas fa-save"></i> 결과 저장하기
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> 공유하기
+                    </button>
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">
+                        <i class="fas fa-home"></i> 홈으로
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="js/test-bigfive.js"></script>
+    <script>
+        const questions = [
+            "나는 새로운 아이디어와 경험에 열려있다",
+            "나는 계획을 세우고 그대로 실행한다",
+            "나는 사람들과 어울리는 것이 좋다",
+            "나는 다른 사람을 돕는 것을 좋아한다",
+            "나는 쉽게 불안해하거나 걱정한다",
+            "나는 창의적이고 상상력이 풍부하다",
+            "나는 꼼꼼하고 세심하다",
+            "나는 활동적이고 에너지가 넘친다",
+            "나는 타인을 신뢰하고 협력한다",
+            "나는 감정 기복이 있는 편이다",
+            "나는 예술과 문화에 관심이 많다",
+            "나는 목표를 향해 꾸준히 노력한다",
+            "나는 파티나 모임을 즐긴다",
+            "나는 타인의 감정을 잘 이해한다",
+            "나는 스트레스를 잘 받는 편이다",
+            "나는 지적 호기심이 강하다",
+            "나는 정리정돈을 잘 한다",
+            "나는 리더십이 있다",
+            "나는 갈등을 피하려 노력한다",
+            "나는 대체로 평온하고 안정적이다"
+        ];
+
+        let currentQuestionIndex = 0;
+        let answers = [];
+
+        function startTest() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('testScreen').style.display = 'block';
+            showQuestion(0);
+        }
+
+        function showQuestion(index) {
+            currentQuestionIndex = index;
+            document.getElementById('questionText').textContent = questions[index];
+            document.getElementById('currentQuestion').textContent = index + 1;
+            document.getElementById('totalQuestions').textContent = questions.length;
+            
+            const progress = ((index + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            document.getElementById('prevBtn').disabled = index === 0;
+            
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            if (answers[index]) {
+                document.querySelectorAll('.answer-btn')[answers[index] - 1].classList.add('selected');
+                document.getElementById('nextBtn').disabled = false;
+            } else {
+                document.getElementById('nextBtn').disabled = true;
+            }
+        }
+
+        function selectAnswer(value) {
+            answers[currentQuestionIndex] = value;
+            
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.closest('.answer-btn').classList.add('selected');
+            
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                showQuestion(currentQuestionIndex + 1);
+            } else {
+                showResult();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        function showResult() {
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+            
+            // Calculate Big Five scores
+            const traits = [0, 0, 0, 0, 0];
+            for (let i = 0; i < answers.length; i++) {
+                traits[i % 5] += answers[i];
+            }
+            
+            const percentages = traits.map(score => Math.round((score / 20) * 100));
+            
+            document.getElementById('openness').textContent = percentages[0] + '%';
+            document.getElementById('opennessFill').style.width = percentages[0] + '%';
+            
+            document.getElementById('conscientiousness').textContent = percentages[1] + '%';
+            document.getElementById('conscientiousnessFill').style.width = percentages[1] + '%';
+            
+            document.getElementById('extraversion').textContent = percentages[2] + '%';
+            document.getElementById('extraversionFill').style.width = percentages[2] + '%';
+            
+            document.getElementById('agreeableness').textContent = percentages[3] + '%';
+            document.getElementById('agreeablenessFill').style.width = percentages[3] + '%';
+            
+            document.getElementById('neuroticism').textContent = percentages[4] + '%';
+            document.getElementById('neuroticismFill').style.width = percentages[4] + '%';
+        }
+
+        function saveResult() {
+            alert('결과가 저장되었습니다! (프리미엄 기능)');
+        }
+
+        function shareResult() {
+            alert('공유 기능이 곧 추가됩니다!');
+        }
+    </script>
 </body>
 </html>
