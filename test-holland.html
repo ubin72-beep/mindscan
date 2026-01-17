@@ -7,61 +7,40 @@
     <meta name="description" content="6가지 직업 유형으로 나에게 맞는 직업 찾기">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
     <link rel="stylesheet" href="css/test-common.css">
     <style>
-        body { 
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%);
-            padding-top: 2rem;
-        }
-        
-        /* 간단한 로고 헤더 */
-        .simple-header {
-            text-align: center;
-            padding: 1rem 0 2rem;
-        }
-        
-        .simple-logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-        
-        .simple-logo img {
-            width: 40px;
-            height: 40px;
-        }
-        
-        .test-header { 
-            background: transparent;
-            color: var(--primary-green);
-            padding: 2rem 2rem 1rem;
-        }
-        
-        .test-header h1 {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .test-header p {
-            color: var(--text-gray);
-            font-size: 1rem;
-        }
+        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
+        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
     </style>
 </head>
 <body>
-    <!-- 간단한 로고 -->
-    <div class="simple-header">
-        <a href="index.html" class="simple-logo">
-            <img src="images/logo-brain-hd.png" alt="Mentora">
-            <span>Mentora</span>
-        </a>
-    </div>
+    <!-- 네비게이션 바 -->
+    <header class="page-header">
+        <nav class="page-nav">
+            <div class="page-nav-left">
+                <a href="index.html" class="page-nav-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora" class="page-nav-logo-icon">
+                    <span class="page-nav-logo-text">Mentora</span>
+                </a>
+                <div class="page-nav-divider"></div>
+                <h2 class="page-nav-title">Holland 직업적성검사</h2>
+            </div>
+            <div class="page-nav-right">
+                <button class="page-nav-btn page-nav-btn-back" onclick="history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>뒤로가기</span>
+                </button>
+                <a href="index.html" class="page-nav-btn page-nav-btn-home">
+                    <i class="fas fa-home"></i>
+                    <span>홈으로</span>
+                </a>
+            </div>
+        </nav>
+    </header>
 
     <!-- 페이지 컨텐츠 -->
+    <div class="page-content-wrapper">
     <div class="test-container">
         <div class="test-header">
             <h1>💼 Holland 직업적성검사</h1>
@@ -142,6 +121,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script>
