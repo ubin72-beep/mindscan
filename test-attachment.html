@@ -10,11 +10,93 @@
     <link rel="stylesheet" href="css/nav-common.css">
     <link rel="stylesheet" href="css/test-common.css">
     <style>
-        body { background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%); min-height: 100vh; }
-        .test-header { background: linear-gradient(135deg, #2c5f4f, #1a4838); color: white; padding: 2rem; text-align: center; }
-        .attachment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem 0; }
-        .attachment-card { background: white; padding: 1.5rem; border-radius: 12px; border: 3px solid #e0e0e0; }
-        .attachment-card.active { border-color: #2c5f4f; background: #f5f7fa; }
+        body { 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%);
+        }
+        
+        .test-header { 
+            background: transparent;
+            color: var(--primary-green);
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .test-header h1 {
+            color: #5a7a5a;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .test-header p {
+            color: #7a8a7a;
+            font-size: 1rem;
+        }
+        
+        .attachment-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 1rem; 
+            margin: 2rem 0; 
+        }
+        
+        .attachment-card { 
+            background: white; 
+            padding: 1.5rem; 
+            border-radius: 12px; 
+            border: 3px solid #e0e0e0; 
+        }
+        
+        .attachment-card.active { 
+            border-color: #2c5f4f; 
+            background: #f5f7fa; 
+        }
+
+        /* 정보 카드 스타일 */
+        .info-item {
+            background: white;
+            border: 2px dashed #d4af37;
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: #2c5f4f;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-label {
+            color: #7a8a7a;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-value {
+            color: #2c5f4f;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* 버튼 스타일 */
+        .btn-primary {
+            background: #2c5f4f;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #1a4838;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2c5f4f;
+            border: 2px solid #2c5f4f;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f7fa;
+        }
     </style>
 </head>
 <body>
@@ -77,7 +159,7 @@
             <button class="btn btn-secondary" onclick="location.href='index.html'" style="margin-top: 1rem;">🏠 홈으로 돌아가기</button>
         </div>
 
-        <div id="testScreen" class="test-screen" style="display:none;">
+        <div id="testScreen" style="display:none;">
             <div class="progress-container">
                 <div class="progress-info">
                     <span id="questionCounter">질문 1 / 20</span>
@@ -87,17 +169,44 @@
                     <div class="progress-bar" id="progressFill"></div>
                 </div>
             </div>
-            <div id="questionContainer"></div>
+            
+            <div class="question-container">
+                <h3 class="question-text" id="questionText"></h3>
+                <div class="answer-options" id="answerOptions"></div>
+            </div>
+
+            <div class="button-area">
+                <button class="btn btn-secondary" onclick="prevQuestion()" id="prevBtn" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> 이전
+                </button>
+                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
+                    다음 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
 
-        <div id="resultScreen" class="result-screen" style="display:none;">
-            <h2>🎯 검사 결과</h2>
-            <div class="result-type" id="resultType"></div>
-            <div class="attachment-grid" id="attachmentChart"></div>
-            <div class="result-detail" id="resultDetail"></div>
-            <div class="result-actions">
-                <button class="btn btn-secondary" onclick="shareResult()">결과 공유하기</button>
-                <button class="btn btn-primary" onclick="location.href='payment/checkout.html?product=premium'">프리미엄 리포트 받기</button>
+        <div id="resultScreen" style="display:none;">
+            <div class="result-container">
+                <div class="result-icon">🎉</div>
+                <h2 class="result-title">당신의 애착 유형은</h2>
+                <div class="result-type" id="resultType"></div>
+                <div class="result-nickname" id="resultNickname"></div>
+                <p class="result-description" id="resultDescription"></p>
+
+                <div class="result-section">
+                    <h3>📊 유형별 점수</h3>
+                    <div class="attachment-grid" id="attachmentChart"></div>
+                </div>
+
+                <div class="result-section">
+                    <h3>💡 유형 특징</h3>
+                    <div id="resultDetail"></div>
+                </div>
+
+                <div class="result-actions">
+                    <button class="btn btn-primary" onclick="shareResult()">결과 공유하기</button>
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">다른 검사하기</button>
+                </div>
             </div>
         </div>
     </div>
@@ -135,7 +244,8 @@
         };
 
         let currentQuestion = 0;
-        let answers = { secure: 0, anxious: 0, avoidant: 0, fearful: 0 };
+        let answers = [];
+        let scores = { secure: 0, anxious: 0, avoidant: 0, fearful: 0 };
 
         function startTest() {
             document.getElementById('startScreen').style.display = 'none';
@@ -145,39 +255,74 @@
 
         function showQuestion() {
             const q = questions[currentQuestion];
-            document.getElementById('questionContainer').innerHTML = `
-                <div class="question-container">
-                    <h3 class="question-text">${q.q}</h3>
-                    <div class="answer-options">
-                        ${[
-                            { text: '매우 그렇다', score: 5 },
-                            { text: '그렇다', score: 4 },
-                            { text: '보통이다', score: 3 },
-                            { text: '아니다', score: 2 },
-                            { text: '전혀 아니다', score: 1 }
-                        ].map((option, index) => `
-                            <button class="answer-option" onclick="selectAnswer('${q.type}', ${option.score})">
-                                <span class="option-number">${index + 1}</span>
-                                <span class="option-text">${option.text}</span>
-                            </button>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
+            const questionText = document.getElementById('questionText');
+            const answerOptions = document.getElementById('answerOptions');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            questionText.textContent = q.q;
+
+            const options = [
+                { text: '매우 그렇다', value: 5 },
+                { text: '그렇다', value: 4 },
+                { text: '보통이다', value: 3 },
+                { text: '아니다', value: 2 },
+                { text: '전혀 아니다', value: 1 }
+            ];
+
+            answerOptions.innerHTML = options.map((option, index) => `
+                <button class="answer-option ${answers[currentQuestion] === option.value ? 'selected' : ''}" 
+                        onclick="selectAnswer(${option.value})" 
+                        data-value="${option.value}">
+                    <span class="option-number">${index + 1}</span>
+                    <span class="option-text">${option.text}</span>
+                </button>
+            `).join('');
+
             updateProgress();
+            prevBtn.style.display = currentQuestion === 0 ? 'none' : 'inline-block';
+            nextBtn.disabled = answers[currentQuestion] === undefined;
         }
 
-        function selectAnswer(type, score) {
-            answers[type] += score;
-            currentQuestion++;
+        function selectAnswer(value) {
+            answers[currentQuestion] = value;
             
-            setTimeout(() => {
-                if (currentQuestion < questions.length) {
-                    showQuestion();
-                } else {
-                    showResult();
+            const buttons = document.querySelectorAll('.answer-option');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected');
+                if (parseInt(btn.dataset.value) === value) {
+                    btn.classList.add('selected');
                 }
+            });
+
+            document.getElementById('nextBtn').disabled = false;
+
+            setTimeout(() => {
+                nextQuestion();
             }, 300);
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (answers[currentQuestion] === undefined) {
+                return;
+            }
+
+            const q = questions[currentQuestion];
+            scores[q.type] += answers[currentQuestion];
+
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResult();
+            }
         }
 
         function updateProgress() {
@@ -191,17 +336,15 @@
             document.getElementById('testScreen').style.display = 'none';
             document.getElementById('resultScreen').style.display = 'block';
             
-            const maxType = Object.keys(answers).reduce((a, b) => answers[a] > answers[b] ? a : b);
+            const maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
             const typeInfo = attachmentTypes[maxType];
             
-            document.getElementById('resultType').innerHTML = `
-                <div style="font-size: 4rem; margin-bottom: 1rem;">${typeInfo.icon}</div>
-                <h3 style="color: ${typeInfo.color}; margin: 1rem 0; font-size: 2rem;">${typeInfo.name}</h3>
-                <p style="font-size: 1.1rem; color: #666;">${typeInfo.desc}</p>
-            `;
+            document.getElementById('resultType').textContent = maxType.charAt(0).toUpperCase() + maxType.slice(1);
+            document.getElementById('resultNickname').textContent = typeInfo.name;
+            document.getElementById('resultDescription').textContent = typeInfo.desc;
             
-            const maxScore = Math.max(...Object.values(answers));
-            document.getElementById('attachmentChart').innerHTML = Object.entries(answers)
+            const maxScore = Math.max(...Object.values(scores));
+            document.getElementById('attachmentChart').innerHTML = Object.entries(scores)
                 .map(([type, score]) => {
                     const info = attachmentTypes[type];
                     return `
@@ -216,14 +359,8 @@
                     `;
                 }).join('');
             
-            document.getElementById('resultDetail').innerHTML = `
-                <h3>💡 유형 특징</h3>
-                <div style="background: white; padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
-                    ${getTypeDetails(maxType)}
-                </div>
-            `;
-            
-            saveResult(maxType, answers);
+            document.getElementById('resultDetail').innerHTML = getTypeDetails(maxType);
+            saveResult(maxType, scores);
         }
 
         function getTypeDetails(type) {
