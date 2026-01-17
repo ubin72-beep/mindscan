@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="css/nav-common.css">
     <link rel="stylesheet" href="css/test-common.css">
     <style>
-        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
-        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+        body { 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%);
+        }
+        .test-header { 
+            background: transparent;
+            color: var(--primary-green);
+        }
     </style>
 </head>
 <body>
@@ -70,8 +75,8 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
-            <a href="index.html" class="btn btn-secondary" style="margin-top: 1rem;">홈으로 돌아가기</a>
+            <button class="btn btn-primary" onclick="startTest()">▶ 검사 시작하기</button>
+            <button class="btn btn-secondary" onclick="location.href='index.html'" style="margin-top: 1rem;">🏠 홈으로 돌아가기</button>
         </div>
 
         <div id="testScreen" style="display: none;">
