@@ -9,95 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
     <link rel="stylesheet" href="css/test-common.css">
-    <style>
-        body { 
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%);
-        }
-        
-        .test-header { 
-            background: transparent;
-            color: var(--primary-green);
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .test-header h1 {
-            color: #5a7a5a;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .test-header p {
-            color: #7a8a7a;
-            font-size: 1rem;
-        }
-        
-        .attachment-grid { 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 1rem; 
-            margin: 2rem 0; 
-        }
-        
-        .attachment-card { 
-            background: white; 
-            padding: 1.5rem; 
-            border-radius: 12px; 
-            border: 3px solid #e0e0e0; 
-        }
-        
-        .attachment-card.active { 
-            border-color: #2c5f4f; 
-            background: #f5f7fa; 
-        }
-
-        /* 정보 카드 스타일 */
-        .info-item {
-            background: white;
-            border: 2px dashed #d4af37;
-            border-radius: 16px;
-            padding: 1.5rem;
-        }
-
-        .info-icon {
-            font-size: 2.5rem;
-            color: #2c5f4f;
-            margin-bottom: 0.5rem;
-        }
-
-        .info-label {
-            color: #7a8a7a;
-            font-size: 0.875rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .info-value {
-            color: #2c5f4f;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        /* 버튼 스타일 */
-        .btn-primary {
-            background: #2c5f4f;
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: #1a4838;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #2c5f4f;
-            border: 2px solid #2c5f4f;
-        }
-
-        .btn-secondary:hover {
-            background: #f5f7fa;
-        }
-    </style>
 </head>
 <body>
     <!-- 네비게이션 바 -->
@@ -195,7 +106,7 @@
 
                 <div class="result-section">
                     <h3>📊 유형별 점수</h3>
-                    <div class="attachment-grid" id="attachmentChart"></div>
+                    <div id="attachmentChart" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;"></div>
                 </div>
 
                 <div class="result-section">
@@ -347,14 +258,15 @@
             document.getElementById('attachmentChart').innerHTML = Object.entries(scores)
                 .map(([type, score]) => {
                     const info = attachmentTypes[type];
+                    const isActive = score === maxScore;
                     return `
-                        <div class="attachment-card ${score === maxScore ? 'active' : ''}">
-                            <div style="font-size: 2rem;">${info.icon}</div>
-                            <h4 style="color: ${info.color}; margin: 0.5rem 0;">${info.name}</h4>
+                        <div style="background: ${isActive ? '#f5f7fa' : 'white'}; padding: 1.5rem; border-radius: 12px; border: 3px solid ${isActive ? '#2c5f4f' : '#e0e0e0'};">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">${info.icon}</div>
+                            <h4 style="color: ${info.color}; margin: 0.5rem 0; font-size: 1.125rem;">${info.name}</h4>
                             <div style="background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden; margin: 0.5rem 0;">
-                                <div style="background: ${info.color}; height: 100%; width: ${score/maxScore*100}%;"></div>
+                                <div style="background: ${info.color}; height: 100%; width: ${score/maxScore*100}%; transition: width 0.5s ease;"></div>
                             </div>
-                            <div style="color: #666;">${score}점</div>
+                            <div style="color: #666; font-size: 0.875rem;">${score}점</div>
                         </div>
                     `;
                 }).join('');
@@ -365,22 +277,30 @@
 
         function getTypeDetails(type) {
             const details = {
-                secure: `<h4 style="color: #27ae60;">✅ 안정형의 특징</h4>
-                    <p>• 건강한 관계 유지 능력<br>• 신뢰와 의존의 균형<br>• 갈등 해결 능력<br>• 감정 표현이 자유로움</p>
-                    <h4 style="color: #27ae60; margin-top: 1rem;">🎯 발전 방향</h4>
-                    <p>현재의 긍정적인 패턴을 유지하되, 타인의 다양한 애착 유형을 이해하는 능력을 키우세요.</p>`,
-                anxious: `<h4 style="color: #f39c12;">💛 불안형의 특징</h4>
-                    <p>• 버림받을 것에 대한 두려움<br>• 과도한 관심 요구<br>• 상대의 행동에 민감<br>• 끊임없는 확인 필요</p>
-                    <h4 style="color: #f39c12; margin-top: 1rem;">🎯 발전 방향</h4>
-                    <p>자기 가치를 높이고, 독립성을 키우세요. 명상과 심리 상담이 도움이 됩니다.</p>`,
-                avoidant: `<h4 style="color: #3498db;">💙 회피형의 특징</h4>
-                    <p>• 독립성 강조<br>• 감정 표현 어려움<br>• 친밀함 회피<br>• 개인 공간 중시</p>
-                    <h4 style="color: #3498db; margin-top: 1rem;">🎯 발전 방향</h4>
-                    <p>천천히 감정을 표현하는 연습을 하세요. 신뢰할 수 있는 관계에서 시작하는 것이 좋습니다.</p>`,
-                fearful: `<h4 style="color: #9b59b6;">💜 혼란형의 특징</h4>
-                    <p>• 친밀함에 대한 양가감정<br>• 불안정한 관계 패턴<br>• 가까워지고 싶지만 두려움<br>• 일관성 부족</p>
-                    <h4 style="color: #9b59b6; margin-top: 1rem;">🎯 발전 방향</h4>
-                    <p>전문가의 도움을 받아 과거 상처를 치유하고, 안전한 관계 경험을 쌓아가세요.</p>`
+                secure: `<div style="background: white; padding: 1.5rem; border-radius: 12px;">
+                    <h4 style="color: #27ae60; font-size: 1.125rem; margin-bottom: 0.75rem;">✅ 안정형의 특징</h4>
+                    <p style="color: #666; line-height: 1.8;">• 건강한 관계 유지 능력<br>• 신뢰와 의존의 균형<br>• 갈등 해결 능력<br>• 감정 표현이 자유로움</p>
+                    <h4 style="color: #27ae60; font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">🎯 발전 방향</h4>
+                    <p style="color: #666; line-height: 1.8;">현재의 긍정적인 패턴을 유지하되, 타인의 다양한 애착 유형을 이해하는 능력을 키우세요.</p>
+                    </div>`,
+                anxious: `<div style="background: white; padding: 1.5rem; border-radius: 12px;">
+                    <h4 style="color: #f39c12; font-size: 1.125rem; margin-bottom: 0.75rem;">💛 불안형의 특징</h4>
+                    <p style="color: #666; line-height: 1.8;">• 버림받을 것에 대한 두려움<br>• 과도한 관심 요구<br>• 상대의 행동에 민감<br>• 끊임없는 확인 필요</p>
+                    <h4 style="color: #f39c12; font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">🎯 발전 방향</h4>
+                    <p style="color: #666; line-height: 1.8;">자기 가치를 높이고, 독립성을 키우세요. 명상과 심리 상담이 도움이 됩니다.</p>
+                    </div>`,
+                avoidant: `<div style="background: white; padding: 1.5rem; border-radius: 12px;">
+                    <h4 style="color: #3498db; font-size: 1.125rem; margin-bottom: 0.75rem;">💙 회피형의 특징</h4>
+                    <p style="color: #666; line-height: 1.8;">• 독립성 강조<br>• 감정 표현 어려움<br>• 친밀함 회피<br>• 개인 공간 중시</p>
+                    <h4 style="color: #3498db; font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">🎯 발전 방향</h4>
+                    <p style="color: #666; line-height: 1.8;">천천히 감정을 표현하는 연습을 하세요. 신뢰할 수 있는 관계에서 시작하는 것이 좋습니다.</p>
+                    </div>`,
+                fearful: `<div style="background: white; padding: 1.5rem; border-radius: 12px;">
+                    <h4 style="color: #9b59b6; font-size: 1.125rem; margin-bottom: 0.75rem;">💜 혼란형의 특징</h4>
+                    <p style="color: #666; line-height: 1.8;">• 친밀함에 대한 양가감정<br>• 불안정한 관계 패턴<br>• 가까워지고 싶지만 두려움<br>• 일관성 부족</p>
+                    <h4 style="color: #9b59b6; font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">🎯 발전 방향</h4>
+                    <p style="color: #666; line-height: 1.8;">전문가의 도움을 받아 과거 상처를 치유하고, 안전한 관계 경험을 쌓아가세요.</p>
+                    </div>`
             };
             return details[type];
         }
