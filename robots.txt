@@ -1,25 +1,27 @@
+# Mentora (멘토라) - 심리검사 플랫폼
+# 검색엔진 최적화 설정
+
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://mentora.co.kr/sitemap.xml
-Sitemap: https://ubin72-beep.github.io/mindscan/sitemap.xml
+# 주요 페이지
+Allow: /index.html
+Allow: /test-mbti.html
+Allow: /test-enneagram.html
+Allow: /test-bigfive.html
+Allow: /test-disc.html
+Allow: /test-holland.html
+Allow: /test-attachment.html
+Allow: /test-eq.html
+Allow: /test-iq.html
+Allow: /test-sq.html
+Allow: /test-selfesteem.html
+Allow: /test-depression.html
+Allow: /test-burnout.html
 
-# 크롤링 제외
+# 차단할 페이지
 Disallow: /admin/
-Disallow: /auth/
 Disallow: /payment/
-Disallow: /*.json$
 
-# 크롤링 속도 제한
-Crawl-delay: 1
-
-# 검색엔진별 설정
-User-agent: Googlebot
-Allow: /
-
-User-agent: Yeti
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+# 사이트맵
+Sitemap: https://mentora.co.kr/sitemap.xml
