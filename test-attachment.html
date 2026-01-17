@@ -3,43 +3,574 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>애착유형검사 - MindScan</title>
+    <title>애착유형검사 - Mentora</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/test-common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
     <style>
-        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
-        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e8 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .test-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(44, 95, 79, 0.1);
+        }
+
+        .test-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .test-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .test-header p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .start-screen {
+            display: block;
+        }
+
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px dashed #d4af37;
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: #2c5f4f;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c5f4f;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 95, 79, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2c5f4f;
+            border: 2px solid #2c5f4f;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .test-screen {
+            display: none;
+        }
+
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .question-container {
+            margin: 3rem 0;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option-btn {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            color: #333;
+        }
+
+        .option-btn:hover {
+            border-color: #d4af37;
+            background: #fffef8;
+            transform: translateX(5px);
+        }
+
+        .option-btn.selected {
+            border-color: #2c5f4f;
+            background: linear-gradient(135deg, #f0f8f5 0%, #fffef8 100%);
+            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.2);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .result-screen {
+            display: none;
+        }
+
+        .result-badge {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
+            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+
+        .result-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .result-description {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .result-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-section h3 {
+            font-size: 1.3rem;
+            color: #2c5f4f;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .result-section p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .test-container {
+                padding: 1.5rem;
+            }
+
+            .test-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="test-container">
-        <div class="test-header">
-            <h1>💕 애착유형검사</h1>
-            <p>관계 패턴 이해하기</p>
-        </div>
-        <div class="start-screen">
-            <div class="start-icon">💕</div>
-            <h2>애착유형 검사</h2>
-            <p>안정형, 회피형, 불안형, 혼란형 중<br>당신의 애착 스타일을 찾아드립니다.</p>
-            <div class="test-info">
-                <div class="info-item">
-                    <div class="info-icon">⏱️</div>
-                    <div class="info-label">소요 시간</div>
-                    <div class="info-value">10분</div>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <img src="images/logo-brain-hd.png" alt="Mentora Logo" class="logo-icon">
+                    <span class="logo-text">Mentora</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="test-container">
+            <div class="start-screen" id="startScreen">
+                <div class="test-header">
+                    <h1><i class="fas fa-heart"></i> 애착유형검사</h1>
+                    <p>나의 관계 패턴과 애착 스타일을 이해하세요</p>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">📊</div>
-                    <div class="info-label">질문 수</div>
-                    <div class="info-value">16개</div>
+
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>소요 시간</h3>
+                        <p>12분</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-question-circle"></i>
+                        <h3>질문 수</h3>
+                        <p>36개</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-chart-pie"></i>
+                        <h3>유형</h3>
+                        <p>4가지</p>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">🎯</div>
-                    <div class="info-label">유형</div>
-                    <div class="info-value">4가지</div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="startTest()">
+                        <i class="fas fa-play"></i> 검사 시작하기
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> 홈으로 돌아가기
+                    </a>
                 </div>
             </div>
-            <button class="btn btn-primary" onclick="alert('준비 중입니다')">검사 시작하기</button>
+
+            <div class="test-screen" id="testScreen">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">36</span>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-text" id="questionText"></div>
+                    <div class="options" id="optionsContainer"></div>
+                </div>
+
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn">
+                        <i class="fas fa-arrow-left"></i> 이전
+                    </button>
+                    <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">
+                        다음 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-screen" id="resultScreen">
+                <div class="test-header">
+                    <span class="result-badge" id="resultType">안정형</span>
+                    <h2 class="result-title" id="resultTitle">안정 애착 (Secure Attachment)</h2>
+                    <p class="result-description" id="resultDescription"></p>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-star"></i> 주요 특징</h3>
+                    <p id="resultCharacteristics"></p>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-lightbulb"></i> 관계 패턴</h3>
+                    <p id="relationshipPattern"></p>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-heart"></i> 성장 방향</h3>
+                    <p id="growthDirection"></p>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" onclick="saveResult()">
+                        <i class="fas fa-save"></i> 결과 저장
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> 공유하기
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> 홈으로
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        const questions = [
+            "다른 사람과 가까워지는 것이 비교적 쉽다",
+            "다른 사람에게 의지하고 그들이 나에게 의지하는 것이 편하다",
+            "혼자 남겨지거나 다른 사람들이 나를 받아들이지 않을까 걱정하지 않는다",
+            "친밀한 관계에서 편안함을 느낀다",
+            "상대방이 나를 사랑하지 않을까 걱정이 든다",
+            "상대방이 나만큼 가까워지기를 원하지 않을까 걱정된다",
+            "상대방과 완전히 하나가 되고 싶은 욕구가 있다",
+            "나의 강한 애정이 상대방을 멀어지게 만들까 걱정된다",
+            "다른 사람과 너무 가까워지는 것이 불편하다",
+            "상대방이 나에게 너무 가까워지려 할 때 불편함을 느낀다",
+            "관계에서 완전히 신뢰하기가 어렵다",
+            "다른 사람에게 의지하는 것이 어렵다",
+            "사람들과 가까워지면 상처받을까 두렵다",
+            "혼자 있는 것이 더 편하다",
+            "감정을 표현하는 것이 어렵다",
+            "관계에서 거리를 유지하는 편이다",
+            "상대방이 나를 떠날까 봐 불안하다",
+            "거부당하는 것에 대한 두려움이 있다",
+            "관계에서 확신이 필요하다",
+            "상대방의 사랑을 의심하곤 한다",
+            "관계가 안정적이라고 느낀다",
+            "상대방을 신뢰할 수 있다",
+            "서로 독립적이면서도 친밀할 수 있다",
+            "갈등을 건설적으로 해결할 수 있다",
+            "상대방에게 집착하는 경향이 있다",
+            "상대방의 작은 행동에도 민감하게 반응한다",
+            "관계에서 불안을 자주 느낀다",
+            "상대방이 항상 곁에 있기를 바란다",
+            "친밀함을 피하려는 경향이 있다",
+            "감정적으로 거리를 두는 편이다",
+            "독립성을 매우 중요하게 여긴다",
+            "관계에서 자유로움을 원한다",
+            "상대방과 균형잡힌 관계를 유지한다",
+            "자신과 상대방 모두를 존중한다",
+            "건강한 경계를 설정할 수 있다",
+            "관계에서 안정감을 느낀다"
+        ];
+
+        const types = {
+            secure: {
+                name: '안정 애착 (Secure Attachment)',
+                desc: '건강하고 안정적인 관계를 형성하며, 자신과 타인을 신뢰합니다.',
+                characteristics: '자신과 타인에 대한 긍정적인 시각을 가지고 있으며, 친밀함과 독립성의 균형을 잘 맞춥니다. 갈등 상황에서도 건설적으로 대응할 수 있습니다.',
+                pattern: '관계에서 편안함을 느끼며, 상대방을 신뢰하고 의지할 수 있습니다. 필요할 때 도움을 요청하고, 상대방의 필요에도 민감하게 반응합니다.',
+                growth: '현재의 안정적인 관계 패턴을 유지하면서, 다양한 관계에서도 이러한 건강한 패턴을 적용해보세요.'
+            },
+            anxious: {
+                name: '불안 애착 (Anxious Attachment)',
+                desc: '관계에서 불안과 걱정을 자주 경험하며, 상대방의 사랑을 확인받고 싶어합니다.',
+                characteristics: '상대방의 반응에 민감하고, 거부나 이별에 대한 두려움이 있습니다. 관계에 많은 에너지를 투자하고, 상대방과의 친밀함을 갈구합니다.',
+                pattern: '상대방에게 과도하게 집착하거나 확신을 구하려는 경향이 있으며, 작은 신호에도 민감하게 반응합니다. 관계에서 불안정함을 자주 느낍니다.',
+                growth: '자기 자신에 대한 확신을 키우고, 독립적인 활동과 관계를 발전시켜보세요. 명상과 자기 성찰이 도움이 될 수 있습니다.'
+            },
+            avoidant: {
+                name: '회피 애착 (Avoidant Attachment)',
+                desc: '친밀한 관계를 불편해하고, 독립성과 자율성을 매우 중요하게 여깁니다.',
+                characteristics: '감정 표현이 어렵고, 다른 사람에게 의지하는 것을 불편해합니다. 관계에서 거리를 유지하려 하고, 자기 충족적인 경향이 있습니다.',
+                pattern: '친밀함을 피하고, 감정적으로 거리를 두려는 경향이 있습니다. 상대방이 가까워지려 할 때 불편함을 느끼고 회피하려 합니다.',
+                growth: '친밀함에 대한 두려움을 인식하고, 작은 단계부터 감정을 표현하는 연습을 해보세요. 신뢰할 수 있는 사람과의 관계를 천천히 발전시켜보세요.'
+            },
+            fearful: {
+                name: '혼란 애착 (Fearful-Avoidant Attachment)',
+                desc: '친밀함을 원하면서도 동시에 두려워하는 양가적인 감정을 경험합니다.',
+                characteristics: '관계를 원하지만 상처받을까 두려워하며, 가까워졌다가 멀어지는 패턴을 반복합니다. 불안과 회피 경향이 동시에 나타납니다.',
+                pattern: '관계에 대한 욕구와 두려움 사이에서 갈등하며, 예측하기 어려운 행동 패턴을 보입니다. 친밀해지면 불안해하고, 멀어지면 외로움을 느낍니다.',
+                growth: '과거의 상처를 인식하고 치유하는 과정이 필요합니다. 전문가의 도움을 받아 안정적인 애착을 형성하는 방법을 배워보세요.'
+            }
+        };
+
+        let currentQ = 0;
+        let answers = [];
+        let scores = { secure: 0, anxious: 0, avoidant: 0, fearful: 0 };
+
+        function startTest() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('testScreen').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            document.getElementById('currentQuestion').textContent = currentQ + 1;
+            document.getElementById('totalQuestions').textContent = questions.length;
+            document.getElementById('questionText').textContent = questions[currentQ];
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            const options = ['전혀 아니다', '아니다', '보통이다', '그렇다', '매우 그렇다'];
+
+            options.forEach((option, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option;
+                btn.onclick = () => selectAnswer(index + 1);
+                if (answers[currentQ] === index + 1) {
+                    btn.classList.add('selected');
+                }
+                optionsContainer.appendChild(btn);
+            });
+
+            const progress = ((currentQ + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            document.getElementById('prevBtn').style.display = currentQ === 0 ? 'none' : 'inline-block';
+        }
+
+        function selectAnswer(value) {
+            answers[currentQ] = value;
+            const btns = document.querySelectorAll('.option-btn');
+            btns.forEach((btn, index) => {
+                btn.classList.toggle('selected', index === value - 1);
+            });
+        }
+
+        function nextQuestion() {
+            if (!answers[currentQ]) {
+                alert('답변을 선택해주세요!');
+                return;
+            }
+
+            // 질문에 따라 점수 배분
+            const typeMap = [
+                'secure', 'secure', 'secure', 'secure',
+                'anxious', 'anxious', 'anxious', 'anxious',
+                'avoidant', 'avoidant', 'avoidant', 'avoidant',
+                'fearful', 'fearful', 'fearful', 'fearful',
+                'anxious', 'anxious', 'anxious', 'anxious',
+                'secure', 'secure', 'secure', 'secure',
+                'anxious', 'anxious', 'anxious', 'anxious',
+                'avoidant', 'avoidant', 'avoidant', 'avoidant',
+                'secure', 'secure', 'secure', 'secure'
+            ];
+
+            scores[typeMap[currentQ]] += answers[currentQ];
+
+            if (currentQ < questions.length - 1) {
+                currentQ++;
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQ > 0) {
+                currentQ--;
+                showQuestion();
+            }
+        }
+
+        function showResult() {
+            const maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+            const resultData = types[maxType];
+
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('resultScreen').style.display = 'block';
+
+            const typeNames = {
+                secure: '안정형',
+                anxious: '불안형',
+                avoidant: '회피형',
+                fearful: '혼란형'
+            };
+
+            document.getElementById('resultType').textContent = typeNames[maxType];
+            document.getElementById('resultTitle').textContent = resultData.name;
+            document.getElementById('resultDescription').textContent = resultData.desc;
+            document.getElementById('resultCharacteristics').textContent = resultData.characteristics;
+            document.getElementById('relationshipPattern').textContent = resultData.pattern;
+            document.getElementById('growthDirection').textContent = resultData.growth;
+        }
+
+        function saveResult() {
+            alert('결과 저장 기능은 프리미엄 회원에게 제공됩니다.');
+        }
+
+        function shareResult() {
+            alert('결과 공유 기능은 프리미엄 회원에게 제공됩니다.');
+        }
+    </script>
 </body>
 </html>
