@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Holland 직업적성검사 - Mentora</title>
-    <meta name="description" content="6가지 직업 유형으로 나에게 맞는 직업 찾기">
+    <title>Holland 적성검사 - Mentora</title>
+    <meta name="description" content="6가지 직업 적성으로 나를 이해하는 Holland 검사">
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
+    
     <style>
         * {
             margin: 0;
@@ -14,688 +17,454 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary-green: #2c5f4f;
-            --accent-gold: #d4af37;
-            --bg-light: #f5f7fa;
-            --text-dark: #1a1a1a;
-            --text-gray: #666666;
-        }
-
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%);
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
             min-height: 100vh;
-            padding: 2rem 1rem;
         }
 
-        /* 로고 헤더 */
-        .logo-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .logo-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--text-dark);
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .logo-link img {
-            width: 40px;
-            height: 40px;
-        }
-
-        /* 컨테이너 */
         .test-container {
-            max-width: 900px;
+            max-width: 700px;
             margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
+            padding: 20px;
         }
 
-        /* 헤더 */
-        .test-header {
-            background: var(--primary-green);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .test-header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .test-header p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        /* 시작 화면 */
         .start-screen {
-            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 40px 30px;
             text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .start-icon {
             font-size: 4rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .start-screen h2 {
-            color: var(--primary-green);
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
         .start-screen p {
-            color: var(--text-gray);
             font-size: 1rem;
+            color: #666;
             line-height: 1.6;
-            margin-bottom: 2rem;
+            margin-bottom: 25px;
         }
 
-        /* 정보 카드 */
         .test-info {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 15px;
+            margin: 25px 0;
         }
 
         .info-item {
-            background: var(--bg-light);
-            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
             border-radius: 12px;
-            border: 2px dashed var(--accent-gold);
+            text-align: center;
         }
 
-        .info-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+        .info-item i {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 8px;
         }
 
         .info-label {
-            color: var(--text-gray);
-            font-size: 0.875rem;
-            margin-bottom: 0.25rem;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 5px;
         }
 
         .info-value {
-            color: var(--primary-green);
+            font-size: 1.2rem;
             font-weight: 700;
-            font-size: 1.25rem;
+            color: #2c5f4f;
         }
 
-        /* 버튼 */
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 12px;
-            font-size: 1.125rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Noto Sans KR', sans-serif;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .btn-primary {
-            background: var(--primary-green);
+        .btn-start {
+            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
             color: white;
+            border: none;
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .btn-primary:hover {
-            background: #1a4838;
+        .btn-start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(44, 95, 79, 0.3);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
         }
 
-        .btn-secondary {
-            background: var(--bg-light);
-            color: var(--text-dark);
-            margin-top: 1rem;
+        .test-screen,
+        .result-screen {
+            display: none;
         }
 
-        .btn-secondary:hover {
-            background: #e0e4e8;
-        }
-
-        /* 진행 화면 */
         .progress-container {
-            padding: 2rem;
-            background: var(--bg-light);
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            color: var(--text-gray);
-            font-size: 0.875rem;
-            font-weight: 500;
+        .progress-text {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c5f4f;
         }
 
-        .progress-bar-bg {
-            height: 8px;
-            background: #e0e4e8;
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(212, 175, 55, 0.2);
             border-radius: 10px;
             overflow: hidden;
         }
 
-        .progress-bar {
+        .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
-            width: 0%;
+            background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%);
+            border-radius: 10px;
             transition: width 0.3s ease;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
         }
 
-        /* 질문 영역 */
-        .question-container {
-            padding: 2rem;
+        .question-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .question-text {
-            font-size: 1.5rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            line-height: 1.6;
+            color: #2c5f4f;
             text-align: center;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        .answer-options {
+        .answers {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 8px;
         }
 
-        .answer-option {
+        .answer-btn {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
-            padding: 1.25rem 1.5rem;
-            background: var(--bg-light);
-            border: 3px solid transparent;
-            border-radius: 12px;
+            gap: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.125rem;
-            color: var(--text-dark);
-            font-weight: 500;
         }
 
-        .answer-option:hover {
-            background: #e8f5f1;
-            border-color: var(--primary-green);
-            transform: translateX(8px);
+        .answer-btn:hover {
+            border-color: #d4af37;
+            transform: translateX(3px);
+            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.2);
         }
 
-        .answer-option.selected {
-            background: var(--primary-green);
-            color: white;
-            border-color: var(--primary-green);
+        .answer-btn.selected {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            border-color: #d4af37;
+            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .option-number {
-            display: inline-flex;
+        .answer-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            display: flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: white;
-            color: var(--primary-green);
-            border-radius: 50%;
             font-weight: 700;
-            margin-right: 1rem;
+            font-size: 0.95rem;
+            color: #2c5f4f;
+            flex-shrink: 0;
         }
 
-        .answer-option.selected .option-number {
-            background: var(--accent-gold);
+        .answer-btn.selected .answer-number {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
             color: white;
         }
 
-        /* 버튼 영역 */
-        .button-area {
-            padding: 2rem;
+        .answer-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            text-align: left;
+        }
+
+        .test-navigation {
             display: flex;
-            gap: 1rem;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .button-area .btn {
-            flex: 1;
-            max-width: none;
+        .btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
         }
 
-        .btn:disabled {
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-primary:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        /* 결과 화면 */
+        .btn-secondary {
+            background: white;
+            color: #666;
+            border: 2px solid #e9ecef;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .result-screen {
-            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .result-container {
+        .result-header {
             text-align: center;
-        }
-
-        .result-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .result-title {
-            color: var(--primary-green);
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
+            margin-bottom: 30px;
         }
 
         .result-type {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-green), #1a4838);
-            color: var(--accent-gold);
             font-size: 2.5rem;
             font-weight: 800;
-            border-radius: 16px;
-            margin-bottom: 1rem;
+            color: #d4af37;
+            margin-bottom: 10px;
         }
 
-        .result-nickname {
-            color: var(--primary-green);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
+        .result-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
         .result-description {
-            color: var(--text-gray);
-            font-size: 1.125rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            padding: 0 2rem;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
         }
 
         .result-section {
-            background: var(--bg-light);
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            text-align: left;
+            margin: 25px 0;
         }
 
         .result-section h3 {
-            color: var(--primary-green);
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .job-tags {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
+            align-items: center;
+            gap: 8px;
         }
 
-        .job-tag {
-            display: inline-block;
-            padding: 0.75rem 1.25rem;
-            background: white;
-            border: 2px solid var(--accent-gold);
-            color: var(--text-dark);
-            border-radius: 24px;
-            font-size: 1rem;
-            font-weight: 500;
+        .result-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .result-section li {
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid #d4af37;
+            font-size: 0.95rem;
+            color: #333;
         }
 
         .result-actions {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
         }
 
-        /* 반응형 */
         @media (max-width: 768px) {
-            .test-info {
-                grid-template-columns: 1fr;
-            }
-
-            .result-actions {
-                grid-template-columns: 1fr;
+            .test-container {
+                padding: 15px;
             }
 
             .question-text {
-                font-size: 1.25rem;
+                font-size: 1.05rem;
             }
 
-            .answer-option {
-                font-size: 1rem;
+            .test-info {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .result-actions {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 로고 -->
-    <div class="logo-header">
-        <a href="index.html" class="logo-link">
-            <img src="images/logo-brain-hd.png" alt="Mentora">
-            <span>Mentora</span>
-        </a>
-    </div>
-
-    <!-- 메인 컨테이너 -->
-    <div class="test-container">
-        <div class="test-header">
-            <h1>💼 Holland 직업적성검사</h1>
-            <p>나에게 맞는 직업 찾기</p>
-        </div>
-
-        <!-- 시작 화면 -->
-        <div id="startScreen" class="start-screen">
-            <div class="start-icon">💼</div>
-            <h2>Holland 직업적성검사를 시작합니다</h2>
-            <p>60개의 질문으로 당신에게 가장 적합한 직업 유형을 찾아드립니다.<br>각 문장이 얼마나 자신과 일치하는지 솔직하게 답변해주세요.</p>
-
-            <div class="test-info">
-                <div class="info-item">
-                    <div class="info-icon">⏱️</div>
-                    <div class="info-label">소요 시간</div>
-                    <div class="info-value">10분</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">📊</div>
-                    <div class="info-label">질문 수</div>
-                    <div class="info-value">60개</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-icon">🎯</div>
-                    <div class="info-label">유형</div>
-                    <div class="info-value">6가지</div>
-                </div>
+    <header class="page-header">
+        <nav class="page-nav">
+            <div class="page-nav-left">
+                <a href="index.html" class="page-nav-logo">
+                    <div class="page-nav-logo-icon-text">M</div>
+                    <span class="page-nav-logo-text">Mentora</span>
+                </a>
+                <div class="page-nav-divider"></div>
+                <h2 class="page-nav-title">Holland 적성검사</h2>
             </div>
-
-            <button class="btn btn-primary" onclick="startTest()">▶ 검사 시작하기</button>
-            <button class="btn btn-secondary" onclick="location.href='index.html'">🏠 홈으로 돌아가기</button>
-        </div>
-
-        <!-- 검사 화면 -->
-        <div id="testScreen" style="display: none;">
-            <div class="progress-container">
-                <div class="progress-info">
-                    <span id="progressText">질문 1 / 60</span>
-                    <span id="progressPercent">0%</span>
-                </div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-            </div>
-
-            <div class="question-container">
-                <h3 class="question-text" id="questionText"></h3>
-                <div class="answer-options" id="answerOptions"></div>
-            </div>
-
-            <div class="button-area">
-                <button class="btn btn-secondary" onclick="prevQuestion()" id="prevBtn" style="display: none;">
-                    <i class="fas fa-arrow-left"></i> 이전
+            <div class="page-nav-right">
+                <button class="page-nav-btn page-nav-btn-back" onclick="history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>뒤로가기</span>
                 </button>
-                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
-                    다음 <i class="fas fa-arrow-right"></i>
-                </button>
+                <a href="index.html" class="page-nav-btn page-nav-btn-home">
+                    <i class="fas fa-home"></i>
+                    <span>홈으로</span>
+                </a>
             </div>
-        </div>
+        </nav>
+    </header>
 
-        <!-- 결과 화면 -->
-        <div id="resultScreen" class="result-screen" style="display: none;">
-            <div class="result-container">
-                <div class="result-icon">🎉</div>
-                <h2 class="result-title">당신의 직업 유형은</h2>
-                <div class="result-type" id="resultType">R형</div>
-                <div class="result-nickname" id="resultNickname">현실형 (Realistic)</div>
-                <p class="result-description" id="resultDescription">
-                    기계나 도구를 다루는 것을 좋아하고, 실제적이고 구체적인 일을 선호합니다.
-                </p>
+    <div class="page-content-wrapper">
+        <div class="test-container">
+            <div class="start-screen">
+                <div class="start-icon">💼</div>
+                <h2>Holland 적성검사를 시작합니다</h2>
+                <p>6가지 직업 적성으로 당신에게 맞는 진로를 찾아보세요.</p>
+                
+                <div class="test-info">
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="info-label">소요 시간</div>
+                        <div class="info-value">15분</div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-question-circle"></i>
+                        <div class="info-label">질문 수</div>
+                        <div class="info-value">60개</div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-users"></i>
+                        <div class="info-label">유형</div>
+                        <div class="info-value">6가지</div>
+                    </div>
+                </div>
+
+                <button class="btn-start" onclick="startTest()">검사 시작하기</button>
+            </div>
+
+            <div class="test-screen">
+                <div class="progress-container">
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">60</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div class="question-text" id="questionText"></div>
+                    <div class="answers" id="answersContainer"></div>
+                </div>
+
+                <div class="test-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">
+                        <i class="fas fa-arrow-left"></i> 이전
+                    </button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
+                        다음 <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="result-screen">
+                <div class="result-header">
+                    <div class="result-type" id="resultType"></div>
+                    <h2 class="result-title" id="resultTitle"></h2>
+                    <p class="result-description" id="resultDescription"></p>
+                </div>
 
                 <div class="result-section">
-                    <h3>💼 추천 직업</h3>
-                    <div class="job-tags" id="jobTags"></div>
+                    <h3><i class="fas fa-star"></i> 주요 특징</h3>
+                    <ul id="resultTraits"></ul>
+                </div>
+
+                <div class="result-section">
+                    <h3><i class="fas fa-seedling"></i> 성장 방향</h3>
+                    <ul id="resultGrowth"></ul>
                 </div>
 
                 <div class="result-actions">
-                    <button class="btn btn-primary" onclick="saveAndView()">결과 저장하기</button>
-                    <button class="btn btn-secondary" onclick="location.href='index.html'">다른 검사하기</button>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> 홈으로
+                    </a>
+                    <a href="payment/checkout.html" class="btn btn-primary">
+                        <i class="fas fa-crown"></i> 프리미엄 리포트
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-// Holland 직업적성검사 JavaScript
-
-const questions = [
-    "기계나 도구를 수리하고 조작하는 일이 즐겁다",
-    "야외에서 일하는 것을 선호한다",
-    "실용적이고 구체적인 결과물을 만드는 일이 좋다",
-    "새로운 사람들을 만나고 관계를 맺는 일에 관심이 많다",
-    "복잡한 문제를 분석하고 해결하는 것을 좋아한다",
-    "예술 작품을 창작하거나 감상하는 것에 흥미가 있다",
-    "다른 사람들을 돕고 가르치는 일이 보람있다",
-    "체계적이고 규칙적인 일을 처리하는 것이 편하다",
-    "목표를 세우고 사람들을 이끄는 역할이 잘 맞는다",
-    "과학 실험이나 연구 활동이 흥미롭다",
-    "손으로 무언가를 만드는 작업이 재미있다",
-    "사회적 문제나 이슈에 관심이 많다",
-    "숫자나 데이터를 다루는 일이 정확하게 잘 된다",
-    "창의적인 아이디어를 표현하는 것을 즐긴다",
-    "리더십을 발휘하여 프로젝트를 이끄는 것이 좋다",
-    "물리적 활동이나 스포츠를 즐긴다",
-    "상담이나 심리 지원 활동에 흥미가 있다",
-    "논리적으로 사고하고 추론하는 것을 좋아한다",
-    "사무 업무나 행정 처리가 적성에 맞는다",
-    "음악, 미술, 문학 등 예술 분야에 관심이 많다",
-    "기계 설비나 전자 기기를 다루는 일이 재미있다",
-    "다른 사람들의 문제를 함께 해결해주는 것이 보람있다",
-    "세밀하고 정확한 작업을 하는 것을 선호한다",
-    "새로운 아이디어를 실현하는 일에 열정이 있다",
-    "판매나 협상을 통해 목표를 달성하는 것이 즐겁다",
-    "자연 환경이나 동식물과 관련된 일이 흥미롭다",
-    "교육이나 훈련 프로그램을 기획하는 것이 좋다",
-    "복잡한 시스템이나 이론을 이해하는 것을 좋아한다",
-    "문서 작성이나 자료 정리가 잘 맞는다",
-    "창작 활동이나 디자인 작업이 즐겁다",
-    "실용적인 기술을 배우고 적용하는 것이 좋다",
-    "사회 복지나 봉사 활동에 관심이 있다",
-    "계획을 세우고 체계적으로 실행하는 것이 잘 된다",
-    "자유롭고 독창적인 표현을 추구한다",
-    "비즈니스나 경영 활동에 흥미가 있다",
-    "건설이나 제작 관련 작업이 재미있다",
-    "의료나 건강 관련 서비스에 관심이 많다",
-    "과학적 방법으로 현상을 연구하는 것이 좋다",
-    "회계나 재무 관련 업무가 적성에 맞는다",
-    "글쓰기나 스토리텔링에 재능이 있다",
-    "기계를 조립하거나 분해하는 일이 흥미롭다",
-    "상담이나 코칭을 통해 사람들을 돕는 것이 좋다",
-    "정확한 기록과 문서 관리가 중요하다고 생각한다",
-    "예술적 감각을 발휘하는 일이 즐겁다",
-    "기업을 경영하거나 사업을 운영하고 싶다",
-    "농업이나 원예 활동이 매력적이다",
-    "학생들을 가르치고 지도하는 것이 보람있다",
-    "연구를 통해 새로운 지식을 발견하는 것이 좋다",
-    "행정 절차나 규정을 준수하는 것이 중요하다",
-    "연극, 영화, 공연 등 예술 분야에 흥미가 있다",
-    "기술적인 문제를 해결하는 것이 만족스럽다",
-    "사람들의 심리적 안정을 돕는 일에 관심이 있다",
-    "체계적인 분류와 정리 작업이 잘 맞는다",
-    "창의적인 문제 해결 방법을 찾는 것을 즐긴다",
-    "협상과 설득을 통해 목표를 이루는 것이 좋다",
-    "야외 활동이나 자연 속 작업이 즐겁다",
-    "아동이나 청소년 교육에 관심이 많다",
-    "실험을 설계하고 진행하는 것이 흥미롭다",
-    "사무실 환경에서의 정확한 업무 처리가 편하다",
-    "예술적 표현을 통해 메시지를 전달하는 것이 좋다"
-];
-
-const types = {
-    R: {
-        name: '현실형 (Realistic)',
-        nickname: 'R형 - 현실형',
-        description: '기계나 도구를 다루는 것을 좋아하고, 실제적이고 구체적인 일을 선호합니다. 손재주가 있고, 신체적 활동을 즐기며, 실용적이고 현실적입니다.',
-        jobs: ['엔지니어', '건축가', '기계공', '요리사', '운동선수', '농부', '정비사', '목수']
-    },
-    I: {
-        name: '탐구형 (Investigative)',
-        nickname: 'I형 - 탐구형',
-        description: '논리적이고 분석적인 사고를 즐기며, 과학적 연구와 문제 해결에 관심이 많습니다. 호기심이 많고, 이론적이며, 독립적으로 일하는 것을 선호합니다.',
-        jobs: ['과학자', '연구원', '의사', '데이터 분석가', '수학자', '교수', '약사', '통계학자']
-    },
-    A: {
-        name: '예술형 (Artistic)',
-        nickname: 'A형 - 예술형',
-        description: '창의적이고 독창적인 표현을 추구하며, 예술적 활동을 통해 자신을 표현합니다. 상상력이 풍부하고, 감성적이며, 자유로운 환경을 선호합니다.',
-        jobs: ['디자이너', '작가', '음악가', '배우', '화가', '영화감독', '건축디자이너', '패션디자이너']
-    },
-    S: {
-        name: '사회형 (Social)',
-        nickname: 'S형 - 사회형',
-        description: '다른 사람들을 돕고 가르치는 일에 보람을 느끼며, 대인관계를 중요하게 생각합니다. 협력적이고, 공감능력이 뛰어나며, 봉사정신이 강합니다.',
-        jobs: ['교사', '상담사', '사회복지사', '간호사', '심리학자', '코치', '인사담당자', '보육교사']
-    },
-    E: {
-        name: '진취형 (Enterprising)',
-        nickname: 'E형 - 진취형',
-        description: '목표를 세우고 사람들을 이끄는 것을 좋아하며, 경영과 리더십에 관심이 많습니다. 야심적이고, 설득력이 있으며, 도전을 즐깁니다.',
-        jobs: ['CEO', '영업관리자', '변호사', '사업가', '정치인', '마케팅 전문가', '부동산중개인', '금융전문가']
-    },
-    C: {
-        name: '관습형 (Conventional)',
-        nickname: 'C형 - 관습형',
-        description: '체계적이고 규칙적인 일을 선호하며, 정확하고 세밀한 업무 처리를 잘합니다. 조직적이고, 책임감이 강하며, 안정을 추구합니다.',
-        jobs: ['회계사', '은행원', '사무원', '행정관리자', '세무사', '비서', '경리', '데이터입력원']
-    }
-};
-
-let currentQuestion = 0;
-let answers = [];
-let scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
-
-function startTest() {
-    document.getElementById('startScreen').style.display = 'none';
-    document.getElementById('testScreen').style.display = 'block';
-    showQuestion();
-}
-
-function showQuestion() {
-    const questionText = document.getElementById('questionText');
-    const answerOptions = document.getElementById('answerOptions');
-    const progressText = document.getElementById('progressText');
-    const progressPercent = document.getElementById('progressPercent');
-    const progressBar = document.getElementById('progressBar');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    questionText.textContent = questions[currentQuestion];
-    
-    const options = [
-        { text: '전혀 아니다', value: 1 },
-        { text: '아니다', value: 2 },
-        { text: '보통이다', value: 3 },
-        { text: '그렇다', value: 4 },
-        { text: '매우 그렇다', value: 5 }
-    ];
-
-    answerOptions.innerHTML = options.map((option, index) => `
-        <button class="answer-option ${answers[currentQuestion] === option.value ? 'selected' : ''}" 
-                onclick="selectAnswer(${option.value})" 
-                data-value="${option.value}">
-            <span class="option-number">${index + 1}</span>
-            <span class="option-text">${option.text}</span>
-        </button>
-    `).join('');
-
-    const progress = ((currentQuestion + 1) / questions.length) * 100;
-    progressText.textContent = `질문 ${currentQuestion + 1} / ${questions.length}`;
-    progressPercent.textContent = `${Math.round(progress)}%`;
-    progressBar.style.width = `${progress}%`;
-
-    prevBtn.style.display = currentQuestion === 0 ? 'none' : 'inline-block';
-    nextBtn.disabled = answers[currentQuestion] === undefined;
-}
-
-function selectAnswer(value) {
-    answers[currentQuestion] = value;
-    
-    const buttons = document.querySelectorAll('.answer-option');
-    buttons.forEach(btn => {
-        btn.classList.remove('selected');
-        if (parseInt(btn.dataset.value) === value) {
-            btn.classList.add('selected');
-        }
-    });
-
-    document.getElementById('nextBtn').disabled = false;
-
-    setTimeout(() => {
-        nextQuestion();
-    }, 300);
-}
-
-function prevQuestion() {
-    if (currentQuestion > 0) {
-        currentQuestion--;
-        showQuestion();
-    }
-}
-
-function nextQuestion() {
-    if (answers[currentQuestion] === undefined) {
-        return;
-    }
-
-    const typeKeys = ['R', 'I', 'A', 'S', 'E', 'C'];
-    const typeIndex = currentQuestion % 6;
-    scores[typeKeys[typeIndex]] += answers[currentQuestion];
-
-    if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        showQuestion();
-    } else {
-        showResult();
-    }
-}
-
-function showResult() {
-    document.getElementById('testScreen').style.display = 'none';
-    document.getElementById('resultScreen').style.display = 'block';
-
-    const maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-    const resultData = types[maxType];
-
-    document.getElementById('resultType').textContent = maxType + '형';
-    document.getElementById('resultNickname').textContent = resultData.nickname;
-    document.getElementById('resultDescription').textContent = resultData.description;
-
-    const jobTagsContainer = document.getElementById('jobTags');
-    jobTagsContainer.innerHTML = resultData.jobs.map(job => 
-        `<span class="job-tag">${job}</span>`
-    ).join('');
-}
-
-function saveAndView() {
-    alert('결과 저장 기능은 프리미엄 회원에게 제공됩니다.');
-}
-    </script>
+    <script src="js/test-holland.js"></script>
 </body>
 </html>
