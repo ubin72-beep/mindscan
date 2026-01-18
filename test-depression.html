@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>우울증 검사 - Mentora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
@@ -16,656 +18,496 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e8 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding-top: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .test-container {
+            max-width: 700px;
+            width: 100%;
             background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 40px rgba(44, 95, 79, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
 
-        .test-header {
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
             text-align: center;
-            margin-bottom: 3rem;
+            color: white;
+            position: relative;
         }
 
-        .test-header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .test-header p {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
-        }
-
-        .warning-box {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .warning-box p {
-            color: #856404;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .start-screen {
-            display: block;
-        }
-
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px dashed #d4af37;
-        }
-
-        .info-card i {
-            font-size: 2.5rem;
-            color: #2c5f4f;
-            margin-bottom: 1rem;
-        }
-
-        .info-card h3 {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .info-card p {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #2c5f4f;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 3rem;
-            font-size: 1.2rem;
-            font-weight: 700;
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
             border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        /* 시작 화면 */
+        #startScreen {
+            text-align: center;
+        }
+
+        .test-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 35px 0;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 16px 50px;
             border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
-            margin: 0.5rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.3);
-        }
-
-        .btn-primary:hover {
+        .start-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(44, 95, 79, 0.4);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
 
-        .btn-secondary {
-            background: white;
-            color: #2c5f4f;
-            border: 2px solid #2c5f4f;
-        }
-
-        .btn-secondary:hover {
-            background: #f8f9fa;
-        }
-
-        .button-group {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .test-screen {
+        /* 테스트 화면 */
+        #testScreen {
             display: none;
         }
 
         .progress-container {
-            margin-bottom: 2rem;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: #64748b;
         }
 
         .progress-bar {
             width: 100%;
-            height: 10px;
-            background: #e9ecef;
+            height: 8px;
+            background: #e2e8f0;
             border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 1rem;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
-            width: 0%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
             transition: width 0.3s ease;
+            border-radius: 10px;
         }
 
-        .progress-text {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            font-weight: 600;
-        }
-
-        .question-container {
-            margin: 3rem 0;
+        .question-card {
+            background: #f8fafc;
+            padding: 30px 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .question-text {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #1e293b;
+            margin-bottom: 25px;
             font-weight: 600;
-            color: #1a1a1a;
             text-align: center;
-            margin-bottom: 2rem;
-            line-height: 1.8;
         }
 
-        .options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .option-btn {
-            padding: 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
+        .answer-btn {
             background: white;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #e2e8f0;
+            padding: 12px 20px;
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-align: center;
-            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
         }
 
-        .option-btn:hover {
-            border-color: #d4af37;
-            background: #fffef8;
-            transform: translateY(-3px);
+        .answer-number {
+            width: 32px;
+            height: 32px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #64748b;
+            font-size: 1rem;
+            flex-shrink: 0;
         }
 
-        .option-btn.selected {
-            border-color: #2c5f4f;
-            background: linear-gradient(135deg, #f0f8f5 0%, #fffef8 100%);
-            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.2);
+        .answer-text {
+            flex: 1;
+            font-size: 0.95rem;
+            color: #334155;
+            font-weight: 600;
         }
 
-        .navigation {
+        .answer-btn:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            transform: translateX(5px);
+        }
+
+        .answer-btn.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: #667eea;
+        }
+
+        .answer-btn.selected .answer-number {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .answer-btn.selected .answer-text {
+            color: white;
+        }
+
+        .test-navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 2rem;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        .result-screen {
+        .btn {
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #64748b;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* 결과 화면 */
+        #resultScreen {
             display: none;
         }
 
-        .result-badge {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
             color: white;
-            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+
+        .result-type {
+            font-size: 3rem;
             font-weight: 800;
-            border-radius: 50px;
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
         }
 
         .result-title {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
         .result-description {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.95;
         }
 
         .result-section {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
         }
 
         .result-section h3 {
-            font-size: 1.3rem;
-            color: #2c5f4f;
-            margin-bottom: 1rem;
+            color: #1e293b;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
             font-weight: 700;
-        }
-
-        .result-section p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.8;
         }
 
         .result-section ul {
             list-style: none;
             padding: 0;
-            margin-top: 1rem;
         }
 
         .result-section li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
+            padding: 12px 0;
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .result-section li:last-child {
+            border-bottom: none;
         }
 
         .result-section li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #2c5f4f;
-            font-weight: bold;
-        }
-
-        .crisis-box {
-            background: #f8d7da;
-            border: 2px solid #dc3545;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 2rem;
-            display: none;
-        }
-
-        .crisis-box h4 {
-            color: #721c24;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .crisis-box p {
-            color: #721c24;
-            line-height: 1.6;
-        }
-
-        .crisis-box a {
-            color: #721c24;
+            content: "✓";
+            color: #667eea;
             font-weight: 700;
-            text-decoration: underline;
+            margin-right: 10px;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .action-buttons .btn {
+            flex: 1;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 1.4rem;
             }
 
-            .test-container {
-                padding: 1.5rem;
+            .content {
+                padding: 30px 20px;
             }
 
-            .test-header h1 {
-                font-size: 1.8rem;
+            .test-info {
+                gap: 15px;
             }
 
-            .info-cards {
-                grid-template-columns: 1fr;
+            .info-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
 
-            .options {
-                grid-template-columns: 1fr;
+            .question-text {
+                font-size: 1.05rem;
+            }
+
+            .answer-text {
+                font-size: 0.9rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">
-                    <img src="images/logo-brain-hd.png" alt="Mentora Logo" class="logo-icon">
-                    <span class="logo-text">Mentora</span>
-                </a>
-            </div>
-        </nav>
-    </header>
-
     <div class="container">
-        <div class="test-container">
-            <div class="start-screen" id="startScreen">
-                <div class="test-header">
-                    <h1><i class="fas fa-heart-broken"></i> 우울증 검사 (PHQ-9)</h1>
-                    <p>최근 2주간의 기분과 생활 패턴을 측정하세요</p>
-                </div>
+        <!-- 헤더 -->
+        <div class="header">
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>우울증 검사</h1>
+            <p>나의 우울 수준 파악하기</p>
+        </div>
 
-                <div class="warning-box">
-                    <p><strong>⚠️ 주의사항:</strong> 이 검사는 전문적인 진단을 대체할 수 없습니다. 심각한 증상이 있다면 반드시 정신건강의학과 전문의와 상담하시기 바랍니다.</p>
-                </div>
-
-                <div class="info-cards">
-                    <div class="info-card">
-                        <i class="fas fa-clock"></i>
-                        <h3>소요 시간</h3>
-                        <p>10분</p>
+        <!-- 컨텐츠 -->
+        <div class="content">
+            <!-- 시작 화면 -->
+            <div id="startScreen">
+                <div class="test-info">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-label">소요 시간</div>
+                        <div class="info-value">10분</div>
                     </div>
-                    <div class="info-card">
-                        <i class="fas fa-question-circle"></i>
-                        <h3>질문 수</h3>
-                        <p>21개</p>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="info-label">질문 수</div>
+                        <div class="info-value">21개</div>
                     </div>
-                    <div class="info-card">
-                        <i class="fas fa-chart-bar"></i>
-                        <h3>단계</h3>
-                        <p>5단계</p>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="info-label">총점</div>
+                        <div class="info-value">63점</div>
                     </div>
                 </div>
-
-                <div class="button-group">
-                    <button class="btn btn-primary" onclick="startTest()">
-                        <i class="fas fa-play"></i> 검사 시작하기
-                    </button>
-                    <a href="index.html" class="btn btn-secondary">
-                        <i class="fas fa-home"></i> 홈으로 돌아가기
-                    </a>
-                </div>
+                <button class="start-btn" onclick="startTest()">검사 시작하기</button>
             </div>
 
-            <div class="test-screen" id="testScreen">
+            <!-- 테스트 화면 -->
+            <div id="testScreen">
                 <div class="progress-container">
+                    <div class="progress-info">
+                        <span><span id="currentQuestion">1</span> / <span id="totalQuestions">21</span></span>
+                        <span><a href="payment/checkout.html" style="color: #667eea; text-decoration: none;">🌟 프리미엄 리포트</a></span>
+                    </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
-                    <div class="progress-text">
-                        <span id="currentQuestion">1</span> / <span id="totalQuestions">21</span>
-                    </div>
                 </div>
 
-                <div class="question-container">
+                <div class="question-card">
                     <div class="question-text" id="questionText"></div>
-                    <div class="options" id="optionsContainer"></div>
+                    <div class="answers" id="answersContainer"></div>
                 </div>
 
-                <div class="navigation">
-                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn">
+                <div class="test-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">
                         <i class="fas fa-arrow-left"></i> 이전
                     </button>
-                    <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
                         다음 <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="result-screen" id="resultScreen">
-                <div class="test-header">
-                    <span class="result-badge" id="scoreLevel">정상</span>
+            <!-- 결과 화면 -->
+            <div id="resultScreen">
+                <div class="result-card">
+                    <div class="result-type" id="resultType"></div>
                     <h2 class="result-title" id="resultTitle"></h2>
                     <p class="result-description" id="resultDescription"></p>
                 </div>
 
                 <div class="result-section">
-                    <h3><i class="fas fa-info-circle"></i> 증상 설명</h3>
-                    <p id="symptoms"></p>
+                    <h3>📊 상세 분석</h3>
+                    <ul id="resultTraits"></ul>
                 </div>
 
                 <div class="result-section">
-                    <h3><i class="fas fa-lightbulb"></i> 권장 사항</h3>
-                    <ul id="recommendations"></ul>
+                    <h3>💡 관리 방법</h3>
+                    <ul id="resultGrowth"></ul>
                 </div>
 
-                <div class="crisis-box" id="crisisBox">
-                    <h4><i class="fas fa-exclamation-triangle"></i> 긴급 도움이 필요하신가요?</h4>
-                    <p>
-                        • 자살예방 상담전화: <a href="tel:1393">1393</a><br>
-                        • 정신건강 위기상담: <a href="tel:1577-0199">1577-0199</a><br>
-                        • 24시간 생명의 전화: <a href="tel:1588-9191">1588-9191</a><br>
-                        • 청소년 전화: <a href="tel:1388">1388</a>
-                    </p>
-                </div>
-
-                <div class="button-group">
-                    <button class="btn btn-primary" onclick="saveResult()">
-                        <i class="fas fa-save"></i> 결과 저장
-                    </button>
-                    <button class="btn btn-secondary" onclick="shareResult()">
-                        <i class="fas fa-share-alt"></i> 공유하기
-                    </button>
-                    <a href="index.html" class="btn btn-secondary">
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">
                         <i class="fas fa-home"></i> 홈으로
-                    </a>
+                    </button>
+                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">
+                        <i class="fas fa-star"></i> 프리미엄 리포트
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const questions = [
-            "일이나 여가 활동을 하는 데 흥미나 즐거움을 느끼지 못함",
-            "기분이 가라앉거나 우울하거나 희망이 없음",
-            "잠들기 어렵거나 자주 깨거나 너무 많이 잠을 잠",
-            "피곤하고 기운이 없음",
-            "식욕이 줄었거나 과식을 함",
-            "자신이 실패자라고 느끼거나 자신이나 가족을 실망시킴",
-            "집중하기 어려움 (예: 신문 읽기, TV 시청)",
-            "다른 사람들이 알아챌 정도로 말과 행동이 느려지거나 반대로 안절부절 못함",
-            "자해하거나 죽는 것이 더 낫다는 생각",
-            "일상생활에서의 즐거움 감소",
-            "자존감이 낮아짐",
-            "미래에 대해 비관적임",
-            "결정을 내리기 어려움",
-            "사회적 활동을 피함",
-            "과거의 실수에 대해 계속 생각함",
-            "죄책감을 자주 느낌",
-            "일상적인 일을 하는 것이 부담스러움",
-            "작은 일에도 쉽게 짜증이 남",
-            "눈물이 자주 남",
-            "무가치하다고 느낌",
-            "삶이 의미 없다고 느낌"
-        ];
-
-        const levels = {
-            minimal: {
-                title: '정상 (최소한의 우울)',
-                description: '우울 증상이 거의 없거나 매우 경미한 상태입니다.',
-                symptoms: '일시적인 기분 저하가 있을 수 있지만 일상생활에 큰 지장이 없습니다.',
-                recommendations: [
-                    '현재의 긍정적인 생활 습관을 유지하세요',
-                    '규칙적인 운동과 충분한 수면을 계속하세요',
-                    '스트레스 관리 방법을 꾸준히 실천하세요',
-                    '사회적 관계를 지속적으로 유지하세요'
-                ],
-                showCrisis: false
-            },
-            mild: {
-                title: '경도 우울',
-                description: '가벼운 우울 증상이 있지만 관리 가능한 수준입니다.',
-                symptoms: '기분이 다소 저하되어 있고 일부 활동에 대한 흥미가 감소했을 수 있습니다.',
-                recommendations: [
-                    '규칙적인 운동을 시작하세요 (주 3-4회, 30분 이상)',
-                    '충분한 수면을 취하세요 (7-8시간)',
-                    '친구나 가족과 정기적으로 만나세요',
-                    '취미 활동을 찾아보세요',
-                    '명상이나 요가 등 이완 기법을 시도하세요',
-                    '증상이 지속되면 전문가 상담을 고려하세요'
-                ],
-                showCrisis: false
-            },
-            moderate: {
-                title: '중등도 우울',
-                description: '중간 정도의 우울 증상이 있으며, 전문가 상담이 권장됩니다.',
-                symptoms: '일상생활에 어느 정도 지장이 있고, 기분 저하와 흥미 상실이 뚜렷합니다. 수면과 식욕에도 변화가 있을 수 있습니다.',
-                recommendations: [
-                    '반드시 정신건강의학과 전문의와 상담하세요',
-                    '심리상담(인지행동치료 등)을 받아보세요',
-                    '규칙적인 생활 리듬을 유지하세요',
-                    '가벼운 운동을 꾸준히 하세요',
-                    '술과 카페인 섭취를 줄이세요',
-                    '신뢰할 수 있는 사람에게 자신의 상태를 이야기하세요'
-                ],
-                showCrisis: false
-            },
-            severe: {
-                title: '중증 우울',
-                description: '심각한 우울 증상이 있으며, 즉시 전문적인 도움이 필요합니다.',
-                symptoms: '일상생활에 심각한 지장이 있고, 극심한 기분 저하, 절망감, 무가치감을 느낍니다. 업무나 학업 수행이 어려울 수 있습니다.',
-                recommendations: [
-                    '즉시 정신건강의학과를 방문하세요',
-                    '약물치료와 심리치료를 병행하세요',
-                    '혼자 있지 말고 가족이나 친구와 함께 지내세요',
-                    '위기상담 전화를 이용하세요',
-                    '자해 충동이 있다면 즉시 응급실로 가세요',
-                    '정기적으로 의사의 진료를 받으세요'
-                ],
-                showCrisis: true
-            },
-            verySevere: {
-                title: '최중증 우울',
-                description: '매우 심각한 우울 증상으로 즉각적인 의료 개입이 필요합니다.',
-                symptoms: '극심한 우울감과 절망감, 자살 사고가 있을 수 있습니다. 기본적인 일상생활 수행도 매우 어려운 상태입니다.',
-                recommendations: [
-                    '즉시 정신건강의학과 응급실을 방문하세요',
-                    '자살 충동이 있다면 119에 전화하거나 가까운 응급실로 가세요',
-                    '절대 혼자 있지 마세요',
-                    '자살예방 상담전화(1393)에 즉시 연락하세요',
-                    '입원 치료가 필요할 수 있습니다',
-                    '약물치료를 반드시 받으세요'
-                ],
-                showCrisis: true
-            }
-        };
-
-        let currentQ = 0;
-        let answers = [];
-        let totalScore = 0;
-
-        function startTest() {
-            document.getElementById('startScreen').style.display = 'none';
-            document.getElementById('testScreen').style.display = 'block';
-            showQuestion();
-        }
-
-        function showQuestion() {
-            document.getElementById('currentQuestion').textContent = currentQ + 1;
-            document.getElementById('totalQuestions').textContent = questions.length;
-            document.getElementById('questionText').textContent = '최근 2주 동안: ' + questions[currentQ];
-
-            const optionsContainer = document.getElementById('optionsContainer');
-            optionsContainer.innerHTML = '';
-
-            const options = ['전혀 없음', '며칠 동안', '7일 이상', '거의 매일'];
-
-            options.forEach((option, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = option;
-                btn.onclick = () => selectAnswer(index);
-                if (answers[currentQ] === index) {
-                    btn.classList.add('selected');
-                }
-                optionsContainer.appendChild(btn);
-            });
-
-            const progress = ((currentQ + 1) / questions.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-
-            document.getElementById('prevBtn').style.display = currentQ === 0 ? 'none' : 'inline-block';
-        }
-
-        function selectAnswer(value) {
-            answers[currentQ] = value;
-            const btns = document.querySelectorAll('.option-btn');
-            btns.forEach((btn, index) => {
-                btn.classList.toggle('selected', index === value);
-            });
-        }
-
-        function nextQuestion() {
-            if (answers[currentQ] === undefined) {
-                alert('답변을 선택해주세요!');
-                return;
-            }
-
-            totalScore += answers[currentQ];
-
-            if (currentQ < questions.length - 1) {
-                currentQ++;
-                showQuestion();
-            } else {
-                showResult();
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQ > 0) {
-                currentQ--;
-                showQuestion();
-            }
-        }
-
-        function showResult() {
-            document.getElementById('testScreen').style.display = 'none';
-            document.getElementById('resultScreen').style.display = 'block';
-
-            // 점수에 따른 수준 결정 (0-63점)
-            let level;
-            if (totalScore <= 9) level = 'minimal';
-            else if (totalScore <= 16) level = 'mild';
-            else if (totalScore <= 31) level = 'moderate';
-            else if (totalScore <= 47) level = 'severe';
-            else level = 'verySevere';
-
-            const resultData = levels[level];
-
-            document.getElementById('scoreLevel').textContent = level === 'minimal' ? '정상' : resultData.title;
-            document.getElementById('resultTitle').textContent = resultData.title;
-            document.getElementById('resultDescription').textContent = resultData.description;
-            document.getElementById('symptoms').textContent = resultData.symptoms;
-
-            const recList = document.getElementById('recommendations');
-            recList.innerHTML = '';
-            resultData.recommendations.forEach(rec => {
-                const li = document.createElement('li');
-                li.textContent = rec;
-                recList.appendChild(li);
-            });
-
-            if (resultData.showCrisis) {
-                document.getElementById('crisisBox').style.display = 'block';
-            }
-        }
-
-        function saveResult() {
-            alert('결과 저장 기능은 프리미엄 회원에게 제공됩니다.');
-        }
-
-        function shareResult() {
-            alert('결과 공유 기능은 프리미엄 회원에게 제공됩니다.');
-        }
-    </script>
+    <script src="js/test-depression.js"></script>
 </body>
 </html>
