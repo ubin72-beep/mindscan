@@ -213,30 +213,67 @@ const answerOptions = [
 
 // 검사 시작
 function startTest() {
-    document.querySelector('.start-screen').style.display = 'none';
-    document.querySelector('.test-screen').style.display = 'block';
+    console.log('검사 시작 함수 호출됨');
+    
+    const startScreen = document.querySelector('.start-screen');
+    const testScreen = document.querySelector('.test-screen');
+    
+    if (!startScreen || !testScreen) {
+        console.error('화면 요소를 찾을 수 없습니다!');
+        alert('페이지 로딩 오류가 발생했습니다. 페이지를 새로고침해주세요.');
+        return;
+    }
+    
+    startScreen.style.display = 'none';
+    testScreen.style.display = 'block';
+    
     currentQuestion = 0;
     answers = [];
     scores = {
         type1: 0, type2: 0, type3: 0, type4: 0, type5: 0,
         type6: 0, type7: 0, type8: 0, type9: 0
     };
+    
+    console.log('검사 초기화 완료, 첫 질문 표시');
     showQuestion();
 }
 
 // 질문 표시
 function showQuestion() {
+    console.log('질문 표시 함수 호출됨:', currentQuestion);
+    
     const question = questions[currentQuestion];
-    document.getElementById('questionText').textContent = question.q;
-    document.getElementById('currentQuestion').textContent = currentQuestion + 1;
-    document.getElementById('totalQuestions').textContent = questions.length;
+    
+    // 요소 확인
+    const questionText = document.getElementById('questionText');
+    const currentQuestionEl = document.getElementById('currentQuestion');
+    const totalQuestionsEl = document.getElementById('totalQuestions');
+    const progressFill = document.getElementById('progressFill');
+    const answersContainer = document.getElementById('answersContainer');
+    
+    // 요소가 없으면 에러 메시지 표시
+    if (!questionText || !currentQuestionEl || !totalQuestionsEl || !progressFill || !answersContainer) {
+        console.error('필수 요소를 찾을 수 없습니다!');
+        console.log('questionText:', questionText);
+        console.log('currentQuestionEl:', currentQuestionEl);
+        console.log('totalQuestionsEl:', totalQuestionsEl);
+        console.log('progressFill:', progressFill);
+        console.log('answersContainer:', answersContainer);
+        alert('페이지 로딩 오류가 발생했습니다. 페이지를 새로고침해주세요.');
+        return;
+    }
+    
+    questionText.textContent = question.q;
+    currentQuestionEl.textContent = currentQuestion + 1;
+    totalQuestionsEl.textContent = questions.length;
     
     // 진행바 업데이트
     const progress = ((currentQuestion + 1) / questions.length) * 100;
-    document.getElementById('progressFill').style.width = progress + '%';
+    progressFill.style.width = progress + '%';
+    
+    console.log('진행률:', progress + '%');
     
     // 답변 옵션 생성
-    const answersContainer = document.getElementById('answersContainer');
     answersContainer.innerHTML = '';
     
     answerOptions.forEach((option, index) => {
@@ -257,12 +294,15 @@ function showQuestion() {
         answersContainer.appendChild(button);
     });
     
+    console.log('답변 버튼 생성 완료:', answerOptions.length + '개');
+    
     // 버튼 상태 업데이트
     updateButtons();
 }
 
 // 답변 선택
 function selectAnswer(answerIndex) {
+    console.log('답변 선택됨:', answerIndex);
     answers[currentQuestion] = answerIndex;
     
     // 선택된 답변 시각적 표시
@@ -281,6 +321,7 @@ function selectAnswer(answerIndex) {
 function prevQuestion() {
     if (currentQuestion > 0) {
         currentQuestion--;
+        console.log('이전 질문으로 이동:', currentQuestion);
         showQuestion();
     }
 }
@@ -294,8 +335,10 @@ function nextQuestion() {
     
     if (currentQuestion < questions.length - 1) {
         currentQuestion++;
+        console.log('다음 질문으로 이동:', currentQuestion);
         showQuestion();
     } else {
+        console.log('마지막 질문 완료, 결과 계산 시작');
         calculateResult();
     }
 }
@@ -304,6 +347,11 @@ function nextQuestion() {
 function updateButtons() {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+    
+    if (!prevBtn || !nextBtn) {
+        console.error('버튼을 찾을 수 없습니다!');
+        return;
+    }
     
     prevBtn.disabled = currentQuestion === 0;
     prevBtn.style.opacity = currentQuestion === 0 ? '0.5' : '1';
@@ -321,11 +369,16 @@ function updateButtons() {
 
 // 결과 계산
 function calculateResult() {
+    console.log('결과 계산 시작');
+    
     // 각 질문의 답변을 해당 유형에 점수로 추가
     questions.forEach((question, index) => {
         const answerValue = answerOptions[answers[index]].value;
         scores[question.type] += answerValue;
+        console.log(`질문 ${index + 1}: ${question.type} +${answerValue}점`);
     });
+    
+    console.log('최종 점수:', scores);
     
     // 가장 높은 점수의 유형 찾기
     let maxScore = 0;
@@ -338,40 +391,62 @@ function calculateResult() {
         }
     }
     
+    console.log('결과 유형:', resultType, '점수:', maxScore);
+    
     showResult(resultType);
 }
 
 // 결과 표시
 function showResult(resultType) {
+    console.log('결과 표시:', resultType);
+    
     const result = types[resultType];
     
-    document.querySelector('.test-screen').style.display = 'none';
-    document.querySelector('.result-screen').style.display = 'block';
+    const testScreen = document.querySelector('.test-screen');
+    const resultScreen = document.querySelector('.result-screen');
     
-    document.getElementById('resultType').textContent = result.name;
-    document.getElementById('resultTitle').textContent = result.title;
-    document.getElementById('resultDescription').textContent = result.description;
+    if (!testScreen || !resultScreen) {
+        console.error('결과 화면을 찾을 수 없습니다!');
+        return;
+    }
+    
+    testScreen.style.display = 'none';
+    resultScreen.style.display = 'block';
+    
+    const resultTypeEl = document.getElementById('resultType');
+    const resultTitleEl = document.getElementById('resultTitle');
+    const resultDescriptionEl = document.getElementById('resultDescription');
+    
+    if (resultTypeEl) resultTypeEl.textContent = result.name;
+    if (resultTitleEl) resultTitleEl.textContent = result.title;
+    if (resultDescriptionEl) resultDescriptionEl.textContent = result.description;
     
     // 특징 목록
     const traitsContainer = document.getElementById('resultTraits');
-    traitsContainer.innerHTML = '';
-    result.traits.forEach(trait => {
-        const li = document.createElement('li');
-        li.textContent = trait;
-        traitsContainer.appendChild(li);
-    });
+    if (traitsContainer) {
+        traitsContainer.innerHTML = '';
+        result.traits.forEach(trait => {
+            const li = document.createElement('li');
+            li.textContent = trait;
+            traitsContainer.appendChild(li);
+        });
+    }
     
     // 조언 목록
     const growthContainer = document.getElementById('resultGrowth');
-    growthContainer.innerHTML = '';
-    result.advice.forEach(advice => {
-        const li = document.createElement('li');
-        li.textContent = advice;
-        growthContainer.appendChild(li);
-    });
+    if (growthContainer) {
+        growthContainer.innerHTML = '';
+        result.advice.forEach(advice => {
+            const li = document.createElement('li');
+            li.textContent = advice;
+            growthContainer.appendChild(li);
+        });
+    }
     
     // 결과 저장 (선택적)
     saveResult(resultType, result);
+    
+    console.log('결과 표시 완료');
 }
 
 // 결과 저장
@@ -389,6 +464,7 @@ function saveResult(type, result) {
         let results = JSON.parse(localStorage.getItem('mentora_results') || '[]');
         results.push(testResult);
         localStorage.setItem('mentora_results', JSON.stringify(results));
+        console.log('결과 저장 완료');
     } catch (e) {
         console.log('결과 저장 실패:', e);
     }
@@ -396,5 +472,15 @@ function saveResult(type, result) {
 
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('에니어그램 검사 준비 완료');
+    console.log('에니어그램 검사 JavaScript 로드 완료');
+    console.log('질문 수:', questions.length);
+    console.log('유형 수:', Object.keys(types).length);
 });
+
+// 전역에 함수 노출 (HTML onclick에서 호출하기 위해)
+window.startTest = startTest;
+window.selectAnswer = selectAnswer;
+window.prevQuestion = prevQuestion;
+window.nextQuestion = nextQuestion;
+
+console.log('에니어그램 검사 스크립트 초기화 완료');
