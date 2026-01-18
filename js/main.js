@@ -219,7 +219,7 @@ function startTest(testType) {
     console.log('검사 시작:', testType);
     
     // 검사 페이지로 이동
-    window.location.href = `test.html?type=${testType}`;
+    window.location.href = `test-${testType}.html`;
 }
 
 // ==================== 추천 검사 시작 ====================
