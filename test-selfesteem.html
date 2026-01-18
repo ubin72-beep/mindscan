@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자존감 검사 - Mentora</title>
+    <title>자존감검사 - Mentora</title>
+    <meta name="description" content="자존감 수준을 측정하는 자존감검사">
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
+    
     <style>
         * {
             margin: 0;
@@ -16,606 +19,452 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e8 100%);
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
             min-height: 100vh;
-            padding-top: 80px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
         }
 
         .test-container {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 40px rgba(44, 95, 79, 0.1);
-        }
-
-        .test-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .test-header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .test-header p {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .start-screen {
-            display: block;
-        }
-
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 40px 30px;
             text-align: center;
-            border: 2px dashed #d4af37;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .info-card i {
-            font-size: 2.5rem;
+        .start-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .start-screen h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
             color: #2c5f4f;
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
         }
 
-        .info-card h3 {
-            font-size: 1.1rem;
+        .start-screen p {
+            font-size: 1rem;
             color: #666;
-            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
-        .info-card p {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #2c5f4f;
+        .test-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 3rem;
+        .info-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .info-item i {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 8px;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
             font-size: 1.2rem;
             font-weight: 700;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin: 0.5rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(44, 95, 79, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
             color: #2c5f4f;
-            border: 2px solid #2c5f4f;
         }
 
-        .btn-secondary:hover {
-            background: #f8f9fa;
+        .btn-start {
+            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .button-group {
-            text-align: center;
-            margin-top: 2rem;
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
         }
 
-        .test-screen {
+        .test-screen,
+        .result-screen {
             display: none;
         }
 
         .progress-container {
-            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c5f4f;
         }
 
         .progress-bar {
             width: 100%;
             height: 10px;
-            background: #e9ecef;
+            background: rgba(212, 175, 55, 0.2);
             border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 1rem;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
-            width: 0%;
+            background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%);
+            border-radius: 10px;
             transition: width 0.3s ease;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
         }
 
-        .progress-text {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            font-weight: 600;
-        }
-
-        .question-container {
-            margin: 3rem 0;
+        .question-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 25px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .question-text {
-            font-size: 1.5rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            color: #1a1a1a;
+            color: #2c5f4f;
             text-align: center;
-            margin-bottom: 2rem;
-            line-height: 1.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        .options {
+        .answers {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 8px;
         }
 
-        .option-btn {
-            padding: 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
+        .answer-btn {
             background: white;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #e9ecef;
             border-radius: 12px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-align: left;
-            color: #333;
         }
 
-        .option-btn:hover {
+        .answer-btn:hover {
             border-color: #d4af37;
-            background: #fffef8;
-            transform: translateX(5px);
+            transform: translateX(3px);
+            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.2);
         }
 
-        .option-btn.selected {
-            border-color: #2c5f4f;
-            background: linear-gradient(135deg, #f0f8f5 0%, #fffef8 100%);
-            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.2);
+        .answer-btn.selected {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            border-color: #d4af37;
+            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .navigation {
+        .answer-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
             display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #2c5f4f;
+            flex-shrink: 0;
+        }
+
+        .answer-btn.selected .answer-number {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: white;
+        }
+
+        .answer-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            text-align: left;
+        }
+
+        .test-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #666;
+            border: 2px solid #e9ecef;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .result-screen {
-            display: none;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .result-badge {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
-            color: white;
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .result-type {
             font-size: 2.5rem;
             font-weight: 800;
-            border-radius: 50px;
-            margin-bottom: 1rem;
+            color: #d4af37;
+            margin-bottom: 10px;
         }
 
         .result-title {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
         .result-description {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #666;
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
         .result-section {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
+            margin: 25px 0;
         }
 
         .result-section h3 {
             font-size: 1.3rem;
-            color: #2c5f4f;
-            margin-bottom: 1rem;
             font-weight: 700;
-        }
-
-        .result-section p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.8;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .result-section ul {
             list-style: none;
             padding: 0;
-            margin-top: 1rem;
         }
 
         .result-section li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid #d4af37;
+            font-size: 0.95rem;
+            color: #333;
         }
 
-        .result-section li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #2c5f4f;
-            font-weight: bold;
+        .result-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
             .test-container {
-                padding: 1.5rem;
+                padding: 15px;
             }
 
-            .test-header h1 {
-                font-size: 1.8rem;
+            .question-text {
+                font-size: 1.05rem;
             }
 
-            .info-cards {
+            .test-info {
                 grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .result-actions {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">
-                    <img src="images/logo-brain-hd.png" alt="Mentora Logo" class="logo-icon">
-                    <span class="logo-text">Mentora</span>
+    <header class="page-header">
+        <nav class="page-nav">
+            <div class="page-nav-left">
+                <a href="index.html" class="page-nav-logo">
+                    <div class="page-nav-logo-icon-text">M</div>
+                    <span class="page-nav-logo-text">Mentora</span>
+                </a>
+                <div class="page-nav-divider"></div>
+                <h2 class="page-nav-title">자존감검사</h2>
+            </div>
+            <div class="page-nav-right">
+                <button class="page-nav-btn page-nav-btn-back" onclick="history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>뒤로가기</span>
+                </button>
+                <a href="index.html" class="page-nav-btn page-nav-btn-home">
+                    <i class="fas fa-home"></i>
+                    <span>홈으로</span>
                 </a>
             </div>
         </nav>
     </header>
 
-    <div class="container">
+    <div class="page-content-wrapper">
         <div class="test-container">
-            <div class="start-screen" id="startScreen">
-                <div class="test-header">
-                    <h1><i class="fas fa-smile"></i> 자존감 검사</h1>
-                    <p>나의 자존감 수준과 자기가치감을 측정하세요</p>
-                </div>
-
-                <div class="info-cards">
-                    <div class="info-card">
+            <div class="start-screen">
+                <div class="start-icon">⭐</div>
+                <h2>자존감검사를 시작합니다</h2>
+                <p>당신의 자존감 수준을 측정하고 발전 방향을 제시합니다.</p>
+                
+                <div class="test-info">
+                    <div class="info-item">
                         <i class="fas fa-clock"></i>
-                        <h3>소요 시간</h3>
-                        <p>8분</p>
+                        <div class="info-label">소요 시간</div>
+                        <div class="info-value">8분</div>
                     </div>
-                    <div class="info-card">
+                    <div class="info-item">
                         <i class="fas fa-question-circle"></i>
-                        <h3>질문 수</h3>
-                        <p>25개</p>
+                        <div class="info-label">질문 수</div>
+                        <div class="info-value">10개</div>
                     </div>
-                    <div class="info-card">
-                        <i class="fas fa-chart-bar"></i>
-                        <h3>단계</h3>
-                        <p>5단계</p>
+                    <div class="info-item">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="info-label">점수</div>
+                        <div class="info-value">100점</div>
                     </div>
                 </div>
 
-                <div class="button-group">
-                    <button class="btn btn-primary" onclick="startTest()">
-                        <i class="fas fa-play"></i> 검사 시작하기
-                    </button>
-                    <a href="index.html" class="btn btn-secondary">
-                        <i class="fas fa-home"></i> 홈으로 돌아가기
-                    </a>
-                </div>
+                <button class="btn-start" onclick="startTest()">검사 시작하기</button>
             </div>
 
-            <div class="test-screen" id="testScreen">
+            <div class="test-screen">
                 <div class="progress-container">
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
+                    </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
-                    <div class="progress-text">
-                        <span id="currentQuestion">1</span> / <span id="totalQuestions">25</span>
-                    </div>
                 </div>
 
-                <div class="question-container">
+                <div class="question-card">
                     <div class="question-text" id="questionText"></div>
-                    <div class="options" id="optionsContainer"></div>
+                    <div class="answers" id="answersContainer"></div>
                 </div>
 
-                <div class="navigation">
-                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn">
+                <div class="test-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">
                         <i class="fas fa-arrow-left"></i> 이전
                     </button>
-                    <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
                         다음 <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="result-screen" id="resultScreen">
-                <div class="test-header">
-                    <span class="result-badge" id="scoreLevel">높음</span>
-                    <h2 class="result-title" id="resultTitle">건강한 자존감</h2>
+            <div class="result-screen">
+                <div class="result-header">
+                    <div class="result-type" id="resultType"></div>
+                    <h2 class="result-title" id="resultTitle"></h2>
                     <p class="result-description" id="resultDescription"></p>
                 </div>
 
                 <div class="result-section">
                     <h3><i class="fas fa-star"></i> 주요 특징</h3>
-                    <p id="characteristics"></p>
+                    <ul id="resultTraits"></ul>
                 </div>
 
                 <div class="result-section">
-                    <h3><i class="fas fa-lightbulb"></i> 추천 활동</h3>
-                    <ul id="recommendations"></ul>
+                    <h3><i class="fas fa-seedling"></i> 성장 방향</h3>
+                    <ul id="resultGrowth"></ul>
                 </div>
 
-                <div class="button-group">
-                    <button class="btn btn-primary" onclick="saveResult()">
-                        <i class="fas fa-save"></i> 결과 저장
-                    </button>
-                    <button class="btn btn-secondary" onclick="shareResult()">
-                        <i class="fas fa-share-alt"></i> 공유하기
-                    </button>
+                <div class="result-actions">
                     <a href="index.html" class="btn btn-secondary">
                         <i class="fas fa-home"></i> 홈으로
+                    </a>
+                    <a href="payment/checkout.html" class="btn btn-primary">
+                        <i class="fas fa-crown"></i> 프리미엄 리포트
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const questions = [
-            "나는 나 자신에 대해 긍정적으로 생각한다",
-            "나는 다른 사람들만큼 가치 있는 사람이다",
-            "나는 좋은 자질을 많이 가지고 있다",
-            "나는 대부분의 일을 다른 사람들만큼 잘할 수 있다",
-            "나 자신에 대해 자랑스럽게 여길 만한 것이 별로 없다",
-            "때때로 나는 내가 쓸모없는 사람이라고 느낀다",
-            "나는 나 자신을 존중한다",
-            "나는 내가 실패한 사람이라고 느낀다",
-            "나는 나 자신에 대해 긍정적인 태도를 가지고 있다",
-            "대체로 나는 내 자신에 만족한다",
-            "나는 나의 장점과 강점을 잘 안다",
-            "실수를 해도 나 자신을 용서할 수 있다",
-            "나는 새로운 일에 도전하는 것을 두려워하지 않는다",
-            "다른 사람의 평가가 나의 가치를 결정하지 않는다",
-            "나는 내 결정을 신뢰한다",
-            "나는 나의 의견을 자신있게 표현한다",
-            "거절을 당해도 나의 가치가 떨어지지 않는다고 생각한다",
-            "나는 나 자신의 최고의 친구이다",
-            "나의 감정과 욕구를 소중히 여긴다",
-            "완벽하지 않아도 나 자신을 사랑한다",
-            "나는 다른 사람과 비교하지 않는다",
-            "나의 성취를 인정하고 축하한다",
-            "나는 내 외모에 대해 만족한다",
-            "나는 나만의 독특함을 가치있게 여긴다",
-            "나는 나 자신에게 친절하다"
-        ];
-
-        const levels = {
-            veryHigh: {
-                title: '매우 높은 자존감',
-                description: '자신에 대한 확고한 신뢰와 가치감을 가지고 있습니다. 건강하고 균형잡힌 자존감을 유지하고 있습니다.',
-                characteristics: '자신의 강점과 약점을 모두 인정하며, 실수나 실패에도 자신의 가치가 흔들리지 않습니다. 다른 사람의 평가에 지나치게 의존하지 않고, 스스로를 존중하고 사랑합니다.',
-                recommendations: [
-                    '현재의 긍정적인 자아상을 유지하세요',
-                    '다른 사람들에게 긍정적인 영향을 주세요',
-                    '자신의 경험을 나누며 타인을 격려하세요',
-                    '새로운 도전을 통해 지속적으로 성장하세요'
-                ]
-            },
-            high: {
-                title: '높은 자존감',
-                description: '자신을 긍정적으로 인식하고 있으며, 대체로 건강한 자존감을 가지고 있습니다.',
-                characteristics: '자신의 가치를 알고 있으며, 대부분의 상황에서 자신감을 가지고 행동합니다. 때때로 자기의심이 들 수 있지만, 빠르게 회복하는 능력이 있습니다.',
-                recommendations: [
-                    '자신의 성취를 인정하고 축하하는 습관을 들이세요',
-                    '자기 대화를 긍정적으로 유지하세요',
-                    '자신의 강점에 집중하세요',
-                    '자기 돌봄 활동을 규칙적으로 하세요'
-                ]
-            },
-            medium: {
-                title: '보통 자존감',
-                description: '일반적인 수준의 자존감을 가지고 있으며, 상황에 따라 자신감이 변동될 수 있습니다.',
-                characteristics: '때때로 자신에 대해 긍정적으로 느끼지만, 특정 상황이나 비교를 통해 자존감이 낮아질 수 있습니다. 자기가치감을 더욱 견고히 할 필요가 있습니다.',
-                recommendations: [
-                    '매일 감사 일기를 작성하세요',
-                    '자신의 장점 목록을 만들고 자주 읽으세요',
-                    '작은 목표를 세우고 달성하며 성공 경험을 쌓으세요',
-                    '자신을 타인과 비교하는 습관을 줄이세요',
-                    '긍정적인 자기 긍정문을 매일 반복하세요'
-                ]
-            },
-            low: {
-                title: '낮은 자존감',
-                description: '자신에 대해 부정적으로 생각하는 경향이 있으며, 자존감 향상이 필요합니다.',
-                characteristics: '자주 자기비판을 하고, 실패나 거절에 민감하게 반응합니다. 다른 사람의 평가에 크게 영향을 받으며, 자신의 가치를 과소평가하는 경향이 있습니다.',
-                recommendations: [
-                    '전문가의 도움(심리상담)을 고려해보세요',
-                    '부정적인 자기 대화를 인식하고 바꾸는 연습을 하세요',
-                    '자신에게 친절한 말을 하는 습관을 들이세요',
-                    '작은 성공을 기록하고 축하하세요',
-                    '자기 연민(Self-Compassion)을 연습하세요',
-                    '신뢰할 수 있는 사람들과 시간을 보내세요'
-                ]
-            },
-            veryLow: {
-                title: '매우 낮은 자존감',
-                description: '자신에 대한 가치감이 매우 낮은 상태입니다. 전문적인 도움이 권장됩니다.',
-                characteristics: '자신을 무가치하게 여기고, 자주 절망감을 느낍니다. 우울증이나 불안과 함께 나타날 수 있으며, 일상생활에 어려움을 겪을 수 있습니다.',
-                recommendations: [
-                    '즉시 전문 심리상담을 받으세요',
-                    '정신건강의학과 전문의와 상담하세요',
-                    '신뢰할 수 있는 사람에게 도움을 요청하세요',
-                    '위기상담 핫라인(1577-0199)을 이용하세요',
-                    '하루에 한 가지라도 자신을 칭찬하세요',
-                    '자해나 극단적 생각이 들면 즉시 도움을 구하세요'
-                ]
-            }
-        };
-
-        let currentQ = 0;
-        let answers = [];
-        let totalScore = 0;
-
-        function startTest() {
-            document.getElementById('startScreen').style.display = 'none';
-            document.getElementById('testScreen').style.display = 'block';
-            showQuestion();
-        }
-
-        function showQuestion() {
-            document.getElementById('currentQuestion').textContent = currentQ + 1;
-            document.getElementById('totalQuestions').textContent = questions.length;
-            document.getElementById('questionText').textContent = questions[currentQ];
-
-            const optionsContainer = document.getElementById('optionsContainer');
-            optionsContainer.innerHTML = '';
-
-            const options = ['전혀 아니다', '아니다', '보통이다', '그렇다', '매우 그렇다'];
-
-            options.forEach((option, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = option;
-                btn.onclick = () => selectAnswer(index + 1);
-                if (answers[currentQ] === index + 1) {
-                    btn.classList.add('selected');
-                }
-                optionsContainer.appendChild(btn);
-            });
-
-            const progress = ((currentQ + 1) / questions.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-
-            document.getElementById('prevBtn').style.display = currentQ === 0 ? 'none' : 'inline-block';
-        }
-
-        function selectAnswer(value) {
-            answers[currentQ] = value;
-            const btns = document.querySelectorAll('.option-btn');
-            btns.forEach((btn, index) => {
-                btn.classList.toggle('selected', index === value - 1);
-            });
-        }
-
-        function nextQuestion() {
-            if (!answers[currentQ]) {
-                alert('답변을 선택해주세요!');
-                return;
-            }
-
-            // 역채점 문항 (5, 6, 8번 - 인덱스 4, 5, 7)
-            const reverseItems = [4, 5, 7];
-            let score = answers[currentQ];
-            if (reverseItems.includes(currentQ)) {
-                score = 6 - score; // 역채점
-            }
-            totalScore += score;
-
-            if (currentQ < questions.length - 1) {
-                currentQ++;
-                showQuestion();
-            } else {
-                showResult();
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQ > 0) {
-                currentQ--;
-                showQuestion();
-            }
-        }
-
-        function showResult() {
-            document.getElementById('testScreen').style.display = 'none';
-            document.getElementById('resultScreen').style.display = 'block';
-
-            // 점수에 따른 수준 결정 (25문항 × 5점 = 125점 만점)
-            const avgScore = totalScore / questions.length;
-            let level;
-
-            if (avgScore >= 4.5) level = 'veryHigh';
-            else if (avgScore >= 3.5) level = 'high';
-            else if (avgScore >= 2.5) level = 'medium';
-            else if (avgScore >= 1.5) level = 'low';
-            else level = 'veryLow';
-
-            const resultData = levels[level];
-
-            const levelNames = {
-                veryHigh: '매우 높음',
-                high: '높음',
-                medium: '보통',
-                low: '낮음',
-                veryLow: '매우 낮음'
-            };
-
-            document.getElementById('scoreLevel').textContent = levelNames[level];
-            document.getElementById('resultTitle').textContent = resultData.title;
-            document.getElementById('resultDescription').textContent = resultData.description;
-            document.getElementById('characteristics').textContent = resultData.characteristics;
-
-            const recList = document.getElementById('recommendations');
-            recList.innerHTML = '';
-            resultData.recommendations.forEach(rec => {
-                const li = document.createElement('li');
-                li.textContent = rec;
-                recList.appendChild(li);
-            });
-        }
-
-        function saveResult() {
-            alert('결과 저장 기능은 프리미엄 회원에게 제공됩니다.');
-        }
-
-        function shareResult() {
-            alert('결과 공유 기능은 프리미엄 회원에게 제공됩니다.');
-        }
-    </script>
+    <script src="js/test-selfesteem.js"></script>
 </body>
 </html>
