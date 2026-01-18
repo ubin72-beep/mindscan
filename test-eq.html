@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EQ 감성지능검사 - Mentora</title>
-    <meta name="description" content="감성지능으로 나를 이해하는 EQ 검사">
-    
+    <title>감성지능 검사 - Mentora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
-    
     <style>
         * {
             margin: 0;
@@ -19,302 +18,329 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             min-height: 100vh;
-        }
-
-        .test-container {
-            max-width: 700px;
-            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
 
-        .start-screen {
-            background: rgba(255, 255, 255, 0.98);
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
             border-radius: 24px;
-            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            color: white;
+            position: relative;
         }
 
-        .start-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
         }
 
-        .start-screen h2 {
+        .header h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #2c5f4f;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
         }
 
-        .start-screen p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 25px;
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        /* 시작 화면 */
+        #startScreen {
+            text-align: center;
         }
 
         .test-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 35px 0;
+            flex-wrap: wrap;
         }
 
         .info-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
 
-        .info-item i {
-            font-size: 1.8rem;
-            color: #d4af37;
-            margin-bottom: 8px;
+        .info-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
         }
 
         .info-label {
             font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 5px;
+            color: #64748b;
+            font-weight: 500;
         }
 
         .info-value {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: #2c5f4f;
+            color: #1e293b;
         }
 
-        .btn-start {
-            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
+        .start-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
-            padding: 15px 50px;
-            border-radius: 50px;
+            padding: 16px 50px;
+            border-radius: 12px;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
         }
 
-        .btn-start:hover {
+        .start-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
         }
 
-        .test-screen,
-        .result-screen {
+        /* 테스트 화면 */
+        #testScreen {
             display: none;
         }
 
         .progress-container {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 16px;
+            background: #f8fafc;
             padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border-radius: 20px;
+            margin-bottom: 20px;
         }
 
-        .progress-text {
-            text-align: center;
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #2c5f4f;
+            font-size: 0.9rem;
+            color: #64748b;
         }
 
         .progress-bar {
             width: 100%;
-            height: 10px;
-            background: rgba(212, 175, 55, 0.2);
+            height: 8px;
+            background: #e2e8f0;
             border-radius: 10px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%);
-            border-radius: 10px;
+            background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
             transition: width 0.3s ease;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+            border-radius: 10px;
         }
 
         .question-card {
-            background: rgba(255, 255, 255, 0.98);
+            background: #f8fafc;
+            padding: 30px 25px;
             border-radius: 20px;
-            padding: 25px 20px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .question-text {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #2c5f4f;
-            text-align: center;
+            font-size: 1.2rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            color: #1e293b;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-align: center;
         }
 
         .answers {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .answer-btn {
             background: white;
-            border: 2px solid #e9ecef;
+            border: 2px solid #e2e8f0;
+            padding: 12px 20px;
             border-radius: 12px;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .answer-btn:hover {
-            border-color: #d4af37;
-            transform: translateX(3px);
-            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        .answer-btn.selected {
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
-            border-color: #d4af37;
-            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
         }
 
         .answer-number {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            width: 32px;
+            height: 32px;
+            background: #f1f5f9;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.95rem;
-            color: #2c5f4f;
+            color: #64748b;
+            font-size: 1rem;
             flex-shrink: 0;
         }
 
+        .answer-text {
+            flex: 1;
+            font-size: 0.95rem;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        .answer-btn:hover {
+            border-color: #4CAF50;
+            background: #f0fdf4;
+            transform: translateX(5px);
+        }
+
+        .answer-btn.selected {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-color: #4CAF50;
+        }
+
         .answer-btn.selected .answer-number {
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            background: rgba(255, 255, 255, 0.3);
             color: white;
         }
 
-        .answer-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #333;
-            text-align: left;
+        .answer-btn.selected .answer-text {
+            color: white;
         }
 
         .test-navigation {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             gap: 10px;
             margin-top: 15px;
         }
 
         .btn {
-            padding: 12px 25px;
+            padding: 12px 30px;
             border-radius: 10px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
             border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
-            color: white;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+            transition: all 0.3s ease;
         }
 
         .btn-secondary {
-            background: white;
-            color: #666;
-            border: 2px solid #e9ecef;
+            background: #e2e8f0;
+            color: #64748b;
         }
 
-        .btn-secondary:hover:not(:disabled) {
-            border-color: #d4af37;
-            color: #d4af37;
+        .btn-secondary:hover {
+            background: #cbd5e1;
         }
 
-        .btn-secondary:disabled {
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        .result-screen {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        /* 결과 화면 */
+        #resultScreen {
+            display: none;
         }
 
-        .result-header {
+        .result-card {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
             text-align: center;
-            margin-bottom: 30px;
+            color: white;
+            margin-bottom: 25px;
         }
 
         .result-type {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
-            color: #d4af37;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .result-title {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #2c5f4f;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .result-description {
             font-size: 1rem;
-            color: #666;
-            line-height: 1.7;
+            line-height: 1.6;
+            opacity: 0.95;
         }
 
         .result-section {
-            margin: 25px 0;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
         }
 
         .result-section h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2c5f4f;
+            color: #1e293b;
+            font-size: 1.2rem;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-weight: 700;
         }
 
         .result-section ul {
@@ -323,98 +349,114 @@
         }
 
         .result-section li {
-            padding: 12px 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            border-left: 4px solid #d4af37;
+            padding: 12px 0;
+            color: #475569;
             font-size: 0.95rem;
-            color: #333;
+            line-height: 1.6;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .result-actions {
+        .result-section li:last-child {
+            border-bottom: none;
+        }
+
+        .result-section li:before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .action-buttons {
             display: flex;
             gap: 12px;
-            justify-content: center;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
-        @media (max-width: 768px) {
-            .test-container {
-                padding: 15px;
+        .action-buttons .btn {
+            flex: 1;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .test-info {
+                gap: 15px;
+            }
+
+            .info-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
 
             .question-text {
                 font-size: 1.05rem;
             }
 
-            .test-info {
-                grid-template-columns: 1fr;
-                gap: 10px;
+            .answer-text {
+                font-size: 0.9rem;
             }
 
-            .result-actions {
+            .action-buttons {
                 flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <header class="page-header">
-        <nav class="page-nav">
-            <div class="page-nav-left">
-                <a href="index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon-text">M</div>
-                    <span class="page-nav-logo-text">Mentora</span>
-                </a>
-                <div class="page-nav-divider"></div>
-                <h2 class="page-nav-title">EQ 감성지능검사</h2>
-            </div>
-            <div class="page-nav-right">
-                <button class="page-nav-btn page-nav-btn-back" onclick="history.back()">
-                    <i class="fas fa-arrow-left"></i>
-                    <span>뒤로가기</span>
-                </button>
-                <a href="index.html" class="page-nav-btn page-nav-btn-home">
-                    <i class="fas fa-home"></i>
-                    <span>홈으로</span>
-                </a>
-            </div>
-        </nav>
-    </header>
+    <div class="container">
+        <!-- 헤더 -->
+        <div class="header">
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>감성지능 검사</h1>
+            <p>나의 EQ 수준 파악하기</p>
+        </div>
 
-    <div class="page-content-wrapper">
-        <div class="test-container">
-            <div class="start-screen">
-                <div class="start-icon">💖</div>
-                <h2>EQ 감성지능검사를 시작합니다</h2>
-                <p>당신의 감성지능을 측정하고 발전 방향을 제시합니다.</p>
-                
+        <!-- 컨텐츠 -->
+        <div class="content">
+            <!-- 시작 화면 -->
+            <div id="startScreen">
                 <div class="test-info">
                     <div class="info-item">
-                        <i class="fas fa-clock"></i>
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
                         <div class="info-label">소요 시간</div>
-                        <div class="info-value">15분</div>
+                        <div class="info-value">10분</div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-question-circle"></i>
+                        <div class="info-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
                         <div class="info-label">질문 수</div>
-                        <div class="info-value">33개</div>
+                        <div class="info-value">15개</div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-chart-line"></i>
-                        <div class="info-label">점수</div>
-                        <div class="info-value">100점</div>
+                        <div class="info-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="info-label">총점</div>
+                        <div class="info-value">75점</div>
                     </div>
                 </div>
-
-                <button class="btn-start" onclick="startTest()">검사 시작하기</button>
+                <button class="start-btn" onclick="startTest()">검사 시작하기</button>
             </div>
 
-            <div class="test-screen">
+            <!-- 테스트 화면 -->
+            <div id="testScreen">
                 <div class="progress-container">
-                    <div class="progress-text">
-                        <span id="currentQuestion">1</span> / <span id="totalQuestions">33</span>
+                    <div class="progress-info">
+                        <span><span id="currentQuestion">1</span> / <span id="totalQuestions">15</span></span>
+                        <span><a href="payment/checkout.html" style="color: #4CAF50; text-decoration: none;">🌟 프리미엄 리포트</a></span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
@@ -427,7 +469,7 @@
                 </div>
 
                 <div class="test-navigation">
-                    <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">
                         <i class="fas fa-arrow-left"></i> 이전
                     </button>
                     <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
@@ -436,30 +478,31 @@
                 </div>
             </div>
 
-            <div class="result-screen">
-                <div class="result-header">
+            <!-- 결과 화면 -->
+            <div id="resultScreen">
+                <div class="result-card">
                     <div class="result-type" id="resultType"></div>
                     <h2 class="result-title" id="resultTitle"></h2>
                     <p class="result-description" id="resultDescription"></p>
                 </div>
 
                 <div class="result-section">
-                    <h3><i class="fas fa-star"></i> 주요 특징</h3>
+                    <h3>📊 상세 분석</h3>
                     <ul id="resultTraits"></ul>
                 </div>
 
                 <div class="result-section">
-                    <h3><i class="fas fa-seedling"></i> 성장 방향</h3>
+                    <h3>💡 성장 방향</h3>
                     <ul id="resultGrowth"></ul>
                 </div>
 
-                <div class="result-actions">
-                    <a href="index.html" class="btn btn-secondary">
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">
                         <i class="fas fa-home"></i> 홈으로
-                    </a>
-                    <a href="payment/checkout.html" class="btn btn-primary">
-                        <i class="fas fa-crown"></i> 프리미엄 리포트
-                    </a>
+                    </button>
+                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">
+                        <i class="fas fa-star"></i> 프리미엄 리포트
+                    </button>
                 </div>
             </div>
         </div>
