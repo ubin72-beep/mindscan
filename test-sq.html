@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사회지능(SQ) 검사 - Mentora</title>
+    <title>SQ 사회성지능검사 - Mentora</title>
+    <meta name="description" content="사회적 관계 능력을 측정하는 SQ 검사">
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
+    
     <style>
         * {
             margin: 0;
@@ -16,581 +19,465 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0e8 100%);
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
             min-height: 100vh;
-            padding-top: 80px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
         }
 
         .test-container {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 40px rgba(44, 95, 79, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .test-header {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 40px;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .test-header h1 {
             font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
         .test-header p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #666;
-            line-height: 1.8;
         }
 
         .start-screen {
-            display: block;
-        }
-
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 50px 40px;
             text-align: center;
-            border: 2px dashed #d4af37;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .info-card i {
-            font-size: 2.5rem;
+        .start-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .start-screen h2 {
+            font-size: 2rem;
+            font-weight: 700;
             color: #2c5f4f;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
 
-        .info-card h3 {
+        .start-screen p {
             font-size: 1.1rem;
             color: #666;
-            margin-bottom: 0.5rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
         }
 
-        .info-card p {
+        .test-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .info-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .info-item i {
             font-size: 2rem;
-            font-weight: 800;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.3rem;
+            font-weight: 700;
             color: #2c5f4f;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 3rem;
+        .btn-start {
+            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            border-radius: 50px;
             font-size: 1.2rem;
             font-weight: 700;
-            border: none;
-            border-radius: 12px;
             cursor: pointer;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
             transition: all 0.3s ease;
-            text-decoration: none;
-            margin: 0.5rem;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.3);
-        }
-
-        .btn-primary:hover {
+        .btn-start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(44, 95, 79, 0.4);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
         }
 
-        .btn-secondary {
-            background: white;
-            color: #2c5f4f;
-            border: 2px solid #2c5f4f;
-        }
-
-        .btn-secondary:hover {
-            background: #f8f9fa;
-        }
-
-        .button-group {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .test-screen {
+        .test-screen,
+        .result-screen {
             display: none;
         }
 
         .progress-container {
-            margin-bottom: 2rem;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e9ecef;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
-            width: 0%;
-            transition: width 0.3s ease;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .progress-text {
             text-align: center;
+            margin-bottom: 15px;
             font-size: 1.1rem;
-            color: #666;
             font-weight: 600;
+            color: #2c5f4f;
         }
 
-        .question-container {
-            margin: 3rem 0;
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 50px 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .question-text {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #1a1a1a;
+            color: #2c5f4f;
             text-align: center;
-            margin-bottom: 2rem;
             line-height: 1.8;
+            margin-bottom: 40px;
         }
 
-        .options {
+        .answers {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 15px;
         }
 
-        .option-btn {
-            padding: 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
+        .answer-btn {
             background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 16px;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-align: left;
-            color: #333;
         }
 
-        .option-btn:hover {
+        .answer-btn:hover {
             border-color: #d4af37;
-            background: #fffef8;
             transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
         }
 
-        .option-btn.selected {
-            border-color: #2c5f4f;
-            background: linear-gradient(135deg, #f0f8f5 0%, #fffef8 100%);
-            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.2);
+        .answer-btn.selected {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            border-color: #d4af37;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
         }
 
-        .navigation {
+        .answer-number {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
             display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #2c5f4f;
+            flex-shrink: 0;
+        }
+
+        .answer-btn.selected .answer-number {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: white;
+        }
+
+        .answer-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            text-align: left;
+        }
+
+        .test-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
+            color: white;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #666;
+            border: 2px solid #e9ecef;
+        }
+
+        .btn-secondary:hover {
+            border-color: #d4af37;
+            color: #d4af37;
         }
 
         .result-screen {
-            display: none;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .result-badge {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #2c5f4f 0%, #d4af37 100%);
-            color: white;
+        .result-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .result-type {
             font-size: 3rem;
             font-weight: 800;
-            border-radius: 50px;
-            margin-bottom: 1rem;
+            color: #d4af37;
+            margin-bottom: 15px;
         }
 
         .result-title {
             font-size: 2rem;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 20px;
         }
 
         .result-description {
             font-size: 1.1rem;
             color: #666;
             line-height: 1.8;
-            margin-bottom: 2rem;
         }
 
-        .sq-dimensions {
-            display: grid;
-            gap: 1.5rem;
-            margin: 2rem 0;
+        .result-section {
+            margin: 30px 0;
         }
 
-        .dimension-card {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 15px;
-        }
-
-        .dimension-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .dimension-name {
-            font-size: 1.2rem;
+        .result-section h3 {
+            font-size: 1.5rem;
             font-weight: 700;
             color: #2c5f4f;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .dimension-score {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #d4af37;
+        .result-section ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .dimension-bar {
-            width: 100%;
-            height: 12px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
+        .result-section li {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #d4af37;
+            font-size: 1.05rem;
+            color: #333;
         }
 
-        .dimension-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
-            border-radius: 10px;
-            transition: width 0.5s ease;
-        }
-
-        .dimension-description {
-            font-size: 0.95rem;
-            color: #666;
-            line-height: 1.6;
+        .result-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
             .test-container {
-                padding: 1.5rem;
+                padding: 15px;
             }
 
             .test-header h1 {
                 font-size: 1.8rem;
             }
 
-            .info-cards {
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .test-info {
                 grid-template-columns: 1fr;
+            }
+
+            .result-actions {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">
-                    <img src="images/logo-brain-hd.png" alt="Mentora Logo" class="logo-icon">
-                    <span class="logo-text">Mentora</span>
+    <header class="page-header">
+        <nav class="page-nav">
+            <div class="page-nav-left">
+                <a href="index.html" class="page-nav-logo">
+                    <div class="page-nav-logo-icon-text">M</div>
+                    <span class="page-nav-logo-text">Mentora</span>
+                </a>
+                <div class="page-nav-divider"></div>
+                <h2 class="page-nav-title">SQ 사회성지능검사</h2>
+            </div>
+            <div class="page-nav-right">
+                <button class="page-nav-btn page-nav-btn-back" onclick="history.back()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>뒤로가기</span>
+                </button>
+                <a href="index.html" class="page-nav-btn page-nav-btn-home">
+                    <i class="fas fa-home"></i>
+                    <span>홈으로</span>
                 </a>
             </div>
         </nav>
     </header>
 
-    <div class="container">
+    <div class="page-content-wrapper">
         <div class="test-container">
-            <div class="start-screen" id="startScreen">
-                <div class="test-header">
-                    <h1><i class="fas fa-users"></i> 사회지능(SQ) 검사</h1>
-                    <p>사회적 상황에서의 인지능력과 대인관계 역량을 측정하세요</p>
-                </div>
-
-                <div class="info-cards">
-                    <div class="info-card">
+            <div class="start-screen">
+                <div class="start-icon">🤝</div>
+                <h2>SQ 사회성지능검사를 시작합니다</h2>
+                <p>사회적 관계와 소통 능력을 측정합니다.</p>
+                
+                <div class="test-info">
+                    <div class="info-item">
                         <i class="fas fa-clock"></i>
-                        <h3>소요 시간</h3>
-                        <p>12분</p>
+                        <div class="info-label">소요 시간</div>
+                        <div class="info-value">12분</div>
                     </div>
-                    <div class="info-card">
+                    <div class="info-item">
                         <i class="fas fa-question-circle"></i>
-                        <h3>질문 수</h3>
-                        <p>35개</p>
+                        <div class="info-label">질문 수</div>
+                        <div class="info-value">40개</div>
                     </div>
-                    <div class="info-card">
+                    <div class="info-item">
                         <i class="fas fa-chart-line"></i>
-                        <h3>측정</h3>
-                        <p>SQ 점수</p>
+                        <div class="info-label">점수</div>
+                        <div class="info-value">100점</div>
                     </div>
                 </div>
 
-                <div class="button-group">
-                    <button class="btn btn-primary" onclick="startTest()">
-                        <i class="fas fa-play"></i> 검사 시작하기
-                    </button>
-                    <a href="index.html" class="btn btn-secondary">
-                        <i class="fas fa-home"></i> 홈으로 돌아가기
-                    </a>
-                </div>
+                <button class="btn-start" onclick="startTest()">검사 시작하기</button>
             </div>
 
-            <div class="test-screen" id="testScreen">
+            <div class="test-screen">
                 <div class="progress-container">
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">40</span>
+                    </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
                     </div>
-                    <div class="progress-text">
-                        <span id="currentQuestion">1</span> / <span id="totalQuestions">35</span>
-                    </div>
                 </div>
 
-                <div class="question-container">
+                <div class="question-card">
                     <div class="question-text" id="questionText"></div>
-                    <div class="options" id="optionsContainer"></div>
+                    <div class="answers" id="answersContainer"></div>
                 </div>
 
-                <div class="navigation">
-                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn">
+                <div class="test-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">
                         <i class="fas fa-arrow-left"></i> 이전
                     </button>
-                    <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
                         다음 <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
 
-            <div class="result-screen" id="resultScreen">
-                <div class="test-header">
-                    <span class="result-badge" id="sqScore">82</span>
-                    <h2 class="result-title" id="sqLevel">높은 사회지능</h2>
-                    <p class="result-description" id="sqDescription"></p>
+            <div class="result-screen">
+                <div class="result-header">
+                    <div class="result-type" id="resultType"></div>
+                    <h2 class="result-title" id="resultTitle"></h2>
+                    <p class="result-description" id="resultDescription"></p>
                 </div>
 
-                <div class="sq-dimensions" id="dimensionsContainer"></div>
+                <div class="result-section">
+                    <h3><i class="fas fa-star"></i> 주요 특징</h3>
+                    <ul id="resultTraits"></ul>
+                </div>
 
-                <div class="button-group">
-                    <button class="btn btn-primary" onclick="saveResult()">
-                        <i class="fas fa-save"></i> 결과 저장
-                    </button>
-                    <button class="btn btn-secondary" onclick="shareResult()">
-                        <i class="fas fa-share-alt"></i> 공유하기
-                    </button>
+                <div class="result-section">
+                    <h3><i class="fas fa-seedling"></i> 성장 방향</h3>
+                    <ul id="resultGrowth"></ul>
+                </div>
+
+                <div class="result-actions">
                     <a href="index.html" class="btn btn-secondary">
                         <i class="fas fa-home"></i> 홈으로
+                    </a>
+                    <a href="payment/checkout.html" class="btn btn-primary">
+                        <i class="fas fa-crown"></i> 프리미엄 리포트
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const questions = [
-            "사람들의 표정을 보고 감정을 정확하게 파악할 수 있다",
-            "대화 중 상대방의 비언어적 신호를 잘 읽는다",
-            "처음 만난 사람과도 쉽게 대화를 시작할 수 있다",
-            "사회적 상황에서 적절하게 행동하는 방법을 안다",
-            "갈등이 생기면 중재자 역할을 잘한다",
-            "다른 사람의 입장에서 생각하는 것이 자연스럽다",
-            "사교 모임에서 편안함을 느낀다",
-            "팀 프로젝트에서 협력을 이끌어낸다",
-            "상대방이 원하는 것을 빠르게 이해한다",
-            "사회적 규범과 예의를 잘 지킨다",
-            "다양한 사람들과 관계를 맺는 것이 즐겁다",
-            "대화를 통해 사람들에게 동기를 부여할 수 있다",
-            "상황에 맞게 대화 주제를 조절한다",
-            "네트워킹 능력이 뛰어나다",
-            "타인의 감정 변화를 민감하게 감지한다",
-            "그룹 내에서 분위기를 파악하고 조율한다",
-            "설득력 있게 의사소통한다",
-            "사람들이 나를 신뢰한다",
-            "사회적 단서를 빠르게 포착한다",
-            "대인관계에서 오해가 적다",
-            "새로운 환경에 빠르게 적응한다",
-            "타인과의 경계를 적절히 설정한다",
-            "사회적 상황에서의 암묵적 규칙을 이해한다",
-            "리더십을 발휘할 수 있다",
-            "다른 사람들의 동기와 의도를 파악한다",
-            "팀워크를 증진시키는 방법을 안다",
-            "문화적 차이를 존중하고 이해한다",
-            "사회적 압박 상황에서도 침착하다",
-            "타인의 강점을 인식하고 칭찬한다",
-            "갈등을 건설적으로 해결한다",
-            "그룹 역학을 이해하고 활용한다",
-            "사회적 상황에서 유머를 적절히 사용한다",
-            "다양한 성격의 사람들과 잘 어울린다",
-            "공감능력이 뛰어나다",
-            "인간관계에서 균형을 유지한다"
-        ];
-
-        const dimensions = {
-            socialAwareness: { name: '사회적 인식', desc: '사회적 상황과 타인의 감정을 이해하는 능력' },
-            interpersonal: { name: '대인관계', desc: '다른 사람들과 효과적으로 관계를 맺고 유지하는 능력' },
-            communication: { name: '의사소통', desc: '생각과 감정을 명확하게 전달하는 능력' },
-            empathy: { name: '공감', desc: '타인의 관점과 감정을 이해하고 공감하는 능력' },
-            socialAdaptation: { name: '사회적응', desc: '다양한 사회적 상황에 적응하는 능력' }
-        };
-
-        let currentQ = 0;
-        let answers = [];
-        let scores = { socialAwareness: 0, interpersonal: 0, communication: 0, empathy: 0, socialAdaptation: 0 };
-
-        function startTest() {
-            document.getElementById('startScreen').style.display = 'none';
-            document.getElementById('testScreen').style.display = 'block';
-            showQuestion();
-        }
-
-        function showQuestion() {
-            document.getElementById('currentQuestion').textContent = currentQ + 1;
-            document.getElementById('totalQuestions').textContent = questions.length;
-            document.getElementById('questionText').textContent = questions[currentQ];
-
-            const optionsContainer = document.getElementById('optionsContainer');
-            optionsContainer.innerHTML = '';
-
-            const options = ['전혀 아니다', '아니다', '보통이다', '그렇다', '매우 그렇다'];
-
-            options.forEach((option, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = option;
-                btn.onclick = () => selectAnswer(index + 1);
-                if (answers[currentQ] === index + 1) {
-                    btn.classList.add('selected');
-                }
-                optionsContainer.appendChild(btn);
-            });
-
-            const progress = ((currentQ + 1) / questions.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-
-            document.getElementById('prevBtn').style.display = currentQ === 0 ? 'none' : 'inline-block';
-        }
-
-        function selectAnswer(value) {
-            answers[currentQ] = value;
-            const btns = document.querySelectorAll('.option-btn');
-            btns.forEach((btn, index) => {
-                btn.classList.toggle('selected', index === value - 1);
-            });
-        }
-
-        function nextQuestion() {
-            if (!answers[currentQ]) {
-                alert('답변을 선택해주세요!');
-                return;
-            }
-
-            // 7개씩 각 영역에 배분
-            const dimensionKeys = ['socialAwareness', 'interpersonal', 'communication', 'empathy', 'socialAdaptation'];
-            const dimensionIndex = Math.floor(currentQ / 7);
-            scores[dimensionKeys[dimensionIndex]] += answers[currentQ];
-
-            if (currentQ < questions.length - 1) {
-                currentQ++;
-                showQuestion();
-            } else {
-                showResult();
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQ > 0) {
-                currentQ--;
-                showQuestion();
-            }
-        }
-
-        function showResult() {
-            document.getElementById('testScreen').style.display = 'none';
-            document.getElementById('resultScreen').style.display = 'block';
-
-            // 총점 계산 (35문항 × 5점 = 175점 만점을 100점 만점으로 환산)
-            const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
-            const normalizedScore = Math.round((totalScore / 175) * 100);
-
-            document.getElementById('sqScore').textContent = normalizedScore;
-
-            let level, description;
-            if (normalizedScore >= 90) {
-                level = '매우 높은 사회지능';
-                description = '뛰어난 사회적 인지능력과 대인관계 역량을 가지고 있습니다. 다양한 사회적 상황에서 탁월한 리더십을 발휘할 수 있습니다.';
-            } else if (normalizedScore >= 75) {
-                level = '높은 사회지능';
-                description = '사회적 상황을 잘 이해하고 타인과 효과적으로 소통합니다. 팀워크와 협력을 이끌어내는 능력이 뛰어납니다.';
-            } else if (normalizedScore >= 60) {
-                level = '평균 이상의 사회지능';
-                description = '일반적인 사회적 상황에서 적절하게 대응하며, 대인관계를 원만하게 유지합니다.';
-            } else if (normalizedScore >= 45) {
-                level = '평균 사회지능';
-                description = '기본적인 사회적 기술을 가지고 있으며, 익숙한 환경에서 편안하게 소통합니다.';
-            } else {
-                level = '발전 필요';
-                description = '사회적 기술을 향상시키기 위한 노력이 필요합니다. 다양한 사회적 경험을 통해 역량을 키워보세요.';
-            }
-
-            document.getElementById('sqLevel').textContent = level;
-            document.getElementById('sqDescription').textContent = description;
-
-            // 각 영역별 점수 표시
-            const container = document.getElementById('dimensionsContainer');
-            container.innerHTML = '';
-
-            Object.keys(dimensions).forEach(key => {
-                const dimScore = scores[key];
-                const maxScore = 35; // 7문항 × 5점
-                const percentage = Math.round((dimScore / maxScore) * 100);
-
-                const card = document.createElement('div');
-                card.className = 'dimension-card';
-                card.innerHTML = `
-                    <div class="dimension-header">
-                        <span class="dimension-name">${dimensions[key].name}</span>
-                        <span class="dimension-score">${percentage}%</span>
-                    </div>
-                    <div class="dimension-bar">
-                        <div class="dimension-bar-fill" style="width: ${percentage}%"></div>
-                    </div>
-                    <p class="dimension-description">${dimensions[key].desc}</p>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function saveResult() {
-            alert('결과 저장 기능은 프리미엄 회원에게 제공됩니다.');
-        }
-
-        function shareResult() {
-            alert('결과 공유 기능은 프리미엄 회원에게 제공됩니다.');
-        }
-    </script>
+    <script src="js/test-sq.js"></script>
 </body>
 </html>
