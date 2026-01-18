@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>애착유형검사 - Mentora</title>
-    <meta name="description" content="나의 애착 유형 알아보기">
+    <title>애착유형검사 - Mentora | 무료 애착 스타일 진단</title>
+    <meta name="description" content="나의 애착 유형을 알아보고 관계 패턴을 이해하세요. 안정형, 불안형, 회피형, 혼란형 4가지 애착 스타일 분석. 36개 문항, 12분 완성. 무료 심리검사.">
+    <meta name="keywords" content="애착유형검사, 애착 스타일, 애착 이론, 관계 심리, 안정형, 불안형, 회피형, 애착 패턴, 무료 심리검사">
+    <meta name="author" content="Mentora">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mentora.co.kr/test-attachment.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="애착유형검사 - Mentora">
+    <meta property="og:description" content="나의 애착 유형 알아보기. 관계 패턴을 이해하는 무료 심리검사.">
+    <meta property="og:url" content="https://mentora.co.kr/test-attachment.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mentora.co.kr/images/logo-brain-hd.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
     <link rel="stylesheet" href="css/test-common.css">
+    <style>
+        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
+        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+    </style>
 </head>
 <body>
     <!-- 네비게이션 바 -->
@@ -43,6 +59,7 @@
             <p>나의 관계 패턴과 애착 스타일을 이해하세요</p>
         </div>
 
+        <!-- 시작 화면 -->
         <div id="startScreen" class="start-screen">
             <div class="start-icon">💞</div>
             <h2>애착유형 검사를 시작합니다</h2>
@@ -70,10 +87,11 @@
             <button class="btn btn-secondary" onclick="location.href='index.html'" style="margin-top: 1rem;">🏠 홈으로 돌아가기</button>
         </div>
 
+        <!-- 검사 화면 -->
         <div id="testScreen" style="display:none;">
             <div class="progress-container">
                 <div class="progress-info">
-                    <span id="questionCounter">질문 1 / 20</span>
+                    <span id="questionCounter">질문 1 / 36</span>
                     <span id="progressPercent">0%</span>
                 </div>
                 <div class="progress-bar-bg">
@@ -83,243 +101,272 @@
             
             <div class="question-container">
                 <h3 class="question-text" id="questionText"></h3>
-                <div class="answer-options" id="answerOptions"></div>
+                <div class="scale-options" id="scaleOptions">
+                    <div class="scale-option" onclick="selectAnswer(1)">
+                        <div class="scale-number">1</div>
+                        <div class="scale-label">전혀<br>아니다</div>
+                    </div>
+                    <div class="scale-option" onclick="selectAnswer(2)">
+                        <div class="scale-number">2</div>
+                        <div class="scale-label">아니다</div>
+                    </div>
+                    <div class="scale-option" onclick="selectAnswer(3)">
+                        <div class="scale-number">3</div>
+                        <div class="scale-label">보통이다</div>
+                    </div>
+                    <div class="scale-option" onclick="selectAnswer(4)">
+                        <div class="scale-number">4</div>
+                        <div class="scale-label">그렇다</div>
+                    </div>
+                    <div class="scale-option" onclick="selectAnswer(5)">
+                        <div class="scale-number">5</div>
+                        <div class="scale-label">매우<br>그렇다</div>
+                    </div>
+                </div>
             </div>
-
+            
             <div class="button-area">
-                <button class="btn btn-secondary" onclick="prevQuestion()" id="prevBtn" style="display: none;">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" style="display: none;">
                     <i class="fas fa-arrow-left"></i> 이전
                 </button>
-                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>
                     다음 <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </div>
 
+        <!-- 결과 화면 -->
         <div id="resultScreen" style="display:none;">
             <div class="result-container">
-                <div class="result-icon">🎉</div>
-                <h2 class="result-title">당신의 애착 유형은</h2>
-                <div class="result-type" id="resultType"></div>
-                <div class="result-nickname" id="resultNickname"></div>
-                <p class="result-description" id="resultDescription"></p>
-
-                <div class="result-section">
-                    <h3>📊 유형별 점수</h3>
-                    <div id="attachmentChart" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;"></div>
+                <h2>검사 결과</h2>
+                <div class="result-type">
+                    <div class="result-badge" id="resultType"></div>
+                    <h3 id="resultTitle"></h3>
                 </div>
-
-                <div class="result-section">
-                    <h3>💡 유형 특징</h3>
-                    <div id="resultDetail"></div>
+                <p class="result-description" id="resultDescription"></p>
+                
+                <div class="result-details">
+                    <h3>유형별 점수</h3>
+                    <div id="scoreDetails"></div>
                 </div>
 
                 <div class="result-actions">
-                    <button class="btn btn-primary" onclick="shareResult()">결과 공유하기</button>
-                    <button class="btn btn-secondary" onclick="location.href='index.html'">다른 검사하기</button>
+                    <button class="btn btn-primary" onclick="location.href='index.html'">
+                        🏠 홈으로 돌아가기
+                    </button>
+                    <button class="btn btn-secondary" onclick="location.reload()">
+                        🔄 다시 검사하기
+                    </button>
                 </div>
             </div>
         </div>
     </div>
     </div>
 
-    <script>
-        const questions = [
-            { q: "나는 타인과 가까워지는 것이 편하다", type: "secure" },
-            { q: "나는 버림받을까 걱정된다", type: "anxious" },
-            { q: "나는 독립적이고 혼자 있는 게 편하다", type: "avoidant" },
-            { q: "나는 관계에서 일관성이 없다", type: "fearful" },
-            { q: "나는 상대방을 믿고 의지한다", type: "secure" },
-            { q: "나는 자주 불안감을 느낀다", type: "anxious" },
-            { q: "나는 감정 표현을 잘 하지 않는다", type: "avoidant" },
-            { q: "나는 친밀함이 두렵다", type: "fearful" },
-            { q: "나는 갈등을 건설적으로 해결한다", type: "secure" },
-            { q: "나는 상대의 관심이 끊임없이 필요하다", type: "anxious" },
-            { q: "나는 혼자 문제를 해결하려 한다", type: "avoidant" },
-            { q: "나는 관계가 불안정하다", type: "fearful" },
-            { q: "나는 안정적인 관계를 유지한다", type: "secure" },
-            { q: "나는 상대의 작은 행동에도 민감하다", type: "anxious" },
-            { q: "나는 거리를 두려는 경향이 있다", type: "avoidant" },
-            { q: "나는 가까워지고 싶지만 두렵다", type: "fearful" },
-            { q: "나는 감정을 솔직하게 표현한다", type: "secure" },
-            { q: "나는 자주 질투한다", type: "anxious" },
-            { q: "나는 약속을 피한다", type: "avoidant" },
-            { q: "나는 관계에 혼란스럽다", type: "fearful" }
-        ];
+<script>
+// 검사 데이터
+const questions = [
+    // 안정형 (Secure) - 9문항
+    {q: "나는 다른 사람과 가까워지는 것이 편안하다", type: "secure"},
+    {q: "나는 다른 사람에게 의지하는 것을 불편해하지 않는다", type: "secure"},
+    {q: "나는 다른 사람이 나에게 너무 가까워질까 걱정하지 않는다", type: "secure"},
+    {q: "나는 혼자 있어도 외롭지 않다", type: "secure"},
+    {q: "나는 관계에서 안정감을 느낀다", type: "secure"},
+    {q: "나는 내가 사랑받고 있다고 확신한다", type: "secure"},
+    {q: "나는 친밀한 관계를 편안하게 느낀다", type: "secure"},
+    {q: "나는 타인을 쉽게 신뢰한다", type: "secure"},
+    {q: "나는 관계에서 균형을 잘 유지한다", type: "secure"},
 
-        const attachmentTypes = {
-            secure: { name: "안정형", desc: "건강하고 안정적인 관계", icon: "💚", color: "#27ae60" },
-            anxious: { name: "불안형", desc: "관계에 대한 불안과 걱정", icon: "💛", color: "#f39c12" },
-            avoidant: { name: "회피형", desc: "독립성을 중시하고 거리 유지", icon: "💙", color: "#3498db" },
-            fearful: { name: "혼란형", desc: "친밀함에 대한 양가감정", icon: "💜", color: "#9b59b6" }
-        };
+    // 불안형 (Anxious) - 9문항
+    {q: "나는 사람들이 나를 버릴까 봐 자주 걱정한다", type: "anxious"},
+    {q: "나는 상대방이 나만큼 가까워지고 싶어 하지 않는 것 같다", type: "anxious"},
+    {q: "나는 혼자 있을 때 불안하다", type: "anxious"},
+    {q: "나는 사람들이 나를 진정으로 좋아하지 않을까 봐 걱정한다", type: "anxious"},
+    {q: "나는 상대방의 사랑을 확인받고 싶어 한다", type: "anxious"},
+    {q: "나는 관계에서 거절당할까 봐 두렵다", type: "anxious"},
+    {q: "나는 상대방의 반응에 민감하다", type: "anxious"},
+    {q: "나는 사랑받지 못할까 봐 자주 불안하다", type: "anxious"},
+    {q: "나는 관계에서 버림받을까 봐 집착하게 된다", type: "anxious"},
 
-        let currentQuestion = 0;
-        let answers = [];
-        let scores = { secure: 0, anxious: 0, avoidant: 0, fearful: 0 };
+    // 회피형 (Avoidant) - 9문항
+    {q: "나는 다른 사람과 너무 가까워지는 것이 불편하다", type: "avoidant"},
+    {q: "나는 독립적이고 자급자족하는 것을 중요하게 생각한다", type: "avoidant"},
+    {q: "나는 다른 사람에게 의지하는 것을 선호하지 않는다", type: "avoidant"},
+    {q: "나는 친밀한 관계가 부담스럽다", type: "avoidant"},
+    {q: "나는 감정 표현을 어려워한다", type: "avoidant"},
+    {q: "나는 관계보다 일이나 취미가 더 중요하다", type: "avoidant"},
+    {q: "나는 혼자 있는 시간이 더 편안하다", type: "avoidant"},
+    {q: "나는 타인과 거리를 두는 것을 선호한다", type: "avoidant"},
+    {q: "나는 깊은 관계 형성을 피하는 편이다", type: "avoidant"},
 
-        function startTest() {
-            document.getElementById('startScreen').style.display = 'none';
-            document.getElementById('testScreen').style.display = 'block';
-            showQuestion();
+    // 혼란형 (Fearful) - 9문항
+    {q: "나는 친밀한 관계를 원하면서도 두렵다", type: "fearful"},
+    {q: "나는 사람들이 나를 상처 줄까 봐 걱정한다", type: "fearful"},
+    {q: "나는 가까워지고 싶지만 거절당할까 봐 두렵다", type: "fearful"},
+    {q: "나는 관계에서 자주 혼란스럽다", type: "fearful"},
+    {q: "나는 신뢰하기 어렵다", type: "fearful"},
+    {q: "나는 관계에서 상처받을까 봐 회피한다", type: "fearful"},
+    {q: "나는 친밀함을 원하면서도 밀어낸다", type: "fearful"},
+    {q: "나는 관계에서 안정감을 느끼기 어렵다", type: "fearful"},
+    {q: "나는 타인을 믿기 어렵지만 외로움을 느낀다", type: "fearful"}
+];
+
+// 유형 정보
+const types = {
+    secure: {
+        name: "안정형",
+        icon: "💚",
+        description: "건강한 관계를 형성하며, 자신과 타인을 신뢰합니다. 친밀함과 독립성의 균형을 잘 유지하며, 관계에서 안정감을 느낍니다.",
+        traits: ["자신감 있음", "타인 신뢰", "안정적 관계", "감정 조절 능력"],
+        advice: "현재의 건강한 애착 스타일을 유지하면서, 다른 사람들에게 긍정적인 영향을 주세요."
+    },
+    anxious: {
+        name: "불안형",
+        icon: "💛",
+        description: "친밀함을 갈망하지만 버림받을까 봐 불안해합니다. 상대방의 사랑과 관심을 지속적으로 확인받고 싶어 합니다.",
+        traits: ["관계 민감성", "버림받을 두려움", "확인 욕구", "감정 기복"],
+        advice: "자기 가치를 인정하고, 상대방을 신뢰하는 연습을 해보세요. 독립성을 키우는 것도 도움이 됩니다."
+    },
+    avoidant: {
+        name: "회피형",
+        icon: "💙",
+        description: "독립성을 중시하며 친밀한 관계를 불편해합니다. 감정 표현을 어려워하고 거리를 두는 경향이 있습니다.",
+        traits: ["독립성 중시", "감정 표현 어려움", "거리두기", "자급자족"],
+        advice: "친밀함이 위협이 아님을 이해하고, 감정을 표현하는 연습을 해보세요. 신뢰 관계를 천천히 쌓아가세요."
+    },
+    fearful: {
+        name: "혼란형",
+        icon: "💜",
+        description: "친밀함을 원하면서도 동시에 두려워합니다. 관계에서 혼란스러움을 자주 느끼며 신뢰하기 어려워합니다.",
+        traits: ["양가감정", "신뢰 어려움", "관계 혼란", "회피와 갈망"],
+        advice: "과거의 상처를 치유하고, 안전한 관계 경험을 쌓아가세요. 전문가의 도움을 받는 것도 좋습니다."
+    }
+};
+
+// 검사 상태
+let currentQuestion = 0;
+let answers = [];
+let scores = { secure: 0, anxious: 0, avoidant: 0, fearful: 0 };
+
+// 검사 시작
+function startTest() {
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('testScreen').style.display = 'block';
+    showQuestion();
+}
+
+// 질문 표시
+function showQuestion() {
+    const question = questions[currentQuestion];
+    document.getElementById('questionText').textContent = question.q;
+    
+    // 진행률 업데이트
+    const progress = Math.round(((currentQuestion + 1) / questions.length) * 100);
+    document.getElementById('questionCounter').textContent = `질문 ${currentQuestion + 1} / ${questions.length}`;
+    document.getElementById('progressPercent').textContent = `${progress}%`;
+    document.getElementById('progressFill').style.width = `${progress}%`;
+    
+    // 버튼 상태
+    document.getElementById('prevBtn').style.display = currentQuestion > 0 ? 'block' : 'none';
+    document.getElementById('nextBtn').disabled = true;
+    
+    // 선택 초기화
+    document.querySelectorAll('.scale-option').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    
+    // 이전 답변이 있으면 표시
+    if (answers[currentQuestion]) {
+        const prevAnswer = answers[currentQuestion];
+        document.querySelectorAll('.scale-option')[prevAnswer - 1].classList.add('selected');
+        document.getElementById('nextBtn').disabled = false;
+    }
+}
+
+// 답변 선택
+function selectAnswer(value) {
+    answers[currentQuestion] = value;
+    
+    // 선택 표시
+    document.querySelectorAll('.scale-option').forEach((opt, idx) => {
+        opt.classList.remove('selected');
+        if (idx === value - 1) {
+            opt.classList.add('selected');
         }
+    });
+    
+    document.getElementById('nextBtn').disabled = false;
+    
+    // 자동 진행 (0.3초 후)
+    setTimeout(() => {
+        nextQuestion();
+    }, 300);
+}
 
-        function showQuestion() {
-            const q = questions[currentQuestion];
-            const questionText = document.getElementById('questionText');
-            const answerOptions = document.getElementById('answerOptions');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+// 이전 질문
+function prevQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+    }
+}
 
-            questionText.textContent = q.q;
+// 다음 질문
+function nextQuestion() {
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion();
+    } else {
+        showResult();
+    }
+}
 
-            const options = [
-                { text: '매우 그렇다', value: 5 },
-                { text: '그렇다', value: 4 },
-                { text: '보통이다', value: 3 },
-                { text: '아니다', value: 2 },
-                { text: '전혀 아니다', value: 1 }
-            ];
-
-            answerOptions.innerHTML = options.map((option, index) => `
-                <button class="answer-option ${answers[currentQuestion] === option.value ? 'selected' : ''}" 
-                        onclick="selectAnswer(${option.value})" 
-                        data-value="${option.value}">
-                    <span class="option-number">${index + 1}</span>
-                    <span class="option-text">${option.text}</span>
-                </button>
-            `).join('');
-
-            updateProgress();
-            prevBtn.style.display = currentQuestion === 0 ? 'none' : 'inline-block';
-            nextBtn.disabled = answers[currentQuestion] === undefined;
+// 결과 계산 및 표시
+function showResult() {
+    // 점수 계산
+    answers.forEach((answer, idx) => {
+        const type = questions[idx].type;
+        scores[type] += answer;
+    });
+    
+    // 최고 점수 타입 찾기
+    let maxType = 'secure';
+    let maxScore = scores.secure;
+    for (let type in scores) {
+        if (scores[type] > maxScore) {
+            maxScore = scores[type];
+            maxType = type;
         }
+    }
+    
+    const resultData = types[maxType];
+    
+    // 결과 화면 표시
+    document.getElementById('testScreen').style.display = 'none';
+    document.getElementById('resultScreen').style.display = 'block';
+    
+    document.getElementById('resultType').textContent = `${resultData.icon} ${resultData.name}`;
+    document.getElementById('resultTitle').textContent = resultData.name;
+    document.getElementById('resultDescription').textContent = resultData.description;
+    
+    // 유형별 점수 표시
+    let scoreHTML = '';
+    for (let type in scores) {
+        const percentage = Math.round((scores[type] / 45) * 100);
+        scoreHTML += `
+            <div class="score-item">
+                <div class="score-label">${types[type].icon} ${types[type].name}</div>
+                <div class="score-bar">
+                    <div class="score-fill" style="width: ${percentage}%; background: linear-gradient(135deg, #2c5f4f, #d4af37);">
+                        ${percentage}%
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+    document.getElementById('scoreDetails').innerHTML = scoreHTML;
+}
+</script>
 
-        function selectAnswer(value) {
-            answers[currentQuestion] = value;
-            
-            const buttons = document.querySelectorAll('.answer-option');
-            buttons.forEach(btn => {
-                btn.classList.remove('selected');
-                if (parseInt(btn.dataset.value) === value) {
-                    btn.classList.add('selected');
-                }
-            });
-
-            document.getElementById('nextBtn').disabled = false;
-
-            setTimeout(() => {
-                nextQuestion();
-            }, 300);
-        }
-
-        function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion();
-            }
-        }
-
-        function nextQuestion() {
-            if (answers[currentQuestion] === undefined) {
-                return;
-            }
-
-            const q = questions[currentQuestion];
-            scores[q.type] += answers[currentQuestion];
-
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion();
-            } else {
-                showResult();
-            }
-        }
-
-        function updateProgress() {
-            const progress = ((currentQuestion + 1) / questions.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-            document.getElementById('questionCounter').textContent = `질문 ${currentQuestion + 1} / ${questions.length}`;
-            document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
-        }
-
-        function showResult() {
-            document.getElementById('testScreen').style.display = 'none';
-            document.getElementById('resultScreen').style.display = 'block';
-            
-            const maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            const typeInfo = attachmentTypes[maxType];
-            
-            document.getElementById('resultType').textContent = maxType.charAt(0).toUpperCase() + maxType.slice(1);
-            document.getElementById('resultNickname').textContent = typeInfo.name;
-            document.getElementById('resultDescription').textContent = typeInfo.desc;
-            
-            const maxScore = Math.max(...Object.values(scores));
-            document.getElementById('attachmentChart').innerHTML = Object.entries(scores)
-                .map(([type, score]) => {
-                    const info = attachmentTypes[type];
-                    const isActive = score === maxScore;
-                    return `
-                        <div style="background: ${isActive ? '#f5f7fa' : 'white'}; padding: 1.5rem; border-radius: 12px; border: 3px solid ${isActive ? '#2c5f4f' : '#e0e0e0'};">
-                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">${info.icon}</div>
-                            <h4 style="color: ${info.color}; margin: 0.5rem 0; font-size: 1.125rem;">${info.name}</h4>
-                            <div style="background: #e0e0e0; height: 8px; border-radius: 4px; overflow: hidden; margin: 0.5rem 0;">
-                                <div style="background: ${info.color}; height: 100%; width: ${score/maxScore*100}%; transition: width 0.5s ease;"></div>
-                            </div>
-                            <div style="color: #666; font-size: 0.875rem;">${score}점</div>
-                        </div>
-                    `;
-                }).join('');
-            
-            document.getElementById('resultDetail').innerHTML = getTypeDetails(maxType);
-            saveResult(maxType, scores);
-        }
-
-        function getTypeDetails(type) {
-            const details = {
-                secure: `<div style="background: white; padding: 1.5rem; border-radius: 12px;">
-                    <h4 style="color: #27ae60; font-size: 1.125rem; margin-bottom: 0.75rem;">✅ 안정형의 특징</h4>
-                    <p style="color: #666; line-height: 1.8;">• 건강한 관계 유지 능력<br>• 신뢰와 의존의 균형<br>• 갈등 해결 능력<br>• 감정 표현이 자유로움</p>
-                    <h4 style="color: #27ae60; font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">🎯 발전 방향</h4>
-                    <p style="color: #666; line-height: 1.8;">현재의 긍정적인 패턴을 유지하되, 타인의 다양한 애착 유형을 이해하는 능력을 키우세요.</p>
-                    </div>`,
-                anxious: `<div style="background: white; padding: 1.5rem; border-radius: 12px;">
-                    <h4 style="color: #f39c12; font-size: 1.125rem; margin-bottom: 0.75rem;">💛 불안형의 특징</h4>
-                    <p style="color: #666; line-height: 1.8;">• 버림받을 것에 대한 두려움<br>• 과도한 관심 요구<br>• 상대의 행동에 민감<br>• 끊임없는 확인 필요</p>
-                    <h4 style="color: #f39c12; font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">🎯 발전 방향</h4>
-                    <p style="color: #666; line-height: 1.8;">자기 가치를 높이고, 독립성을 키우세요. 명상과 심리 상담이 도움이 됩니다.</p>
-                    </div>`,
-                avoidant: `<div style="background: white; padding: 1.5rem; border-radius: 12px;">
-                    <h4 style="color: #3498db; font-size: 1.125rem; margin-bottom: 0.75rem;">💙 회피형의 특징</h4>
-                    <p style="color: #666; line-height: 1.8;">• 독립성 강조<br>• 감정 표현 어려움<br>• 친밀함 회피<br>• 개인 공간 중시</p>
-                    <h4 style="color: #3498db; font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">🎯 발전 방향</h4>
-                    <p style="color: #666; line-height: 1.8;">천천히 감정을 표현하는 연습을 하세요. 신뢰할 수 있는 관계에서 시작하는 것이 좋습니다.</p>
-                    </div>`,
-                fearful: `<div style="background: white; padding: 1.5rem; border-radius: 12px;">
-                    <h4 style="color: #9b59b6; font-size: 1.125rem; margin-bottom: 0.75rem;">💜 혼란형의 특징</h4>
-                    <p style="color: #666; line-height: 1.8;">• 친밀함에 대한 양가감정<br>• 불안정한 관계 패턴<br>• 가까워지고 싶지만 두려움<br>• 일관성 부족</p>
-                    <h4 style="color: #9b59b6; font-size: 1.125rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">🎯 발전 방향</h4>
-                    <p style="color: #666; line-height: 1.8;">전문가의 도움을 받아 과거 상처를 치유하고, 안전한 관계 경험을 쌓아가세요.</p>
-                    </div>`
-            };
-            return details[type];
-        }
-
-        function saveResult(type, scores) {
-            const result = { test: 'Attachment', type, scores, date: new Date().toISOString(), timestamp: Date.now() };
-            const results = JSON.parse(localStorage.getItem('testResults') || '[]');
-            results.push(result);
-            localStorage.setItem('testResults', JSON.stringify(results));
-        }
-
-        function shareResult() {
-            if (navigator.share) {
-                navigator.share({ title: 'Mentora 애착유형검사 결과', text: '나의 애착 유형을 확인해보세요!', url: window.location.href });
-            } else {
-                alert('결과가 클립보드에 복사되었습니다!');
-                navigator.clipboard.writeText(window.location.href);
-            }
-        }
-    </script>
 </body>
 </html>
