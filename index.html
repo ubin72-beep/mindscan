@@ -149,7 +149,9 @@
     <header class="header">
         <nav class="nav">
             <a href="index.html" class="nav-logo">
-                <div class="logo-icon-text">M</div>
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
                 <span class="logo-text">Mentora</span>
             </a>
             
@@ -163,7 +165,6 @@
                 <li><a href="#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
                 <li><a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 기능</a></li>
                 <li><a href="#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
-                <li><a href="#statistics" class="nav-link" onclick="closeMobileMenu()">통계</a></li>
                 <li><a href="#reviews" class="nav-link" onclick="closeMobileMenu()">후기</a></li>
                 <li><a href="mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
                 <li><a href="admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
@@ -509,9 +510,10 @@
 
     <section class="premium-features" id="premium-features">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">프리미엄 기능</h2>
-                <p class="section-description">AI 기술로 더욱 깊이 있는 분석과 맞춤형 솔루션을 제공합니다</p>
+            <div class="section-header premium-header">
+                <span class="premium-badge-title">✨ PREMIUM</span>
+                <h2 class="section-title premium-main-title">프리미엄 기능</h2>
+                <p class="section-description premium-subtitle">AI 기술로 더욱 깊이 있는 분석과 맞춤형 솔루션을 제공합니다</p>
             </div>
             
             <div class="premium-grid">
@@ -681,57 +683,6 @@
         </div>
     </section>
 
-    <section class="statistics" id="statistics">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">실시간 통계</h2>
-                <p class="section-description">Mentora 사용자들의 검사 결과를 확인해보세요</p>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <i class="fas fa-users stat-icon"></i>
-                    <div class="stat-content">
-                        <h3 class="stat-number">많은</h3>
-                        <p class="stat-label">총 검사 참여자</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-heart stat-icon"></i>
-                    <div class="stat-content">
-                        <h3 class="stat-number">높은</h3>
-                        <p class="stat-label">만족도</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-star stat-icon"></i>
-                    <div class="stat-content">
-                        <h3 class="stat-number">우수⭐</h3>
-                        <p class="stat-label">평균 평점</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-comment stat-icon"></i>
-                    <div class="stat-content">
-                        <h3 class="stat-number">많은</h3>
-                        <p class="stat-label">후기 수</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="charts-container">
-                <div class="chart-card">
-                    <h3>MBTI 유형 분포</h3>
-                    <canvas id="mbtiChart"></canvas>
-                </div>
-                <div class="chart-card">
-                    <h3>연령대별 참여율</h3>
-                    <canvas id="ageChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="reviews" id="reviews">
         <div class="container">
             <div class="section-header">
@@ -818,7 +769,9 @@
                 <!-- Card 1: 회사 정보 -->
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <div class="footer-logo-icon-text">M</div>
+                        <div class="footer-logo-icon-text">
+                            <i class="fas fa-brain"></i>
+                        </div>
                         <span>Mentora</span>
                     </div>
                     <p class="footer-tagline">진짜 나를 만나는 가장 정확한 방법</p>
