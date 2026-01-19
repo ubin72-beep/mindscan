@@ -112,9 +112,14 @@
             box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
         }
 
-        .test-screen,
-        .result-screen {
-            display: none;
+        #testScreen,
+        #resultScreen {
+            display: none !important;
+        }
+        
+        #testScreen.active,
+        #resultScreen.active {
+            display: block !important;
         }
 
         .progress-container {
@@ -389,7 +394,7 @@
 
     <div class="page-content-wrapper">
         <div class="test-container">
-                       <div id="startScreen" class="start-screen">
+            <div id="startScreen" class="start-screen">
                 <div class="start-icon">💞</div>
                 <h2>애착유형검사를 시작합니다</h2>
                 <p>4가지 애착 스타일로 당신의 관계 패턴을 이해하세요.</p>
@@ -415,8 +420,7 @@
                 <button class="btn-start" onclick="startTest()">검사 시작하기</button>
             </div>
 
-                      <div id="resultScreen" class="result-screen">
-                <div class="result-header">
+            <div id="testScreen" class="test-screen">
                 <div class="progress-container">
                     <div class="progress-text">
                         <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
@@ -441,7 +445,7 @@
                 </div>
             </div>
 
-            <div class="result-screen">
+            <div id="resultScreen" class="result-screen">
                 <div class="result-header">
                     <div class="result-type" id="resultType"></div>
                     <h2 class="result-title" id="resultTitle"></h2>
