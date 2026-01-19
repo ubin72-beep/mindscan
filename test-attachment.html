@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>애착유형검사 - Mentora</title>
-    <meta name="description" content="4가지 애착유형으로 나를 이해하는 애착유형검사">
+    <title>애착유형 검사 - Mentora</title>
+    <meta name="description" content="4가지 애착 스타일로 나를 이해하는 애착유형검사">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -211,8 +211,8 @@
         }
 
         .answer-btn.selected .answer-number {
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
-            color: white;
+            background: white;
+            color: #d4af37;
         }
 
         .answer-text {
@@ -220,6 +220,10 @@
             font-weight: 600;
             color: #333;
             text-align: left;
+        }
+
+        .answer-btn.selected .answer-text {
+            color: white;
         }
 
         .test-navigation {
@@ -386,9 +390,9 @@
     <div class="page-content-wrapper">
         <div class="test-container">
             <div class="start-screen">
-                <div class="start-icon">💝</div>
+                <div class="start-icon">💞</div>
                 <h2>애착유형검사를 시작합니다</h2>
-                <p>4가지 애착유형으로 당신의 관계 패턴을 이해하세요.</p>
+                <p>4가지 애착 스타일로 당신의 관계 패턴을 이해하세요.</p>
                 
                 <div class="test-info">
                     <div class="info-item">
@@ -399,7 +403,7 @@
                     <div class="info-item">
                         <i class="fas fa-question-circle"></i>
                         <div class="info-label">질문 수</div>
-                        <div class="info-value">36개</div>
+                        <div class="info-value">10개</div>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-users"></i>
@@ -414,7 +418,7 @@
             <div class="test-screen">
                 <div class="progress-container">
                     <div class="progress-text">
-                        <span id="currentQuestion">1</span> / <span id="totalQuestions">36</span>
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
@@ -427,7 +431,7 @@
                 </div>
 
                 <div class="test-navigation">
-                    <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">
                         <i class="fas fa-arrow-left"></i> 이전
                     </button>
                     <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
