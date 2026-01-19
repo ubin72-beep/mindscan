@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/hero-modern.css">
     <link rel="stylesheet" href="css/test-cards-modern.css">
-    <link rel="stylesheet" href="css/fun-cards.css">
+    <link rel="stylesheet" href="css/fun-cards.css?v=2">
     <link rel="stylesheet" href="css/premium-features.css">
     <link rel="stylesheet" href="css/pricing-modern.css">
     <link rel="stylesheet" href="css/reviews-modern.css">
@@ -44,7 +44,6 @@
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- 구조화된 데이터 (Structured Data) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -156,7 +155,6 @@
                 <span class="logo-text">Mentora</span>
             </a>
             
-            <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
@@ -508,8 +506,9 @@
                     </div>
                     <button class="btn btn-test" onclick="startTest('selfesteem')">검사 시작</button>
                 </div>
+            </div>
 
-                <!-- 재미 카드 섹션 헤더 -->
+            <div class="fun-cards-grid">
                 <div class="fun-section-header">
                     <div class="fun-divider"></div>
                     <h3 class="fun-section-title">
@@ -520,7 +519,6 @@
                     <p class="fun-section-description">가볍고 재미있는 콘텐츠로 당신의 성향을 알아보세요</p>
                 </div>
 
-                <!-- 재미로 보는 혈액형 분석 -->
                 <div class="fun-card blood-type-card" data-category="fun">
                     <div class="fun-badge">재미</div>
                     <div class="fun-icon blood-a">
@@ -533,7 +531,7 @@
                         <span class="trait-tag">배려심</span>
                         <span class="trait-tag">계획적</span>
                     </div>
-                    <button class="btn btn-fun" onclick="alert('A형 성격 상세 분석 준비중입니다! 🩸')">자세히 보기</button>
+                    <a href="blood-sagunja.html" class="btn btn-fun">자세히 보기</a>
                 </div>
 
                 <div class="fun-card blood-type-card" data-category="fun">
@@ -548,7 +546,7 @@
                         <span class="trait-tag">자유로움</span>
                         <span class="trait-tag">낙천적</span>
                     </div>
-                    <button class="btn btn-fun" onclick="alert('B형 성격 상세 분석 준비중입니다! 🩸')">자세히 보기</button>
+                    <a href="blood-sagunja.html" class="btn btn-fun">자세히 보기</a>
                 </div>
 
                 <div class="fun-card blood-type-card" data-category="fun">
@@ -563,7 +561,7 @@
                         <span class="trait-tag">사교적</span>
                         <span class="trait-tag">적극적</span>
                     </div>
-                    <button class="btn btn-fun" onclick="alert('O형 성격 상세 분석 준비중입니다! 🩸')">자세히 보기</button>
+                    <a href="blood-sagunja.html" class="btn btn-fun">자세히 보기</a>
                 </div>
 
                 <div class="fun-card blood-type-card" data-category="fun">
@@ -578,10 +576,9 @@
                         <span class="trait-tag">개성있음</span>
                         <span class="trait-tag">예술적</span>
                     </div>
-                    <button class="btn btn-fun" onclick="alert('AB형 성격 상세 분석 준비중입니다! 🩸')">자세히 보기</button>
+                    <a href="blood-sagunja.html" class="btn btn-fun">자세히 보기</a>
                 </div>
 
-                <!-- 4군자 성격 유형 -->
                 <div class="fun-card sagunja-card" data-category="traditional">
                     <div class="fun-badge traditional">전통</div>
                     <div class="fun-icon sagunja-plum">
@@ -594,7 +591,7 @@
                         <span class="trait-tag">의지</span>
                         <span class="trait-tag">고결함</span>
                     </div>
-                    <button class="btn btn-fun traditional" onclick="alert('매화 성격 상세 분석 준비중입니다! 🌸')">자세히 보기</button>
+                    <a href="blood-sagunja.html" class="btn btn-fun traditional">자세히 보기</a>
                 </div>
 
                 <div class="fun-card sagunja-card" data-category="traditional">
@@ -609,7 +606,7 @@
                         <span class="trait-tag">품격</span>
                         <span class="trait-tag">고귀함</span>
                     </div>
-                    <button class="btn btn-fun traditional" onclick="alert('난초 성격 상세 분석 준비중입니다! 🌺')">자세히 보기</button>
+                    <a href="blood-sagunja.html" class="btn btn-fun traditional">자세히 보기</a>
                 </div>
 
                 <div class="fun-card sagunja-card" data-category="traditional">
@@ -624,7 +621,7 @@
                         <span class="trait-tag">근면함</span>
                         <span class="trait-tag">절개</span>
                     </div>
-                    <button class="btn btn-fun traditional" onclick="alert('국화 성격 상세 분석 준비중입니다! 🌼')">자세히 보기</button>
+                    <a href="blood-sagunja.html" class="btn btn-fun traditional">자세히 보기</a>
                 </div>
 
                 <div class="fun-card sagunja-card" data-category="traditional">
@@ -639,7 +636,7 @@
                         <span class="trait-tag">곧은 성품</span>
                         <span class="trait-tag">지조</span>
                     </div>
-                    <button class="btn btn-fun traditional" onclick="alert('대나무 성격 상세 분석 준비중입니다! 🎋')">자세히 보기</button>
+                    <a href="blood-sagunja.html" class="btn btn-fun traditional">자세히 보기</a>
                 </div>
             </div>
         </div>
@@ -876,7 +873,6 @@
         </div>
     </section>
 
-    <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
         <a href="#home" class="nav-item active">
             <i class="fas fa-home"></i>
@@ -903,7 +899,6 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <!-- Card 1: 회사 정보 -->
                 <div class="footer-section">
                     <div class="footer-logo">
                         <div class="footer-logo-icon-text">
@@ -922,7 +917,6 @@
                     </div>
                 </div>
                 
-                <!-- Card 2: 빠른 링크 -->
                 <div class="footer-section">
                     <h4>빠른 링크</h4>
                     <ul>
@@ -937,7 +931,6 @@
                     </ul>
                 </div>
                 
-                <!-- Card 3: 소셜 & 법적 고지 -->
                 <div class="footer-section">
                     <h4>연결하기</h4>
                     <div class="social-links">
@@ -970,7 +963,6 @@
     <script src="js/data.js?v=2"></script>
     <script src="js/main.js?v=2"></script>
     <script>
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
             const menuToggle = document.getElementById('mobileMenuToggle');
@@ -996,7 +988,6 @@
             icon.classList.add('fa-bars');
         }
 
-        // Mobile Bottom Nav Active State
         document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(item => {
             item.addEventListener('click', function() {
                 document.querySelectorAll('.mobile-bottom-nav .nav-item').forEach(i => i.classList.remove('active'));
