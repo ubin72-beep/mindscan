@@ -23,24 +23,36 @@
             min-height: 100vh;
         }
 
+        .page-content-wrapper {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
         .test-container {
             max-width: 700px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        .start-screen {
+        .start-screen,
+        .test-screen,
+        .result-screen {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 24px;
             padding: 40px 30px;
-            text-align: center;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .test-screen,
+        .result-screen {
+            display: none;
         }
 
         .start-icon {
             font-size: 4rem;
             margin-bottom: 20px;
             animation: float 3s ease-in-out infinite;
+            text-align: center;
         }
 
         @keyframes float {
@@ -53,6 +65,7 @@
             font-weight: 700;
             color: #2c5f4f;
             margin-bottom: 15px;
+            text-align: center;
         }
 
         .start-screen p {
@@ -60,6 +73,7 @@
             color: #666;
             line-height: 1.6;
             margin-bottom: 25px;
+            text-align: center;
         }
 
         .test-info {
@@ -105,6 +119,8 @@
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
             transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
         }
 
         .btn-start:hover {
@@ -112,22 +128,11 @@
             box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
         }
 
-        #testScreen,
-        #resultScreen {
-            display: none !important;
-        }
-        
-        #testScreen.active,
-        #resultScreen.active {
-            display: block !important;
-        }
-
         .progress-container {
-            background: rgba(255, 255, 255, 0.98);
+            background: white;
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .progress-text {
@@ -155,11 +160,10 @@
         }
 
         .question-card {
-            background: rgba(255, 255, 255, 0.98);
+            background: white;
             border-radius: 20px;
             padding: 25px 20px;
             margin-bottom: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .question-text {
@@ -278,13 +282,6 @@
         .btn-secondary:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-        }
-
-        .result-screen {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .result-header {
@@ -411,7 +408,7 @@
                         <div class="info-value">15개</div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-chart-bar"></i>
                         <div class="info-label">점수 범위</div>
                         <div class="info-value">0-15점</div>
                     </div>
