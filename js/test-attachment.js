@@ -190,9 +190,7 @@ function startTest() {
     }
     
     startScreen.style.display = 'none';
-    testScreen.style.display = 'block';
-    testScreen.style.visibility = 'visible';
-    testScreen.style.opacity = '1';
+    testScreen.classList.add('active');
     
     document.getElementById('totalQuestions').textContent = questions.length;
     showQuestion();
@@ -322,8 +320,8 @@ function showResult(type) {
     const result = results[type];
     
     // 화면 전환
-    document.getElementById('testScreen').style.display = 'none';
-    document.getElementById('resultScreen').style.display = 'block';
+    document.getElementById('testScreen').classList.remove('active');
+    document.getElementById('resultScreen').classList.add('active');
     
     // 결과 내용 업데이트
     document.getElementById('resultType').textContent = result.icon;
