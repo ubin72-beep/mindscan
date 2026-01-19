@@ -180,8 +180,20 @@ const results = {
 
 function startTest() {
     console.log('애착유형검사 시작');
-    document.getElementById('startScreen').style.display = 'none';
-    document.getElementById('testScreen').style.display = 'block';
+    const startScreen = document.getElementById('startScreen');
+    const testScreen = document.getElementById('testScreen');
+    
+    if (!startScreen || !testScreen) {
+        console.error('화면 요소를 찾을 수 없습니다!');
+        alert('오류가 발생했습니다. 페이지를 새로고침 해주세요.');
+        return;
+    }
+    
+    startScreen.style.display = 'none';
+    testScreen.style.display = 'block';
+    testScreen.style.visibility = 'visible';
+    testScreen.style.opacity = '1';
+    
     document.getElementById('totalQuestions').textContent = questions.length;
     showQuestion();
 }
