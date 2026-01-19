@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQ 사회성지능검사 - Mentora</title>
-    <meta name="description" content="사회적 관계 능력을 측정하는 SQ 검사">
+    <title>사회지능 검사 - Mentora</title>
+    <meta name="description" content="SQ 사회지능으로 대인관계 능력을 측정하는 검사">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -112,9 +112,14 @@
             box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
         }
 
-        .test-screen,
-        .result-screen {
-            display: none;
+        #testScreen,
+        #resultScreen {
+            display: none !important;
+        }
+        
+        #testScreen.active,
+        #resultScreen.active {
+            display: block !important;
         }
 
         .progress-container {
@@ -211,8 +216,8 @@
         }
 
         .answer-btn.selected .answer-number {
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
-            color: white;
+            background: white;
+            color: #d4af37;
         }
 
         .answer-text {
@@ -220,6 +225,10 @@
             font-weight: 600;
             color: #333;
             text-align: left;
+        }
+
+        .answer-btn.selected .answer-text {
+            color: white;
         }
 
         .test-navigation {
@@ -368,7 +377,7 @@
                     <span class="page-nav-logo-text">Mentora</span>
                 </a>
                 <div class="page-nav-divider"></div>
-                <h2 class="page-nav-title">SQ 사회성지능검사</h2>
+                <h2 class="page-nav-title">사회지능검사</h2>
             </div>
             <div class="page-nav-right">
                 <button class="page-nav-btn page-nav-btn-back" onclick="history.back()">
@@ -385,36 +394,36 @@
 
     <div class="page-content-wrapper">
         <div class="test-container">
-            <div class="start-screen">
+            <div id="startScreen" class="start-screen">
                 <div class="start-icon">🤝</div>
-                <h2>SQ 사회성지능검사를 시작합니다</h2>
-                <p>사회적 관계와 소통 능력을 측정합니다.</p>
+                <h2>사회지능검사를 시작합니다</h2>
+                <p>대인관계 능력과 사회적 민감성을 측정합니다.</p>
                 
                 <div class="test-info">
                     <div class="info-item">
                         <i class="fas fa-clock"></i>
                         <div class="info-label">소요 시간</div>
-                        <div class="info-value">12분</div>
+                        <div class="info-value">10분</div>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-question-circle"></i>
                         <div class="info-label">질문 수</div>
-                        <div class="info-value">40개</div>
+                        <div class="info-value">15개</div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-chart-line"></i>
-                        <div class="info-label">점수</div>
-                        <div class="info-value">100점</div>
+                        <i class="fas fa-users"></i>
+                        <div class="info-label">점수 범위</div>
+                        <div class="info-value">15-75점</div>
                     </div>
                 </div>
 
                 <button class="btn-start" onclick="startTest()">검사 시작하기</button>
             </div>
 
-            <div class="test-screen">
+            <div id="testScreen" class="test-screen">
                 <div class="progress-container">
                     <div class="progress-text">
-                        <span id="currentQuestion">1</span> / <span id="totalQuestions">40</span>
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">15</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
@@ -427,7 +436,7 @@
                 </div>
 
                 <div class="test-navigation">
-                    <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">
                         <i class="fas fa-arrow-left"></i> 이전
                     </button>
                     <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
@@ -436,7 +445,7 @@
                 </div>
             </div>
 
-            <div class="result-screen">
+            <div id="resultScreen" class="result-screen">
                 <div class="result-header">
                     <div class="result-type" id="resultType"></div>
                     <h2 class="result-title" id="resultTitle"></h2>
