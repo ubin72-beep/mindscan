@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>인지능력 검사 - Mentora</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="description" content="IQ 인지능력으로 논리적 사고력을 측정하는 검사">
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
+    
     <style>
         * {
             margin: 0;
@@ -18,235 +19,212 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        }
+
+        .test-container {
+            max-width: 700px;
+            margin: 0 auto;
             padding: 20px;
         }
 
-        .container {
-            max-width: 700px;
-            width: 100%;
-            background: white;
+        .start-screen {
+            background: rgba(255, 255, 255, 0.98);
             border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
+            padding: 40px 30px;
             text-align: center;
-            color: white;
-            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .back-btn {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+        .start-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.1);
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
-        .header h1 {
+        .start-screen h2 {
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
-        .header p {
-            font-size: 0.95rem;
-            opacity: 0.95;
-        }
-
-        .content {
-            padding: 40px 30px;
-        }
-
-        #startScreen {
-            text-align: center;
+        .start-screen p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
         .test-info {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 35px 0;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
         }
 
         .info-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
         }
 
-        .info-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
+        .info-item i {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 8px;
         }
 
         .info-label {
             font-size: 0.85rem;
-            color: #64748b;
-            font-weight: 500;
+            color: #666;
+            margin-bottom: 5px;
         }
 
         .info-value {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: #1e293b;
+            color: #2c5f4f;
         }
 
-        .start-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn-start {
+            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
             color: white;
             border: none;
-            padding: 16px 50px;
-            border-radius: 12px;
+            padding: 15px 50px;
+            border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .start-btn:hover {
+        .btn-start:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
         }
 
-        #testScreen {
-            display: none;
+        #testScreen,
+        #resultScreen {
+            display: none !important;
+        }
+        
+        #testScreen.active,
+        #resultScreen.active {
+            display: block !important;
         }
 
         .progress-container {
-            background: #f8fafc;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
             padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
+        .progress-text {
+            text-align: center;
             margin-bottom: 12px;
-            font-size: 0.9rem;
-            color: #64748b;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c5f4f;
         }
 
         .progress-bar {
             width: 100%;
-            height: 8px;
-            background: #e2e8f0;
+            height: 10px;
+            background: rgba(212, 175, 55, 0.2);
             border-radius: 10px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%);
             border-radius: 10px;
+            transition: width 0.3s ease;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
         }
 
         .question-card {
-            background: #f8fafc;
-            padding: 30px 25px;
+            background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
-            margin-bottom: 20px;
+            padding: 25px 20px;
+            margin-bottom: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .question-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #1e293b;
-            margin-bottom: 25px;
+            font-size: 1.15rem;
             font-weight: 600;
+            color: #2c5f4f;
             text-align: center;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         .answers {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .answer-btn {
             background: white;
-            border: 2px solid #e2e8f0;
-            padding: 12px 20px;
+            border: 2px solid #e9ecef;
             border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            text-align: left;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .answer-btn:hover {
+            border-color: #d4af37;
+            transform: translateX(3px);
+            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .answer-btn.selected {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            border-color: #d4af37;
+            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.4);
         }
 
         .answer-number {
-            width: 32px;
-            height: 32px;
-            background: #f1f5f9;
-            border-radius: 8px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            color: #64748b;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            color: #2c5f4f;
             flex-shrink: 0;
         }
 
-        .answer-text {
-            flex: 1;
-            font-size: 0.95rem;
-            color: #334155;
-            font-weight: 600;
-        }
-
-        .answer-btn:hover {
-            border-color: #667eea;
-            background: #f8f9ff;
-            transform: translateX(5px);
-        }
-
-        .answer-btn.selected {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-color: #667eea;
-        }
-
         .answer-btn.selected .answer-number {
-            background: rgba(255, 255, 255, 0.3);
-            color: white;
+            background: white;
+            color: #d4af37;
+        }
+
+        .answer-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #333;
+            text-align: left;
         }
 
         .answer-btn.selected .answer-text {
@@ -255,89 +233,97 @@
 
         .test-navigation {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             gap: 10px;
             margin-top: 15px;
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 12px 25px;
             border-radius: 10px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
-            border: none;
             transition: all 0.3s ease;
-        }
-
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #64748b;
-        }
-
-        .btn-secondary:hover {
-            background: #cbd5e1;
+            border: none;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
             color: white;
-            flex: 1;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
         }
 
-        .btn:disabled {
+        .btn-primary:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
 
-        #resultScreen {
-            display: none;
+        .btn-secondary {
+            background: white;
+            color: #666;
+            border: 2px solid #e9ecef;
         }
 
-        .result-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn-secondary:hover:not(:disabled) {
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-screen {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 24px;
             padding: 40px 30px;
-            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .result-header {
             text-align: center;
-            color: white;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .result-type {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 15px;
+            color: #d4af37;
+            margin-bottom: 10px;
         }
 
         .result-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
         .result-description {
             font-size: 1rem;
-            line-height: 1.6;
-            opacity: 0.95;
+            color: #666;
+            line-height: 1.7;
         }
 
         .result-section {
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 16px;
-            margin-bottom: 20px;
+            margin: 25px 0;
         }
 
         .result-section h3 {
-            color: #1e293b;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
             font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .result-section ul {
@@ -346,69 +332,43 @@
         }
 
         .result-section li {
-            padding: 12px 0;
-            color: #475569;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            border-left: 4px solid #d4af37;
             font-size: 0.95rem;
-            line-height: 1.6;
-            border-bottom: 1px solid #e2e8f0;
+            color: #333;
         }
 
-        .result-section li:last-child {
-            border-bottom: none;
-        }
-
-        .result-section li:before {
-            content: "✓";
-            color: #667eea;
-            font-weight: 700;
-            margin-right: 10px;
-        }
-
-        .action-buttons {
+        .result-actions {
             display: flex;
             gap: 12px;
-            margin-top: 25px;
+            justify-content: center;
+            margin-top: 30px;
         }
 
-        .action-buttons .btn {
-            flex: 1;
-        }
-
-        @media (max-width: 640px) {
-            .header h1 {
-                font-size: 1.4rem;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            .test-info {
-                gap: 15px;
-            }
-
-            .info-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+        @media (max-width: 768px) {
+            .test-container {
+                padding: 15px;
             }
 
             .question-text {
                 font-size: 1.05rem;
             }
 
-            .answer-text {
-                font-size: 0.9rem;
+            .test-info {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
 
-            .action-buttons {
+            .result-actions {
                 flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 네비게이션 바 -->
     <header class="page-header">
         <nav class="page-nav">
             <div class="page-nav-left">
@@ -432,50 +392,38 @@
         </nav>
     </header>
 
-    <!-- 페이지 컨텐츠 -->
     <div class="page-content-wrapper">
-    <div class="container">
-        <div class="header">
-            <button class="back-btn" onclick="window.location.href='index.html'">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <h1>인지능력 검사</h1>
-            <p>나의 IQ 수준 파악하기</p>
-        </div>
-
-        <div class="content">
-            <div id="startScreen">
+        <div class="test-container">
+            <div id="startScreen" class="start-screen">
+                <div class="start-icon">🧠</div>
+                <h2>인지능력검사를 시작합니다</h2>
+                <p>논리적 사고력과 문제 해결 능력을 측정합니다.</p>
+                
                 <div class="test-info">
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
+                        <i class="fas fa-clock"></i>
                         <div class="info-label">소요 시간</div>
                         <div class="info-value">20분</div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-list"></i>
-                        </div>
+                        <i class="fas fa-question-circle"></i>
                         <div class="info-label">질문 수</div>
                         <div class="info-value">15개</div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="info-label">문제 유형</div>
-                        <div class="info-value">논리/수리</div>
+                        <i class="fas fa-users"></i>
+                        <div class="info-label">점수 범위</div>
+                        <div class="info-value">0-15점</div>
                     </div>
                 </div>
-                <button class="start-btn" onclick="startTest()">검사 시작하기</button>
+
+                <button class="btn-start" onclick="startTest()">검사 시작하기</button>
             </div>
 
-            <div id="testScreen">
+            <div id="testScreen" class="test-screen">
                 <div class="progress-container">
-                    <div class="progress-info">
-                        <span><span id="currentQuestion">1</span> / <span id="totalQuestions">15</span></span>
-                        <span><a href="payment/checkout.html" style="color: #667eea; text-decoration: none;">🌟 프리미엄 리포트</a></span>
+                    <div class="progress-text">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">15</span>
                     </div>
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressFill"></div>
@@ -497,34 +445,33 @@
                 </div>
             </div>
 
-            <div id="resultScreen">
-                <div class="result-card">
+            <div id="resultScreen" class="result-screen">
+                <div class="result-header">
                     <div class="result-type" id="resultType"></div>
                     <h2 class="result-title" id="resultTitle"></h2>
                     <p class="result-description" id="resultDescription"></p>
                 </div>
 
                 <div class="result-section">
-                    <h3>📊 상세 분석</h3>
+                    <h3><i class="fas fa-star"></i> 주요 특징</h3>
                     <ul id="resultTraits"></ul>
                 </div>
 
                 <div class="result-section">
-                    <h3>💡 성장 방향</h3>
+                    <h3><i class="fas fa-seedling"></i> 성장 방향</h3>
                     <ul id="resultGrowth"></ul>
                 </div>
 
-                <div class="action-buttons">
-                    <button class="btn btn-secondary" onclick="location.href='index.html'">
+                <div class="result-actions">
+                    <a href="index.html" class="btn btn-secondary">
                         <i class="fas fa-home"></i> 홈으로
-                    </button>
-                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">
-                        <i class="fas fa-star"></i> 프리미엄 리포트
-                    </button>
+                    </a>
+                    <a href="payment/checkout.html" class="btn btn-primary">
+                        <i class="fas fa-crown"></i> 프리미엄 리포트
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script src="js/test-iq.js"></script>
