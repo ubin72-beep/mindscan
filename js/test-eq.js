@@ -259,7 +259,7 @@ const results = {
 function startTest() {
     console.log('감성지능검사 시작');
     document.getElementById('startScreen').style.display = 'none';
-    document.getElementById('testScreen').style.display = 'block';
+    document.getElementById('testScreen').classList.add('active');
     document.getElementById('totalQuestions').textContent = questions.length;
     showQuestion();
 }
@@ -369,8 +369,8 @@ function calculateResult() {
 function showResult(type) {
     const result = results[type];
     
-    document.getElementById('testScreen').style.display = 'none';
-    document.getElementById('resultScreen').style.display = 'block';
+    document.getElementById('testScreen').classList.remove('active');
+    document.getElementById('resultScreen').classList.add('active');
     
     document.getElementById('resultType').textContent = result.icon + ' ' + totalScore + '점';
     document.getElementById('resultTitle').textContent = result.title;
