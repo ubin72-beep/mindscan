@@ -71,9 +71,51 @@ body {
     transition: all 0.3s ease;
 }
 
-.nav-logo:hover .logo-icon {
-    transform: scale(1.08) translateY(-2px);
-    filter: drop-shadow(0 4px 12px rgba(44, 95, 79, 0.5));
+/* 텍스트 로고 아이콘 "M" */
+.logo-icon-text {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #2c5f4f;
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+    letter-spacing: -1px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-icon-text::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+}
+
+.nav-logo:hover .logo-icon-text::before {
+    left: 100%;
+}
+
+.nav-logo:hover .logo-icon-text {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.7);
+    background: linear-gradient(135deg, #f0d98c 0%, #d4af37 100%);
 }
 
 .logo-text {
@@ -92,6 +134,8 @@ body {
     list-style: none;
     gap: 45px;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link {
@@ -127,6 +171,7 @@ body {
     width: calc(100% - 32px);
 }
 
+/* 관리자 링크 스타일 */
 .nav-link.admin-link {
     color: #ffffff;
     font-weight: 700;
@@ -144,6 +189,23 @@ body {
 .nav-link.admin-link i {
     margin-right: 6px;
     color: #d4af37;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    color: #d4af37;
+    transform: scale(1.1);
 }
 
 .theme-toggle {
@@ -888,6 +950,28 @@ body {
     height: 55px;
     object-fit: contain;
     filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
+}
+
+/* 푸터 텍스트 로고 아이콘 "M" */
+.footer-logo-icon-text {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 900;
+    color: #2c5f4f;
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+    letter-spacing: -1px;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+}
+
+.footer-logo-icon-text i {
+    font-size: 28px;
+    color: #2c5f4f;
 }
 
 .footer-logo span {
