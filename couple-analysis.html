@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커플/팀 매칭 분석 - Mentora</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/nav-common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/disclaimer.css">
+    
+    <style>
+        .couple-container { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
+        .couple-hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #ffe0f0, #ffffff); border-radius: 20px; margin-bottom: 60px; }
+        .couple-hero-icon { font-size: 64px; margin-bottom: 20px; }
+        .couple-hero-title { font-size: 42px; font-weight: 800; color: #d81b60; margin-bottom: 20px; }
+        .couple-hero-subtitle { font-size: 18px; color: #666; line-height: 1.8; }
+        
+        .analysis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 40px 0; }
+        .analysis-card { background: white; border: 2px solid #e0e0e0; border-radius: 16px; padding: 35px; transition: all 0.3s ease; }
+        .analysis-card:hover { border-color: #d81b60; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(216, 27, 96, 0.2); }
+        .analysis-icon { font-size: 48px; margin-bottom: 15px; }
+        .analysis-title { font-size: 22px; font-weight: 700; color: #d81b60; margin-bottom: 10px; }
+        .analysis-description { font-size: 15px; color: #666; line-height: 1.6; }
+        
+        .cta-section { background: linear-gradient(135deg, #d81b60, #f06292); border-radius: 20px; padding: 60px 40px; text-align: center; color: white; margin-top: 60px; }
+        .cta-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
+        .btn-cta { padding: 18px 40px; border-radius: 12px; font-size: 18px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; display: inline-block; background: white; color: #d81b60; }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 255, 255, 0.5); }
+        
+        @media (max-width: 768px) {
+            .analysis-grid { grid-template-columns: 1fr; }
+            .couple-hero-title { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon-text"><i class="fas fa-brain"></i></div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
+                <li><a href="index.html#pricing" class="nav-link">요금제</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <div class="couple-container">
+        <div class="couple-hero">
+            <div class="couple-hero-icon">💕</div>
+            <h1 class="couple-hero-title">커플/팀 매칭 분석</h1>
+            <p class="couple-hero-subtitle">
+                두 사람의 성격을 비교 분석하여 관계 개선 방법과 소통 전략을 제시합니다.
+            </p>
+        </div>
+
+        <div id="disclaimerContainer"></div>
+
+        <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin: 60px 0 40px; color: #d81b60;">
+            ❤️ 분석 항목
+        </h2>
+
+        <div class="analysis-grid">
+            <div class="analysis-card">
+                <div class="analysis-icon">🔍</div>
+                <h3 class="analysis-title">성격 궁합도 분석</h3>
+                <p class="analysis-description">
+                    두 사람의 성격 유형을 비교하여 호환성을 %로 표시하고, 강점과 주의사항을 알려드립니다.
+                </p>
+            </div>
+
+            <div class="analysis-card">
+                <div class="analysis-icon">💬</div>
+                <h3 class="analysis-title">소통 스타일 비교</h3>
+                <p class="analysis-description">
+                    각자의 의사소통 방식을 분석하여 효과적으로 대화하는 방법을 제안합니다.
+                </p>
+            </div>
+
+            <div class="analysis-card">
+                <div class="analysis-icon">⚡</div>
+                <h3 class="analysis-title">갈등 해결 가이드</h3>
+                <p class="analysis-description">
+                    예상되는 갈등 상황과 해결 전략을 미리 알려드려 문제를 예방합니다.
+                </p>
+            </div>
+
+            <div class="analysis-card">
+                <div class="analysis-icon">📈</div>
+                <h3 class="analysis-title">관계 성장 플랜</h3>
+                <p class="analysis-description">
+                    두 사람이 함께 성장할 수 있는 구체적인 활동과 목표를 제시합니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">💑 지금 바로 분석해보세요!</h2>
+            <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
+                커플/팀 매칭 분석은 골드 멤버십 또는 개별 구매로 이용하실 수 있습니다.
+            </p>
+            <a href="payment/checkout.html?plan=gold" class="btn-cta">
+                <i class="fas fa-heart"></i> 지금 시작하기
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/disclaimer.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('disclaimerContainer').innerHTML = createDisclaimerBanner();
+        });
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('#themeToggle i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        }
+    </script>
+</body>
+</html>
