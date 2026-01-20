@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퍼스널 컬러 진단 - Mentora</title>
+    <meta name="description" content="봄, 여름, 가을, 겨울 중 당신에게 어울리는 퍼스널 컬러를 찾아보세요">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo-brain-hd.png">
+    <link rel="apple-touch-icon" href="images/logo-brain-hd.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/nav-common.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        :root {
+            --primary-green: #22c55e;
+            --accent-gold: #d4af37;
+            --spring: #FFB6C1;
+            --summer: #B0C4DE;
+            --autumn: #CD853F;
+            --winter: #4682B4;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fef3c7 0%, #fce7f3 50%, #e0e7ff 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .color-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .color-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .color-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .color-title {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .color-description {
+            font-size: 18px;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .color-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .color-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .color-card.spring::before {
+            background: linear-gradient(135deg, rgba(255,182,193,0.1) 0%, rgba(255,228,181,0.1) 100%);
+        }
+
+        .color-card.summer::before {
+            background: linear-gradient(135deg, rgba(176,196,222,0.1) 0%, rgba(230,230,250,0.1) 100%);
+        }
+
+        .color-card.autumn::before {
+            background: linear-gradient(135deg, rgba(205,133,63,0.1) 0%, rgba(160,82,45,0.1) 100%);
+        }
+
+        .color-card.winter::before {
+            background: linear-gradient(135deg, rgba(70,130,180,0.1) 0%, rgba(25,25,112,0.1) 100%);
+        }
+
+        .color-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .color-card:hover::before {
+            opacity: 1;
+        }
+
+        .color-card.spring:hover {
+            border-color: #FFB6C1;
+        }
+
+        .color-card.summer:hover {
+            border-color: #B0C4DE;
+        }
+
+        .color-card.autumn:hover {
+            border-color: #CD853F;
+        }
+
+        .color-card.winter:hover {
+            border-color: #4682B4;
+        }
+
+        .color-card.selected {
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .color-card.spring.selected {
+            border-color: #FFB6C1;
+        }
+
+        .color-card.summer.selected {
+            border-color: #B0C4DE;
+        }
+
+        .color-card.autumn.selected {
+            border-color: #CD853F;
+        }
+
+        .color-card.winter.selected {
+            border-color: #4682B4;
+        }
+
+        .color-icon {
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .color-palette {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .palette-swatch {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .color-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .color-subtitle {
+            font-size: 16px;
+            color: #666666;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .color-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .trait-tag {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+
+        .spring .trait-tag {
+            background: rgba(255,182,193,0.1);
+            color: #ec4899;
+            border-color: #FFB6C1;
+        }
+
+        .summer .trait-tag {
+            background: rgba(176,196,222,0.1);
+            color: #3b82f6;
+            border-color: #B0C4DE;
+        }
+
+        .autumn .trait-tag {
+            background: rgba(205,133,63,0.1);
+            color: #b45309;
+            border-color: #CD853F;
+        }
+
+        .winter .trait-tag {
+            background: rgba(70,130,180,0.1);
+            color: #1e40af;
+            border-color: #4682B4;
+        }
+
+        .result-section {
+            background: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .result-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .result-subtitle {
+            font-size: 20px;
+            color: #666666;
+            margin-bottom: 30px;
+        }
+
+        .result-palette-large {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .palette-swatch-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .palette-swatch-large:hover {
+            transform: scale(1.1);
+        }
+
+        .result-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .result-section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .result-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .result-traits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .result-trait-item {
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 2px solid;
+        }
+
+        .result-trait-item strong {
+            font-weight: 700;
+        }
+
+        .color-recommendations {
+            background: linear-gradient(135deg, rgba(34,197,94,0.05) 0%, rgba(212,175,55,0.05) 100%);
+            padding: 25px;
+            border-radius: 16px;
+            border: 2px solid rgba(212,175,55,0.3);
+            margin-bottom: 30px;
+        }
+
+        .recommendation-item {
+            margin-bottom: 15px;
+        }
+
+        .recommendation-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .recommendation-item strong {
+            color: #2c5f4f;
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(34,197,94,0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2c5f4f;
+            border: 2px solid #2c5f4f;
+        }
+
+        .btn-secondary:hover {
+            background: #2c5f4f;
+            color: white;
+        }
+
+        .btn-share {
+            background: linear-gradient(135deg, #d4af37 0%, #f59e0b 100%);
+            color: white;
+        }
+
+        .btn-share:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .color-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .color-title {
+                font-size: 32px;
+            }
+
+            .result-title {
+                font-size: 32px;
+            }
+
+            .result-traits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .color-card {
+                padding: 30px 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .result-palette-large {
+                gap: 10px;
+            }
+
+            .palette-swatch-large {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo-brain-hd.png" alt="Mentora Logo" class="logo-icon">
+                <span class="logo-text">Mentora</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="index.html#tests">검사하기</a></li>
+                <li><a href="index.html#premium-features">프리미엄 기능</a></li>
+                <li><a href="index.html#pricing">요금제</a></li>
+                <li><a href="index.html#reviews">후기</a></li>
+                <li><a href="mypage.html" class="btn-nav">내 결과</a></li>
+                <li><a href="admin/index.html" class="btn-admin">관리자</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 퍼스널 컬러 선택 섹션 -->
+    <div class="color-container" id="selectionSection">
+        <div class="color-header">
+            <div class="color-badge">🎨 컬러</div>
+            <h1 class="color-title">퍼스널 컬러 진단</h1>
+            <p class="color-description">
+                봄, 여름, 가을, 겨울 중 당신에게 어울리는 퍼스널 컬러를 선택해보세요.<br>
+                당신만의 매력을 더욱 빛나게 할 컬러를 찾아드립니다.
+            </p>
+        </div>
+
+        <div class="color-grid">
+            <!-- 봄 웜톤 -->
+            <div class="color-card spring" onclick="selectColor('spring')">
+                <div class="color-icon">🌸</div>
+                <div class="color-palette">
+                    <div class="palette-swatch" style="background: #FFB6C1;"></div>
+                    <div class="palette-swatch" style="background: #FFE4B5;"></div>
+                    <div class="palette-swatch" style="background: #FFDAB9;"></div>
+                    <div class="palette-swatch" style="background: #98FB98;"></div>
+                </div>
+                <h3 class="color-name">봄 웜톤 (Spring Warm)</h3>
+                <p class="color-subtitle">밝고 화사한 당신</p>
+                <div class="color-traits">
+                    <span class="trait-tag">밝음</span>
+                    <span class="trait-tag">생기</span>
+                    <span class="trait-tag">따뜻함</span>
+                    <span class="trait-tag">상큼함</span>
+                </div>
+            </div>
+
+            <!-- 여름 쿨톤 -->
+            <div class="color-card summer" onclick="selectColor('summer')">
+                <div class="color-icon">💙</div>
+                <div class="color-palette">
+                    <div class="palette-swatch" style="background: #E6E6FA;"></div>
+                    <div class="palette-swatch" style="background: #B0C4DE;"></div>
+                    <div class="palette-swatch" style="background: #FFB6D9;"></div>
+                    <div class="palette-swatch" style="background: #B0E0E6;"></div>
+                </div>
+                <h3 class="color-name">여름 쿨톤 (Summer Cool)</h3>
+                <p class="color-subtitle">부드럽고 우아한 당신</p>
+                <div class="color-traits">
+                    <span class="trait-tag">청아함</span>
+                    <span class="trait-tag">시원함</span>
+                    <span class="trait-tag">우아함</span>
+                    <span class="trait-tag">부드러움</span>
+                </div>
+            </div>
+
+            <!-- 가을 웜톤 -->
+            <div class="color-card autumn" onclick="selectColor('autumn')">
+                <div class="color-icon">🍂</div>
+                <div class="color-palette">
+                    <div class="palette-swatch" style="background: #CD853F;"></div>
+                    <div class="palette-swatch" style="background: #D2691E;"></div>
+                    <div class="palette-swatch" style="background: #8B4513;"></div>
+                    <div class="palette-swatch" style="background: #A0522D;"></div>
+                </div>
+                <h3 class="color-name">가을 웜톤 (Autumn Warm)</h3>
+                <p class="color-subtitle">따뜻하고 깊이 있는 당신</p>
+                <div class="color-traits">
+                    <span class="trait-tag">차분함</span>
+                    <span class="trait-tag">깊이</span>
+                    <span class="trait-tag">세련됨</span>
+                    <span class="trait-tag">고급스러움</span>
+                </div>
+            </div>
+
+            <!-- 겨울 쿨톤 -->
+            <div class="color-card winter" onclick="selectColor('winter')">
+                <div class="color-icon">❄️</div>
+                <div class="color-palette">
+                    <div class="palette-swatch" style="background: #000000;"></div>
+                    <div class="palette-swatch" style="background: #FFFFFF; border: 1px solid #ddd;"></div>
+                    <div class="palette-swatch" style="background: #4169E1;"></div>
+                    <div class="palette-swatch" style="background: #DC143C;"></div>
+                </div>
+                <h3 class="color-name">겨울 쿨톤 (Winter Cool)</h3>
+                <p class="color-subtitle">강렬하고 샤프한 당신</p>
+                <div class="color-traits">
+                    <span class="trait-tag">도도함</span>
+                    <span class="trait-tag">샤프함</span>
+                    <span class="trait-tag">선명함</span>
+                    <span class="trait-tag">강렬함</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 결과 섹션 -->
+    <div class="color-container">
+        <div class="result-section" id="resultSection">
+            <div class="result-header">
+                <div class="result-icon" id="resultIcon"></div>
+                <h2 class="result-title" id="resultTitle"></h2>
+                <p class="result-subtitle" id="resultSubtitle"></p>
+                <div class="result-palette-large" id="resultPalette"></div>
+            </div>
+
+            <div class="result-content">
+                <h3 class="result-section-title">✨ 기본 특성</h3>
+                <p class="result-text" id="resultDescription"></p>
+
+                <h3 class="result-section-title">💎 성격 특징</h3>
+                <div class="result-traits-grid" id="resultTraits"></div>
+
+                <h3 class="result-section-title">🎨 추천 컬러</h3>
+                <div class="color-recommendations" id="resultColors"></div>
+
+                <h3 class="result-section-title">👗 스타일링 팁</h3>
+                <p class="result-text" id="resultStyling"></p>
+
+                <h3 class="result-section-title">💄 메이크업 추천</h3>
+                <p class="result-text" id="resultMakeup"></p>
+
+                <h3 class="result-section-title">💝 조언</h3>
+                <p class="result-text" id="resultAdvice"></p>
+
+                <div class="action-buttons">
+                    <button class="btn btn-share" onclick="shareResult()">
+                        <i class="fas fa-share-alt"></i> 결과 공유하기
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetTest()">
+                        <i class="fas fa-redo"></i> 다시 선택하기
+                    </button>
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i> 홈으로 가기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mentora</h3>
+                    <p>당신 내면의 빛을 찾다</p>
+                    <p class="footer-company">큐브박스 (CubeBox)</p>
+                </div>
+                <div class="footer-section">
+                    <h4>빠른 링크</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">홈</a></li>
+                        <li><a href="index.html#tests">검사하기</a></li>
+                        <li><a href="index.html#premium-features">프리미엄 기능</a></li>
+                        <li><a href="index.html#pricing">요금제</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>연결하기</h4>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Naver Blog"><i class="fab fa-neos"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>법적 고지</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">이용약관</a></li>
+                        <li><a href="privacy.html">개인정보처리방침</a></li>
+                        <li><a href="refund.html">환불정책</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+                <p>서울특별시 송파구 송파대로14길 7-10 2층 (우편번호: 05854)</p>
+                <p>전화: +82-502-1909-7788 | 팩스: +82-502-8513-7788 | 이메일: mentora@gmail.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 퍼스널 컬러 데이터
+        const colorData = {
+            spring: {
+                icon: '🌸',
+                title: '봄 웜톤 (Spring Warm)',
+                subtitle: '밝고 화사한 생기 넘치는 당신',
+                palette: ['#FFB6C1', '#FFE4B5', '#FFDAB9', '#98FB98'],
+                description: '봄 웜톤은 밝고 화사한 색상이 잘 어울리는 타입입니다. 따뜻하면서도 맑고 생동감 넘치는 느낌을 가지고 있으며, 복숭아빛, 코랄, 아이보리 톤의 색상이 피부를 더욱 환하게 만들어줍니다. 밝고 긍정적인 에너지를 발산하며, 주변을 행복하게 만드는 매력을 가지고 있습니다.',
+                traits: [
+                    { label: '성격', desc: '밝고 긍정적이며 활발한 에너지를 가진 성격' },
+                    { label: '인상', desc: '생기 있고 화사하며 상큼한 이미지' },
+                    { label: '매력', desc: '따뜻하고 친근하여 사람들에게 편안함을 줌' },
+                    { label: '분위기', desc: '싱그럽고 발랄하며 봄날 같은 느낌' }
+                ],
+                colors: [
+                    { name: '피치 핑크', hex: '#FFB6C1', desc: '따뜻하고 사랑스러운 복숭아 핑크색' },
+                    { name: '코랄', hex: '#FF7F50', desc: '생기 넘치는 산호색' },
+                    { name: '아이보리', hex: '#FFFFF0', desc: '부드럽고 따뜻한 크림색' },
+                    { name: '민트 그린', hex: '#98FB98', desc: '상큼하고 청량한 연한 초록색' }
+                ],
+                styling: '밝고 따뜻한 톤의 옷을 선택하세요. 복숭아, 코랄, 연한 노란색, 민트 그린 등이 잘 어울립니다. 골드 톤의 액세서리가 피부톤을 더욱 돋보이게 하며, 화이트보다는 아이보리나 크림색이 얼굴을 더 밝게 보이게 합니다. 너무 진하거나 탁한 색상은 피하고, 맑고 투명한 컬러를 추천합니다.',
+                makeup: '코랄이나 피치 톤의 립스틱이 가장 잘 어울립니다. 아이섀도우는 복숭아, 코랄, 골드 톤을 선택하세요. 블러셔는 따뜻한 피치나 코랄 톤으로 발랄한 느낌을 살릴 수 있습니다. 베이스 메이크업은 옐로우 톤의 파운데이션을 선택하여 피부톤과 자연스럽게 어울리도록 하세요.',
+                advice: '당신의 밝고 화사한 매력을 최대한 살리는 것이 중요합니다. 어두운 색보다는 밝고 따뜻한 색상을 선택하여 생기 있는 이미지를 유지하세요. 골드 톤 액세서리와 따뜻한 컬러의 의류가 당신의 매력을 더욱 돋보이게 할 것입니다. 자연스러운 메이크업으로 본연의 아름다움을 살리는 것을 추천합니다.'
+            },
+            summer: {
+                icon: '💙',
+                title: '여름 쿨톤 (Summer Cool)',
+                subtitle: '부드럽고 우아한 청아한 당신',
+                palette: ['#E6E6FA', '#B0C4DE', '#FFB6D9', '#B0E0E6'],
+                description: '여름 쿨톤은 부드럽고 우아한 색상이 잘 어울리는 타입입니다. 시원하면서도 부드러운 느낌을 가지고 있으며, 라벤더, 민트, 로즈 톤의 색상이 피부를 맑고 투명하게 만들어줍니다. 차분하고 세련된 분위기를 가지고 있으며, 우아하고 지적인 이미지를 자연스럽게 발산합니다.',
+                traits: [
+                    { label: '성격', desc: '차분하고 우아하며 지적인 성격' },
+                    { label: '인상', desc: '청아하고 맑으며 시원한 이미지' },
+                    { label: '매력', desc: '부드럽고 우아하여 세련된 느낌을 줌' },
+                    { label: '분위기', desc: '시원하고 청량하며 여름밤 같은 느낌' }
+                ],
+                colors: [
+                    { name: '라벤더', hex: '#E6E6FA', desc: '부드럽고 우아한 연보라색' },
+                    { name: '스카이 블루', hex: '#87CEEB', desc: '맑고 청량한 하늘색' },
+                    { name: '로즈 핑크', hex: '#FFB6D9', desc: '부드럽고 여성스러운 장미색' },
+                    { name: '민트', hex: '#B0E0E6', desc: '시원하고 상쾌한 연한 청록색' }
+                ],
+                styling: '부드럽고 파스텔 톤의 옷을 선택하세요. 라벤더, 민트, 로즈 핑크, 스카이 블루 등이 잘 어울립니다. 실버 톤의 액세서리가 시원한 피부톤을 더욱 돋보이게 하며, 순백색이나 연한 그레이가 얼굴을 밝게 보이게 합니다. 너무 강렬하거나 따뜻한 색상은 피하고, 부드럽고 차가운 톤을 추천합니다.',
+                makeup: '로즈나 라벤더 톤의 립스틱이 가장 잘 어울립니다. 아이섀도우는 라벤더, 실버, 핑크 톤을 선택하세요. 블러셔는 시원한 로즈 핑크 톤으로 우아한 느낌을 살릴 수 있습니다. 베이스 메이크업은 핑크 톤의 파운데이션을 선택하여 피부가 더 맑고 투명해 보이도록 하세요.',
+                advice: '당신의 부드럽고 우아한 매력을 최대한 살리는 것이 중요합니다. 따뜻한 색보다는 시원하고 부드러운 색상을 선택하여 청아한 이미지를 유지하세요. 실버 톤 액세서리와 파스텔 컬러의 의류가 당신의 매력을 더욱 돋보이게 할 것입니다. 자연스럽고 깨끗한 메이크업으로 본연의 아름다움을 살리는 것을 추천합니다.'
+            },
+            autumn: {
+                icon: '🍂',
+                title: '가을 웜톤 (Autumn Warm)',
+                subtitle: '따뜻하고 깊이 있는 세련된 당신',
+                palette: ['#CD853F', '#D2691E', '#8B4513', '#A0522D'],
+                description: '가을 웜톤은 따뜻하고 깊이 있는 색상이 잘 어울리는 타입입니다. 차분하면서도 고급스러운 느낌을 가지고 있으며, 버건디, 카키, 브라운 톤의 색상이 피부를 더욱 세련되게 만들어줍니다. 성숙하고 안정적인 매력을 가지고 있으며, 깊이 있는 아름다움을 자연스럽게 표현합니다.',
+                traits: [
+                    { label: '성격', desc: '차분하고 성숙하며 안정적인 성격' },
+                    { label: '인상', desc: '깊이 있고 세련되며 고급스러운 이미지' },
+                    { label: '매력', desc: '따뜻하고 편안하여 신뢰감을 줌' },
+                    { label: '분위기', desc: '차분하고 우아하며 가을 저녁 같은 느낌' }
+                ],
+                colors: [
+                    { name: '버건디', hex: '#800020', desc: '깊고 고급스러운 와인색' },
+                    { name: '카키', hex: '#C3B091', desc: '따뜻하고 차분한 베이지 그린' },
+                    { name: '초콜릿 브라운', hex: '#8B4513', desc: '진하고 세련된 갈색' },
+                    { name: '테라코타', hex: '#D2691E', desc: '따뜻하고 고급스러운 주황 갈색' }
+                ],
+                styling: '따뜻하고 깊은 톤의 옷을 선택하세요. 버건디, 카키, 브라운, 올리브 그린 등이 잘 어울립니다. 골드 톤의 액세서리가 따뜻한 피부톤을 더욱 돋보이게 하며, 베이지나 크림색보다는 아이보리가 얼굴을 밝게 보이게 합니다. 너무 밝거나 차가운 색상은 피하고, 깊고 따뜻한 톤을 추천합니다.',
+                makeup: '버건디나 브릭 톤의 립스틱이 가장 잘 어울립니다. 아이섀도우는 브라운, 골드, 올리브 톤을 선택하세요. 블러셔는 따뜻한 브릭이나 코랄 톤으로 성숙한 느낌을 살릴 수 있습니다. 베이스 메이크업은 옐로우 톤의 파운데이션을 선택하되, 조금 더 깊은 톤으로 자연스럽게 연출하세요.',
+                advice: '당신의 깊이 있고 세련된 매력을 최대한 살리는 것이 중요합니다. 밝은 색보다는 깊고 따뜻한 색상을 선택하여 고급스러운 이미지를 유지하세요. 골드 톤 액세서리와 어스 톤의 의류가 당신의 매력을 더욱 돋보이게 할 것입니다. 성숙하고 세련된 메이크업으로 당신만의 우아함을 표현하는 것을 추천합니다.'
+            },
+            winter: {
+                icon: '❄️',
+                title: '겨울 쿨톤 (Winter Cool)',
+                subtitle: '강렬하고 샤프한 도도한 당신',
+                palette: ['#000000', '#FFFFFF', '#4169E1', '#DC143C'],
+                description: '겨울 쿨톤은 강렬하고 선명한 색상이 잘 어울리는 타입입니다. 차갑고 샤프한 느낌을 가지고 있으며, 블랙, 화이트, 로얄 블루, 와인 레드 같은 진하고 명확한 색상이 당신의 매력을 극대화합니다. 도도하고 강한 카리스마를 가지고 있으며, 강렬한 존재감을 자연스럽게 발산합니다.',
+                traits: [
+                    { label: '성격', desc: '강렬하고 당당하며 도도한 성격' },
+                    { label: '인상', desc: '샤프하고 명확하며 강한 이미지' },
+                    { label: '매력', desc: '차갑고 세련되어 카리스마를 발산함' },
+                    { label: '분위기', desc: '강렬하고 신비로우며 겨울밤 같은 느낌' }
+                ],
+                colors: [
+                    { name: '퓨어 블랙', hex: '#000000', desc: '강렬하고 세련된 순수 검은색' },
+                    { name: '스노우 화이트', hex: '#FFFFFF', desc: '맑고 깨끗한 순백색' },
+                    { name: '로얄 블루', hex: '#4169E1', desc: '강렬하고 고급스러운 진한 파란색' },
+                    { name: '체리 레드', hex: '#DC143C', desc: '선명하고 강렬한 빨간색' }
+                ],
+                styling: '선명하고 강렬한 톤의 옷을 선택하세요. 블랙, 화이트, 로얄 블루, 와인 레드 등이 잘 어울립니다. 실버나 화이트 골드 톤의 액세서리가 시원한 피부톤을 더욱 돋보이게 하며, 순백색이나 순수 블랙이 당신의 강렬한 이미지를 극대화합니다. 중간 톤이나 따뜻한 색상은 피하고, 명확하고 선명한 컬러를 추천합니다.',
+                makeup: '와인 레드나 마젠타 톤의 립스틱이 가장 잘 어울립니다. 아이섀도우는 블랙, 네이비, 실버 톤을 선택하세요. 블러셔는 시원한 핑크나 베리 톤으로 강렬한 느낌을 살릴 수 있습니다. 베이스 메이크업은 핑크 톤의 파운데이션을 선택하여 피부가 더 맑고 환해 보이도록 하며, 윤곽을 선명하게 강조하세요.',
+                advice: '당신의 강렬하고 샤프한 매력을 최대한 살리는 것이 중요합니다. 중간 톤이나 파스텔보다는 선명하고 강렬한 색상을 선택하여 카리스마 있는 이미지를 유지하세요. 실버 톤 액세서리와 블랙&화이트의 의류가 당신의 매력을 더욱 돋보이게 할 것입니다. 강렬하고 명확한 메이크업으로 당신만의 도도함을 표현하는 것을 추천합니다.'
+            }
+        };
+
+        // 퍼스널 컬러 선택
+        function selectColor(type) {
+            const data = colorData[type];
+            
+            // 선택된 카드 표시
+            document.querySelectorAll('.color-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+
+            // 결과 표시
+            setTimeout(() => {
+                document.getElementById('selectionSection').style.display = 'none';
+                document.getElementById('resultSection').classList.add('active');
+                
+                // 결과 내용 채우기
+                document.getElementById('resultIcon').textContent = data.icon;
+                document.getElementById('resultTitle').textContent = data.title;
+                document.getElementById('resultTitle').style.background = getPaletteGradient(data.palette);
+                document.getElementById('resultTitle').style.webkitBackgroundClip = 'text';
+                document.getElementById('resultTitle').style.webkitTextFillColor = 'transparent';
+                document.getElementById('resultTitle').style.backgroundClip = 'text';
+                document.getElementById('resultSubtitle').textContent = data.subtitle;
+                
+                // 팔레트 표시
+                const paletteHtml = data.palette.map(color => 
+                    `<div class="palette-swatch-large" style="background: ${color};"></div>`
+                ).join('');
+                document.getElementById('resultPalette').innerHTML = paletteHtml;
+                
+                document.getElementById('resultDescription').textContent = data.description;
+                
+                // 특성 그리드
+                const traitsHtml = data.traits.map(trait => {
+                    const style = getTraitStyle(type);
+                    return `<div class="result-trait-item" style="${style}">
+                        <strong>${trait.label}</strong>: ${trait.desc}
+                    </div>`;
+                }).join('');
+                document.getElementById('resultTraits').innerHTML = traitsHtml;
+                
+                // 추천 컬러
+                const colorsHtml = data.colors.map(color => 
+                    `<div class="recommendation-item">
+                        <strong>${color.name}</strong> (${color.hex}): ${color.desc}
+                    </div>`
+                ).join('');
+                document.getElementById('resultColors').innerHTML = colorsHtml;
+                
+                document.getElementById('resultStyling').textContent = data.styling;
+                document.getElementById('resultMakeup').textContent = data.makeup;
+                document.getElementById('resultAdvice').textContent = data.advice;
+
+                // 결과 섹션으로 스크롤
+                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+
+        // 팔레트 그라데이션 생성
+        function getPaletteGradient(palette) {
+            return `linear-gradient(135deg, ${palette.join(', ')})`;
+        }
+
+        // 타입별 스타일
+        function getTraitStyle(type) {
+            const styles = {
+                spring: 'background: rgba(255,182,193,0.1); color: #ec4899; border-color: #FFB6C1;',
+                summer: 'background: rgba(176,196,222,0.1); color: #3b82f6; border-color: #B0C4DE;',
+                autumn: 'background: rgba(205,133,63,0.1); color: #b45309; border-color: #CD853F;',
+                winter: 'background: rgba(70,130,180,0.1); color: #1e40af; border-color: #4682B4;'
+            };
+            return styles[type] || '';
+        }
+
+        // 테스트 초기화
+        function resetTest() {
+            document.getElementById('selectionSection').style.display = 'block';
+            document.getElementById('resultSection').classList.remove('active');
+            document.querySelectorAll('.color-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 결과 공유
+        function shareResult() {
+            const title = document.getElementById('resultTitle').textContent;
+            const subtitle = document.getElementById('resultSubtitle').textContent;
+            const text = `나의 퍼스널 컬러는 "${title}"입니다!\n${subtitle}\n\nMentora에서 무료로 확인해보세요!`;
+            const url = window.location.href;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: '퍼스널 컬러 진단 결과',
+                    text: text,
+                    url: url
+                }).catch(err => console.log('공유 실패:', err));
+            } else {
+                // 클립보드에 복사
+                const shareText = `${text}\n${url}`;
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('결과가 클립보드에 복사되었습니다!\n원하는 곳에 붙여넣기 해보세요.');
+                });
+            }
+        }
+
+        // 모바일 메뉴
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger?.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger?.classList.remove('active');
+                navMenu?.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
