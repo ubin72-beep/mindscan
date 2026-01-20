@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 실패 - Mentora</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .fail-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 50px 40px;
+            text-align: center;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fail-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #f44336, #e53935);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: scaleIn 0.5s ease 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .fail-icon i {
+            font-size: 50px;
+            color: white;
+        }
+
+        .fail-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #d32f2f;
+            margin-bottom: 15px;
+        }
+
+        .fail-message {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .error-info {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .error-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #d32f2f;
+            margin-bottom: 15px;
+        }
+
+        .error-reason {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .error-code {
+            display: inline-block;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #d32f2f;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .common-reasons {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .common-reasons h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a4838;
+            margin-bottom: 15px;
+        }
+
+        .common-reasons ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .common-reasons li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .common-reasons li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #d32f2f;
+            font-weight: bold;
+        }
+
+        .buttons-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #f4e4a6);
+            color: #1a4838;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1a4838;
+            border: 2px solid #d4af37;
+        }
+
+        .btn-secondary:hover {
+            background: #fff9e6;
+        }
+
+        .help-box {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #1565c0;
+        }
+
+        .help-box i {
+            margin-right: 8px;
+            color: #2196f3;
+        }
+
+        .help-box strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .fail-container {
+                padding: 40px 30px;
+            }
+
+            .fail-title {
+                font-size: 26px;
+            }
+
+            .buttons-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fail-container">
+        <div class="fail-icon">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <h1 class="fail-title">결제에 실패했습니다</h1>
+        <p class="fail-message">
+            결제 처리 중 문제가 발생했습니다.<br>
+            아래 내용을 확인하신 후 다시 시도해 주세요.
+        </p>
+
+        <div class="error-info">
+            <div class="error-title">❌ 실패 사유</div>
+            <p class="error-reason" id="errorMessage">
+                알 수 없는 오류가 발생했습니다.
+            </p>
+            <span class="error-code" id="errorCode">ERROR-CODE</span>
+        </div>
+
+        <div class="common-reasons">
+            <h3>💡 일반적인 실패 원인</h3>
+            <ul>
+                <li>카드 한도 초과 또는 잔액 부족</li>
+                <li>카드 정보 입력 오류 (카드번호, 유효기간, CVC 등)</li>
+                <li>카드사 승인 거부 (해외결제 차단, 일시정지 등)</li>
+                <li>일시적인 네트워크 오류</li>
+                <li>브라우저 쿠키/캐시 문제</li>
+            </ul>
+        </div>
+
+        <div class="buttons-group">
+            <a href="checkout.html" class="btn btn-primary">
+                <i class="fas fa-redo"></i> 다시 결제하기
+            </a>
+            <a href="../index.html" class="btn btn-secondary">
+                <i class="fas fa-home"></i> 홈으로
+            </a>
+        </div>
+
+        <div class="help-box">
+            <i class="fas fa-headset"></i>
+            <strong>문제가 계속되나요?</strong>
+            고객센터로 문의해 주세요.<br>
+            ☎️ 0502-1909-7788 | 📧 mentora@gmail.com<br>
+            평일 10:00-18:00
+        </div>
+    </div>
+
+    <script>
+        // URL에서 에러 정보 파싱
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        const errorMessage = urlParams.get('message') || '결제 승인이 거부되었습니다.';
+        const errorCode = urlParams.get('code') || 'PAYMENT_FAILED';
+        
+        document.getElementById('errorMessage').textContent = errorMessage;
+        document.getElementById('errorCode').textContent = errorCode;
+
+        // 실패 로그 저장 (분석용)
+        const failData = {
+            errorCode: errorCode,
+            errorMessage: errorMessage,
+            timestamp: new Date().toISOString(),
+            url: window.location.href
+        };
+
+        let failLogs = JSON.parse(localStorage.getItem('paymentFailLogs') || '[]');
+        failLogs.push(failData);
+        localStorage.setItem('paymentFailLogs', JSON.stringify(failLogs));
+    </script>
+</body>
+</html>
