@@ -1,0 +1,136 @@
+/* ===========================
+   면책 조항 (Disclaimer)
+   =========================== */
+
+.disclaimer-banner {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border: 2px solid #ffc107;
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin: 30px 0;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+}
+
+.disclaimer-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.disclaimer-icon {
+    font-size: 28px;
+    color: #ff9800;
+}
+
+.disclaimer-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #e65100;
+    margin: 0;
+}
+
+.disclaimer-content {
+    background: white;
+    border-radius: 8px;
+    padding: 18px;
+    margin-top: 12px;
+}
+
+.disclaimer-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.disclaimer-content li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.disclaimer-content li::before {
+    content: '•';
+    position: absolute;
+    left: 8px;
+    color: #ff9800;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.disclaimer-footer {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #ffe082;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+}
+
+/* Dark Mode */
+body.dark-mode .disclaimer-banner {
+    background: linear-gradient(135deg, #3e2723, #4e342e);
+    border-color: #ff9800;
+}
+
+body.dark-mode .disclaimer-content {
+    background: #1a1a1a;
+}
+
+body.dark-mode .disclaimer-content li {
+    color: #ccc;
+}
+
+body.dark-mode .disclaimer-title {
+    color: #ffc107;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .disclaimer-banner {
+        padding: 18px 20px;
+    }
+
+    .disclaimer-title {
+        font-size: 18px;
+    }
+
+    .disclaimer-icon {
+        font-size: 24px;
+    }
+
+    .disclaimer-content li {
+        font-size: 14px;
+        padding-left: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .disclaimer-banner {
+        padding: 15px 18px;
+    }
+
+    .disclaimer-title {
+        font-size: 16px;
+    }
+
+    .disclaimer-icon {
+        font-size: 22px;
+    }
+
+    .disclaimer-content {
+        padding: 15px;
+    }
+
+    .disclaimer-content li {
+        font-size: 13px;
+        padding-left: 20px;
+    }
+
+    .disclaimer-footer {
+        font-size: 12px;
+    }
+}
