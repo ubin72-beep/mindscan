@@ -32,15 +32,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="css/nav-common.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=2">
     <link rel="stylesheet" href="css/hero-modern.css">
     <link rel="stylesheet" href="css/test-cards-modern.css">
-    <link rel="stylesheet" href="css/fun-cards.css?v=4">
+    <link rel="stylesheet" href="css/fun-cards.css?v=5">
     <link rel="stylesheet" href="css/premium-features.css">
     <link rel="stylesheet" href="css/pricing-modern.css">
     <link rel="stylesheet" href="css/reviews-modern.css">
     <link rel="stylesheet" href="css/statistics-modern.css">
-    <link rel="stylesheet" href="css/mobile-optimized.css">
+    <link rel="stylesheet" href="css/mobile-optimized.css?v=2">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
@@ -494,18 +494,6 @@
                     <button class="btn btn-test" onclick="startTest('sq')">검사 시작</button>
                 </div>
 
-                <div class="test-card" data-test="selfesteem" data-time="8" data-category="personality">
-                    <div class="test-icon">
-                        <i class="fas fa-smile"></i>
-                    </div>
-                    <h3 class="test-title">자존감검사</h3>
-                    <p class="test-description">자신을 존중하고 가치있게 여기는 정도를 측정합니다</p>
-                    <div class="test-info">
-                        <span><i class="far fa-clock"></i> 8분</span>
-                        <span><i class="far fa-question-circle"></i> 10문항</span>
-                    </div>
-                    <button class="btn btn-test" onclick="startTest('selfesteem')">검사 시작</button>
-                </div>
             </div>
 
             <!-- 재미 카드 섹션 -->
@@ -552,7 +540,7 @@
                         <span class="trait-tag">국화</span>
                         <span class="trait-tag">대나무</span>
                     </div>
-                    <a href="sagunja-test.html" class="btn btn-fun traditional">검사 시작하기</a>
+                    <a href="sagunja-test-v2.html" class="btn btn-fun traditional">검사 시작하기</a>
                 </div>
 
                 <!-- 3. 퍼스널 컬러 -->
@@ -570,6 +558,57 @@
                         <span class="trait-tag">겨울 쿨톤</span>
                     </div>
                     <a href="personal-color-test.html" class="btn btn-fun color">검사 시작하기</a>
+                </div>
+
+                <!-- 4. 애니멀 테스트 -->
+                <div class="fun-card animal-card" data-category="animal">
+                    <div class="fun-badge">동물</div>
+                    <div class="fun-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <span class="animal-symbol">🐾</span>
+                    </div>
+                    <h3 class="fun-title">애니멀 성격 테스트</h3>
+                    <p class="fun-description">사자, 늑대, 여우, 곰 등<br>8가지 동물 중 당신은?</p>
+                    <div class="fun-traits">
+                        <span class="trait-tag">사자</span>
+                        <span class="trait-tag">늑대</span>
+                        <span class="trait-tag">여우</span>
+                        <span class="trait-tag">곰</span>
+                    </div>
+                    <a href="animal-test.html" class="btn btn-fun" style="background: linear-gradient(135deg, #667eea, #764ba2);">검사 시작하기</a>
+                </div>
+
+                <!-- 5. 꽃 테스트 -->
+                <div class="fun-card flower-card" data-category="flower">
+                    <div class="fun-badge" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">꽃</div>
+                    <div class="fun-icon" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">
+                        <span class="flower-symbol">🌺</span>
+                    </div>
+                    <h3 class="fun-title">꽃 성격 테스트</h3>
+                    <p class="fun-description">장미, 해바라기, 벚꽃, 백합 등<br>당신을 닮은 꽃은?</p>
+                    <div class="fun-traits">
+                        <span class="trait-tag">장미</span>
+                        <span class="trait-tag">해바라기</span>
+                        <span class="trait-tag">벚꽃</span>
+                        <span class="trait-tag">백합</span>
+                    </div>
+                    <a href="flower-test.html" class="btn btn-fun" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">검사 시작하기</a>
+                </div>
+
+                <!-- 6. 계절 테스트 -->
+                <div class="fun-card season-card" data-category="season">
+                    <div class="fun-badge" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">계절</div>
+                    <div class="fun-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                        <span class="season-symbol">🍃</span>
+                    </div>
+                    <h3 class="fun-title">계절 성격 테스트</h3>
+                    <p class="fun-description">봄, 여름, 가을, 겨울 중<br>당신을 닮은 계절은?</p>
+                    <div class="fun-traits">
+                        <span class="trait-tag">봄</span>
+                        <span class="trait-tag">여름</span>
+                        <span class="trait-tag">가을</span>
+                        <span class="trait-tag">겨울</span>
+                    </div>
+                    <a href="season-test.html" class="btn btn-fun" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">검사 시작하기</a>
                 </div>
             </div>
             <!-- 재미 카드 그리드 끝 -->
