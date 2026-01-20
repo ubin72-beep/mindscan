@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>결제 완료 - MindScan</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>결제 완료 - Mentora</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -16,22 +17,23 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: 20px;
         }
 
         .success-container {
-            max-width: 800px;
+            max-width: 600px;
             width: 100%;
             background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            animation: slideUp 0.5s ease;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 50px 40px;
+            text-align: center;
+            animation: slideUp 0.6s ease;
         }
 
         @keyframes slideUp {
@@ -45,54 +47,59 @@
             }
         }
 
-        .success-header {
-            background: linear-gradient(135deg, #d4af37, #b8962f);
-            color: #1a1a1a;
-            padding: 3rem;
-            text-align: center;
-        }
-
         .success-icon {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            animation: bounce 1s ease infinite;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4caf50, #8bc34a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            animation: scaleIn 0.5s ease 0.3s both;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
         }
 
-        .success-header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+        .success-icon i {
+            font-size: 50px;
+            color: white;
         }
 
-        .success-header p {
-            opacity: 0.8;
+        .success-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a4838;
+            margin-bottom: 15px;
         }
 
-        .success-body {
-            padding: 3rem;
+        .success-message {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 40px;
         }
 
         .order-info {
-            background: #f5f7fa;
+            background: #f8f9fa;
             border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .order-info h3 {
-            color: #2c5f4f;
-            margin-bottom: 1.5rem;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: left;
         }
 
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #e8ecef;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .info-row:last-child {
@@ -101,248 +108,165 @@
 
         .info-label {
             color: #666;
+            font-size: 14px;
         }
 
         .info-value {
-            color: #1a1a1a;
             font-weight: 600;
+            color: #333;
         }
 
-        .next-steps {
-            margin-bottom: 2rem;
-        }
-
-        .next-steps h3 {
-            color: #2c5f4f;
-            margin-bottom: 1.5rem;
-        }
-
-        .step-item {
+        .buttons-group {
             display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-            padding: 1rem;
-            background: #f5f7fa;
-            border-radius: 12px;
+            gap: 15px;
+            margin-top: 30px;
         }
 
-        .step-number {
-            width: 32px;
-            height: 32px;
-            background: #2c5f4f;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .step-content h4 {
-            color: #1a1a1a;
-            margin-bottom: 0.25rem;
-        }
-
-        .step-content p {
-            color: #666;
-            font-size: 0.875rem;
-        }
-
-        .action-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .action-button {
-            padding: 1.25rem;
-            border: 2px solid #e8ecef;
-            border-radius: 12px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            text-decoration: none;
-            color: #1a1a1a;
-        }
-
-        .action-button:hover {
-            border-color: #2c5f4f;
-            background: #e8f5f1;
-        }
-
-        .action-button .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .action-button .title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .action-button .desc {
-            font-size: 0.75rem;
-            color: #666;
-        }
-
-        .primary-button {
-            width: 100%;
-            padding: 1.25rem;
-            background: linear-gradient(135deg, #2c5f4f, #1a4838);
-            color: white;
+        .btn {
+            flex: 1;
+            padding: 16px 30px;
             border: none;
             border-radius: 12px;
-            font-size: 1.125rem;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .primary-button:hover {
-            box-shadow: 0 8px 24px rgba(44, 95, 79, 0.3);
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #f4e4a6);
+            color: #1a4838;
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1a4838;
+            border: 2px solid #d4af37;
+        }
+
+        .btn-secondary:hover {
+            background: #fff9e6;
+        }
+
+        .notice {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .notice i {
+            margin-right: 8px;
+            color: #ff9800;
         }
 
         @media (max-width: 768px) {
-            .action-buttons {
-                grid-template-columns: 1fr;
+            .success-container {
+                padding: 40px 30px;
+            }
+
+            .success-title {
+                font-size: 26px;
+            }
+
+            .buttons-group {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
     <div class="success-container">
-        <div class="success-header">
-            <div class="success-icon">🎉</div>
-            <h1>결제가 완료되었습니다!</h1>
-            <p>프리미엄 리포트를 구매해주셔서 감사합니다</p>
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
         </div>
 
-        <div class="success-body">
-            <div class="order-info">
-                <h3>주문 정보</h3>
-                <div class="info-row">
-                    <span class="info-label">주문번호</span>
-                    <span class="info-value" id="orderId">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">상품명</span>
-                    <span class="info-value">프리미엄 리포트 - MBTI</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">결제금액</span>
-                    <span class="info-value" id="amount">₩4,900</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">결제수단</span>
-                    <span class="info-value" id="paymentMethod">신용카드</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">구매자</span>
-                    <span class="info-value" id="buyerName">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">이메일</span>
-                    <span class="info-value" id="buyerEmail">-</span>
-                </div>
+        <h1 class="success-title">결제가 완료되었습니다!</h1>
+        <p class="success-message">
+            Mentora 프리미엄 서비스를 구매해 주셔서 감사합니다.<br>
+            이메일로 상세 리포트가 발송되었습니다.
+        </p>
+
+        <div class="order-info">
+            <div class="info-row">
+                <span class="info-label">주문번호</span>
+                <span class="info-value" id="orderId">-</span>
             </div>
-
-            <div class="next-steps">
-                <h3>다음 단계</h3>
-
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>이메일 확인</h4>
-                        <p>구매 영수증과 프리미엄 리포트 다운로드 링크가 발송되었습니다</p>
-                    </div>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>리포트 확인</h4>
-                        <p>마이페이지에서 언제든지 리포트를 확인하고 다운로드할 수 있습니다</p>
-                    </div>
-                </div>
-
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>추가 혜택</h4>
-                        <p>평생 무료 재검사와 1회 무료 Q&A 서비스를 이용하실 수 있습니다</p>
-                    </div>
-                </div>
+            <div class="info-row">
+                <span class="info-label">상품명</span>
+                <span class="info-value" id="orderName">-</span>
             </div>
-
-            <div class="action-buttons">
-                <a href="../mypage.html" class="action-button">
-                    <div class="icon">📊</div>
-                    <div class="title">마이페이지</div>
-                    <div class="desc">리포트 확인하기</div>
-                </a>
-
-                <a href="../index.html" class="action-button">
-                    <div class="icon">🏠</div>
-                    <div class="title">홈으로</div>
-                    <div class="desc">메인 페이지</div>
-                </a>
-
-                <a href="mailto:support@mindscan.kr" class="action-button">
-                    <div class="icon">💬</div>
-                    <div class="title">1:1 문의</div>
-                    <div class="desc">궁금한 점 질문하기</div>
-                </a>
-
-                <a href="../marketing/ai-counsel.html" class="action-button">
-                    <div class="icon">🤖</div>
-                    <div class="title">AI 상담</div>
-                    <div class="desc">무료 상담 받기</div>
-                </a>
+            <div class="info-row">
+                <span class="info-label">결제금액</span>
+                <span class="info-value" id="orderAmount">-</span>
             </div>
+            <div class="info-row">
+                <span class="info-label">결제수단</span>
+                <span class="info-value" id="paymentMethod">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">구매자</span>
+                <span class="info-value" id="buyerName">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">이메일</span>
+                <span class="info-value" id="buyerEmail">-</span>
+            </div>
+        </div>
 
-            <button class="primary-button" onclick="window.location.href='../index.html'">
-                홈으로 돌아가기
-            </button>
+        <div class="buttons-group">
+            <a href="../templates/premium-report-template.html" class="btn btn-primary">
+                <i class="fas fa-file-pdf"></i> 리포트 보기
+            </a>
+            <a href="../index.html" class="btn btn-secondary">
+                <i class="fas fa-home"></i> 홈으로
+            </a>
+        </div>
+
+        <div class="notice">
+            <i class="fas fa-info-circle"></i>
+            영수증 및 상세 내역은 입력하신 이메일로 발송되었습니다.<br>
+            구매 내역은 마이페이지에서 확인하실 수 있습니다.
         </div>
     </div>
 
     <script>
-        // URL에서 주문번호 가져오기
+        // URL에서 결제 정보 파싱
         const urlParams = new URLSearchParams(window.location.search);
-        const orderId = urlParams.get('orderId');
+        
+        document.getElementById('orderId').textContent = urlParams.get('orderId') || 'ORD-2026-001';
+        document.getElementById('orderName').textContent = urlParams.get('orderName') || 'Mentora 프리미엄';
+        document.getElementById('orderAmount').textContent = (urlParams.get('amount') || '5,900') + '원';
+        document.getElementById('paymentMethod').textContent = urlParams.get('method') || '신용카드';
+        document.getElementById('buyerName').textContent = urlParams.get('customerName') || '홍길동';
+        document.getElementById('buyerEmail').textContent = urlParams.get('customerEmail') || 'example@email.com';
 
-        // 주문 정보 표시
-        if (orderId) {
-            document.getElementById('orderId').textContent = orderId;
-            
-            // LocalStorage에서 결제 정보 가져오기
-            const paymentData = JSON.parse(localStorage.getItem('mindscan_last_payment') || '{}');
-            
-            if (paymentData.orderId === orderId) {
-                document.getElementById('amount').textContent = '₩' + paymentData.amount.toLocaleString();
-                document.getElementById('buyerName').textContent = paymentData.buyerName;
-                document.getElementById('buyerEmail').textContent = paymentData.buyerEmail;
-                
-                const paymentMethodMap = {
-                    'card': '신용/체크카드',
-                    'kakaopay': '카카오페이',
-                    'naverpay': '네이버페이',
-                    'tosspay': '토스페이'
-                };
-                document.getElementById('paymentMethod').textContent = paymentMethodMap[paymentData.paymentMethod] || '신용카드';
-            }
-        }
+        // 결제 성공 데이터 저장 (localStorage)
+        const paymentData = {
+            orderId: urlParams.get('orderId'),
+            orderName: urlParams.get('orderName'),
+            amount: urlParams.get('amount'),
+            method: urlParams.get('method'),
+            date: new Date().toISOString(),
+            status: 'completed'
+        };
 
-        // 이메일 발송 시뮬레이션
-        setTimeout(() => {
-            console.log('📧 구매 영수증 이메일 발송 완료');
-            console.log('📊 프리미엄 리포트 다운로드 링크 발송 완료');
-        }, 1000);
+        localStorage.setItem('lastPayment', JSON.stringify(paymentData));
+        
+        // 구매 내역에 추가
+        let purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+        purchases.push(paymentData);
+        localStorage.setItem('purchases', JSON.stringify(purchases));
     </script>
 </body>
 </html>
