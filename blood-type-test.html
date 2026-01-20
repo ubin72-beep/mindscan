@@ -392,32 +392,32 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header class="page-header">
-        <nav class="page-nav">
-            <div class="page-nav-left">
-                <a href="index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <span class="logo-text">Mentora</span>
-                </a>
-            </div>
-            <ul class="page-nav-menu" id="navMenu">
-                <li><a href="index.html#home"><i class="fas fa-home"></i> 홈</a></li>
-                <li><a href="index.html#tests"><i class="fas fa-clipboard-list"></i> 검사하기</a></li>
-                <li><a href="index.html#premium-features"><i class="fas fa-crown"></i> 프리미엄</a></li>
-                <li><a href="index.html#pricing"><i class="fas fa-tags"></i> 요금제</a></li>
-                <li><a href="mypage.html"><i class="fas fa-user"></i> 내 결과</a></li>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li><a href="index.html#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 기능</a></li>
+                <li><a href="index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="index.html#reviews" class="nav-link" onclick="closeMobileMenu()">후기</a></li>
+                <li><a href="mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
             </ul>
-            <div class="page-nav-right">
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="메뉴 토글">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <button id="theme-toggle" class="theme-toggle" aria-label="다크모드 전환">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
     </header>
 
@@ -710,9 +710,10 @@
         // 모바일 메뉴 토글
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
-            const icon = document.querySelector('.mobile-menu-toggle i');
+            const menuToggle = document.getElementById('mobileMenuToggle');
             navMenu.classList.toggle('active');
             
+            const icon = menuToggle.querySelector('i');
             if (navMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
@@ -720,6 +721,21 @@
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
+        }
+
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            navMenu.classList.remove('active');
+            
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        // 테마 토글
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
         }
     </script>
 </body>
