@@ -3,739 +3,697 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프리미엄 결제 - MindScan</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- 토스페이먼츠 SDK -->
-    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+    <title>프리미엄 결제 - Mentora</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/nav-common.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/disclaimer.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-green: #2c5f4f;
-            --accent-gold: #d4af37;
-        }
-
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: #f5f7fa;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .payment-container {
+        .checkout-container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 100px auto 60px;
+            padding: 0 20px;
         }
 
-        .payment-header {
+        .checkout-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 50px;
         }
 
-        .payment-header h1 {
-            color: var(--primary-green);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .checkout-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a4838;
+            margin-bottom: 15px;
         }
 
-        .payment-header p {
+        .checkout-subtitle {
+            font-size: 16px;
             color: #666;
-            font-size: 1.125rem;
         }
 
-        .payment-content {
+        .pricing-comparison {
             display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 2rem;
-            align-items: start;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
         }
 
-        /* 왼쪽: 상품 정보 */
-        .product-info {
+        .pricing-card {
             background: white;
-            border-radius: 24px;
-            padding: 3rem;
-            box-shadow: 0 4px 16px rgba(44, 95, 79, 0.1);
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 35px 30px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .product-header {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #f5f7fa;
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
-        .product-image {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, var(--primary-green), #1a4838);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            flex-shrink: 0;
+        .pricing-card.featured {
+            border: 3px solid #d4af37;
+            background: linear-gradient(135deg, #fff9e6, #ffffff);
+            transform: scale(1.05);
         }
 
-        .product-details h2 {
-            color: var(--primary-green);
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: linear-gradient(135deg, #d4af37, #f4e4a6);
+            color: #1a4838;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .product-details .subtitle {
-            color: #666;
-            margin-bottom: 1rem;
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a4838;
+            margin-bottom: 10px;
         }
 
-        .product-price {
-            display: flex;
-            align-items: baseline;
-            gap: 0.75rem;
-        }
-
-        .original-price {
-            color: #999;
-            text-decoration: line-through;
-            font-size: 1.25rem;
-        }
-
-        .discount-price {
-            color: var(--accent-gold);
-            font-size: 2.5rem;
+        .plan-price {
+            font-size: 42px;
             font-weight: 800;
+            color: #d4af37;
+            margin-bottom: 5px;
         }
 
-        .discount-badge {
-            background: linear-gradient(135deg, #ff6b6b, #ff5252);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.875rem;
-        }
-
-        .features-list {
-            margin-top: 2rem;
-        }
-
-        .features-list h3 {
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.25rem;
-            padding: 1rem;
-            background: #f5f7fa;
-            border-radius: 12px;
-        }
-
-        .feature-icon {
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .feature-text h4 {
-            color: #1a1a1a;
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .feature-text p {
+        .plan-price span {
+            font-size: 18px;
             color: #666;
-            font-size: 0.875rem;
-            line-height: 1.6;
+            font-weight: 400;
         }
 
-        .guarantee-box {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-            border-radius: 12px;
-            border: 2px solid var(--accent-gold);
-        }
-
-        .guarantee-box h4 {
-            color: var(--primary-green);
-            margin-bottom: 0.75rem;
-        }
-
-        .guarantee-box p {
+        .plan-description {
+            font-size: 14px;
             color: #666;
-            font-size: 0.875rem;
-            line-height: 1.6;
+            margin-bottom: 25px;
+            min-height: 40px;
         }
 
-        /* 오른쪽: 결제 정보 */
-        .payment-box {
-            background: white;
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(44, 95, 79, 0.15);
-            position: sticky;
-            top: 2rem;
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
         }
 
-        .payment-box h3 {
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #f5f7fa;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: #666;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.875rem;
-            border: 2px solid #e8ecef;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            transition: border-color 0.2s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary-green);
-        }
-
-        .coupon-input-group {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .coupon-input-group input {
-            flex: 1;
-        }
-
-        .apply-coupon-btn {
-            padding: 0.875rem 1.25rem;
-            background: #666;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .apply-coupon-btn:hover {
-            background: #444;
-        }
-
-        .price-summary {
-            background: #f5f7fa;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-        }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.75rem;
-            color: #666;
-        }
-
-        .price-row.total {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px solid #e8ecef;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #1a1a1a;
-        }
-
-        .price-row.total .amount {
-            color: var(--accent-gold);
-            font-size: 1.75rem;
-        }
-
-        .payment-methods {
-            margin-bottom: 1.5rem;
-        }
-
-        .payment-methods h4 {
-            color: #1a1a1a;
-            margin-bottom: 1rem;
-            font-size: 0.875rem;
-        }
-
-        .payment-method {
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
             display: flex;
             align-items: center;
-            padding: 1rem;
-            border: 2px solid #e8ecef;
-            border-radius: 8px;
-            margin-bottom: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            gap: 10px;
+            font-size: 15px;
+            color: #333;
         }
 
-        .payment-method:hover {
-            border-color: var(--primary-green);
+        .plan-features li i {
+            color: #28a745;
+            font-size: 16px;
         }
 
-        .payment-method.selected {
-            border-color: var(--primary-green);
-            background: #e8f5f1;
+        .plan-features li.disabled {
+            opacity: 0.4;
         }
 
-        .payment-method input[type="radio"] {
-            margin-right: 1rem;
+        .plan-features li.disabled i {
+            color: #dc3545;
         }
 
-        .payment-method-icon {
-            margin-right: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .payment-method-info {
-            flex: 1;
-        }
-
-        .payment-method-name {
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        .payment-method-desc {
-            font-size: 0.75rem;
-            color: #999;
-        }
-
-        .agree-box {
-            margin-bottom: 1.5rem;
-        }
-
-        .agree-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .agree-item input[type="checkbox"] {
-            margin-top: 2px;
-        }
-
-        .agree-item label {
-            color: #666;
-            font-size: 0.875rem;
-            cursor: pointer;
-        }
-
-        .agree-item label a {
-            color: var(--primary-green);
-            text-decoration: underline;
-        }
-
-        .pay-button {
+        .btn-select-plan {
             width: 100%;
-            padding: 1.25rem;
-            background: linear-gradient(135deg, var(--accent-gold), #b8962f);
-            color: #1a1a1a;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #1a4838, #2c5f4f);
+            color: white;
             border: none;
             border-radius: 12px;
-            font-size: 1.125rem;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .pay-button:hover {
-            background: linear-gradient(135deg, #e6c255, var(--accent-gold));
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+        .btn-select-plan:hover {
+            background: linear-gradient(135deg, #2c5f4f, #1a4838);
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(26, 72, 56, 0.3);
         }
 
-        .pay-button:disabled {
+        .pricing-card.featured .btn-select-plan {
+            background: linear-gradient(135deg, #d4af37, #f4e4a6);
+            color: #1a4838;
+        }
+
+        .pricing-card.featured .btn-select-plan:hover {
+            background: linear-gradient(135deg, #f4e4a6, #d4af37);
+        }
+
+        .payment-form-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .payment-form-section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .payment-method {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: #d4af37;
+            background: #fff9e6;
+        }
+
+        .payment-method.selected {
+            border-color: #d4af37;
+            background: #fff9e6;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .payment-method i {
+            font-size: 32px;
+            color: #1a4838;
+            margin-bottom: 8px;
+        }
+
+        .payment-method span {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .order-summary {
+            background: linear-gradient(135deg, #fff9e6, #ffffff);
+            border: 2px solid #d4af37;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .order-summary h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a4838;
+            margin-bottom: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 15px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+            padding-top: 20px;
+            margin-top: 10px;
+            border-top: 2px solid #d4af37;
+        }
+
+        .order-total {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d4af37;
+        }
+
+        .btn-payment {
+            width: 100%;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #d4af37, #f4e4a6);
+            color: #1a4838;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-payment:hover:not(:disabled) {
+            background: linear-gradient(135deg, #f4e4a6, #d4af37);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-payment:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
         }
 
-        .secure-badge {
-            text-align: center;
-            margin-top: 1rem;
-            color: #999;
-            font-size: 0.75rem;
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
         }
 
-        .secure-badge .icon {
-            color: #4caf50;
+        .security-badge i {
+            font-size: 20px;
+            color: #28a745;
         }
 
-        @media (max-width: 968px) {
-            .payment-content {
+        .security-badge span {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Dark Mode */
+        body.dark-mode .checkout-title {
+            color: #d4af37;
+        }
+
+        body.dark-mode .pricing-card {
+            background: #0f3460;
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        body.dark-mode .plan-name,
+        body.dark-mode .plan-features li {
+            color: #fff;
+        }
+
+        body.dark-mode .payment-form-section,
+        body.dark-mode .payment-method {
+            background: #0f3460;
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group select {
+            background: #1a1a1a;
+            color: #fff;
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .pricing-comparison {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
 
-            .payment-box {
-                position: static;
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                margin-top: 80px;
+            }
+
+            .checkout-title {
+                font-size: 28px;
+            }
+
+            .payment-form-section,
+            .order-summary {
+                padding: 25px 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="payment-container">
-        <div class="payment-header">
-            <h1>💎 프리미엄 리포트 구매</h1>
-            <p>더 깊이 있는 자기 이해의 여정</p>
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="../index.html#home" class="nav-link">홈</a></li>
+                <li><a href="../index.html#tests" class="nav-link">검사하기</a></li>
+                <li><a href="../index.html#premium-features" class="nav-link">프리미엄 기능</a></li>
+                <li><a href="../index.html#pricing" class="nav-link active">요금제</a></li>
+                <li><a href="../mypage.html" class="nav-link">내 결과</a></li>
+            </ul>
+            
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1 class="checkout-title">프리미엄 플랜 선택</h1>
+            <p class="checkout-subtitle">더 깊이 있는 분석과 맞춤형 조언을 받아보세요</p>
         </div>
 
-        <div class="payment-content">
-            <!-- 왼쪽: 상품 정보 -->
-            <div class="product-info">
-                <div class="product-header">
-                    <div class="product-image">📊</div>
-                    <div class="product-details">
-                        <h2>프리미엄 리포트</h2>
-                        <p class="subtitle">MBTI 성격유형검사</p>
-                        <div class="product-price">
-                            <span class="original-price">₩9,900</span>
-                            <span class="discount-price">₩4,900</span>
-                            <span class="discount-badge">50% OFF</span>
-                        </div>
-                    </div>
+        <!-- 면책 조항 -->
+        <div id="disclaimerContainer"></div>
+
+        <!-- 요금제 비교 -->
+        <div class="pricing-comparison">
+            <!-- 무료 플랜 -->
+            <div class="pricing-card">
+                <h3 class="plan-name">무료</h3>
+                <div class="plan-price">
+                    0원
                 </div>
+                <p class="plan-description">기본 검사와 간단한 결과 확인</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 9가지 기본 검사</li>
+                    <li><i class="fas fa-check"></i> 간단한 결과 확인</li>
+                    <li><i class="fas fa-check"></i> 통계 비교</li>
+                    <li class="disabled"><i class="fas fa-times"></i> 상세 분석 리포트</li>
+                    <li class="disabled"><i class="fas fa-times"></i> AI 맞춤 조언</li>
+                    <li class="disabled"><i class="fas fa-times"></i> PDF 다운로드</li>
+                </ul>
+                <button class="btn-select-plan" onclick="window.location.href='../index.html#tests'">
+                    무료로 시작하기
+                </button>
+            </div>
 
-                <div class="features-list">
-                    <h3>프리미엄 리포트에 포함된 것들</h3>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">📊</div>
-                        <div class="feature-text">
-                            <h4>20페이지 상세 분석</h4>
-                            <p>기본 리포트보다 5배 더 자세한 성격 분석과 그래프로 당신을 깊이 있게 이해합니다</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">💼</div>
-                        <div class="feature-text">
-                            <h4>맞춤형 진로 추천</h4>
-                            <p>당신의 성격에 꼭 맞는 직업 TOP 10과 구체적인 커리어 로드맵을 제시합니다</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">💑</div>
-                        <div class="feature-text">
-                            <h4>연애 & 대인관계 가이드</h4>
-                            <p>최고의 파트너 유형, 궁합 분석, 소통 전략 등 관계를 위한 실용적 조언</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">📈</div>
-                        <div class="feature-text">
-                            <h4>강점 & 약점 분석</h4>
-                            <p>구체적인 개선 방법과 함께 당신만의 강점을 최대화하는 전략 제공</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">🎯</div>
-                        <div class="feature-text">
-                            <h4>3개월 자기계발 플랜</h4>
-                            <p>맞춤형 목표 설정과 실행 계획으로 실제로 성장할 수 있는 로드맵</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">📚</div>
-                        <div class="feature-text">
-                            <h4>추천 도서 & 콘텐츠</h4>
-                            <p>당신의 성격 유형에 맞는 엄선된 책, 강의, 유튜브 채널 추천</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">🔄</div>
-                        <div class="feature-text">
-                            <h4>평생 무료 재검사</h4>
-                            <p>시간이 지나 성격이 변할 때마다 무료로 다시 검사하고 비교할 수 있습니다</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-item">
-                        <div class="feature-icon">💬</div>
-                        <div class="feature-text">
-                            <h4>1:1 Q&A (1회)</h4>
-                            <p>결과에 대한 궁금증을 전문가에게 직접 물어보고 답변을 받을 수 있습니다</p>
-                        </div>
-                    </div>
+            <!-- 프리미엄 플랜 (추천) -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">🏆 추천</div>
+                <h3 class="plan-name">프리미엄</h3>
+                <div class="plan-price">
+                    5,900원 <span>/ 검사</span>
                 </div>
+                <p class="plan-description">상세 분석과 AI 맞춤 조언</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 모든 무료 기능</li>
+                    <li><i class="fas fa-check"></i> 20페이지 상세 리포트</li>
+                    <li><i class="fas fa-check"></i> AI 맞춤형 조언</li>
+                    <li><i class="fas fa-check"></i> 강점/약점 심층 분석</li>
+                    <li><i class="fas fa-check"></i> 30일 실천 플랜</li>
+                    <li><i class="fas fa-check"></i> PDF 다운로드 & 보관</li>
+                </ul>
+                <button class="btn-select-plan" onclick="selectPlan('premium', 5900)">
+                    지금 구매하기
+                </button>
+            </div>
 
-                <div class="guarantee-box">
-                    <h4>🛡️ 100% 만족 보장</h4>
-                    <p>프리미엄 리포트가 기대에 미치지 못하면 7일 이내 전액 환불해드립니다. 이유를 묻지 않습니다.</p>
+            <!-- 골드 멤버십 -->
+            <div class="pricing-card">
+                <h3 class="plan-name">골드 멤버십</h3>
+                <div class="plan-price">
+                    14,900원 <span>/ 월</span>
+                </div>
+                <p class="plan-description">무제한 검사와 프리미엄 기능</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 모든 프리미엄 기능</li>
+                    <li><i class="fas fa-check"></i> 무제한 검사</li>
+                    <li><i class="fas fa-check"></i> 커플 매칭 분석 1회</li>
+                    <li><i class="fas fa-check"></i> 월간 성장 리포트</li>
+                    <li><i class="fas fa-check"></i> 우선 고객 지원</li>
+                    <li><i class="fas fa-check"></i> 커뮤니티 프리미엄 액세스</li>
+                </ul>
+                <button class="btn-select-plan" onclick="selectPlan('gold', 14900)">
+                    구독하기
+                </button>
+            </div>
+        </div>
+
+        <!-- 결제 폼 섹션 -->
+        <div class="payment-form-section" id="paymentFormSection">
+            <h2 style="font-size: 28px; font-weight: 700; color: #1a4838; margin-bottom: 30px;">
+                <i class="fas fa-credit-card"></i> 결제 정보
+            </h2>
+
+            <!-- 주문 요약 -->
+            <div class="order-summary">
+                <h3>주문 요약</h3>
+                <div class="order-item">
+                    <span>상품</span>
+                    <span id="orderPlanName">-</span>
+                </div>
+                <div class="order-item">
+                    <span>금액</span>
+                    <span id="orderPrice">-</span>
+                </div>
+                <div class="order-item">
+                    <span class="order-total">총 결제 금액</span>
+                    <span class="order-total" id="orderTotal">-</span>
                 </div>
             </div>
 
-            <!-- 오른쪽: 결제 정보 -->
-            <div class="payment-box">
-                <h3>결제 정보</h3>
+            <!-- 결제 수단 선택 -->
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 15px;">결제 수단</h3>
+            <div class="payment-methods">
+                <div class="payment-method selected" data-method="card">
+                    <i class="fas fa-credit-card"></i>
+                    <span>신용/체크카드</span>
+                </div>
+                <div class="payment-method" data-method="kakaopay">
+                    <i class="fab fa-kickstarter"></i>
+                    <span>카카오페이</span>
+                </div>
+                <div class="payment-method" data-method="naverpay">
+                    <i class="fab fa-neos"></i>
+                    <span>네이버페이</span>
+                </div>
+                <div class="payment-method" data-method="toss">
+                    <i class="fas fa-wallet"></i>
+                    <span>토스페이</span>
+                </div>
+            </div>
 
-                <form id="paymentForm">
-                    <div class="form-group">
-                        <label for="buyerName">구매자 이름 *</label>
-                        <input 
-                            type="text" 
-                            id="buyerName" 
-                            name="buyerName"
-                            placeholder="홍길동"
-                            required
-                        >
-                    </div>
+            <!-- 구매자 정보 -->
+            <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 15px; margin-top: 30px;">구매자 정보</h3>
+            <div class="form-group">
+                <label for="buyerName">이름 <span style="color: #e74c3c;">*</span></label>
+                <input type="text" id="buyerName" placeholder="홍길동" required>
+            </div>
+            <div class="form-group">
+                <label for="buyerEmail">이메일 <span style="color: #e74c3c;">*</span></label>
+                <input type="email" id="buyerEmail" placeholder="example@email.com" required>
+            </div>
+            <div class="form-group">
+                <label for="buyerPhone">휴대폰 번호 <span style="color: #e74c3c;">*</span></label>
+                <input type="tel" id="buyerPhone" placeholder="010-1234-5678" required>
+            </div>
 
-                    <div class="form-group">
-                        <label for="buyerEmail">이메일 *</label>
-                        <input 
-                            type="email" 
-                            id="buyerEmail" 
-                            name="buyerEmail"
-                            placeholder="your@email.com"
-                            required
-                        >
-                    </div>
+            <!-- 결제 전 동의 -->
+            <div id="paymentDisclaimerContainer" style="margin-top: 30px;"></div>
 
-                    <div class="form-group">
-                        <label for="buyerPhone">휴대폰 번호 *</label>
-                        <input 
-                            type="tel" 
-                            id="buyerPhone" 
-                            name="buyerPhone"
-                            placeholder="010-1234-5678"
-                            required
-                        >
-                    </div>
+            <!-- 결제 버튼 -->
+            <button class="btn-payment" id="paymentButton" disabled>
+                <i class="fas fa-lock"></i> 안전하게 결제하기
+            </button>
 
-                    <div class="form-group">
-                        <label for="couponCode">쿠폰 코드 (선택)</label>
-                        <div class="coupon-input-group">
-                            <input 
-                                type="text" 
-                                id="couponCode" 
-                                name="couponCode"
-                                placeholder="쿠폰 코드 입력"
-                            >
-                            <button type="button" class="apply-coupon-btn" onclick="applyCoupon()">
-                                적용
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="price-summary">
-                        <div class="price-row">
-                            <span>상품 금액</span>
-                            <span id="originalAmount">₩9,900</span>
-                        </div>
-                        <div class="price-row">
-                            <span>첫 구매 할인 (50%)</span>
-                            <span style="color: #ff5252;">-₩5,000</span>
-                        </div>
-                        <div class="price-row" id="couponRow" style="display: none;">
-                            <span>쿠폰 할인</span>
-                            <span id="couponDiscount" style="color: #ff5252;">-₩0</span>
-                        </div>
-                        <div class="price-row total">
-                            <span>최종 결제금액</span>
-                            <span class="amount" id="finalAmount">₩4,900</span>
-                        </div>
-                    </div>
-
-                    <div class="payment-methods">
-                        <h4>결제 수단</h4>
-
-                        <label class="payment-method selected">
-                            <input type="radio" name="paymentMethod" value="card" checked>
-                            <span class="payment-method-icon">💳</span>
-                            <div class="payment-method-info">
-                                <div class="payment-method-name">신용/체크카드</div>
-                                <div class="payment-method-desc">모든 카드 사용 가능</div>
-                            </div>
-                        </label>
-
-                        <label class="payment-method">
-                            <input type="radio" name="paymentMethod" value="kakaopay">
-                            <span class="payment-method-icon">💬</span>
-                            <div class="payment-method-info">
-                                <div class="payment-method-name">카카오페이</div>
-                                <div class="payment-method-desc">간편하고 빠른 결제</div>
-                            </div>
-                        </label>
-
-                        <label class="payment-method">
-                            <input type="radio" name="paymentMethod" value="naverpay">
-                            <span class="payment-method-icon">🅝</span>
-                            <div class="payment-method-info">
-                                <div class="payment-method-name">네이버페이</div>
-                                <div class="payment-method-desc">네이버 포인트 사용 가능</div>
-                            </div>
-                        </label>
-
-                        <label class="payment-method">
-                            <input type="radio" name="paymentMethod" value="tosspay">
-                            <span class="payment-method-icon">💙</span>
-                            <div class="payment-method-info">
-                                <div class="payment-method-name">토스페이</div>
-                                <div class="payment-method-desc">토스 앱으로 간편결제</div>
-                            </div>
-                        </label>
-                    </div>
-
-                    <div class="agree-box">
-                        <div class="agree-item">
-                            <input type="checkbox" id="agreeAll" onchange="toggleAllAgree(this)">
-                            <label for="agreeAll"><strong>전체 동의</strong></label>
-                        </div>
-                        <div class="agree-item">
-                            <input type="checkbox" class="agree-check" required>
-                            <label>구매조건 확인 및 결제 진행 동의 (필수)</label>
-                        </div>
-                        <div class="agree-item">
-                            <input type="checkbox" class="agree-check" required>
-                            <label>개인정보 제3자 제공 동의 (필수) <a href="#">보기</a></label>
-                        </div>
-                        <div class="agree-item">
-                            <input type="checkbox" class="agree-check">
-                            <label>마케팅 정보 수신 동의 (선택)</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="pay-button">
-                        ₩4,900 결제하기
-                    </button>
-
-                    <div class="secure-badge">
-                        <span class="icon">🔒</span> 안전한 결제 시스템 (PG: 토스페이먼츠)
-                    </div>
-                </form>
+            <!-- 보안 배지 -->
+            <div class="security-badge">
+                <i class="fas fa-shield-alt"></i>
+                <span>SSL 암호화로 안전하게 보호됩니다</span>
+                <i class="fas fa-check-circle"></i>
+                <span>PCI DSS 인증 결제 시스템</span>
             </div>
         </div>
     </div>
 
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon-text">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span>Mentora</span>
+                    </div>
+                    <p class="footer-tagline">진짜 나를 만나는 가장 정확한 방법</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/disclaimer.js"></script>
     <script>
-        // 결제 수단 선택
-        document.querySelectorAll('.payment-method').forEach(method => {
-            method.addEventListener('click', function() {
-                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
-                this.classList.add('selected');
-                this.querySelector('input[type="radio"]').checked = true;
-            });
+        let selectedPlan = null;
+        let selectedPrice = 0;
+        let selectedPaymentMethod = 'card';
+
+        // 페이지 로드 시 면책 조항 삽입
+        document.addEventListener('DOMContentLoaded', function() {
+            // 상단 면책 조항
+            document.getElementById('disclaimerContainer').innerHTML = createDisclaimerBanner();
+            
+            // 결제 동의 체크박스
+            document.getElementById('paymentDisclaimerContainer').innerHTML = createPaymentDisclaimer();
+            
+            // 결제 버튼 활성화 체크
+            setupPaymentDisclaimerCheck();
+
+            // 결제 수단 선택
+            setupPaymentMethods();
+
+            // URL에서 플랜 파라미터 확인
+            const urlParams = new URLSearchParams(window.location.search);
+            const plan = urlParams.get('plan');
+            if (plan === 'premium') {
+                selectPlan('premium', 5900);
+            } else if (plan === 'gold') {
+                selectPlan('gold', 14900);
+            }
         });
 
-        // 전체 동의
-        function toggleAllAgree(checkbox) {
-            document.querySelectorAll('.agree-check').forEach(check => {
-                check.checked = checkbox.checked;
-            });
+        // 플랜 선택
+        function selectPlan(plan, price) {
+            selectedPlan = plan;
+            selectedPrice = price;
+
+            // 결제 폼 표시
+            document.getElementById('paymentFormSection').classList.add('active');
+            
+            // 주문 요약 업데이트
+            const planNames = {
+                'premium': '프리미엄 (검사당)',
+                'gold': '골드 멤버십 (월간)'
+            };
+
+            document.getElementById('orderPlanName').textContent = planNames[plan];
+            document.getElementById('orderPrice').textContent = price.toLocaleString() + '원';
+            document.getElementById('orderTotal').textContent = price.toLocaleString() + '원';
+
+            // 스크롤
+            document.getElementById('paymentFormSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // 쿠폰 적용
-        function applyCoupon() {
-            const couponCode = document.getElementById('couponCode').value.trim().toUpperCase();
-            
-            if (!couponCode) {
-                alert('쿠폰 코드를 입력해주세요');
-                return;
-            }
-
-            // 쿠폰 검증 (LocalStorage에서 확인)
-            const coupons = JSON.parse(localStorage.getItem('mindscan_coupons') || '[]');
-            const coupon = coupons.find(c => c.code === couponCode && !c.used);
-
-            if (!coupon) {
-                alert('유효하지 않은 쿠폰 코드입니다');
-                return;
-            }
-
-            // 쿠폰 적용
-            const currentPrice = 4900;
-            const discountAmount = Math.floor(currentPrice * coupon.discount / 100);
-            const finalPrice = currentPrice - discountAmount;
-
-            document.getElementById('couponRow').style.display = 'flex';
-            document.getElementById('couponDiscount').textContent = `-₩${discountAmount.toLocaleString()}`;
-            document.getElementById('finalAmount').textContent = `₩${finalPrice.toLocaleString()}`;
-            document.querySelector('.pay-button').textContent = `₩${finalPrice.toLocaleString()} 결제하기`;
-
-            alert(`쿠폰이 적용되었습니다! (${coupon.discount}% 할인)`);
+        // 결제 수단 선택 설정
+        function setupPaymentMethods() {
+            const methods = document.querySelectorAll('.payment-method');
+            methods.forEach(method => {
+                method.addEventListener('click', function() {
+                    methods.forEach(m => m.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedPaymentMethod = this.dataset.method;
+                });
+            });
         }
 
         // 결제 처리
-        document.getElementById('paymentForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        document.getElementById('paymentButton').addEventListener('click', function() {
+            // 폼 검증
+            const name = document.getElementById('buyerName').value.trim();
+            const email = document.getElementById('buyerEmail').value.trim();
+            const phone = document.getElementById('buyerPhone').value.trim();
 
-            const buyerName = document.getElementById('buyerName').value;
-            const buyerEmail = document.getElementById('buyerEmail').value;
-            const buyerPhone = document.getElementById('buyerPhone').value;
-            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const finalAmount = document.getElementById('finalAmount').textContent.replace(/[^0-9]/g, '');
-
-            // 필수 동의 확인
-            const requiredChecks = document.querySelectorAll('.agree-check[required]');
-            const allAgreed = Array.from(requiredChecks).every(check => check.checked);
-
-            if (!allAgreed) {
-                alert('필수 약관에 동의해주세요');
+            if (!name || !email || !phone) {
+                alert('모든 필수 항목을 입력해주세요.');
                 return;
             }
 
-            // 결제 데이터
-            const paymentData = {
-                orderId: 'ORDER_' + Date.now(),
-                orderName: 'MindScan 프리미엄 리포트 - MBTI',
-                amount: parseInt(finalAmount),
-                buyerName: buyerName,
-                buyerEmail: buyerEmail,
-                buyerPhone: buyerPhone,
-                paymentMethod: paymentMethod,
-                timestamp: new Date().toISOString()
-            };
+            if (!document.getElementById('disclaimerAgree').checked) {
+                alert('구매 전 필독사항에 동의해주세요.');
+                return;
+            }
 
-            console.log('결제 데이터:', paymentData);
-
-            // 실제 환경에서는 토스페이먼츠 API 호출
-            // 여기서는 시뮬레이션
-            alert('결제 처리 중...');
-
-            setTimeout(() => {
-                // 결제 성공
-                localStorage.setItem('mindscan_last_payment', JSON.stringify(paymentData));
-                
-                alert(`결제가 완료되었습니다!\n주문번호: ${paymentData.orderId}`);
-                
-                // 성공 페이지로 이동
-                window.location.href = '../payment/success.html?orderId=' + paymentData.orderId;
-            }, 2000);
+            // 결제 처리 (토스페이먼츠 연동 예정)
+            processPayment({
+                plan: selectedPlan,
+                price: selectedPrice,
+                method: selectedPaymentMethod,
+                buyer: {
+                    name: name,
+                    email: email,
+                    phone: phone
+                }
+            });
         });
+
+        // 결제 처리 함수 (임시)
+        function processPayment(data) {
+            console.log('결제 데이터:', data);
+            
+            // 임시: 결제 성공 페이지로 이동
+            alert('결제 기능은 곧 연동됩니다.\n\n선택하신 플랜: ' + data.plan + '\n금액: ' + data.price.toLocaleString() + '원');
+            
+            // 실제 연동 시: 토스페이먼츠 결제창 호출
+            // requestTossPayment(data);
+        }
+
+        // 다크모드 토글
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('#themeToggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
     </script>
 </body>
 </html>
