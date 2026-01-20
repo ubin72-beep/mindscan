@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4군자 성격 유형 검사 - Mentora</title>
-    <meta name="description" content="매화, 난초, 국화, 대나무 중 당신의 성격과 어울리는 군자를 찾아보세요">
+    <meta name="description" content="12개 질문으로 나의 4군자 성격 유형을 찾아보세요. 매화, 난초, 국화, 대나무 중 당신은?">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo-brain-hd.png">
@@ -24,12 +24,10 @@
         :root {
             --primary-green: #22c55e;
             --accent-gold: #d4af37;
-            --gradient-start: #2c5f4f;
-            --gradient-end: #d4af37;
-            --dark-bg: #0f1419;
-            --card-bg: #ffffff;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
+            --plum: #ff9a9e;
+            --orchid: #a18cd1;
+            --chrysanthemum: #ffecd2;
+            --bamboo: #56ab2f;
         }
 
         body {
@@ -38,18 +36,18 @@
             padding-top: 80px;
         }
 
-        .sagunja-container {
-            max-width: 1200px;
+        .test-container {
+            max-width: 900px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        .sagunja-header {
+        .test-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
-        .sagunja-badge {
+        .test-badge {
             display: inline-block;
             background: linear-gradient(135deg, #2c5f4f 0%, #22c55e 100%);
             color: white;
@@ -58,215 +56,134 @@
             font-size: 14px;
             font-weight: 700;
             margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .sagunja-title {
-            font-size: 48px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #2c5f4f 0%, #22c55e 50%, #d4af37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-        }
-
-        .sagunja-description {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .sagunja-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .sagunja-card {
-            background: white;
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border: 3px solid transparent;
-        }
-
-        .sagunja-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(44,95,79,0.05) 0%, rgba(212,175,55,0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .sagunja-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            border-color: var(--accent-gold);
-        }
-
-        .sagunja-card:hover::before {
-            opacity: 1;
-        }
-
-        .sagunja-card.selected {
-            border-color: var(--accent-gold);
-            box-shadow: 0 20px 60px rgba(212,175,55,0.3);
-        }
-
-        .sagunja-icon {
-            font-size: 80px;
-            text-align: center;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
-        }
-
-        .sagunja-name {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .sagunja-subtitle {
-            font-size: 16px;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
-
-        .sagunja-traits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .trait-tag {
-            background: linear-gradient(135deg, rgba(44,95,79,0.1) 0%, rgba(212,175,55,0.1) 100%);
-            color: var(--gradient-start);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid rgba(212,175,55,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .sagunja-card:hover .trait-tag {
-            background: linear-gradient(135deg, rgba(44,95,79,0.2) 0%, rgba(212,175,55,0.2) 100%);
-            border-color: var(--accent-gold);
-        }
-
-        .result-section {
-            background: white;
-            border-radius: 24px;
-            padding: 60px 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .result-section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .result-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .result-icon {
-            font-size: 100px;
-            margin-bottom: 20px;
-        }
-
-        .result-title {
+        .test-title {
             font-size: 42px;
             font-weight: 900;
             background: linear-gradient(135deg, #2c5f4f 0%, #22c55e 50%, #d4af37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 15px;
-        }
-
-        .result-subtitle {
-            font-size: 20px;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-        }
-
-        .result-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .result-section-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 30px 0 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--accent-gold);
-        }
-
-        .result-text {
-            font-size: 16px;
-            line-height: 1.8;
-            color: var(--text-secondary);
             margin-bottom: 20px;
         }
 
-        .result-traits-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+        .test-description {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-bar {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
             margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
-        .result-trait-item {
-            background: linear-gradient(135deg, rgba(44,95,79,0.05) 0%, rgba(212,175,55,0.05) 100%);
-            padding: 15px 20px;
-            border-radius: 12px;
-            border: 2px solid rgba(212,175,55,0.3);
+        .progress-text {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c5f4f;
+            margin-bottom: 10px;
         }
 
-        .result-trait-item strong {
-            color: var(--gradient-start);
+        .progress-track {
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #2c5f4f 0%, #22c55e 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .question-card.active {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-number {
+            color: #d4af37;
+            font-size: 18px;
             font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .action-buttons {
+        .question-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .answer-options {
             display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 40px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .answer-option {
+            background: linear-gradient(135deg, rgba(34,197,94,0.05) 0%, rgba(212,175,55,0.05) 100%);
+            border: 2px solid rgba(34,197,94,0.2);
+            border-radius: 16px;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .answer-option:hover {
+            border-color: #22c55e;
+            background: linear-gradient(135deg, rgba(34,197,94,0.1) 0%, rgba(212,175,55,0.1) 100%);
+            transform: translateX(5px);
+        }
+
+        .answer-option.selected {
+            border-color: #d4af37;
+            background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(34,197,94,0.15) 100%);
+            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         .btn {
-            padding: 16px 40px;
+            padding: 16px 32px;
             border-radius: 12px;
             font-size: 16px;
             font-weight: 700;
@@ -280,6 +197,7 @@
         .btn-primary {
             background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
             color: white;
+            flex: 1;
         }
 
         .btn-primary:hover {
@@ -287,15 +205,110 @@
             box-shadow: 0 10px 30px rgba(34,197,94,0.4);
         }
 
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .btn-secondary {
             background: white;
-            color: var(--gradient-start);
-            border: 2px solid var(--gradient-start);
+            color: #2c5f4f;
+            border: 2px solid #2c5f4f;
         }
 
         .btn-secondary:hover {
-            background: var(--gradient-start);
+            background: #2c5f4f;
             color: white;
+        }
+
+        .result-section {
+            background: white;
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: none;
+            text-align: center;
+        }
+
+        .result-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .result-icon {
+            font-size: 120px;
+            margin-bottom: 20px;
+        }
+
+        .result-title {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #2c5f4f 0%, #22c55e 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .result-subtitle {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .result-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .result-section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .result-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .result-traits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .result-trait-item {
+            background: linear-gradient(135deg, rgba(34,197,94,0.05) 0%, rgba(212,175,55,0.05) 100%);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(212,175,55,0.3);
+        }
+
+        .result-trait-item strong {
+            color: #2c5f4f;
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
 
         .btn-share {
@@ -310,24 +323,24 @@
 
         /* 반응형 */
         @media (max-width: 768px) {
-            .sagunja-grid {
-                grid-template-columns: 1fr;
+            .test-title {
+                font-size: 32px;
             }
 
-            .sagunja-title {
-                font-size: 32px;
+            .question-text {
+                font-size: 20px;
             }
 
             .result-title {
-                font-size: 32px;
+                font-size: 36px;
             }
 
-            .result-traits-grid {
+            .result-traits {
                 grid-template-columns: 1fr;
             }
 
-            .sagunja-card {
-                padding: 30px 20px;
+            .navigation-buttons {
+                flex-direction: column;
             }
 
             .action-buttons {
@@ -365,87 +378,62 @@
         </div>
     </nav>
 
-    <!-- 4군자 선택 섹션 -->
-    <div class="sagunja-container" id="selectionSection">
-        <div class="sagunja-header">
-            <div class="sagunja-badge">🌸 전통</div>
-            <h1 class="sagunja-title">4군자 성격 유형</h1>
-            <p class="sagunja-description">
-                매화, 난초, 국화, 대나무 중 당신의 성격과 어울리는 군자를 선택해보세요.<br>
-                전통적인 동양의 지혜로 당신의 성향을 알아봅니다.
+    <!-- 검사 시작 화면 -->
+    <div class="test-container" id="startScreen">
+        <div class="test-header">
+            <div class="test-badge">🌸 전통 성격 검사</div>
+            <h1 class="test-title">4군자 성격 유형 검사</h1>
+            <p class="test-description">
+                12개의 질문으로 당신의 성격과 어울리는 4군자를 찾아보세요.<br>
+                매화, 난초, 국화, 대나무 중 당신의 유형은?
             </p>
         </div>
 
-        <div class="sagunja-grid">
-            <!-- 매화 -->
-            <div class="sagunja-card" onclick="selectSagunja('plum')">
-                <div class="sagunja-icon">🌸</div>
-                <h3 class="sagunja-name">매화 (梅花)</h3>
-                <p class="sagunja-subtitle">추위를 이겨내는 기품</p>
-                <div class="sagunja-traits">
-                    <span class="trait-tag">강인함</span>
-                    <span class="trait-tag">불굴의 의지</span>
-                    <span class="trait-tag">고고한 자존심</span>
-                    <span class="trait-tag">인내심</span>
-                </div>
-            </div>
-
-            <!-- 난초 -->
-            <div class="sagunja-card" onclick="selectSagunja('orchid')">
-                <div class="sagunja-icon">🌾</div>
-                <h3 class="sagunja-name">난초 (蘭草)</h3>
-                <p class="sagunja-subtitle">은은한 향기의 품격</p>
-                <div class="sagunja-traits">
-                    <span class="trait-tag">우아함</span>
-                    <span class="trait-tag">품위</span>
-                    <span class="trait-tag">겸손함</span>
-                    <span class="trait-tag">섬세함</span>
-                </div>
-            </div>
-
-            <!-- 국화 -->
-            <div class="sagunja-card" onclick="selectSagunja('chrysanthemum')">
-                <div class="sagunja-icon">🌼</div>
-                <h3 class="sagunja-name">국화 (菊花)</h3>
-                <p class="sagunja-subtitle">서리 속에 피는 절개</p>
-                <div class="sagunja-traits">
-                    <span class="trait-tag">고결함</span>
-                    <span class="trait-tag">지조</span>
-                    <span class="trait-tag">자유로움</span>
-                    <span class="trait-tag">독립심</span>
-                </div>
-            </div>
-
-            <!-- 대나무 -->
-            <div class="sagunja-card" onclick="selectSagunja('bamboo')">
-                <div class="sagunja-icon">🎋</div>
-                <h3 class="sagunja-name">대나무 (竹)</h3>
-                <p class="sagunja-subtitle">곧은 성품의 군자</p>
-                <div class="sagunja-traits">
-                    <span class="trait-tag">정직함</span>
-                    <span class="trait-tag">절개</span>
-                    <span class="trait-tag">곧은 성품</span>
-                    <span class="trait-tag">의리</span>
-                </div>
-            </div>
+        <div style="text-align: center;">
+            <button class="btn btn-primary" onclick="startTest()" style="width: 300px;">
+                <i class="fas fa-play-circle"></i> 검사 시작하기
+            </button>
         </div>
     </div>
 
-    <!-- 결과 섹션 -->
-    <div class="sagunja-container">
-        <div class="result-section" id="resultSection">
-            <div class="result-header">
-                <div class="result-icon" id="resultIcon"></div>
-                <h2 class="result-title" id="resultTitle"></h2>
-                <p class="result-subtitle" id="resultSubtitle"></p>
+    <!-- 검사 진행 화면 -->
+    <div class="test-container" id="testScreen" style="display: none;">
+        <div class="progress-bar">
+            <div class="progress-text">질문 <span id="currentQuestion">1</span> / 12</div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill" style="width: 8.33%;"></div>
             </div>
+        </div>
+
+        <!-- 질문 카드들 -->
+        <div id="questionsContainer"></div>
+
+        <div class="navigation-buttons">
+            <button class="btn btn-secondary" onclick="prevQuestion()" id="prevBtn" style="display: none;">
+                <i class="fas fa-arrow-left"></i> 이전
+            </button>
+            <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
+                다음 <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-primary" onclick="showResult()" id="submitBtn" style="display: none;">
+                결과 보기 <i class="fas fa-check"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- 결과 화면 -->
+    <div class="test-container">
+        <div class="result-section" id="resultSection">
+            <div class="result-icon" id="resultIcon"></div>
+            <h2 class="result-title" id="resultTitle"></h2>
+            <p class="result-subtitle" id="resultSubtitle"></p>
 
             <div class="result-content">
                 <h3 class="result-section-title">✨ 기본 특성</h3>
                 <p class="result-text" id="resultDescription"></p>
 
                 <h3 class="result-section-title">💎 핵심 성격</h3>
-                <div class="result-traits-grid" id="resultTraits"></div>
+                <div class="result-traits" id="resultTraits"></div>
 
                 <h3 class="result-section-title">🎯 장점</h3>
                 <p class="result-text" id="resultStrengths"></p>
@@ -461,7 +449,7 @@
                         <i class="fas fa-share-alt"></i> 결과 공유하기
                     </button>
                     <button class="btn btn-secondary" onclick="resetTest()">
-                        <i class="fas fa-redo"></i> 다시 선택하기
+                        <i class="fas fa-redo"></i> 다시 검사하기
                     </button>
                     <a href="index.html" class="btn btn-primary">
                         <i class="fas fa-home"></i> 홈으로 가기
@@ -516,8 +504,120 @@
     </footer>
 
     <script>
-        // 4군자 데이터
-        const sagunjaData = {
+        // 질문 데이터
+        const questions = [
+            {
+                question: "어려운 상황에 직면했을 때 나는?",
+                answers: [
+                    { text: "절대 포기하지 않고 끝까지 해낸다", type: "plum" },
+                    { text: "침착하게 상황을 분석하고 우아하게 대처한다", type: "orchid" },
+                    { text: "나만의 방식으로 자유롭게 해결한다", type: "chrysanthemum" },
+                    { text: "원칙과 정도를 지키며 정직하게 극복한다", type: "bamboo" }
+                ]
+            },
+            {
+                question: "사람들이 나를 어떻게 표현할까?",
+                answers: [
+                    { text: "강인하고 의지가 강한 사람", type: "plum" },
+                    { text: "우아하고 품격 있는 사람", type: "orchid" },
+                    { text: "독립적이고 자유로운 사람", type: "chrysanthemum" },
+                    { text: "정직하고 곧은 사람", type: "bamboo" }
+                ]
+            },
+            {
+                question: "스트레스를 받을 때 나는?",
+                answers: [
+                    { text: "더 강해지려고 노력한다", type: "plum" },
+                    { text: "조용히 혼자만의 시간을 갖는다", type: "orchid" },
+                    { text: "자유롭게 나만의 방식으로 풀어낸다", type: "chrysanthemum" },
+                    { text: "원칙을 지키며 차분히 해결한다", type: "bamboo" }
+                ]
+            },
+            {
+                question: "친구들과의 관계에서 나는?",
+                answers: [
+                    { text: "어려움이 있어도 끝까지 함께한다", type: "plum" },
+                    { text: "배려심 깊게 친구를 챙긴다", type: "orchid" },
+                    { text: "서로의 자유를 존중한다", type: "chrysanthemum" },
+                    { text: "의리와 신의를 중요하게 생각한다", type: "bamboo" }
+                ]
+            },
+            {
+                question: "새로운 도전 앞에서 나는?",
+                answers: [
+                    { text: "무엇이든 이겨낼 자신이 있다", type: "plum" },
+                    { text: "차분하게 준비하고 우아하게 도전한다", type: "orchid" },
+                    { text: "나만의 독특한 방식으로 시도한다", type: "chrysanthemum" },
+                    { text: "정도를 걸으며 정직하게 도전한다", type: "bamboo" }
+                ]
+            },
+            {
+                question: "내가 가장 중요하게 생각하는 가치는?",
+                answers: [
+                    { text: "불굴의 의지와 인내심", type: "plum" },
+                    { text: "품격과 우아함", type: "orchid" },
+                    { text: "자유와 독립성", type: "chrysanthemum" },
+                    { text: "정직함과 신의", type: "bamboo" }
+                ]
+            },
+            {
+                question: "타인과 의견이 다를 때 나는?",
+                answers: [
+                    { text: "내 신념을 굳게 지킨다", type: "plum" },
+                    { text: "상대방을 존중하며 조화를 추구한다", type: "orchid" },
+                    { text: "각자의 생각을 인정하고 존중한다", type: "chrysanthemum" },
+                    { text: "원칙에 따라 바른 말을 한다", type: "bamboo" }
+                ]
+            },
+            {
+                question: "나의 강점은?",
+                answers: [
+                    { text: "어떤 역경도 이겨내는 강인함", type: "plum" },
+                    { text: "섬세하고 배려심 깊은 성격", type: "orchid" },
+                    { text: "틀에 얽매이지 않는 자유로움", type: "chrysanthemum" },
+                    { text: "변하지 않는 원칙과 절개", type: "bamboo" }
+                ]
+            },
+            {
+                question: "이상적인 삶의 모습은?",
+                answers: [
+                    { text: "어려움을 극복하고 성장하는 삶", type: "plum" },
+                    { text: "아름답고 품격 있는 삶", type: "orchid" },
+                    { text: "자유롭고 독립적인 삶", type: "chrysanthemum" },
+                    { text: "정직하고 바른 삶", type: "bamboo" }
+                ]
+            },
+            {
+                question: "목표를 달성하는 나의 방식은?",
+                answers: [
+                    { text: "포기하지 않고 끝까지 밀고 나간다", type: "plum" },
+                    { text: "계획적이고 우아하게 진행한다", type: "orchid" },
+                    { text: "나만의 창의적인 방법을 찾는다", type: "chrysanthemum" },
+                    { text: "정도를 걸으며 꾸준히 노력한다", type: "bamboo" }
+                ]
+            },
+            {
+                question: "실패를 경험했을 때 나는?",
+                answers: [
+                    { text: "더 강해져서 다시 도전한다", type: "plum" },
+                    { text: "침착하게 원인을 분석하고 개선한다", type: "orchid" },
+                    { text: "새로운 방향을 자유롭게 모색한다", type: "chrysanthemum" },
+                    { text: "원칙을 지키며 다시 일어선다", type: "bamboo" }
+                ]
+            },
+            {
+                question: "나를 가장 잘 표현하는 문장은?",
+                answers: [
+                    { text: "추위를 이겨내고 꽃을 피우는 매화처럼", type: "plum" },
+                    { text: "은은한 향기로 품격을 드러내는 난초처럼", type: "orchid" },
+                    { text: "서리 속에서도 홀로 피는 국화처럼", type: "chrysanthemum" },
+                    { text: "사계절 푸르고 곧게 자라는 대나무처럼", type: "bamboo" }
+                ]
+            }
+        ];
+
+        // 4군자 결과 데이터
+        const sagunjaResults = {
             plum: {
                 icon: '🌸',
                 title: '매화 (梅花)',
@@ -580,51 +680,151 @@
             }
         };
 
-        // 4군자 선택
-        function selectSagunja(type) {
-            const data = sagunjaData[type];
+        let currentQuestionIndex = 0;
+        let answers = [];
+        let scores = { plum: 0, orchid: 0, chrysanthemum: 0, bamboo: 0 };
+
+        // 검사 시작
+        function startTest() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('testScreen').style.display = 'block';
+            renderQuestions();
+            showQuestion(0);
+        }
+
+        // 질문 렌더링
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = questions.map((q, index) => `
+                <div class="question-card ${index === 0 ? 'active' : ''}" id="question-${index}">
+                    <div class="question-number">질문 ${index + 1}</div>
+                    <div class="question-text">${q.question}</div>
+                    <div class="answer-options">
+                        ${q.answers.map((a, aIndex) => `
+                            <div class="answer-option" onclick="selectAnswer(${index}, ${aIndex}, '${a.type}')">
+                                ${a.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 답변 선택
+        function selectAnswer(questionIndex, answerIndex, type) {
+            const questionCard = document.getElementById(`question-${questionIndex}`);
+            const options = questionCard.querySelectorAll('.answer-option');
             
-            // 선택된 카드 표시
-            document.querySelectorAll('.sagunja-card').forEach(card => {
-                card.classList.remove('selected');
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[answerIndex].classList.add('selected');
+            
+            answers[questionIndex] = type;
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        // 질문 표시
+        function showQuestion(index) {
+            document.querySelectorAll('.question-card').forEach(card => {
+                card.classList.remove('active');
             });
-            event.currentTarget.classList.add('selected');
+            document.getElementById(`question-${index}`).classList.add('active');
+            
+            currentQuestionIndex = index;
+            updateProgress();
+            updateButtons();
+        }
+
+        // 진행률 업데이트
+        function updateProgress() {
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+        }
+
+        // 버튼 상태 업데이트
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            prevBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
+            
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+                submitBtn.disabled = !answers[currentQuestionIndex];
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+                nextBtn.disabled = !answers[currentQuestionIndex];
+            }
+        }
+
+        // 다음 질문
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                showQuestion(currentQuestionIndex + 1);
+            }
+        }
+
+        // 이전 질문
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        // 결과 계산 및 표시
+        function showResult() {
+            // 점수 계산
+            answers.forEach(answer => {
+                scores[answer]++;
+            });
+
+            // 최고 점수 유형 찾기
+            let maxScore = 0;
+            let resultType = 'plum';
+            
+            for (let type in scores) {
+                if (scores[type] > maxScore) {
+                    maxScore = scores[type];
+                    resultType = type;
+                }
+            }
 
             // 결과 표시
-            setTimeout(() => {
-                document.getElementById('selectionSection').style.display = 'none';
-                document.getElementById('resultSection').classList.add('active');
-                
-                // 결과 내용 채우기
-                document.getElementById('resultIcon').textContent = data.icon;
-                document.getElementById('resultTitle').textContent = data.title;
-                document.getElementById('resultSubtitle').textContent = data.subtitle;
-                document.getElementById('resultDescription').textContent = data.description;
-                
-                // 특성 그리드
-                const traitsHtml = data.traits.map(trait => 
-                    `<div class="result-trait-item">
-                        <strong>${trait.label}</strong>: ${trait.desc}
-                    </div>`
-                ).join('');
-                document.getElementById('resultTraits').innerHTML = traitsHtml;
-                
-                document.getElementById('resultStrengths').textContent = data.strengths;
-                document.getElementById('resultWeaknesses').textContent = data.weaknesses;
-                document.getElementById('resultAdvice').textContent = data.advice;
-
-                // 결과 섹션으로 스크롤
-                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
-            }, 300);
+            const result = sagunjaResults[resultType];
+            
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('resultIcon').textContent = result.icon;
+            document.getElementById('resultTitle').textContent = result.title;
+            document.getElementById('resultSubtitle').textContent = result.subtitle;
+            document.getElementById('resultDescription').textContent = result.description;
+            
+            const traitsHtml = result.traits.map(trait => 
+                `<div class="result-trait-item">
+                    <strong>${trait.label}</strong>: ${trait.desc}
+                </div>`
+            ).join('');
+            document.getElementById('resultTraits').innerHTML = traitsHtml;
+            
+            document.getElementById('resultStrengths').textContent = result.strengths;
+            document.getElementById('resultWeaknesses').textContent = result.weaknesses;
+            document.getElementById('resultAdvice').textContent = result.advice;
+            
+            document.getElementById('resultSection').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // 테스트 초기화
         function resetTest() {
-            document.getElementById('selectionSection').style.display = 'block';
+            currentQuestionIndex = 0;
+            answers = [];
+            scores = { plum: 0, orchid: 0, chrysanthemum: 0, bamboo: 0 };
+            
             document.getElementById('resultSection').classList.remove('active');
-            document.querySelectorAll('.sagunja-card').forEach(card => {
-                card.classList.remove('selected');
-            });
+            document.getElementById('startScreen').style.display = 'block';
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -637,12 +837,11 @@
 
             if (navigator.share) {
                 navigator.share({
-                    title: '4군자 성격 유형 결과',
+                    title: '4군자 성격 유형 검사 결과',
                     text: text,
                     url: url
                 }).catch(err => console.log('공유 실패:', err));
             } else {
-                // 클립보드에 복사
                 const shareText = `${text}\n${url}`;
                 navigator.clipboard.writeText(shareText).then(() => {
                     alert('결과가 클립보드에 복사되었습니다!\n원하는 곳에 붙여넣기 해보세요.');
