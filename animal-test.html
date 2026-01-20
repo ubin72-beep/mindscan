@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>애니멀 성격 테스트 - Mentora</title>
+    <meta name="description" content="당신은 어떤 동물을 닮았을까요? 8가지 동물 유형으로 알아보는 성격 테스트">
+    
+    <link rel="icon" type="image/png" href="images/logo-brain-hd.png">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        :root {
+            --primary-green: #22c55e;
+            --accent-gold: #d4af37;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 60px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            margin-bottom: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            text-align: center;
+        }
+
+        .disclaimer i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+
+        /* Quiz Container */
+        .quiz-container {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .quiz-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Progress */
+        .progress-container {
+            margin-bottom: 40px;
+        }
+
+        .progress-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .progress-bar-bg {
+            background: #e0e7ff;
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* Question */
+        .question-container {
+            margin-bottom: 40px;
+        }
+
+        .question-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: #f8f9fa;
+            border: 3px solid transparent;
+            border-radius: 15px;
+            padding: 20px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(10px);
+            border-color: #667eea;
+        }
+
+        /* Result */
+        .result-container {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: none;
+            text-align: center;
+        }
+
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-icon {
+            font-size: 120px;
+            margin-bottom: 20px;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .result-title {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .result-subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .result-description {
+            font-size: 17px;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .result-traits {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .trait-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+
+        .trait-box strong {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .quiz-container, .result-container {
+                padding: 30px 20px;
+            }
+
+            .question-text {
+                font-size: 20px;
+            }
+
+            .result-traits {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li><a href="index.html#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 기능</a></li>
+                <li><a href="index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="index.html#reviews" class="nav-link" onclick="closeMobileMenu()">후기</a></li>
+                <li><a href="mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-badge">🐾 애니멀 테스트</div>
+            <h1 class="hero-title">당신은 어떤 동물?</h1>
+            <p class="hero-description">
+                10개의 질문으로 알아보는 나의 동물 성격 유형<br>
+                사자, 늑대, 여우, 곰, 고양이, 강아지, 독수리, 돌고래 중 하나!
+            </p>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <i class="fas fa-info-circle"></i>
+            <p>본 검사는 <strong>재미와 자기 이해</strong>를 위한 도구입니다. 의학적 진단이 아닙니다.</p>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-container" id="quizContainer">
+            <div class="progress-container">
+                <div class="progress-text" id="progressText">질문 1 / 10</div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar" style="width: 10%;"></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <h2 class="question-text" id="questionText"></h2>
+                <div class="options-grid" id="optionsGrid"></div>
+            </div>
+        </div>
+
+        <!-- Result -->
+        <div class="result-container" id="resultContainer">
+            <div class="result-icon" id="resultIcon"></div>
+            <h2 class="result-title" id="resultTitle"></h2>
+            <p class="result-subtitle" id="resultSubtitle"></p>
+            <p class="result-description" id="resultDescription"></p>
+            
+            <div class="result-traits" id="resultTraits"></div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="shareResult()">결과 공유하기</button>
+                <button class="btn btn-secondary" onclick="location.reload()">다시 검사하기</button>
+                <a href="index.html" class="btn btn-secondary">홈으로 가기</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "친구들과 모임에서 나는?",
+                options: [
+                    { text: "분위기를 주도하고 이끌어간다", type: "lion" },
+                    { text: "팀워크를 중시하며 협력한다", type: "wolf" },
+                    { text: "영리하게 상황을 파악한다", type: "fox" },
+                    { text: "따뜻하게 모두를 챙긴다", type: "bear" }
+                ]
+            },
+            {
+                question: "새로운 프로젝트를 시작할 때 나는?",
+                options: [
+                    { text: "독립적으로 내 방식대로 한다", type: "cat" },
+                    { text: "열정적으로 끝까지 해낸다", type: "dog" },
+                    { text: "자유롭게 창의적으로 접근한다", type: "eagle" },
+                    { text: "호기심 가득하게 탐구한다", type: "dolphin" }
+                ]
+            },
+            {
+                question: "스트레스를 받을 때 나는?",
+                options: [
+                    { text: "당당하게 정면 돌파한다", type: "lion" },
+                    { text: "동료들과 함께 해결한다", type: "wolf" },
+                    { text: "영리하게 우회로를 찾는다", type: "fox" },
+                    { text: "혼자만의 시간을 갖는다", type: "bear" }
+                ]
+            },
+            {
+                question: "여가 시간에 나는?",
+                options: [
+                    { text: "혼자만의 시간을 즐긴다", type: "cat" },
+                    { text: "친구들과 시간을 보낸다", type: "dog" },
+                    { text: "새로운 것을 탐험한다", type: "eagle" },
+                    { text: "지적 호기심을 충족한다", type: "dolphin" }
+                ]
+            },
+            {
+                question: "결정을 내릴 때 나는?",
+                options: [
+                    { text: "빠르고 강하게 결단한다", type: "lion" },
+                    { text: "팀의 의견을 듣고 결정한다", type: "wolf" },
+                    { text: "신중하고 전략적으로 판단한다", type: "fox" },
+                    { text: "직관과 감정을 따른다", type: "bear" }
+                ]
+            },
+            {
+                question: "나의 의사소통 스타일은?",
+                options: [
+                    { text: "독립적이고 내 속내는 잘 안보인다", type: "cat" },
+                    { text: "솔직하고 충직하게 표현한다", type: "dog" },
+                    { text: "높은 곳에서 전체를 파악한다", type: "eagle" },
+                    { text: "영리하고 재치있게 소통한다", type: "dolphin" }
+                ]
+            },
+            {
+                question: "어려운 상황에 처했을 때 나는?",
+                options: [
+                    { text: "리더십을 발휘해 해결한다", type: "lion" },
+                    { text: "무리와 협력해 극복한다", type: "wolf" },
+                    { text: "꾀를 내어 빠져나간다", type: "fox" },
+                    { text: "강한 힘으로 버텨낸다", type: "bear" }
+                ]
+            },
+            {
+                question: "나의 성격을 한 단어로 표현하면?",
+                options: [
+                    { text: "우아하고 신비로운", type: "cat" },
+                    { text: "충직하고 따뜻한", type: "dog" },
+                    { text: "자유롭고 통찰력 있는", type: "eagle" },
+                    { text: "사교적이고 지적인", type: "dolphin" }
+                ]
+            },
+            {
+                question: "목표를 달성하는 나의 방식은?",
+                options: [
+                    { text: "강력하고 직접적으로 추진한다", type: "lion" },
+                    { text: "끈기있게 협력하며 나아간다", type: "wolf" },
+                    { text: "영리하게 전략을 세운다", type: "fox" },
+                    { text: "차분하고 강하게 밀고 나간다", type: "bear" }
+                ]
+            },
+            {
+                question: "나를 가장 잘 나타내는 특징은?",
+                options: [
+                    { text: "독립적이고 자유로운 영혼", type: "cat" },
+                    { text: "충성스럽고 진실된 마음", type: "dog" },
+                    { text: "넓은 시야와 통찰력", type: "eagle" },
+                    { text: "지적 호기심과 유연성", type: "dolphin" }
+                ]
+            }
+        ];
+
+        const animals = {
+            lion: {
+                icon: "🦁",
+                title: "사자형",
+                subtitle: "카리스마 넘치는 리더",
+                description: "당신은 타고난 리더입니다. 강한 카리스마와 자신감으로 주변 사람들을 이끌어가는 힘이 있습니다. 당당하고 용감하며, 어떤 어려움도 정면으로 돌파하는 추진력을 가지고 있습니다.",
+                traits: [
+                    { label: "성격", value: "당당하고 카리스마 있음" },
+                    { label: "강점", value: "리더십, 결단력" },
+                    { label: "약점", value: "독단적일 수 있음" },
+                    { label: "어울리는 직업", value: "경영자, 리더, 관리자" }
+                ]
+            },
+            wolf: {
+                icon: "🐺",
+                title: "늑대형",
+                subtitle: "충성스러운 팀플레이어",
+                description: "당신은 팀워크를 중시하는 협력자입니다. 무리에 대한 충성심이 강하고, 함께 일할 때 가장 큰 힘을 발휘합니다. 끈기있고 인내심이 강하며, 동료들을 위해 헌신하는 모습을 보입니다.",
+                traits: [
+                    { label: "성격", value: "충성스럽고 협력적" },
+                    { label: "강점", value: "팀워크, 끈기" },
+                    { label: "약점", value: "독립적 결정 어려움" },
+                    { label: "어울리는 직업", value: "팀장, 코디네이터, 협력자" }
+                ]
+            },
+            fox: {
+                icon: "🦊",
+                title: "여우형",
+                subtitle: "영리한 전략가",
+                description: "당신은 영리하고 재치있는 전략가입니다. 빠른 판단력과 상황 파악 능력이 뛰어나며, 어려운 상황도 꾀를 내어 슬기롭게 해결합니다. 민첩하고 유연한 사고방식을 가지고 있습니다.",
+                traits: [
+                    { label: "성격", value: "영리하고 민첩함" },
+                    { label: "강점", value: "전략적 사고, 적응력" },
+                    { label: "약점", value: "때로 교활해 보일 수 있음" },
+                    { label: "어울리는 직업", value: "전략가, 기획자, 컨설턴트" }
+                ]
+            },
+            bear: {
+                icon: "🐻",
+                title: "곰형",
+                subtitle: "따뜻한 보호자",
+                description: "당신은 따뜻하고 강한 보호자입니다. 주변 사람들을 챙기고 보살피는 것을 좋아하며, 든든한 안정감을 줍니다. 차분하지만 강한 내면의 힘을 가지고 있으며, 필요할 때는 강력하게 나설 수 있습니다.",
+                traits: [
+                    { label: "성격", value: "따뜻하고 보호적" },
+                    { label: "강점", value: "배려심, 안정감" },
+                    { label: "약점", value: "과도한 보호 경향" },
+                    { label: "어울리는 직업", value: "교사, 상담사, 보호자" }
+                ]
+            },
+            cat: {
+                icon: "🐱",
+                title: "고양이형",
+                subtitle: "우아한 독립가",
+                description: "당신은 독립적이고 우아한 개인주의자입니다. 자신만의 세계를 중시하며, 타인의 간섭을 받지 않고 자유롭게 살아가는 것을 좋아합니다. 신비롭고 매력적이며, 필요할 때만 애정을 표현합니다.",
+                traits: [
+                    { label: "성격", value: "독립적이고 우아함" },
+                    { label: "강점", value: "자립심, 우아함" },
+                    { label: "약점", value: "거리감이 있을 수 있음" },
+                    { label: "어울리는 직업", value: "예술가, 작가, 프리랜서" }
+                ]
+            },
+            dog: {
+                icon: "🐶",
+                title: "강아지형",
+                subtitle: "충직한 친구",
+                description: "당신은 충직하고 따뜻한 친구입니다. 진심으로 사람들을 대하며, 한번 맺은 관계를 소중히 여깁니다. 열정적이고 긍정적이며, 주변 사람들에게 기쁨과 행복을 선사합니다.",
+                traits: [
+                    { label: "성격", value: "충직하고 친근함" },
+                    { label: "강점", value: "충성심, 긍정성" },
+                    { label: "약점", value: "의존적일 수 있음" },
+                    { label: "어울리는 직업", value: "고객 서비스, 영업, 지원" }
+                ]
+            },
+            eagle: {
+                icon: "🦅",
+                title: "독수리형",
+                subtitle: "자유로운 통찰가",
+                description: "당신은 높은 곳에서 세상을 바라보는 통찰력 있는 관찰자입니다. 자유를 사랑하고, 넓은 시야로 본질을 꿰뚫어보는 능력이 있습니다. 독립적이고 강인하며, 자신만의 길을 개척해 나갑니다.",
+                traits: [
+                    { label: "성격", value: "자유롭고 통찰력 있음" },
+                    { label: "강점", value: "통찰력, 독립성" },
+                    { label: "약점", value: "고립될 수 있음" },
+                    { label: "어울리는 직업", value: "연구자, 탐험가, 전략가" }
+                ]
+            },
+            dolphin: {
+                icon: "🐬",
+                title: "돌고래형",
+                subtitle: "지적인 사교가",
+                description: "당신은 사교적이고 지적 호기심이 왕성한 소통의 달인입니다. 영리하고 유연하며, 사람들과 쉽게 어울리는 능력이 있습니다. 재치있고 유쾌하며, 주변 사람들에게 즐거움을 선사합니다.",
+                traits: [
+                    { label: "성격", value: "사교적이고 지적" },
+                    { label: "강점", value: "소통 능력, 유연성" },
+                    { label: "약점", value: "산만할 수 있음" },
+                    { label: "어울리는 직업", value: "방송인, 교육자, 마케터" }
+                ]
+            }
+        };
+
+        let currentQuestion = 0;
+        let scores = { lion: 0, wolf: 0, fox: 0, bear: 0, cat: 0, dog: 0, eagle: 0, dolphin: 0 };
+
+        function startQuiz() {
+            document.getElementById('quizContainer').classList.add('active');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsGrid = document.getElementById('optionsGrid');
+            optionsGrid.innerHTML = '';
+            
+            question.options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option.text;
+                btn.onclick = () => selectOption(option.type);
+                optionsGrid.appendChild(btn);
+            });
+
+            updateProgress();
+        }
+
+        function selectOption(type) {
+            scores[type]++;
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `질문 ${currentQuestion + 1} / ${questions.length}`;
+        }
+
+        function showResult() {
+            document.getElementById('quizContainer').classList.remove('active');
+            
+            const maxScore = Math.max(...Object.values(scores));
+            const resultType = Object.keys(scores).find(key => scores[key] === maxScore);
+            const result = animals[resultType];
+
+            document.getElementById('resultIcon').textContent = result.icon;
+            document.getElementById('resultTitle').textContent = result.title;
+            document.getElementById('resultSubtitle').textContent = result.subtitle;
+            document.getElementById('resultDescription').textContent = result.description;
+
+            const traitsHTML = result.traits.map(trait => 
+                `<div class="trait-box">
+                    <strong>${trait.label}</strong>
+                    ${trait.value}
+                </div>`
+            ).join('');
+            document.getElementById('resultTraits').innerHTML = traitsHTML;
+
+            document.getElementById('resultContainer').classList.add('active');
+        }
+
+        function shareResult() {
+            const title = document.getElementById('resultTitle').textContent;
+            const subtitle = document.getElementById('resultSubtitle').textContent;
+            const text = `나의 애니멀 성격은 "${title}"입니다! ${subtitle}\n\nMentora에서 무료로 확인해보세요!`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: '애니멀 성격 테스트',
+                    text: text,
+                    url: window.location.href
+                }).catch(err => console.log('공유 실패:', err));
+            } else {
+                const shareText = `${text}\n${window.location.href}`;
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('결과가 클립보드에 복사되었습니다!');
+                });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            navMenu.classList.toggle('active');
+            
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            navMenu.classList.remove('active');
+            
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // 페이지 로드 시 자동 시작
+        window.onload = startQuiz;
+    </script>
+</body>
+</html>
