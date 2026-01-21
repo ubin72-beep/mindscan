@@ -11,6 +11,7 @@
     --shadow-sm: 0 2px 5px rgba(0,0,0,0.05);
     --shadow-md: 0 4px 15px rgba(0,0,0,0.1);
     --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+    --gold: #d4af37;
 }
 
 * {
@@ -71,7 +72,6 @@ body {
     transition: all 0.3s ease;
 }
 
-/* 텍스트 로고 아이콘 "M" */
 .logo-icon-text {
     width: 55px;
     height: 55px;
@@ -171,7 +171,6 @@ body {
     width: calc(100% - 32px);
 }
 
-/* 관리자 링크 스타일 */
 .nav-link.admin-link {
     color: #ffffff;
     font-weight: 700;
@@ -834,7 +833,7 @@ body {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     max-width: 1200px;
     margin: 0 auto 40px;
@@ -952,7 +951,6 @@ body {
     filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
 }
 
-/* 푸터 텍스트 로고 아이콘 "M" */
 .footer-logo-icon-text {
     width: 55px;
     height: 55px;
@@ -1042,14 +1040,58 @@ body {
     gap: 20px;
 }
 
+.footer-bottom-left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .footer-bottom p {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
     margin: 0;
 }
 
+.footer-legal-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-legal-links a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+    color: var(--gold);
+}
+
+.footer-legal-links .separator {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.85rem;
+}
+
 .footer-bottom .social-links {
     margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-bottom-left {
+        align-items: center;
+    }
+    
+    .footer-legal-links {
+        justify-content: center;
+    }
 }
 
 .ai-recommendation {
