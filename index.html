@@ -31,8 +31,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="css/nav-common.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nav-common.css?v=3">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <link rel="stylesheet" href="css/hero-modern.css">
     <link rel="stylesheet" href="css/test-cards-modern.css">
     <link rel="stylesheet" href="css/fun-cards.css?v=5">
@@ -43,107 +43,6 @@
     <link rel="stylesheet" href="css/mobile-optimized.css?v=2">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Mentora",
-      "alternateName": "멘토라",
-      "url": "https://mentora.co.kr",
-      "description": "100만 명이 선택한 과학적 심리검사 플랫폼. MBTI, 에니어그램, Big Five 등 10가지 전문 검사 제공",
-      "publisher": {
-        "@type": "Organization",
-        "name": "큐브박스 (CubeBox)",
-        "legalName": "큐브박스",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://mentora.co.kr/images/logo-brain-hd.png"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "KR",
-          "addressRegion": "서울특별시",
-          "addressLocality": "송파구",
-          "streetAddress": "송파대로14길 7-10 2층",
-          "postalCode": "05854"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+82-502-1909-7788",
-          "contactType": "Customer Service",
-          "email": "mentora@gmail.com",
-          "availableLanguage": ["Korean"]
-        }
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://mentora.co.kr/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "심리검사 목록",
-      "description": "Mentora에서 제공하는 10가지 전문 심리검사",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "Product",
-            "name": "MBTI 성격유형검사",
-            "description": "16가지 성격 유형으로 나를 이해하는 가장 정확한 검사",
-            "url": "https://mentora.co.kr/test-mbti.html"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "Product",
-            "name": "에니어그램 검사",
-            "description": "9가지 성격 유형으로 심층 분석",
-            "url": "https://mentora.co.kr/test-enneagram.html"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "Product",
-            "name": "Big Five 성격검사",
-            "description": "과학적으로 검증된 5가지 성격 요인 분석",
-            "url": "https://mentora.co.kr/test-bigfive.html"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "item": {
-            "@type": "Product",
-            "name": "DISC 행동유형검사",
-            "description": "직장과 대인관계에서의 행동 패턴 분석",
-            "url": "https://mentora.co.kr/test-disc.html"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "item": {
-            "@type": "Product",
-            "name": "Holland 적성검사",
-            "description": "나에게 맞는 직업과 진로 찾기",
-            "url": "https://mentora.co.kr/test-holland.html"
-          }
-        }
-      ]
-    }
-    </script>
 </head>
 <body>
     <header class="header">
@@ -163,12 +62,12 @@
                 <li><a href="#home" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
                 <li><a href="#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
                 <li class="nav-dropdown">
-                    <a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <a href="#premium-features" class="nav-link">프리미엄 <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
-                        <li><a href="couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
-                        <li><a href="dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
-                        <li><a href="community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
+                        <li><a href="roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="community.html"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
                     </ul>
                 </li>
                 <li><a href="#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
@@ -285,14 +184,13 @@
             </div>
             
             <div class="tests-grid">
-                <div class="test-card" data-test="mbti" data-time="15" data-category="relationship" data-keywords="성향 파악, 에너지의 방향, 정보 처리 방식, 선호도, 외향, 내향, 직관, 감각">
+                <div class="test-card" data-test="mbti" data-time="15" data-category="relationship">
                     <div class="test-badge-hot">가장 인기</div>
                     <div class="test-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3 class="test-title">MBTI 성격유형검사</h3>
                     <p class="test-description">16가지 성격유형으로 당신의 선호 경향을 파악합니다</p>
-                    
                     <div class="test-stats">
                         <div class="test-stat-item">
                             <div class="test-stat-number">350,000+</div>
@@ -303,13 +201,11 @@
                             <div class="test-stat-label">평균 평점</div>
                         </div>
                     </div>
-                    
                     <div class="test-review">
                         <div class="test-review-stars">⭐⭐⭐⭐⭐</div>
                         <p class="test-review-text">"결과가 소름돋을 정도로 정확해요! 친구들한테 다 추천했습니다 👍"</p>
                         <p class="test-review-author">- 김민지, 28세</p>
                     </div>
-                    
                     <div class="test-info">
                         <span><i class="far fa-clock"></i> 15분</span>
                         <span><i class="far fa-question-circle"></i> 60문항</span>
@@ -319,7 +215,7 @@
                     </button>
                 </div>
 
-                <div class="test-card" data-test="enneagram" data-time="20" data-category="relationship" data-keywords="동기 분석, 내면의 깊은 두려움, 욕구, 집착, 핵심 동기, 성장 방향">
+                <div class="test-card" data-test="enneagram" data-time="20" data-category="relationship">
                     <div class="test-icon">
                         <i class="fas fa-compass"></i>
                     </div>
@@ -414,7 +310,7 @@
                     <button class="btn btn-test" onclick="startTest('attachment')">검사 시작</button>
                 </div>
 
-                <div class="test-card" data-test="eq" data-time="15" data-category="personality" data-keywords="정서 지능, 자신과 타인의 감정 인식, 감정 조절, 공감, 감성, 정서적 능력">
+                <div class="test-card" data-test="eq" data-time="15" data-category="personality">
                     <div class="test-badge">NEW</div>
                     <div class="test-icon">
                         <i class="fas fa-brain"></i>
@@ -443,7 +339,7 @@
                     <button class="btn btn-test" onclick="startTest('eq')">지금 무료로 시작</button>
                 </div>
 
-                <div class="test-card" data-test="iq" data-time="20" data-category="intelligence" data-keywords="지적 능력, 논리, 추리, 수리, 인지적 해결 능력, 문제 해결">
+                <div class="test-card" data-test="iq" data-time="20" data-category="intelligence">
                     <div class="test-badge">NEW</div>
                     <div class="test-icon">
                         <i class="fas fa-lightbulb"></i>
@@ -472,7 +368,7 @@
                     <button class="btn btn-test" onclick="startTest('iq')">검사 시작</button>
                 </div>
 
-                <div class="test-card" data-test="sq" data-time="12" data-category="personality" data-keywords="사회적 지능, 타인과의 관계, 소통, 협력, 대인관계 능력">
+                <div class="test-card" data-test="sq" data-time="12" data-category="personality">
                     <div class="test-badge">NEW</div>
                     <div class="test-icon">
                         <i class="fas fa-users-cog"></i>
@@ -500,7 +396,6 @@
                     </div>
                     <button class="btn btn-test" onclick="startTest('sq')">검사 시작</button>
                 </div>
-
             </div>
 
             <div class="fun-cards-grid">
