@@ -162,9 +162,16 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
                 <li><a href="#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
-                <li><a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 기능</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> 성장 로드맵</a></li>
+                        <li><a href="couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="ai-chatbot.html" onclick="closeMobileMenu()"><i class="fas fa-robot"></i> AI 코칭</a></li>
+                        <li><a href="dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                    </ul>
+                </li>
                 <li><a href="#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
-                <li><a href="#reviews" class="nav-link" onclick="closeMobileMenu()">후기</a></li>
                 <li><a href="mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
                 <li><a href="admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
             </ul>
@@ -626,7 +633,7 @@
             <div class="premium-grid">
                 <div class="premium-card">
                     <div class="premium-icon">
-                        <i class="fas fa-binoculars"></i>
+                        <i class="fas fa-map-marked-alt"></i>
                     </div>
                     <h3 class="premium-title">AI 맞춤형 성장 로드맵</h3>
                     <p class="premium-description">당신의 검사 결과를 분석하여 단계별 성장 계획과 실천 가이드를 제공합니다</p>
@@ -642,7 +649,7 @@
                 <div class="premium-card featured">
                     <div class="premium-badge">인기</div>
                     <div class="premium-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                     <h3 class="premium-title">커플/팀 매칭 분석</h3>
                     <p class="premium-description">두 사람의 성격을 비교 분석하여 관계 개선 방법과 소통 전략을 제시합니다</p>
@@ -653,21 +660,6 @@
                         <li><i class="fas fa-check"></i> 관계 성장 플랜</li>
                     </ul>
                     <a href="couple-analysis.html" class="btn btn-premium featured">체험하기</a>
-                </div>
-
-                <div class="premium-card">
-                    <div class="premium-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="premium-title">AI 코칭 챗봇</h3>
-                    <p class="premium-description">언제든지 AI 전문가와 대화하며 고민을 상담하고 해결책을 찾습니다</p>
-                    <ul class="premium-features-list">
-                        <li><i class="fas fa-check"></i> 상시 상담 가능</li>
-                        <li><i class="fas fa-check"></i> 무제한 대화</li>
-                        <li><i class="fas fa-check"></i> 맞춤형 조언</li>
-                        <li><i class="fas fa-check"></i> 대화 기록 저장</li>
-                    </ul>
-                    <a href="ai-chatbot.html" class="btn btn-premium">상담하기</a>
                 </div>
 
                 <div class="premium-card">
@@ -687,22 +679,7 @@
 
                 <div class="premium-card">
                     <div class="premium-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3 class="premium-title">B2B 기업 솔루션</h3>
-                    <p class="premium-description">조직 분석, 팀 빌딩, 리더십 개발 등 기업 맞춤형 심리 분석 서비스를 제공합니다</p>
-                    <ul class="premium-features-list">
-                        <li><i class="fas fa-check"></i> 조직문화 진단</li>
-                        <li><i class="fas fa-check"></i> 팀 빌딩 분석</li>
-                        <li><i class="fas fa-check"></i> 리더십 코칭</li>
-                        <li><i class="fas fa-check"></i> 맞춤형 교육</li>
-                    </ul>
-                    <a href="b2b.html" class="btn btn-premium">문의하기</a>
-                </div>
-
-                <div class="premium-card">
-                    <div class="premium-icon">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-user-friends"></i>
                     </div>
                     <h3 class="premium-title">멘토라 커뮤니티</h3>
                     <p class="premium-description">비슷한 성향의 사람들과 만나고, 경험을 공유하며 함께 성장합니다</p>
@@ -714,81 +691,29 @@
                     </ul>
                     <a href="community.html" class="btn btn-premium">참여하기</a>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">프리미엄 플랜</h2>
-                <p class="section-description">더 깊이 있는 분석과 맞춤형 조언을 받아보세요</p>
-            </div>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3 class="pricing-name">무료</h3>
-                        <div class="pricing-price">
-                            <span class="price-amount">무료</span>
-                        </div>
+                <div class="premium-card featured">
+                    <div class="premium-badge">인기</div>
+                    <div class="premium-icon">
+                        <i class="fas fa-crown"></i>
                     </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 기본 검사 모두</li>
-                        <li><i class="fas fa-check"></i> 간단한 결과 확인</li>
-                        <li><i class="fas fa-check"></i> 통계 확인</li>
-                        <li class="disabled"><i class="fas fa-times"></i> 상세 분석 리포트</li>
-                        <li class="disabled"><i class="fas fa-times"></i> AI 맞춤 조언</li>
-                        <li class="disabled"><i class="fas fa-times"></i> PDF 다운로드</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="window.location.href='#tests'">
-                        무료로 시작하기
-                    </button>
-                </div>
-
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">추천</div>
-                    <div class="pricing-header">
-                        <h3 class="pricing-name">프리미엄</h3>
-                        <div class="pricing-price">
-                            <span class="price-amount">검사당</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
+                    <h3 class="premium-title">프리미엄 플랜</h3>
+                    <p class="premium-description">검사당 구매로 상세한 분석과 AI 조언을 받아보세요</p>
+                    <ul class="premium-features-list">
                         <li><i class="fas fa-check"></i> 모든 무료 기능</li>
                         <li><i class="fas fa-check"></i> 상세 분석 리포트</li>
-                        <li><i class="fas fa-check"></i> AI 맞춤형 조언</li>
                         <li><i class="fas fa-check"></i> PDF 다운로드</li>
+                        <li><i class="fas fa-check"></i> AI 맞춤형 조언</li>
                         <li><i class="fas fa-check"></i> 이메일 전송</li>
                         <li><i class="fas fa-check"></i> 평생 보관</li>
                     </ul>
-                    <button class="btn-pricing featured" onclick="window.location.href='payment/checkout.html?plan=premium'">
-                        지금 구매하기
-                    </button>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3 class="pricing-name">AI 상담</h3>
-                        <div class="pricing-price">
-                            <span class="price-amount">월간</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 모든 프리미엄 기능</li>
-                        <li><i class="fas fa-check"></i> 상시 AI 상담</li>
-                        <li><i class="fas fa-check"></i> 무제한 질문</li>
-                        <li><i class="fas fa-check"></i> 실시간 피드백</li>
-                        <li><i class="fas fa-check"></i> 맞춤형 솔루션</li>
-                        <li><i class="fas fa-check"></i> 무료 체험</li>
-                    </ul>
-                    <button class="btn-pricing" onclick="alert('AI 상담 문의: 0502-1909-7788')">
-                        무료 체험
-                    </button>
+                    <a href="payment/checkout.html?plan=premium" class="btn btn-premium featured">지금 구매하기</a>
                 </div>
             </div>
         </div>
     </section>
+
+
 
     <section class="reviews" id="reviews">
         <div class="container">
@@ -891,38 +816,51 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h4>빠른 링크</h4>
+                    <h4>검사 메뉴</h4>
                     <ul>
-                        <li><a href="#tests">MBTI 검사</a></li>
-                        <li><a href="#tests">에니어그램</a></li>
-                        <li><a href="#tests">Big Five</a></li>
-                        <li><a href="#tests">DISC 검사</a></li>
-                        <li><a href="#premium-features">프리미엄 기능</a></li>
-                        <li><a href="#pricing">요금제</a></li>
-                        <li><a href="mypage.html">내 결과</a></li>
-                        <li><a href="admin/index.html">관리자</a></li>
+                        <li><a href="#tests">전체 검사</a></li>
+                        <li><a href="test-mbti.html">MBTI 검사</a></li>
+                        <li><a href="test-enneagram.html">에니어그램</a></li>
+                        <li><a href="test-bigfive.html">Big Five</a></li>
+                        <li><a href="blood-type-test.html">혈액형 분석</a></li>
+                        <li><a href="sagunja-test-v2.html">4군자 유형</a></li>
+                        <li><a href="personal-color-test.html">퍼스널 컬러</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>연결하기</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                    <h4 style="margin-top: 30px;">법적 고지</h4>
+                    <h4>프리미엄 기능</h4>
                     <ul>
-                        <li><a href="terms.html">이용약관</a></li>
-                        <li><a href="privacy.html">개인정보처리방침</a></li>
-                        <li><a href="refund.html">환불정책</a></li>
+                        <li><a href="roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 매칭</a></li>
+                        <li><a href="ai-chatbot.html"><i class="fas fa-robot"></i> AI 코칭 챗봇</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> 심리 대시보드</a></li>
+                        <li><a href="payment/checkout.html"><i class="fas fa-crown"></i> 프리미엄 구매</a></li>
+                        <li><a href="mypage.html">내 결과 보기</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>고객 지원</h4>
+                    <ul>
+                        <li><a href="mailto:mentora@gmail.com"><i class="fas fa-envelope"></i> 이메일 문의</a></li>
+                        <li><a href="tel:0502-1909-7788"><i class="fas fa-phone"></i> 전화 상담</a></li>
+                        <li><a href="#faq"><i class="fas fa-question-circle"></i> 자주 묻는 질문</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+                <div class="footer-bottom-left">
+                    <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+                    <div class="footer-legal-links">
+                        <a href="terms.html">이용약관</a>
+                        <span class="separator">|</span>
+                        <a href="privacy.html">개인정보처리방침</a>
+                        <span class="separator">|</span>
+                        <a href="refund.html">환불정책</a>
+                    </div>
+                </div>
                 <div class="social-links">
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
