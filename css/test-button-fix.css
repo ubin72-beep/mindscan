@@ -1,0 +1,117 @@
+/* 검사 카드 버튼 높이 통일 - 강력한 고정 */
+
+/* 카드 레이아웃 강제 설정 */
+.test-card,
+.tests-grid > div {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 450px !important;
+}
+
+/* 모든 검사 카드 버튼 */
+.test-card .btn,
+.test-card button,
+.test-card a.btn-test,
+.test-card a[href*="test-"],
+.test-card > a:last-child,
+a[href*="test-"].btn {
+    padding: 14px 28px !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1.5 !important;
+    box-sizing: border-box !important;
+    transition: all 0.3s ease !important;
+    margin-top: auto !important;
+    width: 100% !important;
+}
+
+/* 지금 무료로 시작 버튼 - 골드 색상 */
+.btn-test,
+a.btn-test {
+    padding: 14px 28px !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    background: linear-gradient(135deg, #d4af37, #f4d03f) !important;
+    color: white !important;
+    border: 2px solid transparent !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
+    margin-top: auto !important;
+    width: 100% !important;
+}
+
+.btn-test:hover,
+a.btn-test:hover {
+    background: linear-gradient(135deg, #e6c255, #f4d03f) !important;
+    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* 검사 시작 버튼 - 골드 색상 */
+.test-button,
+.btn-start,
+a.test-button,
+a.btn-start {
+    padding: 14px 28px !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    background: linear-gradient(135deg, #d4af37, #f4d03f) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3) !important;
+    margin-top: auto !important;
+    width: 100% !important;
+}
+
+.test-button:hover,
+.btn-start:hover,
+a.test-button:hover,
+a.btn-start:hover {
+    background: linear-gradient(135deg, #e6c255, #f4d03f) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* 카드 내 버튼 컨테이너 */
+.test-card-footer,
+.test-card-actions {
+    margin-top: auto !important;
+    padding-top: 1rem !important;
+}
+
+/* 카드 콘텐츠 영역 */
+.test-card > *:not(:last-child) {
+    flex-shrink: 0;
+}
+
+/* 마지막 요소(버튼)를 하단에 고정 */
+.test-card > *:last-child {
+    margin-top: auto !important;
+}
