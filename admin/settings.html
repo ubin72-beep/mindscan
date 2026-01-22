@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>설정 - Mentora Admin</title>
-    
+    <title>설정 | Mentora Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link rel="stylesheet" href="css/admin.css">
     <style>
         * {
             margin: 0;
@@ -16,9 +16,9 @@
         }
 
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: #f5f7fa;
-            color: #333;
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            min-height: 100vh;
         }
 
         .admin-container {
@@ -26,57 +26,73 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
         .sidebar {
             width: 260px;
-            background: linear-gradient(135deg, #2c5f4f, #1a4838);
+            background: linear-gradient(180deg, #2c5f4f 0%, #1a4838 100%);
             color: white;
-            padding: 2rem 0;
             position: fixed;
             height: 100vh;
+            left: 0;
+            top: 0;
             overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 12px rgba(0,0,0,0.1);
         }
 
         .logo {
-            padding: 0 2rem 2rem;
+            padding: 2rem 1.5rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
         }
 
-        .logo h2 {
+        .logo h1 {
             font-size: 1.5rem;
+            font-weight: 700;
             color: #d4af37;
+            margin-bottom: 0.25rem;
+        }
+
+        .logo p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
         }
 
         .nav-menu {
-            list-style: none;
-            padding: 2rem 0;
+            padding: 1rem 0;
         }
 
         .nav-item {
-            padding: 1rem 2rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            padding: 1rem 1.5rem;
             color: rgba(255,255,255,0.8);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
         }
 
-        .nav-item:hover, .nav-item.active {
-            background: rgba(212, 175, 55, 0.2);
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
             color: white;
-            border-left: 4px solid #d4af37;
+            border-left-color: #d4af37;
+        }
+
+        .nav-item.active {
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            border-left-color: #d4af37;
+            font-weight: 600;
         }
 
         .nav-item i {
-            font-size: 1.2rem;
+            width: 24px;
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
         }
 
-        /* Main Content */
         .main-content {
-            margin-left: 260px;
             flex: 1;
+            margin-left: 260px;
             padding: 2rem;
         }
 
@@ -89,19 +105,14 @@
         }
 
         .topbar h1 {
-            font-size: 1.8rem;
             color: #2c5f4f;
-            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
         }
 
-        .topbar p {
-            color: #666;
-        }
-
-        /* Settings Container */
-        .settings-container {
+        .settings-grid {
             display: grid;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .settings-section {
@@ -111,84 +122,98 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .section-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #2c5f4f, #1a4838);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
+        .settings-section h2 {
             color: #2c5f4f;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f5f7fa;
         }
 
-        .settings-group {
-            margin-bottom: 2rem;
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
-        .settings-group:last-child {
-            margin-bottom: 0;
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
-        .setting-item {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Noto Sans KR', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2c5f4f;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group .help-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .switch-group {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem;
-            background: #f9fafb;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f5f7fa;
         }
 
-        .setting-item:last-child {
-            margin-bottom: 0;
+        .switch-group:last-child {
+            border-bottom: none;
         }
 
-        .setting-info h4 {
+        .switch-label {
+            flex: 1;
+        }
+
+        .switch-label h3 {
             color: #333;
-            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
         }
 
-        .setting-info p {
+        .switch-label p {
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        .setting-control {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* Toggle Switch */
-        .toggle-switch {
+        .switch {
             position: relative;
-            width: 60px;
-            height: 30px;
+            width: 50px;
+            height: 26px;
         }
 
-        .toggle-switch input {
+        .switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
 
-        .toggle-slider {
+        .slider {
             position: absolute;
             cursor: pointer;
             top: 0;
@@ -197,14 +222,14 @@
             bottom: 0;
             background-color: #ccc;
             transition: 0.4s;
-            border-radius: 30px;
+            border-radius: 26px;
         }
 
-        .toggle-slider:before {
+        .slider:before {
             position: absolute;
             content: "";
-            height: 22px;
-            width: 22px;
+            height: 18px;
+            width: 18px;
             left: 4px;
             bottom: 4px;
             background-color: white;
@@ -212,67 +237,30 @@
             border-radius: 50%;
         }
 
-        input:checked + .toggle-slider {
+        input:checked + .slider {
             background-color: #2c5f4f;
         }
 
-        input:checked + .toggle-slider:before {
-            transform: translateX(30px);
+        input:checked + .slider:before {
+            transform: translateX(24px);
         }
 
-        /* Input Fields */
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .input-group input,
-        .input-group select,
-        .input-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 2px solid #e8ecef;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'Noto Sans KR', sans-serif;
-            transition: all 0.3s;
-        }
-
-        .input-group input:focus,
-        .input-group select:focus,
-        .input-group textarea:focus {
-            outline: none;
-            border-color: #2c5f4f;
-        }
-
-        .input-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        /* Buttons */
         .btn {
-            padding: 0.75rem 2rem;
+            padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 8px;
-            cursor: pointer;
+            font-size: 0.95rem;
             font-weight: 600;
-            transition: all 0.3s;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #d4af37, #b8962f);
-            color: white;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1a4838;
         }
 
         .btn-primary:hover {
@@ -281,85 +269,87 @@
         }
 
         .btn-secondary {
-            background: #e8ecef;
-            color: #666;
+            background: #f5f7fa;
+            color: #333;
         }
 
         .btn-secondary:hover {
-            background: #d4d8dc;
+            background: #e8ecf1;
         }
 
         .btn-danger {
-            background: #e74c3c;
+            background: #dc3545;
             color: white;
         }
 
         .btn-danger:hover {
-            background: #c0392b;
+            background: #c82333;
         }
 
         .button-group {
             display: flex;
             gap: 1rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
-        /* Alert */
-        .alert {
-            padding: 1rem 1.5rem;
+        .color-preview {
+            width: 40px;
+            height: 40px;
             border-radius: 8px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            border: 2px solid #e0e0e0;
+            margin-top: 0.5rem;
         }
 
-        .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+        .file-upload {
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .alert-info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
+        .file-upload:hover {
+            border-color: #2c5f4f;
+            background: #f9fafb;
+        }
+
+        .file-upload i {
+            font-size: 3rem;
+            color: #2c5f4f;
+            margin-bottom: 1rem;
+        }
+
+        .file-upload p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
         }
 
         @media (max-width: 768px) {
             .sidebar {
-                width: 0;
-                position: fixed;
-                z-index: 1000;
+                transform: translateX(-100%);
             }
 
             .main-content {
                 margin-left: 0;
             }
 
-            .setting-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
             .button-group {
                 flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
     <div class="admin-container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo">
-                <h2><i class="fas fa-brain"></i> Mentora Admin</h2>
+                <h1><i class="fas fa-brain"></i> Mentora</h1>
+                <p>Admin Dashboard</p>
             </div>
             <nav class="nav-menu">
                 <a href="index.html" class="nav-item">
@@ -377,303 +367,215 @@
                 <a href="refunds.html" class="nav-item">
                     <i class="fas fa-undo"></i>
                     <span>환불 관리</span>
+                    <span class="badge badge-warning" style="margin-left: auto;">신규</span>
                 </a>
                 <a href="settings.html" class="nav-item active">
                     <i class="fas fa-cog"></i>
                     <span>설정</span>
                 </a>
-                <a href="../index.html" class="nav-item">
+                <a href="https://mentora.co.kr/index.html" class="nav-item">
                     <i class="fas fa-home"></i>
                     <span>사이트로 이동</span>
                 </a>
-                <a href="#" class="nav-item" onclick="logout(); return false;">
+                <a href="login.html" class="nav-item">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>로그아웃</span>
                 </a>
             </nav>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
             <div class="topbar">
-                <h1>설정</h1>
-                <p>Mentora 플랫폼의 기본 설정을 관리합니다</p>
+                <h1><i class="fas fa-cog"></i> 설정</h1>
             </div>
 
-            <div class="settings-container">
-                <!-- Site Settings -->
+            <div class="settings-grid">
                 <div class="settings-section">
-                    <div class="section-header">
-                        <div class="section-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div>
-                            <h3 class="section-title">사이트 설정</h3>
-                        </div>
-                    </div>
-
-                    <div class="input-group">
+                    <h2><i class="fas fa-building"></i> 사이트 기본 정보</h2>
+                    <div class="form-group">
                         <label>사이트 이름</label>
                         <input type="text" value="Mentora" placeholder="사이트 이름을 입력하세요">
                     </div>
-
-                    <div class="input-group">
+                    <div class="form-group">
                         <label>사이트 설명</label>
-                        <textarea placeholder="사이트 설명을 입력하세요">진짜 나를 만나는 가장 정확한 심리검사</textarea>
+                        <textarea placeholder="사이트 설명을 입력하세요">심리검사와 성격 분석을 통한 자기 이해</textarea>
                     </div>
-
-                    <div class="input-group">
-                        <label>메타 키워드</label>
-                        <input type="text" value="MBTI, 에니어그램, 심리검사, 성격검사" placeholder="키워드를 쉼표로 구분하여 입력하세요">
+                    <div class="form-group">
+                        <label>연락처 이메일</label>
+                        <input type="email" value="mentora@gmail.com" placeholder="이메일을 입력하세요">
                     </div>
-
+                    <div class="form-group">
+                        <label>전화번호</label>
+                        <input type="tel" value="0502-1909-7788" placeholder="전화번호를 입력하세요">
+                    </div>
                     <div class="button-group">
-                        <button class="btn btn-primary" onclick="saveSiteSettings()">
-                            <i class="fas fa-save"></i> 저장하기
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> 저장
                         </button>
-                        <button class="btn btn-secondary" onclick="resetSettings()">
-                            <i class="fas fa-undo"></i> 초기화
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-undo"></i> 취소
                         </button>
                     </div>
                 </div>
 
-                <!-- Notification Settings -->
                 <div class="settings-section">
-                    <div class="section-header">
-                        <div class="section-icon">
-                            <i class="fas fa-bell"></i>
-                        </div>
-                        <div>
-                            <h3 class="section-title">알림 설정</h3>
+                    <h2><i class="fas fa-palette"></i> 테마 설정</h2>
+                    <div class="form-group">
+                        <label>주요 색상</label>
+                        <input type="color" value="#2c5f4f" id="primaryColor">
+                        <div class="color-preview" id="primaryPreview" style="background: #2c5f4f;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>강조 색상</label>
+                        <input type="color" value="#d4af37" id="accentColor">
+                        <div class="color-preview" id="accentPreview" style="background: #d4af37;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>로고 업로드</label>
+                        <div class="file-upload" onclick="document.getElementById('logoUpload').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>클릭하여 로고 이미지를 업로드하세요</p>
+                            <small>권장 크기: 200x60px, PNG 또는 SVG</small>
+                            <input type="file" id="logoUpload" accept="image/*">
                         </div>
                     </div>
-
-                    <div class="settings-group">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h4>이메일 알림</h4>
-                                <p>중요한 업데이트를 이메일로 받습니다</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h4>신규 가입 알림</h4>
-                                <p>새로운 사용자가 가입하면 알림을 받습니다</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h4>환불 요청 알림</h4>
-                                <p>환불 요청이 들어오면 즉시 알림을 받습니다</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> 저장
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-undo"></i> 기본값으로 복원
+                        </button>
                     </div>
                 </div>
 
-                <!-- Payment Settings -->
                 <div class="settings-section">
-                    <div class="section-header">
-                        <div class="section-icon">
-                            <i class="fas fa-credit-card"></i>
+                    <h2><i class="fas fa-bell"></i> 알림 설정</h2>
+                    <div class="switch-group">
+                        <div class="switch-label">
+                            <h3>이메일 알림</h3>
+                            <p>새로운 사용자 가입 시 이메일로 알림</p>
                         </div>
-                        <div>
-                            <h3 class="section-title">결제 설정</h3>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="switch-group">
+                        <div class="switch-label">
+                            <h3>환불 요청 알림</h3>
+                            <p>새로운 환불 요청 시 이메일로 알림</p>
                         </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
                     </div>
-
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle"></i>
-                        <span>결제 시스템은 별도의 결제 대행사와 연동됩니다.</span>
-                    </div>
-
-                    <div class="input-group">
-                        <label>통화</label>
-                        <select>
-                            <option value="KRW">원화 (KRW)</option>
-                            <option value="USD">달러 (USD)</option>
-                            <option value="JPY">엔화 (JPY)</option>
-                        </select>
-                    </div>
-
-                    <div class="setting-item">
-                        <div class="setting-info">
-                            <h4>자동 환불 처리</h4>
-                            <p>조건에 맞는 환불 요청을 자동으로 처리합니다</p>
+                    <div class="switch-group">
+                        <div class="switch-label">
+                            <h3>시스템 알림</h3>
+                            <p>시스템 오류 및 중요 이벤트 알림</p>
                         </div>
-                        <div class="setting-control">
-                            <label class="toggle-switch">
-                                <input type="checkbox">
-                                <span class="toggle-slider"></span>
-                            </label>
-                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
                     </div>
-
                     <div class="button-group">
-                        <button class="btn btn-primary" onclick="savePaymentSettings()">
-                            <i class="fas fa-save"></i> 저장하기
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> 저장
                         </button>
                     </div>
                 </div>
 
-                <!-- Security Settings -->
                 <div class="settings-section">
-                    <div class="section-header">
-                        <div class="section-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div>
-                            <h3 class="section-title">보안 설정</h3>
-                        </div>
+                    <h2><i class="fas fa-credit-card"></i> 결제 설정</h2>
+                    <div class="form-group">
+                        <label>프리미엄 월 구독료</label>
+                        <input type="number" value="9900" placeholder="금액을 입력하세요">
+                        <div class="help-text">기본 금액: ₩9,900/월</div>
                     </div>
-
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i>
-                        <span>모든 보안 설정이 정상적으로 적용되었습니다.</span>
+                    <div class="form-group">
+                        <label>환불 정책 기간 (일)</label>
+                        <input type="number" value="7" placeholder="일수를 입력하세요">
+                        <div class="help-text">구매 후 환불 가능 기간</div>
                     </div>
-
-                    <div class="settings-group">
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h4>2단계 인증</h4>
-                                <p>로그인 시 추가 인증을 요구합니다</p>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
+                    <div class="switch-group">
+                        <div class="switch-label">
+                            <h3>자동 환불 승인</h3>
+                            <p>환불 정책 기간 내 자동으로 환불 승인</p>
                         </div>
-
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <h4>세션 타임아웃</h4>
-                                <p>비활동 시 자동으로 로그아웃됩니다</p>
-                            </div>
-                            <div class="setting-control">
-                                <select style="padding: 0.5rem 1rem; border: 2px solid #e8ecef; border-radius: 8px;">
-                                    <option value="15">15분</option>
-                                    <option value="30" selected>30분</option>
-                                    <option value="60">1시간</option>
-                                    <option value="120">2시간</option>
-                                </select>
-                            </div>
-                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
                     </div>
-
                     <div class="button-group">
-                        <button class="btn btn-primary" onclick="saveSecuritySettings()">
-                            <i class="fas fa-save"></i> 저장하기
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> 저장
                         </button>
                     </div>
                 </div>
 
-                <!-- Danger Zone -->
-                <div class="settings-section" style="border: 2px solid #e74c3c;">
-                    <div class="section-header">
-                        <div class="section-icon" style="background: #e74c3c;">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div>
-                            <h3 class="section-title" style="color: #e74c3c;">위험 구역</h3>
-                        </div>
+                <div class="settings-section">
+                    <h2><i class="fas fa-shield-alt"></i> 보안 설정</h2>
+                    <div class="form-group">
+                        <label>관리자 비밀번호 변경</label>
+                        <input type="password" placeholder="현재 비밀번호">
                     </div>
-
-                    <div class="alert" style="background: #fee; color: #c00; border: 1px solid #fcc;">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>아래 작업은 되돌릴 수 없습니다. 신중하게 진행하세요.</span>
+                    <div class="form-group">
+                        <input type="password" placeholder="새 비밀번호">
                     </div>
-
+                    <div class="form-group">
+                        <input type="password" placeholder="새 비밀번호 확인">
+                    </div>
+                    <div class="switch-group">
+                        <div class="switch-label">
+                            <h3>2단계 인증</h3>
+                            <p>로그인 시 추가 인증 단계 활성화</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
                     <div class="button-group">
-                        <button class="btn btn-danger" onclick="confirmDataReset()">
-                            <i class="fas fa-database"></i> 모든 데이터 초기화
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> 비밀번호 변경
                         </button>
-                        <button class="btn btn-danger" onclick="confirmAccountDelete()">
-                            <i class="fas fa-trash"></i> 계정 삭제
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h2><i class="fas fa-database"></i> 데이터 관리</h2>
+                    <div class="button-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i> 데이터 백업
                         </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-upload"></i> 데이터 복원
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i> 모든 데이터 삭제
+                        </button>
+                    </div>
+                    <div class="help-text" style="margin-top: 1rem;">
+                        <strong>주의:</strong> 데이터 삭제는 되돌릴 수 없습니다. 백업을 먼저 생성하세요.
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
+    <script src="js/admin.js"></script>
     <script>
-        // 로그인 확인
-        const adminAuth = localStorage.getItem('adminAuth') || sessionStorage.getItem('adminAuth');
-        
-        if (!adminAuth) {
-            alert('⚠️ 로그인이 필요합니다.');
-            window.location.href = 'login.html';
-        } else {
-            const authData = JSON.parse(adminAuth);
-            if (!authData.isLoggedIn) {
-                alert('⚠️ 로그인이 필요합니다.');
-                window.location.href = 'login.html';
-            }
-        }
+        document.getElementById('primaryColor').addEventListener('input', function(e) {
+            document.getElementById('primaryPreview').style.background = e.target.value;
+        });
 
-        // 로그아웃 함수
-        function logout() {
-            if (confirm('로그아웃 하시겠습니까?')) {
-                localStorage.removeItem('adminAuth');
-                sessionStorage.removeItem('adminAuth');
-                alert('✅ 로그아웃 되었습니다.');
-                window.location.href = 'login.html';
-            }
-        }
-
-        function saveSiteSettings() {
-            alert('✅ 사이트 설정이 저장되었습니다!');
-        }
-
-        function resetSettings() {
-            if (confirm('설정을 초기화하시겠습니까?')) {
-                alert('✅ 설정이 초기화되었습니다!');
-                location.reload();
-            }
-        }
-
-        function savePaymentSettings() {
-            alert('✅ 결제 설정이 저장되었습니다!');
-        }
-
-        function saveSecuritySettings() {
-            alert('✅ 보안 설정이 저장되었습니다!');
-        }
-
-        function confirmDataReset() {
-            if (confirm('⚠️ 정말로 모든 데이터를 초기화하시겠습니까?\n이 작업은 되돌릴 수 없습니다!')) {
-                if (confirm('⚠️ 한 번 더 확인합니다. 정말로 진행하시겠습니까?')) {
-                    alert('❌ 데이터 초기화는 실제 환경에서만 가능합니다.');
-                }
-            }
-        }
-
-        function confirmAccountDelete() {
-            if (confirm('⚠️ 정말로 계정을 삭제하시겠습니까?\n모든 데이터가 영구적으로 삭제됩니다!')) {
-                alert('❌ 계정 삭제는 실제 환경에서만 가능합니다.');
-            }
-        }
+        document.getElementById('accentColor').addEventListener('input', function(e) {
+            document.getElementById('accentPreview').style.background = e.target.value;
+        });
     </script>
 </body>
 </html>
