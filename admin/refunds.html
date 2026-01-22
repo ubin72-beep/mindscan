@@ -4,319 +4,563 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>환불 관리 | Mentora Admin</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../images/logo-brain-hd.png">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Admin CSS -->
     <link rel="stylesheet" href="css/admin.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            min-height: 100vh;
+        }
+
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #2c5f4f 0%, #1a4838 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 12px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 0.25rem;
+        }
+
+        .logo p {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .nav-menu {
+            padding: 1rem 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-left-color: #d4af37;
+        }
+
+        .nav-item.active {
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            border-left-color: #d4af37;
+            font-weight: 600;
+        }
+
+        .nav-item i {
+            width: 24px;
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 2rem;
+        }
+
+        .topbar {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .topbar h1 {
+            color: #2c5f4f;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            font-size: 1.5rem;
+        }
+
+        .stat-content h3 {
+            font-size: 0.875rem;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-content p {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c5f4f;
+        }
+
+        .content-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f5f7fa;
+        }
+
+        .section-header h2 {
+            color: #2c5f4f;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: #2c5f4f;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #f5f7fa;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #2c5f4f;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #f5f7fa;
+            color: #333;
+        }
+
+        tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-completed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-approve {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .btn-approve:hover {
+            background: #155724;
+            color: white;
+        }
+
+        .btn-reject {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-reject:hover {
+            background: #721c24;
+            color: white;
+        }
+
+        .btn-view {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .btn-view:hover {
+            background: #1976d2;
+            color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .loading i {
+            font-size: 2rem;
+            color: #2c5f4f;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover {
+            background: #2c5f4f;
+            color: white;
+            border-color: #2c5f4f;
+        }
+
+        .pagination button.active {
+            background: #2c5f4f;
+            color: white;
+            border-color: #2c5f4f;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Admin Sidebar -->
-    <aside class="admin-sidebar">
-        <div class="sidebar-header">
-            <div class="admin-logo">
-                <i class="fas fa-brain"></i>
-                <span>Mentora Admin</span>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1><i class="fas fa-brain"></i> Mentora</h1>
+                <p>Admin Dashboard</p>
             </div>
-            <button class="sidebar-toggle" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-        
-        <nav class="sidebar-nav">
-            <a href="index.html" class="nav-item">
-                <i class="fas fa-chart-line"></i>
-                <span>대시보드</span>
-            </a>
-            <a href="users.html" class="nav-item">
-                <i class="fas fa-users"></i>
-                <span>사용자 관리</span>
-            </a>
-            <a href="tests.html" class="nav-item">
-                <i class="fas fa-clipboard-list"></i>
-                <span>검사 관리</span>
-            </a>
-            <a href="refunds.html" class="nav-item active">
-                <i class="fas fa-receipt"></i>
-                <span>환불 관리</span>
-                <span class="badge">신규</span>
-            </a>
-            <a href="settings.html" class="nav-item">
-                <i class="fas fa-cog"></i>
-                <span>설정</span>
-            </a>
-            
-            <div class="nav-divider"></div>
-            
-            <a href="../index.html" class="nav-item">
-                <i class="fas fa-home"></i>
-                <span>사이트로 이동</span>
-            </a>
-            <a href="#" class="nav-item" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>로그아웃</span>
-            </a>
-        </nav>
-    </aside>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>대시보드</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>사용자 관리</span>
+                </a>
+                <a href="tests.html" class="nav-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>검사 관리</span>
+                </a>
+                <a href="refunds.html" class="nav-item active">
+                    <i class="fas fa-undo"></i>
+                    <span>환불 관리</span>
+                    <span class="badge badge-pending" style="margin-left: auto;">신규</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>설정</span>
+                </a>
+                <a href="https://mentora.co.kr/index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>사이트로 이동</span>
+                </a>
+                <a href="login.html" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>로그아웃</span>
+                </a>
+            </nav>
+        </aside>
 
-    <!-- Main Content -->
-    <main class="admin-main">
-        <!-- Top Bar -->
-        <header class="admin-topbar">
-            <div class="topbar-left">
-                <h1 class="page-title">환불 관리</h1>
-                <p class="page-subtitle">환불 신청 내역을 처리하세요</p>
+        <main class="main-content">
+            <div class="topbar">
+                <h1><i class="fas fa-undo"></i> 환불 관리</h1>
             </div>
-            <div class="topbar-right">
-                <button class="topbar-btn" onclick="exportRefundData()">
-                    <i class="fas fa-download"></i>
-                    데이터 내보내기
-                </button>
-                <div class="admin-profile">
-                    <div class="profile-avatar">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <div class="profile-info">
-                        <span class="profile-name">관리자</span>
-                        <span class="profile-role">Master Admin</span>
-                    </div>
-                </div>
-            </div>
-        </header>
 
-        <!-- Refunds Content -->
-        <div class="refunds-content">
-            <!-- Refund Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon pending">
-                        <i class="fas fa-clock"></i>
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
                     </div>
-                    <div class="stat-info">
-                        <h3 class="stat-title">처리 대기</h3>
-                        <p class="stat-value" id="pendingRefundsCount">로딩 중...</p>
-                        <p class="stat-change warning">
-                            <i class="fas fa-exclamation-circle"></i>
-                            즉시 처리 필요
-                        </p>
+                    <div class="stat-content">
+                        <h3>대기 중 환불</h3>
+                        <p id="pendingRefunds">0</p>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon approved">
-                        <i class="fas fa-check-circle"></i>
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
                     </div>
-                    <div class="stat-info">
-                        <h3 class="stat-title">승인됨</h3>
-                        <p class="stat-value" id="approvedRefundsCount">로딩 중...</p>
-                        <p class="stat-change positive">
-                            <i class="fas fa-arrow-up"></i>
-                            이번 달
-                        </p>
+                    <div class="stat-content">
+                        <h3>승인된 환불</h3>
+                        <p id="approvedRefunds">0</p>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon rejected">
-                        <i class="fas fa-times-circle"></i>
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
                     </div>
-                    <div class="stat-info">
-                        <h3 class="stat-title">거부됨</h3>
-                        <p class="stat-value" id="rejectedRefundsCount">로딩 중...</p>
-                        <p class="stat-change neutral">
-                            <i class="fas fa-minus"></i>
-                            이번 달
-                        </p>
+                    <div class="stat-content">
+                        <h3>거절된 환불</h3>
+                        <p id="rejectedRefunds">0</p>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon revenue">
-                        <i class="fas fa-dollar-sign"></i>
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-won-sign"></i>
+                        </div>
                     </div>
-                    <div class="stat-info">
-                        <h3 class="stat-title">환불 총액</h3>
-                        <p class="stat-value" id="totalRefundAmount">로딩 중...</p>
-                        <p class="stat-change neutral">
-                            <i class="fas fa-info-circle"></i>
-                            이번 달
-                        </p>
+                    <div class="stat-content">
+                        <h3>총 환불 금액</h3>
+                        <p id="totalRefundAmount">₩0</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Filter & Search -->
-            <div class="filter-section">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="refundSearch" placeholder="주문번호, 사용자명으로 검색..." onkeyup="searchRefunds()">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2>환불 요청 목록</h2>
                 </div>
-                <div class="filter-group">
-                    <select id="statusFilter" onchange="filterRefunds()">
-                        <option value="">전체 상태</option>
-                        <option value="pending">처리 대기</option>
-                        <option value="approved">승인</option>
-                        <option value="rejected">거부</option>
-                        <option value="completed">완료</option>
-                    </select>
-                    <select id="dateFilter" onchange="filterRefunds()">
-                        <option value="7">최근 일주일</option>
-                        <option value="30" selected>최근 한 달</option>
-                        <option value="90">최근 분기</option>
-                        <option value="365">최근 일 년</option>
-                    </select>
-                    <button class="filter-btn" onclick="resetFilters()">
-                        <i class="fas fa-redo"></i>
-                        필터 초기화
-                    </button>
-                </div>
-            </div>
 
-            <!-- Refunds Table -->
-            <div class="table-container">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>환불 ID</th>
-                            <th>주문번호</th>
-                            <th>사용자</th>
-                            <th>상품명</th>
-                            <th>결제금액</th>
-                            <th>환불금액</th>
-                            <th>신청일</th>
-                            <th>사유</th>
-                            <th>상태</th>
-                            <th>작업</th>
-                        </tr>
-                    </thead>
-                    <tbody id="refundsTableBody">
-                        <!-- Refunds will be loaded here -->
-                        <tr>
-                            <td colspan="10" class="table-loading">
-                                <i class="fas fa-spinner fa-spin"></i>
-                                환불 신청 내역을 불러오는 중...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination">
-                <button class="page-btn" onclick="previousPage()" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                    이전
-                </button>
-                <div class="page-numbers" id="pageNumbers">
-                    <!-- Page numbers will be loaded here -->
-                </div>
-                <button class="page-btn" onclick="nextPage()" id="nextBtn">
-                    다음
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </main>
-
-    <!-- Refund Detail Modal -->
-    <div id="refundDetailModal" class="modal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h2>환불 신청 상세</h2>
-                <button class="modal-close" onclick="closeRefundDetailModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body" id="refundDetailBody">
-                <!-- Refund details will be loaded here -->
-            </div>
-            <div class="modal-footer" id="refundDetailActions">
-                <!-- Action buttons will be loaded here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Approve Refund Modal -->
-    <div id="approveRefundModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>환불 승인</h2>
-                <button class="modal-close" onclick="closeApproveModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="warning-box">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>환불을 승인하시겠습니까? 이 작업은 되돌릴 수 없습니다.</p>
-                </div>
-                <form id="approveRefundForm" onsubmit="approveRefund(event)">
-                    <div class="form-group">
-                        <label>환불 금액 확인</label>
-                        <input type="text" id="approveRefundAmount" readonly>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>검색</label>
+                        <input type="text" placeholder="사용자명, 이메일 검색..." id="searchInput">
                     </div>
-                    <div class="form-group">
-                        <label>관리자 메모 (선택)</label>
-                        <textarea id="approveRefundMemo" rows="3" placeholder="승인 사유나 참고사항을 입력하세요"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-cancel" onclick="closeApproveModal()">취소</button>
-                        <button type="submit" class="btn-submit success">승인</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Reject Refund Modal -->
-    <div id="rejectRefundModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>환불 거부</h2>
-                <button class="modal-close" onclick="closeRejectModal()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="warning-box danger">
-                    <i class="fas fa-ban"></i>
-                    <p>환불을 거부하시겠습니까? 거부 사유를 반드시 입력해주세요.</p>
-                </div>
-                <form id="rejectRefundForm" onsubmit="rejectRefund(event)">
-                    <div class="form-group">
-                        <label>거부 사유 <span class="required">*</span></label>
-                        <select id="rejectReason" required>
-                            <option value="">사유를 선택하세요</option>
-                            <option value="already_used">서비스 이미 사용됨</option>
-                            <option value="invalid_request">환불 조건 미충족</option>
-                            <option value="duplicate">중복 신청</option>
-                            <option value="expired">환불 기간 경과</option>
-                            <option value="other">기타</option>
+                    <div class="filter-group">
+                        <label>상태</label>
+                        <select id="statusFilter">
+                            <option value="">전체</option>
+                            <option value="pending">대기 중</option>
+                            <option value="approved">승인</option>
+                            <option value="rejected">거절</option>
+                            <option value="completed">완료</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label>상세 사유 <span class="required">*</span></label>
-                        <textarea id="rejectReasonDetail" rows="4" placeholder="사용자에게 전달될 거부 사유를 자세히 입력해주세요" required></textarea>
+                    <div class="filter-group">
+                        <label>기간</label>
+                        <select id="periodFilter">
+                            <option value="">전체</option>
+                            <option value="today">오늘</option>
+                            <option value="week">이번 주</option>
+                            <option value="month">이번 달</option>
+                        </select>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn-cancel" onclick="closeRejectModal()">취소</button>
-                        <button type="submit" class="btn-submit danger">거부</button>
-                    </div>
-                </form>
+                </div>
+
+                <div class="table-container">
+                    <table id="refundsTable">
+                        <thead>
+                            <tr>
+                                <th>환불 ID</th>
+                                <th>사용자</th>
+                                <th>이메일</th>
+                                <th>금액</th>
+                                <th>사유</th>
+                                <th>요청일</th>
+                                <th>상태</th>
+                                <th>작업</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="8" class="loading">
+                                    <i class="fas fa-spinner"></i>
+                                    <p>데이터를 불러오는 중...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination" id="pagination"></div>
             </div>
-        </div>
+        </main>
     </div>
 
-    <!-- Admin JS -->
     <script src="js/admin.js"></script>
     <script src="js/refunds.js"></script>
 </body>
