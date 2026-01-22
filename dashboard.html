@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>검사 결과 대시보드 | Mentora</title>
-    <meta name="description" content="여러분의 심리 검사 결과를 한눈에 확인하고 차트로 시각화하세요.">
+    <title>심리 데이터 대시보드 | Mentora</title>
+    <meta name="description" content="당신의 심리 데이터를 한눈에 확인하고 성장 과정을 추적하세요.">
     
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/style.css">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <style>
         body {
@@ -21,7 +22,7 @@
         }
 
         .dashboard-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 40px auto 60px;
             padding: 0 20px;
         }
@@ -57,7 +58,7 @@
             font-size: 18px;
             color: #666;
             line-height: 1.8;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 30px;
         }
 
@@ -65,7 +66,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto 30px;
         }
 
@@ -254,6 +255,7 @@
             border-radius: 16px;
             padding: 40px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
         }
 
         .chart-area h3 {
@@ -273,6 +275,136 @@
         .chart-wrapper canvas {
             max-width: 100%;
             max-height: 100%;
+        }
+
+        .results-list {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+
+        .results-list h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item:hover {
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .result-info {
+            flex: 1;
+        }
+
+        .result-test-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .result-type {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .result-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .result-score {
+            font-size: 32px;
+            font-weight: 800;
+            color: #d4af37;
+            margin: 0 30px;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action.download {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-action.download:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+        }
+
+        .btn-action.share {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-action.share:hover {
+            background: #388e3c;
+            transform: translateY(-2px);
+        }
+
+        .btn-action.delete {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-action.delete:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        .empty-state h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
         .cta-section {
@@ -298,6 +430,22 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .loading i {
+            font-size: 48px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         @media (max-width: 992px) {
@@ -330,6 +478,17 @@
             .cta-title {
                 font-size: 28px;
             }
+
+            .result-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .result-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
     </style>
 </head>
@@ -358,24 +517,24 @@
     <div class="dashboard-container">
         <div class="dashboard-hero">
             <div class="dashboard-hero-icon">📊</div>
-            <h1 class="dashboard-hero-title">검사 결과 대시보드</h1>
+            <h1 class="dashboard-hero-title">심리 데이터 대시보드</h1>
             <p class="dashboard-hero-subtitle">
-                여러분이 완료한 심리 검사 결과를 시각화하여 한눈에 확인하세요.<br>
-                모든 데이터는 브라우저에 안전하게 저장됩니다.
+                당신의 검사 결과를 한눈에 확인하고 성장 과정을 추적하세요.<br>
+                검사를 완료하면 자동으로 결과가 저장됩니다.
             </p>
 
             <div class="hero-features-grid">
                 <div class="feature-box">
+                    <i class="fas fa-database"></i>
+                    <span>검사 결과 통합 관리</span>
+                </div>
+                <div class="feature-box">
                     <i class="fas fa-chart-line"></i>
-                    <span>차트 시각화</span>
+                    <span>시간별 변화 추적</span>
                 </div>
                 <div class="feature-box">
                     <i class="fas fa-download"></i>
-                    <span>PDF 다운로드</span>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-share-alt"></i>
-                    <span>결과 공유</span>
+                    <span>리포트 PDF 다운로드</span>
                 </div>
             </div>
 
@@ -391,87 +550,103 @@
                 <div class="feature-icon">
                     <i class="fas fa-chart-bar"></i>
                 </div>
-                <h3 class="feature-title">검사 결과 시각화</h3>
+                <h3 class="feature-title">검사 결과 통합 관리</h3>
                 <p class="feature-description">
-                    여러 검사 결과를 막대 그래프와 선 차트로 한눈에 확인할 수 있습니다.
+                    여러 검사 결과를 한곳에서 관리하고 언제든지 다시 확인할 수 있습니다.
                 </p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-download"></i>
+                    <i class="fas fa-chart-line"></i>
                 </div>
-                <h3 class="feature-title">PDF 다운로드</h3>
+                <h3 class="feature-title">시간별 변화 추적</h3>
                 <p class="feature-description">
-                    검사 결과를 PDF 파일로 저장하여 언제든지 다시 볼 수 있습니다.
+                    시간에 따른 점수 변화를 차트로 확인하고 성장 과정을 분석할 수 있습니다.
                 </p>
             </div>
 
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-share-alt"></i>
+                    <i class="fas fa-file-pdf"></i>
                 </div>
-                <h3 class="feature-title">결과 공유</h3>
+                <h3 class="feature-title">맞춤형 리포트 생성</h3>
                 <p class="feature-description">
-                    친구나 가족과 검사 결과를 URL로 쉽게 공유할 수 있습니다.
+                    검사 결과를 PDF로 다운로드하여 언제든지 다시 확인할 수 있습니다.
                 </p>
             </div>
         </div>
 
         <div class="demo-section" id="demo">
-            <h2>📈 대시보드 미리보기</h2>
-            <p>검사 결과가 어떻게 표시되는지 확인해보세요</p>
+            <h2>📈 내 검사 현황</h2>
+            <p>완료한 검사 결과를 한눈에 확인해보세요</p>
 
-            <div class="dashboard-preview">
-                <div class="stat-card">
-                    <div class="stat-icon blue">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <h4>완료한 검사</h4>
-                    <p class="stat-number">8</p>
-                    <span class="stat-change">총 검사 수</span>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon green">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>평균 점수</h4>
-                    <p class="stat-number">78</p>
-                    <span class="stat-change">100점 만점</span>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon orange">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h4>저장된 리포트</h4>
-                    <p class="stat-number">5</p>
-                    <span class="stat-change">PDF 파일</span>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-icon purple">
-                        <i class="fas fa-calendar"></i>
-                    </div>
-                    <h4>최근 검사</h4>
-                    <p class="stat-number">2일전</p>
-                    <span class="stat-change">MBTI 검사</span>
-                </div>
+            <div id="loadingStats" class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>데이터를 불러오는 중...</p>
             </div>
 
-            <div class="chart-area">
-                <h3>📊 검사 결과 차트</h3>
-                <div class="chart-wrapper">
-                    <canvas id="resultChart"></canvas>
+            <div id="statsArea" style="display: none;">
+                <div class="dashboard-preview">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <h4>완료한 검사</h4>
+                        <p class="stat-number" id="totalTests">0</p>
+                        <span class="stat-change">총 검사 수</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>평균 점수</h4>
+                        <p class="stat-number" id="avgScore">0</p>
+                        <span class="stat-change">100점 만점</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h4>최고 점수</h4>
+                        <p class="stat-number" id="maxScore">0</p>
+                        <span class="stat-change" id="maxScoreTest">-</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <h4>최근 검사</h4>
+                        <p class="stat-number" id="recentTest">-</p>
+                        <span class="stat-change" id="recentTestName">-</span>
+                    </div>
+                </div>
+
+                <div class="chart-area">
+                    <h3>📊 검사 결과 점수</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="resultChart"></canvas>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="results-list">
+            <h3>📋 검사 결과 목록</h3>
+            <div id="loadingResults" class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>검사 결과를 불러오는 중...</p>
+            </div>
+            <div id="resultsContainer"></div>
         </div>
 
         <div class="cta-section">
             <h2 class="cta-title">🚀 지금 바로 시작하세요!</h2>
             <p class="cta-description">
-                무료로 검사를 시작하고 결과를 확인해보세요. 모든 데이터는 안전하게 브라우저에 저장됩니다.
+                무료로 검사를 시작하고 결과를 자동으로 저장해보세요.
             </p>
             <button class="btn-start" onclick="window.location.href='index.html#tests'">
                 <i class="fas fa-arrow-right"></i> 검사 시작하기
@@ -566,103 +741,278 @@
             });
         }
 
-        // 차트 초기화
-        document.addEventListener('DOMContentLoaded', function() {
+        let chartInstance = null;
+
+        // RESTful API를 사용하여 데이터 로드
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('tables/test_results?limit=100');
+                const result = await response.json();
+                
+                if (result.data && result.data.length > 0) {
+                    displayStats(result.data);
+                    displayChart(result.data);
+                    displayResults(result.data);
+                } else {
+                    showEmptyState();
+                }
+            } catch (error) {
+                console.error('데이터 로드 실패:', error);
+                showEmptyState();
+            }
+        }
+
+        // 통계 표시
+        function displayStats(data) {
+            document.getElementById('loadingStats').style.display = 'none';
+            document.getElementById('statsArea').style.display = 'block';
+
+            // 총 검사 수
+            document.getElementById('totalTests').textContent = data.length;
+
+            // 평균 점수
+            const avgScore = Math.round(data.reduce((sum, item) => sum + item.score, 0) / data.length);
+            document.getElementById('avgScore').textContent = avgScore;
+
+            // 최고 점수
+            const maxScoreItem = data.reduce((max, item) => item.score > max.score ? item : max, data[0]);
+            document.getElementById('maxScore').textContent = maxScoreItem.score;
+            document.getElementById('maxScoreTest').textContent = maxScoreItem.test_name;
+
+            // 최근 검사
+            const sortedData = [...data].sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
+            const recentItem = sortedData[0];
+            const daysDiff = Math.floor((new Date() - new Date(recentItem.completed_at)) / (1000 * 60 * 60 * 24));
+            document.getElementById('recentTest').textContent = daysDiff === 0 ? '오늘' : `${daysDiff}일전`;
+            document.getElementById('recentTestName').textContent = recentItem.test_name;
+        }
+
+        // 차트 표시
+        function displayChart(data) {
             const ctx = document.getElementById('resultChart');
-            if (ctx) {
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['MBTI', '에니어그램', 'Big Five', 'DISC', 'Holland', '애착유형'],
-                        datasets: [{
-                            label: '검사 결과 점수',
-                            data: [85, 78, 92, 75, 88, 82],
-                            backgroundColor: [
-                                'rgba(212, 175, 55, 0.8)',
-                                'rgba(76, 175, 80, 0.8)',
-                                'rgba(33, 150, 243, 0.8)',
-                                'rgba(156, 39, 176, 0.8)',
-                                'rgba(255, 152, 0, 0.8)',
-                                'rgba(233, 30, 99, 0.8)'
-                            ],
-                            borderColor: [
-                                '#d4af37',
-                                '#4caf50',
-                                '#2196f3',
-                                '#9c27b0',
-                                '#ff9800',
-                                '#e91e63'
-                            ],
-                            borderWidth: 2,
-                            borderRadius: 8
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: true,
-                        aspectRatio: 2.5,
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'top',
-                                labels: {
-                                    font: {
-                                        family: "'Noto Sans KR', sans-serif",
-                                        size: 14,
-                                        weight: 600
-                                    },
-                                    color: '#333',
-                                    padding: 15
-                                }
-                            },
-                            tooltip: {
-                                backgroundColor: 'rgba(44, 95, 79, 0.9)',
-                                titleFont: {
+            if (!ctx) return;
+
+            const labels = data.map(item => item.test_name);
+            const scores = data.map(item => item.score);
+
+            const colors = [
+                'rgba(212, 175, 55, 0.8)',
+                'rgba(76, 175, 80, 0.8)',
+                'rgba(33, 150, 243, 0.8)',
+                'rgba(156, 39, 176, 0.8)',
+                'rgba(255, 152, 0, 0.8)',
+                'rgba(233, 30, 99, 0.8)'
+            ];
+
+            const borderColors = [
+                '#d4af37',
+                '#4caf50',
+                '#2196f3',
+                '#9c27b0',
+                '#ff9800',
+                '#e91e63'
+            ];
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '검사 결과 점수',
+                        data: scores,
+                        backgroundColor: colors.slice(0, data.length),
+                        borderColor: borderColors.slice(0, data.length),
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: 2.5,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                font: {
                                     family: "'Noto Sans KR', sans-serif",
                                     size: 14,
-                                    weight: 700
+                                    weight: 600
                                 },
-                                bodyFont: {
-                                    family: "'Noto Sans KR', sans-serif",
-                                    size: 13
-                                },
-                                padding: 12,
-                                cornerRadius: 8
+                                color: '#333',
+                                padding: 15
                             }
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                max: 100,
-                                ticks: {
-                                    font: {
-                                        family: "'Noto Sans KR', sans-serif",
-                                        size: 12
-                                    },
-                                    color: '#666'
-                                },
-                                grid: {
-                                    color: 'rgba(0, 0, 0, 0.05)',
-                                    drawBorder: false
-                                }
+                        tooltip: {
+                            backgroundColor: 'rgba(44, 95, 79, 0.9)',
+                            titleFont: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 14,
+                                weight: 700
                             },
-                            x: {
-                                ticks: {
-                                    font: {
-                                        family: "'Noto Sans KR', sans-serif",
-                                        size: 12
-                                    },
-                                    color: '#666'
+                            bodyFont: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 13
+                            },
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 12
                                 },
-                                grid: {
-                                    display: false
-                                }
+                                color: '#666'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)',
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    family: "'Noto Sans KR', sans-serif",
+                                    size: 12
+                                },
+                                color: '#666'
+                            },
+                            grid: {
+                                display: false
                             }
                         }
                     }
-                });
+                }
+            });
+        }
+
+        // 결과 목록 표시
+        function displayResults(data) {
+            document.getElementById('loadingResults').style.display = 'none';
+            const container = document.getElementById('resultsContainer');
+            
+            const sortedData = [...data].sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
+
+            container.innerHTML = sortedData.map(item => `
+                <div class="result-item">
+                    <div class="result-info">
+                        <div class="result-test-name">${item.test_name}</div>
+                        <div class="result-type">결과: ${item.result}</div>
+                        <div class="result-date">${formatDate(item.completed_at)}</div>
+                    </div>
+                    <div class="result-score">${item.score}</div>
+                    <div class="result-actions">
+                        <button class="btn-action download" onclick="downloadPDF('${item.id}')">
+                            <i class="fas fa-download"></i> PDF
+                        </button>
+                        <button class="btn-action share" onclick="shareResult('${item.id}')">
+                            <i class="fas fa-share"></i> 공유
+                        </button>
+                        <button class="btn-action delete" onclick="deleteResult('${item.id}')">
+                            <i class="fas fa-trash"></i> 삭제
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 빈 상태 표시
+        function showEmptyState() {
+            document.getElementById('loadingStats').style.display = 'none';
+            document.getElementById('loadingResults').style.display = 'none';
+            document.getElementById('resultsContainer').innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h4>아직 완료한 검사가 없습니다</h4>
+                    <p>검사를 완료하면 여기에 결과가 자동으로 저장됩니다</p>
+                    <button class="btn-start" onclick="window.location.href='index.html#tests'">
+                        첫 검사 시작하기
+                    </button>
+                </div>
+            `;
+        }
+
+        // 날짜 포맷
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${year}.${month}.${day} ${hours}:${minutes}`;
+        }
+
+        // PDF 다운로드
+        async function downloadPDF(id) {
+            try {
+                const response = await fetch(`tables/test_results/${id}`);
+                const data = await response.json();
+                
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(20);
+                doc.text('Mentora - Test Result', 105, 20, { align: 'center' });
+                
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(12);
+                doc.text(`Test: ${data.test_name}`, 20, 40);
+                doc.text(`Result: ${data.result}`, 20, 50);
+                doc.text(`Score: ${data.score}/100`, 20, 60);
+                doc.text(`Date: ${formatDate(data.completed_at)}`, 20, 70);
+                doc.text(`Details: ${data.details}`, 20, 80);
+                
+                doc.save(`mentora_${data.test_type}_result.pdf`);
+                alert('PDF 다운로드가 완료되었습니다!');
+            } catch (error) {
+                console.error('PDF 생성 실패:', error);
+                alert('PDF 생성에 실패했습니다.');
             }
-        });
+        }
+
+        // 결과 공유
+        async function shareResult(id) {
+            const url = `${window.location.origin}/result.html?id=${id}`;
+            try {
+                await navigator.clipboard.writeText(url);
+                alert('공유 링크가 클립보드에 복사되었습니다!\n' + url);
+            } catch (error) {
+                prompt('아래 링크를 복사하세요:', url);
+            }
+        }
+
+        // 결과 삭제
+        async function deleteResult(id) {
+            if (!confirm('정말 이 검사 결과를 삭제하시겠습니까?')) {
+                return;
+            }
+
+            try {
+                await fetch(`tables/test_results/${id}`, {
+                    method: 'DELETE'
+                });
+                alert('검사 결과가 삭제되었습니다.');
+                location.reload();
+            } catch (error) {
+                console.error('삭제 실패:', error);
+                alert('삭제에 실패했습니다.');
+            }
+        }
+
+        // 페이지 로드 시 데이터 로드
+        document.addEventListener('DOMContentLoaded', loadDashboardData);
     </script>
 </body>
 </html>
