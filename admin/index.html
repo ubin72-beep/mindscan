@@ -27,7 +27,6 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
         .sidebar {
             width: 260px;
             background: linear-gradient(135deg, #2c5f4f, #1a4838);
@@ -74,7 +73,6 @@
             font-size: 1.2rem;
         }
 
-        /* Main Content */
         .main-content {
             margin-left: 260px;
             flex: 1;
@@ -124,7 +122,6 @@
             box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
 
-        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -153,10 +150,10 @@
             color: white;
         }
 
-        .stat-icon.users { background: linear-gradient(135deg, #3498db, #2980b9); }
-        .stat-icon.tests { background: linear-gradient(135deg, #27ae60, #229954); }
-        .stat-icon.revenue { background: linear-gradient(135deg, #d4af37, #b8962f); }
-        .stat-icon.pending { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .stat-icon.blue { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .stat-icon.green { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .stat-icon.orange { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .stat-icon.purple { background: linear-gradient(135deg, #a8edea, #fed6e3); }
 
         .stat-info h3 {
             font-size: 0.9rem;
@@ -164,17 +161,16 @@
             margin-bottom: 0.5rem;
         }
 
-        .stat-info p {
-            font-size: 2rem;
+        .stat-info .number {
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #2c5f4f;
+            color: #333;
         }
 
-        /* Charts */
         .charts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
@@ -188,14 +184,8 @@
         .chart-card h3 {
             color: #2c5f4f;
             margin-bottom: 1.5rem;
-            font-size: 1.2rem;
         }
 
-        .chart-canvas {
-            height: 300px;
-        }
-
-        /* Activities */
         .activities {
             background: white;
             padding: 2rem;
@@ -264,7 +254,6 @@
 </head>
 <body>
     <div class="admin-container">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo">
                 <h2><i class="fas fa-brain"></i> Mentora Admin</h2>
@@ -286,11 +275,7 @@
                     <i class="fas fa-undo"></i>
                     <span>환불 관리</span>
                 </a>
-                <a href="settings.html" class="nav-item">
-                    <i class="fas fa-cog"></i>
-                    <span>설정</span>
-                </a>
-                <a href="../index.html" class="nav-item">
+                <a href="https://mentora.co.kr/index.html" class="nav-item">
                     <i class="fas fa-home"></i>
                     <span>사이트로 이동</span>
                 </a>
@@ -301,96 +286,90 @@
             </nav>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
             <div class="topbar">
-                <div>
-                    <h1>관리자 대시보드</h1>
-                    <p style="color: #666; margin-top: 0.5rem;">Mentora 플랫폼 전체 현황</p>
-                </div>
+                <h1>📊 관리자 대시보드</h1>
                 <div class="topbar-actions">
-                    <button class="btn btn-primary" onclick="location.reload()">
-                        <i class="fas fa-sync-alt"></i> 새로고침
+                    <button class="btn btn-primary">
+                        <i class="fas fa-download"></i>
+                        리포트 다운로드
                     </button>
                 </div>
             </div>
 
-            <!-- Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon users">
+                    <div class="stat-icon blue">
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="stat-info">
-                        <h3>전체 사용자</h3>
-                        <p>1,250</p>
+                        <h3>총 사용자</h3>
+                        <div class="number">1,234</div>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon tests">
+                    <div class="stat-icon green">
                         <i class="fas fa-clipboard-check"></i>
                     </div>
                     <div class="stat-info">
                         <h3>완료된 검사</h3>
-                        <p>8,542</p>
+                        <div class="number">5,678</div>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon revenue">
-                        <i class="fas fa-dollar-sign"></i>
+                    <div class="stat-icon orange">
+                        <i class="fas fa-won-sign"></i>
                     </div>
                     <div class="stat-info">
-                        <h3>총 매출</h3>
-                        <p>₩2.5M</p>
+                        <h3>이번 달 매출</h3>
+                        <div class="number">₩2.5M</div>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-icon pending">
-                        <i class="fas fa-exclamation-circle"></i>
+                    <div class="stat-icon purple">
+                        <i class="fas fa-crown"></i>
                     </div>
                     <div class="stat-info">
-                        <h3>환불 대기</h3>
-                        <p>12</p>
+                        <h3>프리미엄 회원</h3>
+                        <div class="number">234</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Charts -->
             <div class="charts-grid">
                 <div class="chart-card">
-                    <h3>검사 완료 추이 (최근 7일)</h3>
-                    <canvas id="testChart" class="chart-canvas"></canvas>
+                    <h3>📈 월별 사용자 증가</h3>
+                    <canvas id="userChart"></canvas>
                 </div>
 
                 <div class="chart-card">
-                    <h3>인기 검사 TOP 5</h3>
-                    <canvas id="popularChart" class="chart-canvas"></canvas>
+                    <h3>💰 월별 매출</h3>
+                    <canvas id="revenueChart"></canvas>
                 </div>
             </div>
 
-            <!-- Activities -->
             <div class="activities">
-                <h3>최근 활동</h3>
+                <h3>🔔 최근 활동</h3>
                 <div class="activity-item">
                     <div class="activity-icon">
                         <i class="fas fa-user-plus"></i>
                     </div>
                     <div class="activity-info">
-                        <p class="activity-text"><strong>김민지</strong>님이 가입했습니다</p>
-                        <p class="activity-time">5분 전</p>
+                        <div class="activity-text">새로운 사용자 가입: user@example.com</div>
+                        <div class="activity-time">5분 전</div>
                     </div>
                 </div>
 
                 <div class="activity-item">
                     <div class="activity-icon">
-                        <i class="fas fa-clipboard-check"></i>
+                        <i class="fas fa-check-circle"></i>
                     </div>
                     <div class="activity-info">
-                        <p class="activity-text"><strong>이준호</strong>님이 <strong>MBTI 검사</strong>를 완료했습니다</p>
-                        <p class="activity-time">12분 전</p>
+                        <div class="activity-text">MBTI 검사 완료: 김철수님</div>
+                        <div class="activity-time">12분 전</div>
                     </div>
                 </div>
 
@@ -399,8 +378,8 @@
                         <i class="fas fa-credit-card"></i>
                     </div>
                     <div class="activity-info">
-                        <p class="activity-text"><strong>박서연</strong>님이 프리미엄 플랜을 구매했습니다</p>
-                        <p class="activity-time">23분 전</p>
+                        <div class="activity-text">프리미엄 구독: 이영희님</div>
+                        <div class="activity-time">1시간 전</div>
                     </div>
                 </div>
 
@@ -409,8 +388,8 @@
                         <i class="fas fa-undo"></i>
                     </div>
                     <div class="activity-info">
-                        <p class="activity-text"><strong>최지우</strong>님의 환불 요청이 접수되었습니다</p>
-                        <p class="activity-time">1시간 전</p>
+                        <div class="activity-text">환불 요청: 박민수님</div>
+                        <div class="activity-time">2시간 전</div>
                     </div>
                 </div>
             </div>
@@ -418,88 +397,65 @@
     </div>
 
     <script>
-        // 로그인 확인
-        const adminAuth = localStorage.getItem('adminAuth') || sessionStorage.getItem('adminAuth');
-        
-        if (!adminAuth) {
-            alert('⚠️ 로그인이 필요합니다.');
-            window.location.href = 'login.html';
-        } else {
-            const authData = JSON.parse(adminAuth);
-            if (!authData.isLoggedIn) {
-                alert('⚠️ 로그인이 필요합니다.');
-                window.location.href = 'login.html';
-            }
-        }
-
-        // 로그아웃 함수
-        function logout() {
-            if (confirm('로그아웃 하시겠습니까?')) {
-                localStorage.removeItem('adminAuth');
-                sessionStorage.removeItem('adminAuth');
-                alert('✅ 로그아웃 되었습니다.');
-                window.location.href = 'login.html';
-            }
-        }
-    </script>
-
-    <script>
-        // Test Trend Chart
-        const testCtx = document.getElementById('testChart').getContext('2d');
-        new Chart(testCtx, {
+        const userCtx = document.getElementById('userChart').getContext('2d');
+        new Chart(userCtx, {
             type: 'line',
             data: {
-                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
                 datasets: [{
-                    label: '완료된 검사',
-                    data: [120, 150, 180, 170, 190, 210, 230],
-                    borderColor: '#2c5f4f',
-                    backgroundColor: 'rgba(44, 95, 79, 0.1)',
-                    tension: 0.4,
-                    fill: true
+                    label: '사용자 수',
+                    data: [120, 190, 300, 500, 700, 1234],
+                    borderColor: '#4facfe',
+                    backgroundColor: 'rgba(79, 172, 254, 0.1)',
+                    tension: 0.4
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    y: { beginAtZero: true }
+                    legend: {
+                        display: false
+                    }
                 }
             }
         });
 
-        // Popular Tests Chart
-        const popularCtx = document.getElementById('popularChart').getContext('2d');
-        new Chart(popularCtx, {
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
             type: 'bar',
             data: {
-                labels: ['MBTI', '에니어그램', 'Big Five', 'DISC', 'Holland'],
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
                 datasets: [{
-                    label: '완료 수',
-                    data: [2500, 1800, 1500, 1200, 1000],
+                    label: '매출 (만원)',
+                    data: [50, 80, 120, 150, 200, 250],
                     backgroundColor: [
-                        'rgba(44, 95, 79, 0.8)',
-                        'rgba(212, 175, 55, 0.8)',
-                        'rgba(52, 152, 219, 0.8)',
-                        'rgba(231, 76, 60, 0.8)',
-                        'rgba(39, 174, 96, 0.8)'
+                        '#43e97b',
+                        '#38f9d7',
+                        '#fa709a',
+                        '#fee140',
+                        '#4facfe',
+                        '#d4af37'
                     ]
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
+                maintainAspectRatio: true,
                 plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    y: { beginAtZero: true }
+                    legend: {
+                        display: false
+                    }
                 }
             }
         });
+
+        function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+                alert('로그아웃되었습니다.');
+                window.location.href = 'login.html';
+            }
+        }
     </script>
 </body>
 </html>
