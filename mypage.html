@@ -9,22 +9,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <link rel="stylesheet" href="css/nav-common.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mypage.css">
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <nav class="nav">
             <a href="index.html" class="nav-logo">
-                <img src="images/logo-brain-hd.png" alt="Mentora" class="logo-icon">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
                 <span class="logo-text">Mentora</span>
             </a>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">홈</a></li>
-                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
-                <li><a href="mypage.html" class="nav-link active">마이페이지</a></li>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li><a href="index.html#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 기능</a></li>
+                <li><a href="index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="index.html#reviews" class="nav-link" onclick="closeMobileMenu()">후기</a></li>
+                <li><a href="mypage.html" class="nav-link active" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle">
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
                 <i class="fas fa-moon"></i>
             </button>
         </nav>
@@ -247,30 +260,105 @@
     </div>
 
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <img src="images/logo-brain-hd.png" alt="Mentora" class="footer-logo-image">
-                    <h3>Mentora</h3>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-brain"></i>
+                        <h3>Mentora</h3>
+                    </div>
+                    <p class="footer-tagline">당신 내면의 빛을 찾다</p>
+                    <div class="company-info">
+                        <p><strong>큐브박스 (CubeBox)</strong></p>
+                        <p>대표자: 김미화</p>
+                        <p>사업자등록번호: 537-08-03349</p>
+                        <p>📍 서울특별시 송파구 송파대로14길 7-10 2층</p>
+                        <p>☎️ 0502-1909-7788</p>
+                        <p>📧 mentora@gmail.com</p>
+                    </div>
                 </div>
-                <p class="footer-tagline">당신 내면의 빛을 찾다</p>
+                
+                <div class="footer-section">
+                    <h4>심리검사</h4>
+                    <ul>
+                        <li><a href="index.html#tests">전체 검사</a></li>
+                        <li><a href="blood-type-test.html">혈액형 성격 분석</a></li>
+                        <li><a href="sagunja-test-v2.html">4군자 성격 유형</a></li>
+                        <li><a href="personal-color-test.html">퍼스널 컬러 진단</a></li>
+                        <li><a href="animal-test.html">애니멀 성격 테스트</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>서비스</h4>
+                    <ul>
+                        <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> 대시보드</a></li>
+                        <li><a href="index.html#tests"><i class="fas fa-clipboard-list"></i> 무료 검사</a></li>
+                        <li><a href="mypage.html"><i class="fas fa-user"></i> 내 결과</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>고객 지원</h4>
+                    <ul>
+                        <li><a href="mailto:mentora@gmail.com"><i class="fas fa-envelope"></i> 이메일 문의</a></li>
+                        <li><a href="tel:0502-1909-7788"><i class="fas fa-phone"></i> 전화 상담</a></li>
+                    </ul>
+                </div>
             </div>
             
-            <div class="footer-section">
-                <h4>법률 정보</h4>
-                <ul class="footer-links">
-                    <li><a href="terms.html">이용약관</a></li>
-                    <li><a href="privacy.html">개인정보처리방침</a></li>
-                    <li><a href="refund.html">환불정책</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-bottom-right">
+                    <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+                    <div class="footer-legal-links">
+                        <a href="terms.html">이용약관</a>
+                        <span class="separator">|</span>
+                        <a href="privacy.html">개인정보처리방침</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; Mentora. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="js/mypage.js"></script>
+    <script>
+        // 모바일 메뉴 토글
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            navMenu.classList.toggle('active');
+            
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // 모바일 메뉴 닫기
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            navMenu.classList.remove('active');
+            
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        // 테마 토글
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
 </body>
 </html>
