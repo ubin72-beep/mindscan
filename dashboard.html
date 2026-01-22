@@ -407,6 +407,181 @@
             margin-bottom: 20px;
         }
 
+        .pricing-section {
+            margin: 60px 0;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card.premium {
+            border: 3px solid #d4af37;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.premium:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-badge.free {
+            background: #e0e0e0;
+            color: #666;
+        }
+
+        .pricing-badge.premium {
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: white;
+        }
+
+        .pricing-price {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .price-number {
+            display: block;
+            font-size: 48px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .price-period {
+            display: block;
+            font-size: 16px;
+            color: #999;
+        }
+
+        .pricing-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            font-size: 15px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-features li i {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .pricing-features li .fa-check {
+            color: #4caf50;
+        }
+
+        .pricing-features li .fa-times {
+            color: #ccc;
+        }
+
+        .btn-pricing {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-pricing.free {
+            background: #f5f5f5;
+            color: #666;
+        }
+
+        .btn-pricing.free:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .btn-pricing.premium {
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: white;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-pricing.premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-premium {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-premium i {
+            font-size: 14px;
+        }
+
         .cta-section {
             background: linear-gradient(135deg, #d4af37, #f4d03f);
             border-radius: 20px;
@@ -460,6 +635,18 @@
             .hero-features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.premium {
+                transform: scale(1);
+            }
+
+            .pricing-card.premium:hover {
+                transform: translateY(-8px);
+            }
         }
 
         @media (max-width: 768px) {
@@ -489,6 +676,10 @@
                 width: 100%;
                 justify-content: space-between;
             }
+
+            .nav-right {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -505,8 +696,15 @@
             <ul class="nav-menu">
                 <li><a href="index.html">홈</a></li>
                 <li><a href="index.html#tests">검사하기</a></li>
+                <li><a href="index.html#premium">프리미엄</a></li>
                 <li><a href="dashboard.html" class="active">내 결과</a></li>
             </ul>
+
+            <div class="nav-right">
+                <button class="btn-premium" onclick="window.location.href='index.html#premium'">
+                    <i class="fas fa-crown"></i> 프리미엄
+                </button>
+            </div>
 
             <button class="mobile-menu-toggle" aria-label="메뉴 열기">
                 <i class="fas fa-bars"></i>
@@ -643,6 +841,55 @@
             <div id="resultsContainer"></div>
         </div>
 
+        <div class="pricing-section" id="pricing">
+            <h2 class="section-title">💎 요금 안내</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">
+                더 많은 기능을 원하신다면 프리미엄을 이용해보세요
+            </p>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-badge free">무료</div>
+                    <div class="pricing-price">
+                        <span class="price-number">₩0</span>
+                        <span class="price-period">영구 무료</span>
+                    </div>
+                    <h3 class="pricing-title">기본 서비스</h3>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 기본 검사 결과 조회</li>
+                        <li><i class="fas fa-check"></i> 최근 3개 검사 저장</li>
+                        <li><i class="fas fa-check"></i> 기본 차트 조회</li>
+                        <li><i class="fas fa-times"></i> 전체 검사 히스토리</li>
+                        <li><i class="fas fa-times"></i> PDF 다운로드</li>
+                        <li><i class="fas fa-times"></i> 결과 공유 기능</li>
+                    </ul>
+                    <button class="btn-pricing free" onclick="window.location.href='index.html#tests'">
+                        무료로 시작하기
+                    </button>
+                </div>
+
+                <div class="pricing-card premium">
+                    <div class="pricing-badge premium">추천</div>
+                    <div class="pricing-price">
+                        <span class="price-number">₩9,900</span>
+                        <span class="price-period">/월</span>
+                    </div>
+                    <h3 class="pricing-title">프리미엄</h3>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 무제한 검사 결과 저장</li>
+                        <li><i class="fas fa-check"></i> 전체 검사 히스토리</li>
+                        <li><i class="fas fa-check"></i> 고급 차트 & 분석</li>
+                        <li><i class="fas fa-check"></i> PDF 무제한 다운로드</li>
+                        <li><i class="fas fa-check"></i> 결과 공유 기능</li>
+                        <li><i class="fas fa-check"></i> 데이터 백업</li>
+                    </ul>
+                    <button class="btn-pricing premium" onclick="alert('준비 중입니다')">
+                        프리미엄 시작하기
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <div class="cta-section">
             <h2 class="cta-title">🚀 지금 바로 시작하세요!</h2>
             <p class="cta-description">
@@ -654,76 +901,77 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
+    <footer class="footer" style="background: #2c5f4f; color: #d4af37; padding: 40px 0 20px;">
+        <div class="footer-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div class="footer-content" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px;">
                 <div class="footer-section footer-about">
-                    <div class="footer-logo">
-                        <div class="footer-logo-icon">
-                            <i class="fas fa-brain"></i>
+                    <div class="footer-logo" style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                        <div class="footer-logo-icon" style="width: 50px; height: 50px; background: #d4af37; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-brain" style="font-size: 24px; color: #2c5f4f;"></i>
                         </div>
                         <div class="footer-logo-text">
-                            <h3>Mentora</h3>
-                            <p class="footer-slogan">진짜 나를 만나는 가장 정확한 방법</p>
+                            <h3 style="font-size: 24px; font-weight: 800; margin: 0; color: #d4af37;">Mentora</h3>
+                            <p style="font-size: 12px; margin: 0; color: #d4af37; opacity: 0.8;">진짜 나를 만나는 가장 정확한 방법</p>
                         </div>
                     </div>
-                    
-                    <div class="footer-company-info">
-                        <p><strong>큐브박스 (CubeBox)</strong></p>
-                        <p>대표자: 김미화</p>
-                        <p>사업자등록번호: 537-08-03349</p>
-                        <p>주소: 서울특별시 송파구 송파대로14길 7-10 2층 (05854)</p>
-                        <p>전화: 0502-1909-7788</p>
-                        <p>이메일: mentora@gmail.com</p>
+                    <div class="company-info" style="font-size: 13px; line-height: 1.8; color: #d4af37;">
+                        <p style="margin: 5px 0;"><strong>큐브박스 (CubeBox)</strong></p>
+                        <p style="margin: 5px 0;">대표자: 김미화</p>
+                        <p style="margin: 5px 0;">사업자등록번호: 537-08-03349</p>
+                        <p style="margin: 5px 0;">📍 서울특별시 송파구 송파대로14길 7-10 2층</p>
+                        <p style="margin: 5px 0;">☎️ 0502-1909-7788</p>
+                        <p style="margin: 5px 0;">📧 mentora@gmail.com</p>
                     </div>
                 </div>
-
+                
                 <div class="footer-section">
-                    <h4>심리검사</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#tests">전체 검사</a></li>
-                        <li><a href="blood-type-test.html">혈액형 성격 분석</a></li>
-                        <li><a href="sagunja-test-v2.html">4군자 성격 유형</a></li>
-                        <li><a href="personal-color-test.html">퍼스널 컬러 진단</a></li>
-                        <li><a href="animal-test.html">애니멀 성격 테스트</a></li>
+                    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #d4af37;">심리검사</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="index.html#tests" style="color: #d4af37; text-decoration: none; font-size: 14px; transition: all 0.3s;">전체 검사</a></li>
+                        <li style="margin-bottom: 12px;"><a href="blood-type-test.html" style="color: #d4af37; text-decoration: none; font-size: 14px;">혈액형 분석</a></li>
+                        <li style="margin-bottom: 12px;"><a href="sagunja-test-v2.html" style="color: #d4af37; text-decoration: none; font-size: 14px;">4군자 유형</a></li>
+                        <li style="margin-bottom: 12px;"><a href="personal-color-test.html" style="color: #d4af37; text-decoration: none; font-size: 14px;">퍼스널 컬러</a></li>
+                        <li style="margin-bottom: 12px;"><a href="animal-test.html" style="color: #d4af37; text-decoration: none; font-size: 14px;">애니멀 테스트</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #d4af37;">서비스</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="dashboard.html" style="color: #d4af37; text-decoration: none; font-size: 14px;"><i class="fas fa-chart-line"></i> 검사 결과 대시보드</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#tests" style="color: #d4af37; text-decoration: none; font-size: 14px;">무료 검사</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>서비스</h4>
-                    <ul class="footer-links">
-                        <li><a href="dashboard.html">검사 결과 대시보드</a></li>
-                        <li><a href="index.html#tests">무료 검사</a></li>
+                    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #d4af37;">고객지원</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="mailto:mentora@gmail.com" style="color: #d4af37; text-decoration: none; font-size: 14px;"><i class="fas fa-envelope"></i> 이메일 문의</a></li>
+                        <li style="margin-bottom: 12px;"><a href="tel:0502-1909-7788" style="color: #d4af37; text-decoration: none; font-size: 14px;"><i class="fas fa-phone"></i> 전화 상담</a></li>
                     </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>고객지원</h4>
-                    <ul class="footer-links">
-                        <li><a href="terms.html">이용약관</a></li>
-                        <li><a href="privacy.html">개인정보처리방침</a></li>
-                    </ul>
-                    
-                    <div class="footer-social">
-                        <h4 style="margin-top: 30px;">연결하기</h4>
-                        <div class="social-icons">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
                 </div>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+            
+            <div class="footer-bottom" style="border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                <div class="social-links" style="display: flex; gap: 15px;">
+                    <a href="#" aria-label="Facebook" style="width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; text-decoration: none; transition: all 0.3s;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram" style="width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; text-decoration: none;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter" style="width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; text-decoration: none;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube" style="width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; text-decoration: none;"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-bottom-right" style="text-align: right;">
+                    <p style="margin: 0 0 10px 0; font-size: 13px; color: #d4af37;">&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+                    <div class="footer-legal-links" style="display: flex; gap: 10px; justify-content: flex-end; font-size: 12px;">
+                        <a href="terms.html" style="color: #d4af37; text-decoration: none;">이용약관</a>
+                        <span style="color: #d4af37;">|</span>
+                        <a href="privacy.html" style="color: #d4af37; text-decoration: none;">개인정보처리방침</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // 모바일 메뉴 토글
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const navMenu = document.querySelector('.nav-menu');
 
@@ -743,7 +991,6 @@
 
         let chartInstance = null;
 
-        // RESTful API를 사용하여 데이터 로드
         async function loadDashboardData() {
             try {
                 const response = await fetch('tables/test_results?limit=100');
@@ -762,24 +1009,19 @@
             }
         }
 
-        // 통계 표시
         function displayStats(data) {
             document.getElementById('loadingStats').style.display = 'none';
             document.getElementById('statsArea').style.display = 'block';
 
-            // 총 검사 수
             document.getElementById('totalTests').textContent = data.length;
 
-            // 평균 점수
             const avgScore = Math.round(data.reduce((sum, item) => sum + item.score, 0) / data.length);
             document.getElementById('avgScore').textContent = avgScore;
 
-            // 최고 점수
             const maxScoreItem = data.reduce((max, item) => item.score > max.score ? item : max, data[0]);
             document.getElementById('maxScore').textContent = maxScoreItem.score;
             document.getElementById('maxScoreTest').textContent = maxScoreItem.test_name;
 
-            // 최근 검사
             const sortedData = [...data].sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
             const recentItem = sortedData[0];
             const daysDiff = Math.floor((new Date() - new Date(recentItem.completed_at)) / (1000 * 60 * 60 * 24));
@@ -787,7 +1029,6 @@
             document.getElementById('recentTestName').textContent = recentItem.test_name;
         }
 
-        // 차트 표시
         function displayChart(data) {
             const ctx = document.getElementById('resultChart');
             if (!ctx) return;
@@ -896,7 +1137,6 @@
             });
         }
 
-        // 결과 목록 표시
         function displayResults(data) {
             document.getElementById('loadingResults').style.display = 'none';
             const container = document.getElementById('resultsContainer');
@@ -926,7 +1166,6 @@
             `).join('');
         }
 
-        // 빈 상태 표시
         function showEmptyState() {
             document.getElementById('loadingStats').style.display = 'none';
             document.getElementById('loadingResults').style.display = 'none';
@@ -942,7 +1181,6 @@
             `;
         }
 
-        // 날짜 포맷
         function formatDate(dateString) {
             const date = new Date(dateString);
             const year = date.getFullYear();
@@ -953,7 +1191,6 @@
             return `${year}.${month}.${day} ${hours}:${minutes}`;
         }
 
-        // PDF 다운로드
         async function downloadPDF(id) {
             try {
                 const response = await fetch(`tables/test_results/${id}`);
@@ -982,7 +1219,6 @@
             }
         }
 
-        // 결과 공유
         async function shareResult(id) {
             const url = `${window.location.origin}/result.html?id=${id}`;
             try {
@@ -993,7 +1229,6 @@
             }
         }
 
-        // 결과 삭제
         async function deleteResult(id) {
             if (!confirm('정말 이 검사 결과를 삭제하시겠습니까?')) {
                 return;
@@ -1011,7 +1246,6 @@
             }
         }
 
-        // 페이지 로드 시 데이터 로드
         document.addEventListener('DOMContentLoaded', loadDashboardData);
     </script>
 </body>
