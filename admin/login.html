@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 로그인 - Mentora</title>
-    
+    <title>관리자 로그인 | Mentora Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         * {
             margin: 0;
@@ -16,7 +15,7 @@
         }
 
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
             background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
             min-height: 100vh;
             display: flex;
@@ -26,37 +25,41 @@
         }
 
         .login-container {
+            width: 100%;
+            max-width: 450px;
             background: white;
-            border-radius: 24px;
+            border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
-            max-width: 450px;
-            width: 100%;
         }
 
         .login-header {
-            background: linear-gradient(135deg, #d4af37, #b8962f);
-            color: white;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
             padding: 3rem 2rem;
             text-align: center;
+            color: white;
         }
 
         .login-header i {
             font-size: 4rem;
+            color: #d4af37;
             margin-bottom: 1rem;
         }
 
         .login-header h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4af37;
             margin-bottom: 0.5rem;
         }
 
         .login-header p {
-            opacity: 0.95;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
         }
 
         .login-body {
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem;
         }
 
         .form-group {
@@ -67,7 +70,8 @@
             display: block;
             margin-bottom: 0.5rem;
             color: #333;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .input-wrapper {
@@ -80,22 +84,23 @@
             top: 50%;
             transform: translateY(-50%);
             color: #666;
+            font-size: 1.1rem;
         }
 
         .form-group input {
             width: 100%;
             padding: 1rem 1rem 1rem 3rem;
-            border: 2px solid #e8ecef;
-            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             font-size: 1rem;
-            transition: all 0.3s;
             font-family: 'Noto Sans KR', sans-serif;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #d4af37;
-            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+            border-color: #2c5f4f;
+            box-shadow: 0 0 0 4px rgba(44, 95, 79, 0.1);
         }
 
         .form-options {
@@ -103,6 +108,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
+            font-size: 0.9rem;
         }
 
         .remember-me {
@@ -117,95 +123,85 @@
             cursor: pointer;
         }
 
-        .remember-me label {
-            margin: 0;
-            cursor: pointer;
-            font-size: 0.9rem;
-            color: #666;
+        .forgot-password {
+            color: #2c5f4f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
         }
 
         .btn-login {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #d4af37, #b8962f);
-            color: white;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #1a4838;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
         }
 
-        .login-footer {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e8ecef;
+        .btn-login:active {
+            transform: translateY(0);
         }
 
         .back-link {
-            color: #2c5f4f;
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #666;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            transition: all 0.3s;
+            font-size: 0.95rem;
         }
 
         .back-link:hover {
-            color: #d4af37;
+            color: #2c5f4f;
         }
 
-        .error-message {
-            background: #fee;
-            color: #c00;
+        .alert {
             padding: 1rem;
             border-radius: 8px;
             margin-bottom: 1.5rem;
             display: none;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .error-message.show {
-            display: flex;
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
 
-        .info-box {
-            background: #e8f4f8;
-            border: 1px solid #bee5eb;
-            color: #0c5460;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-            line-height: 1.6;
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
         }
 
-        .info-box strong {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
             .login-container {
-                margin: 1rem;
+                border-radius: 12px;
             }
 
             .login-header {
                 padding: 2rem 1.5rem;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
             }
 
             .login-body {
@@ -218,25 +214,19 @@
     <div class="login-container">
         <div class="login-header">
             <i class="fas fa-shield-alt"></i>
-            <h1>관리자 로그인</h1>
-            <p>Mentora Admin Dashboard</p>
+            <h1>Mentora Admin</h1>
+            <p>관리자 로그인</p>
         </div>
 
         <div class="login-body">
-            <div class="info-box">
-                <strong>💡 데모 계정 정보</strong>
-                아이디: <code>admin</code><br>
-                비밀번호: <code>admin1234</code>
-            </div>
-
-            <div class="error-message" id="errorMessage">
+            <div class="alert alert-error" id="errorAlert">
                 <i class="fas fa-exclamation-circle"></i>
-                <span id="errorText">아이디 또는 비밀번호가 올바르지 않습니다.</span>
+                <span id="errorMessage"></span>
             </div>
 
-            <form id="loginForm" onsubmit="return handleLogin(event)">
+            <form id="loginForm">
                 <div class="form-group">
-                    <label>아이디</label>
+                    <label for="username">아이디</label>
                     <div class="input-wrapper">
                         <i class="fas fa-user"></i>
                         <input type="text" id="username" placeholder="아이디를 입력하세요" required>
@@ -244,7 +234,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>비밀번호</label>
+                    <label for="password">비밀번호</label>
                     <div class="input-wrapper">
                         <i class="fas fa-lock"></i>
                         <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
@@ -252,91 +242,50 @@
                 </div>
 
                 <div class="form-options">
-                    <div class="remember-me">
+                    <label class="remember-me">
                         <input type="checkbox" id="rememberMe">
-                        <label for="rememberMe">로그인 상태 유지</label>
-                    </div>
+                        <span>로그인 상태 유지</span>
+                    </label>
+                    <a href="#" class="forgot-password">비밀번호 찾기</a>
                 </div>
 
                 <button type="submit" class="btn-login">
                     <i class="fas fa-sign-in-alt"></i>
                     로그인
                 </button>
-            </form>
 
-            <div class="login-footer">
-                <a href="../index.html" class="back-link">
-                    <i class="fas fa-arrow-left"></i>
-                    메인 페이지로 돌아가기
+                <a href="https://mentora.co.kr/index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> 메인 사이트로 돌아가기
                 </a>
-            </div>
+            </form>
         </div>
     </div>
 
     <script>
-        // 관리자 계정 정보 (실제 운영 시에는 서버에서 검증해야 합니다)
-        const ADMIN_CREDENTIALS = {
-            username: 'admin',
-            password: 'admin1234'
-        };
-
-        function handleLogin(event) {
-            event.preventDefault();
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const rememberMe = document.getElementById('rememberMe').checked;
-            const errorMessage = document.getElementById('errorMessage');
 
-            // 로그인 검증
-            if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-                // 로그인 성공
-                const loginData = {
-                    isLoggedIn: true,
-                    username: username,
-                    loginTime: new Date().toISOString()
-                };
-
-                // 로그인 상태 저장
-                if (rememberMe) {
-                    localStorage.setItem('adminAuth', JSON.stringify(loginData));
-                } else {
-                    sessionStorage.setItem('adminAuth', JSON.stringify(loginData));
-                }
-
-                // 성공 메시지
-                alert('✅ 로그인 성공! 관리자 대시보드로 이동합니다.');
-
-                // 대시보드로 이동
+            if (username === 'admin' && password === 'admin123') {
+                sessionStorage.setItem('adminLoggedIn', 'true');
                 window.location.href = 'index.html';
             } else {
-                // 로그인 실패
-                errorMessage.classList.add('show');
-                
-                // 3초 후 에러 메시지 숨김
+                const errorAlert = document.getElementById('errorAlert');
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.textContent = '아이디 또는 비밀번호가 올바르지 않습니다.';
+                errorAlert.style.display = 'block';
+
                 setTimeout(() => {
-                    errorMessage.classList.remove('show');
+                    errorAlert.style.display = 'none';
                 }, 3000);
-
-                // 입력 필드 초기화
-                document.getElementById('password').value = '';
-                document.getElementById('password').focus();
             }
+        });
 
-            return false;
+        if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+            window.location.href = 'index.html';
         }
-
-        // 이미 로그인된 경우 대시보드로 리다이렉트
-        window.onload = function() {
-            const adminAuth = localStorage.getItem('adminAuth') || sessionStorage.getItem('adminAuth');
-            
-            if (adminAuth) {
-                const authData = JSON.parse(adminAuth);
-                if (authData.isLoggedIn) {
-                    window.location.href = 'index.html';
-                }
-            }
-        };
     </script>
 </body>
 </html>
