@@ -33,6 +33,12 @@ body {
     padding: 0 20px;
 }
 
+/* 네비게이션 스타일은 css/nav-common.css에서 관리합니다 */
+
+/* ================================================
+   Sections
+   ================================================ */
+
 .section {
     padding: 100px 20px;
 }
@@ -57,6 +63,10 @@ body {
     margin: 0 auto;
     line-height: 1.8;
 }
+
+/* ================================================
+   Buttons
+   ================================================ */
 
 .btn {
     display: inline-flex;
@@ -109,6 +119,10 @@ body {
     box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
 }
 
+/* ================================================
+   Tests Grid
+   ================================================ */
+
 .tests {
     padding: 60px 20px;
     background: var(--bg-secondary);
@@ -140,6 +154,7 @@ body {
     font-weight: 700;
 }
 
+/* 검색 & 필터 영역 - 박스 제거 */
 .search-filter-container {
     margin-bottom: 50px;
 }
@@ -327,6 +342,10 @@ body {
     margin-bottom: 20px;
 }
 
+/* ================================================
+   Pricing Cards
+   ================================================ */
+
 .pricing {
     padding: 80px 20px;
     background: white;
@@ -403,6 +422,10 @@ body {
     font-size: 1.1rem;
 }
 
+/* ================================================
+   Statistics Section
+   ================================================ */
+
 .statistics {
     padding: 80px 20px;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
@@ -433,6 +456,10 @@ body {
     color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
 }
+
+/* ================================================
+   Reviews Section
+   ================================================ */
 
 .reviews {
     padding: 80px 20px;
@@ -502,12 +529,65 @@ body {
     line-height: 1.7;
 }
 
+/* ================================================
+   Footer - 컴팩트 디자인
+   ================================================ */
+
 .footer {
     background: linear-gradient(135deg, #1a4838 0%, #2c5f4f 100%);
     color: rgba(255, 255, 255, 0.95);
-    padding: 40px 20px 25px;
+    padding: 60px 20px 25px;
     border-top: 2px solid var(--accent-color);
     position: relative;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.footer-logo i {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.footer-logo h3 {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.footer-tagline {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.company-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    line-height: 1.6;
 }
 
 .footer-content {
@@ -560,16 +640,11 @@ body {
 .footer-bottom {
     border-top: 1px solid rgba(212, 175, 55, 0.25);
     padding-top: 20px;
-    text-align: center;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(212, 175, 55, 0.25);
-    padding-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 .social-links {
@@ -598,6 +673,72 @@ body {
     color: white;
     border-color: var(--accent-color);
     transform: translateY(-3px);
+}
+
+.footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-bottom-right p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.footer-legal-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-legal-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+    color: var(--accent-color);
+}
+
+.footer-legal-links .separator {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* 반응형: 태블릿 */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* 반응형: 모바일 */
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 20px 20px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .footer-bottom-right {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 }
 
 .footer-bottom-right {
@@ -634,6 +775,10 @@ body {
 .footer-legal-links .separator {
     color: rgba(255, 255, 255, 0.4);
 }
+
+/* ================================================
+   AI Recommendation
+   ================================================ */
 
 .ai-recommendation {
     background: linear-gradient(135deg, #d4af37 0%, #f0d98c 50%, #d4af37 100%);
@@ -723,6 +868,10 @@ body {
     box-shadow: 0 6px 20px rgba(26, 72, 56, 0.4);
     border-color: rgba(255, 255, 255, 0.5);
 }
+
+/* ================================================
+   Responsive Design
+   ================================================ */
 
 @media (max-width: 768px) {
     .section-title {
