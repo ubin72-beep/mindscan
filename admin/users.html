@@ -5,22 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사용자 관리 | Mentora Admin</title>
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../images/logo-brain-hd.png">
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Admin CSS -->
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
-    <!-- Admin Sidebar -->
     <aside class="admin-sidebar">
         <div class="sidebar-header">
             <div class="admin-logo">
@@ -57,7 +52,7 @@
             
             <div class="nav-divider"></div>
             
-            <a href="../index.html" class="nav-item">
+            <a href="https://mentora.co.kr/index.html" class="nav-item">
                 <i class="fas fa-home"></i>
                 <span>사이트로 이동</span>
             </a>
@@ -68,9 +63,7 @@
         </nav>
     </aside>
 
-    <!-- Main Content -->
     <main class="admin-main">
-        <!-- Top Bar -->
         <header class="admin-topbar">
             <div class="topbar-left">
                 <h1 class="page-title">사용자 관리</h1>
@@ -93,9 +86,7 @@
             </div>
         </header>
 
-        <!-- Users Content -->
         <div class="users-content">
-            <!-- Filter & Search -->
             <div class="filter-section">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
@@ -121,7 +112,6 @@
                 </div>
             </div>
 
-            <!-- Stats Summary -->
             <div class="users-stats">
                 <div class="stat-item">
                     <span class="stat-label">전체 사용자</span>
@@ -141,7 +131,6 @@
                 </div>
             </div>
 
-            <!-- Users Table -->
             <div class="table-container">
                 <table class="data-table">
                     <thead>
@@ -161,7 +150,6 @@
                         </tr>
                     </thead>
                     <tbody id="usersTableBody">
-                        <!-- Users will be loaded here -->
                         <tr>
                             <td colspan="10" class="table-loading">
                                 <i class="fas fa-spinner fa-spin"></i>
@@ -172,14 +160,12 @@
                 </table>
             </div>
 
-            <!-- Pagination -->
             <div class="pagination">
                 <button class="page-btn" onclick="previousPage()" id="prevBtn">
                     <i class="fas fa-chevron-left"></i>
                     이전
                 </button>
                 <div class="page-numbers" id="pageNumbers">
-                    <!-- Page numbers will be loaded here -->
                 </div>
                 <button class="page-btn" onclick="nextPage()" id="nextBtn">
                     다음
@@ -189,7 +175,6 @@
         </div>
     </main>
 
-    <!-- User Detail Modal -->
     <div id="userDetailModal" class="modal">
         <div class="modal-content large">
             <div class="modal-header">
@@ -199,12 +184,10 @@
                 </button>
             </div>
             <div class="modal-body" id="userDetailBody">
-                <!-- User details will be loaded here -->
             </div>
         </div>
     </div>
 
-    <!-- Edit User Modal -->
     <div id="editUserModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -252,7 +235,6 @@
         </div>
     </div>
 
-    <!-- Admin JS -->
     <script src="js/admin.js"></script>
     <script src="js/users.js"></script>
 </body>
