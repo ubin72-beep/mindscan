@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENTJ 가이드북 샘플 - Mentora</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../images/logo-brain-hd.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/nav-common.css">
+    
+    <style>
+        body {
+            background: #f5f7fa;
+        }
+        
+        .sample-container {
+            max-width: 900px;
+            margin: 100px auto 60px;
+            padding: 0 20px;
+        }
+        
+        .sample-header {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            border-radius: 20px 20px 0 0;
+            color: white;
+        }
+        
+        .sample-badge {
+            display: inline-block;
+            background: #d4af37;
+            color: #1a4838;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .sample-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        
+        .sample-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .sample-meta {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        
+        .meta-item i {
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+        
+        .sample-content {
+            background: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .watermark-notice {
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 4px solid #d4af37;
+            padding: 20px 30px;
+            margin: 0;
+            border-radius: 0;
+        }
+        
+        .watermark-notice p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .watermark-notice strong {
+            color: #2c5f4f;
+        }
+        
+        .page-preview {
+            padding: 40px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .page-number {
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+        }
+        
+        .content-section h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #d4af37;
+        }
+        
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin: 30px 0 15px;
+        }
+        
+        .content-section p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(44, 95, 79, 0.05) 100%);
+            border-left: 4px solid #d4af37;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .highlight-box h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .highlight-box li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #333;
+            font-size: 1.05rem;
+        }
+        
+        .highlight-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: 900;
+        }
+        
+        .sample-locked {
+            padding: 60px 40px;
+            text-align: center;
+            background: #f9f9f9;
+        }
+        
+        .lock-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8952f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .lock-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+        
+        .locked-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+        
+        .locked-text {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .remaining-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+        
+        .remaining-content h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .chapter-list li {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chapter-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .chapter-name {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .chapter-pages {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        .purchase-cta {
+            padding: 60px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(44, 95, 79, 0.1) 100%);
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+        
+        .cta-text {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .price-display {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #d4af37;
+            margin-bottom: 30px;
+        }
+        
+        .btn-purchase {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8952f 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-purchase:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
+        }
+        
+        .guarantee {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .guarantee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 15px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .guarantee-item i {
+            color: #2c5f4f;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sample-header {
+                padding: 40px 20px;
+            }
+            
+            .sample-title {
+                font-size: 2rem;
+            }
+            
+            .sample-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .page-preview,
+            .sample-locked,
+            .purchase-cta {
+                padding: 30px 20px;
+            }
+            
+            .content-section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .price-display {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="../index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="../index.html#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
+                    </ul>
+                </li>
+                <li><a href="../index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="../guides.html" class="nav-link active" onclick="closeMobileMenu()">가이드북</a></li>
+                <li><a href="../mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="../admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Sample Container -->
+    <div class="sample-container">
+        <!-- Sample Header -->
+        <div class="sample-header">
+            <div class="sample-badge">📖 무료 샘플 미리보기</div>
+            <h1 class="sample-title">ENTJ 성격 완벽 분석 가이드</h1>
+            <p class="sample-subtitle">통솔자 - 대담하고 상상력이 풍부한 지도자</p>
+            <div class="sample-meta">
+                <div class="meta-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>총 65페이지</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-award"></i>
+                    <span>전문가 감수</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-download"></i>
+                    <span>PDF 다운로드</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Content -->
+        <div class="sample-content">
+            <!-- Watermark Notice -->
+            <div class="watermark-notice">
+                <p><strong>📌 안내:</strong> 실제 가이드북에는 모든 페이지에 <strong>Mentora 워터마크</strong>가 포함되어 있으며, 정품 인증이 보장됩니다.</p>
+            </div>
+
+            <!-- Page 1 Preview -->
+            <div class="page-preview">
+                <div class="page-number">페이지 1 / 62</div>
+                
+                <div class="content-section">
+                    <h2>🎯 INTJ: 전략가형 완벽 가이드</h2>
+                    
+                    <p>
+                        INTJ 성격 유형은 <strong>전략가(The Architect)</strong>로 알려져 있으며, 
+                        전체 인구의 약 2-4%를 차지하는 매우 희귀한 성격 유형입니다. 
+                        특히 여성 INTJ는 전체의 0.8%에 불과해 가장 드문 성격 유형 중 하나입니다.
+                    </p>
+                    
+                    <h3>💎 핵심 특성</h3>
+                    <p>
+                        INTJ는 내향적(Introverted), 직관적(Intuitive), 사고적(Thinking), 
+                        판단적(Judging) 성향을 가지고 있습니다. 이들은 복잡한 시스템을 이해하고 
+                        장기적인 전략을 수립하는 데 탁월한 능력을 발휘합니다.
+                    </p>
+                    
+                    <div class="highlight-box">
+                        <h4>🌟 INTJ의 강점</h4>
+                        <ul>
+                            <li>논리적이고 분석적인 사고방식</li>
+                            <li>독립적이고 자기주도적인 성향</li>
+                            <li>장기적인 비전과 전략적 계획 능력</li>
+                            <li>높은 자기 통제력과 의지력</li>
+                            <li>새로운 아이디어와 혁신에 대한 개방성</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>🎨 성격의 본질</h3>
+                    <p>
+                        INTJ는 "마스터마인드"라고 불리며, 복잡한 문제를 해결하고 
+                        효율적인 시스템을 구축하는 것을 즐깁니다. 이들은 지식을 추구하고 
+                        지적 성장을 중요하게 생각하며, 자신의 능력을 끊임없이 개발합니다.
+                    </p>
+                    
+                    <p>
+                        감정보다는 논리를 우선시하지만, 이것이 감정이 없다는 의미는 아닙니다. 
+                        단지 감정을 표현하는 데 서툴 뿐이며, 신뢰하는 사람들에게는 
+                        깊은 충성심과 애정을 보입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Page 2 Preview -->
+            <div class="page-preview">
+                <div class="page-number">페이지 5 / 62</div>
+                
+                <div class="content-section">
+                    <h2>💼 직업과 커리어</h2>
+                    
+                    <h3>🎯 최적의 직업 분야</h3>
+                    <p>
+                        INTJ는 독립성, 창의성, 전략적 사고가 요구되는 직업에서 탁월한 성과를 냅니다. 
+                        복잡한 문제를 해결하고 혁신적인 솔루션을 제시하는 환경에서 가장 행복합니다.
+                    </p>
+                    
+                    <div class="highlight-box">
+                        <h4>✨ 추천 직업 (일부 발췌)</h4>
+                        <ul>
+                            <li><strong>과학/기술 분야:</strong> 소프트웨어 개발자, 데이터 과학자, 연구원</li>
+                            <li><strong>경영/전략 분야:</strong> 경영 컨설턴트, 전략 기획자, CEO</li>
+                            <li><strong>의료 분야:</strong> 외과의사, 의학 연구원, 약리학자</li>
+                            <li><strong>공학 분야:</strong> 시스템 엔지니어, 건축가, 산업 디자이너</li>
+                            <li><strong>학술 분야:</strong> 대학 교수, 철학자, 연구 분석가</li>
+                        </ul>
+                    </div>
+                    
+                    <p>
+                        <em>* 전체 가이드북에는 30개 이상의 추천 직업과 각 직업에 대한 
+                        상세한 설명, 필요 역량, 성장 전략이 포함되어 있습니다.</em>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Locked Content -->
+            <div class="sample-locked">
+                <div class="lock-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h2 class="locked-title">더 많은 콘텐츠가 기다립니다</h2>
+                <p class="locked-text">
+                    샘플은 여기까지입니다!<br>
+                    전체 가이드북(62페이지)을 구매하시면 더 깊이 있는 분석과<br>
+                    실용적인 가이드를 만나보실 수 있습니다.
+                </p>
+                
+                <div class="remaining-content">
+                    <h4>📚 전체 가이드북에 포함된 내용</h4>
+                    <ul class="chapter-list">
+                        <li>
+                            <span class="chapter-name">1장. INTJ 성격 완벽 분석</span>
+                            <span class="chapter-pages">20페이지</span>
+                        </li>
+                        <li>
+                            <span class="chapter-name">2장. 직업 추천 30가지</span>
+                            <span class="chapter-pages">15페이지</span>
+                        </li>
+                        <li>
+                            <span class="chapter-name">3장. 연애 & 궁합 가이드</span>
+                            <span class="chapter-pages">12페이지</span>
+                        </li>
+                        <li>
+                            <span class="chapter-name">4장. AI 성장 로드맵</span>
+                            <span class="chapter-pages">10페이지</span>
+                        </li>
+                        <li>
+                            <span class="chapter-name">5장. 유명인 사례 분석</span>
+                            <span class="chapter-pages">5페이지</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Purchase CTA -->
+            <div class="purchase-cta">
+                <h2 class="cta-title">지금 바로 전체 가이드북을 만나보세요!</h2>
+                <p class="cta-text">평생 소장 가능한 프리미엄 PDF 가이드북</p>
+                <div class="price-display">₩14,900</div>
+                <a href="../payment/guide-checkout.html?plan=guide-intj" class="btn-purchase">
+                    <i class="fas fa-shopping-cart"></i>
+                    지금 구매하기
+                </a>
+                
+                <div class="guarantee">
+                    <div class="guarantee-item">
+                        <i class="fas fa-undo"></i>
+                        <span>7일 환불 보장</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <i class="fas fa-infinity"></i>
+                        <span>평생 소장</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <i class="fas fa-award"></i>
+                        <span>전문가 감수</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon-text">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <span>Mentora</span>
+                    </div>
+                    <p class="footer-tagline">진짜 나를 만나는 가장 정확한 방법</p>
+                    <div class="company-info">
+                        <p><strong>큐브박스 (CubeBox)</strong></p>
+                        <p>대표자: 김미화</p>
+                        <p>사업자등록번호: 537-08-03349</p>
+                        <p>📍 서울특별시 송파구 송파대로14길 7-10 2층</p>
+                        <p>☎️ 0502-1909-7788</p>
+                        <p>📧 mentora@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>검사 메뉴</h4>
+                    <ul>
+                        <li><a href="../index.html#tests">전체 검사</a></li>
+                        <li><a href="../test-mbti.html">MBTI 검사</a></li>
+                        <li><a href="../test-enneagram.html">에니어그램</a></li>
+                        <li><a href="../test-bigfive.html">Big Five</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>프리미엄 기능</h4>
+                    <ul>
+                        <li><a href="../roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../dashboard.html"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../guides.html">가이드북</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>고객 지원</h4>
+                    <ul>
+                        <li><a href="mailto:mentora@gmail.com"><i class="fas fa-envelope"></i> 이메일 문의</a></li>
+                        <li><a href="tel:0502-1909-7788"><i class="fas fa-phone"></i> 전화 상담</a></li>
+                        <li><a href="../terms.html">이용약관</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-bottom-right">
+                    <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+                    <div class="footer-legal-links">
+                        <a href="../terms.html">이용약관</a>
+                        <span class="separator">|</span>
+                        <a href="../privacy.html">개인정보처리방침</a>
+                        <span class="separator">|</span>
+                        <a href="../refund.html">환불정책</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+        
+        // Close Mobile Menu
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('active');
+        }
+        
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const icon = document.querySelector('.theme-toggle i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    </script>
+</body>
+</html>
