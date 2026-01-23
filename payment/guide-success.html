@@ -20,11 +20,11 @@
     
     <style>
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8f0ed 100%);
+            background: #f5f7fa;
         }
         
         .success-container {
-            max-width: 700px;
+            max-width: 800px;
             margin: 120px auto 60px;
             padding: 0 20px;
         }
@@ -32,34 +32,39 @@
         .success-card {
             background: white;
             border-radius: 20px;
-            padding: 60px 50px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            padding: 60px 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             text-align: center;
         }
         
         .success-icon {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 30px;
-            animation: scaleIn 0.5s ease;
+            animation: successPop 0.6s ease-out;
         }
         
-        @keyframes scaleIn {
-            from {
+        @keyframes successPop {
+            0% {
                 transform: scale(0);
+                opacity: 0;
             }
-            to {
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
                 transform: scale(1);
+                opacity: 1;
             }
         }
         
         .success-icon i {
-            font-size: 3rem;
+            font-size: 4rem;
             color: #d4af37;
         }
         
@@ -70,22 +75,22 @@
             margin-bottom: 15px;
         }
         
-        .success-message {
-            font-size: 1.1rem;
+        .success-subtitle {
+            font-size: 1.2rem;
             color: #666;
             margin-bottom: 40px;
-            line-height: 1.7;
+            line-height: 1.6;
         }
         
         .order-info {
             background: #f5f7fa;
             border-radius: 15px;
             padding: 30px;
-            margin-bottom: 30px;
+            margin: 40px 0;
             text-align: left;
         }
         
-        .order-info-title {
+        .order-info h3 {
             font-size: 1.3rem;
             font-weight: 700;
             color: #2c5f4f;
@@ -96,7 +101,7 @@
         .info-row {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #e0e0e0;
         }
         
@@ -116,57 +121,76 @@
             font-weight: 600;
         }
         
+        .info-value.highlight {
+            color: #d4af37;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+        
         .download-section {
-            background: linear-gradient(135deg, #d4af37 0%, #b8952f 100%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(44, 95, 79, 0.1) 100%);
+            border: 2px solid #d4af37;
             border-radius: 15px;
             padding: 30px;
-            margin-bottom: 30px;
+            margin: 30px 0;
         }
         
         .download-title {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: white;
+            color: #2c5f4f;
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
-        .download-description {
+        .download-title i {
+            color: #d4af37;
+            font-size: 1.5rem;
+        }
+        
+        .download-text {
             font-size: 1rem;
-            color: rgba(255,255,255,0.9);
+            color: #666;
             margin-bottom: 25px;
+            line-height: 1.6;
         }
         
         .download-button {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             padding: 18px 40px;
-            background: white;
-            color: #2c5f4f;
+            background: linear-gradient(135deg, #d4af37 0%, #b8952f 100%);
+            color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: 12px;
             font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
         }
         
         .download-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 12px 32px rgba(212, 175, 55, 0.4);
         }
         
         .download-button i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
         
         .email-notice {
-            background: #fff9e6;
-            border: 2px solid #d4af37;
-            border-radius: 12px;
+            background: rgba(44, 95, 79, 0.1);
+            border-left: 4px solid #2c5f4f;
             padding: 20px;
-            margin-bottom: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: left;
         }
         
         .email-notice-title {
@@ -179,11 +203,6 @@
             margin-bottom: 10px;
         }
         
-        .email-notice-title i {
-            color: #d4af37;
-            font-size: 1.3rem;
-        }
-        
         .email-notice-text {
             font-size: 0.95rem;
             color: #666;
@@ -191,135 +210,233 @@
         }
         
         .action-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
             gap: 15px;
-            margin-top: 30px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
         
-        .action-button {
-            padding: 15px 25px;
-            border: 2px solid #2c5f4f;
+        .btn-primary {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            color: white;
+            border: none;
             border-radius: 10px;
-            background: white;
-            color: #2c5f4f;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .action-button:hover {
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(44, 95, 79, 0.3);
+        }
+        
+        .btn-secondary {
+            padding: 15px 35px;
+            background: white;
+            color: #2c5f4f;
+            border: 2px solid #2c5f4f;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-secondary:hover {
             background: #2c5f4f;
             color: white;
+            transform: translateY(-2px);
         }
         
-        .action-button.primary {
-            background: #2c5f4f;
-            color: white;
+        .features-list {
+            list-style: none;
+            margin: 30px 0;
+            padding: 0;
         }
         
-        .action-button.primary:hover {
-            background: #1a4838;
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            font-size: 1rem;
+            color: #333;
         }
         
-        .support-info {
+        .features-list i {
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+        
+        .support-section {
             margin-top: 40px;
-            padding-top: 30px;
-            border-top: 2px solid #e0e0e0;
+            padding-top: 40px;
+            border-top: 2px solid #f0f0f0;
             text-align: center;
         }
         
         .support-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #333;
+            color: #666;
             margin-bottom: 15px;
         }
         
-        .support-contacts {
+        .support-links {
             display: flex;
+            gap: 20px;
             justify-content: center;
-            gap: 30px;
             flex-wrap: wrap;
         }
         
-        .support-item {
+        .support-link {
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.95rem;
+            color: #2c5f4f;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .support-link:hover {
+            color: #d4af37;
+        }
+        
+        .support-link i {
+            font-size: 1.1rem;
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #f0f0f0;
+            border-top: 4px solid #2c5f4f;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
             color: #666;
         }
         
-        .support-item i {
-            color: #2c5f4f;
-        }
-        
+        /* Responsive */
         @media (max-width: 768px) {
             .success-card {
-                padding: 40px 30px;
+                padding: 40px 20px;
             }
             
             .success-title {
                 font-size: 2rem;
             }
             
+            .success-subtitle {
+                font-size: 1rem;
+            }
+            
+            .order-info {
+                padding: 20px;
+            }
+            
             .action-buttons {
-                grid-template-columns: 1fr;
+                flex-direction: column;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-brain"></i>
-                <span>Mentora</span>
-            </div>
+    <header class="header">
+        <nav class="nav">
+            <a href="../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
             
             <ul class="nav-menu" id="navMenu">
-                <li><a href="../index.html">홈</a></li>
-                <li><a href="../index.html#tests">검사하기</a></li>
-                <li><a href="../index.html#premium">프리미엄 기능</a></li>
-                <li><a href="../index.html#pricing">요금제</a></li>
-                <li><a href="../index.html#reviews">후기</a></li>
-                <li><a href="../guides.html">가이드북</a></li>
-                <li><a href="../mypage.html">내 결과</a></li>
-                <li><a href="../admin/index.html"><i class="fas fa-user-shield"></i> 관리자</a></li>
+                <li><a href="../index.html" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="../index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="../index.html#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
+                    </ul>
+                </li>
+                <li><a href="../index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="../guides.html" class="nav-link" onclick="closeMobileMenu()">가이드북</a></li>
+                <li><a href="../mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="../admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
             </ul>
-            
-            <div class="nav-actions">
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="테마 전환">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="메뉴 열기">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
 
     <!-- Success Container -->
     <div class="success-container">
-        <div class="success-card">
+        <!-- Loading State -->
+        <div id="loadingState" class="loading">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">결제 정보를 확인하는 중입니다...</p>
+        </div>
+
+        <!-- Success Card -->
+        <div id="successCard" class="success-card" style="display: none;">
             <div class="success-icon">
                 <i class="fas fa-check"></i>
             </div>
             
             <h1 class="success-title">결제가 완료되었습니다!</h1>
-            <p class="success-message">
-                Mentora PDF 가이드북을 구매해주셔서 감사합니다.<br>
-                평생 소장 가능한 프리미엄 콘텐츠로 성장하세요!
+            <p class="success-subtitle">
+                가이드북 구매가 성공적으로 완료되었습니다.<br>
+                이제 평생 소장 가능한 프리미엄 PDF를 받아보세요!
             </p>
             
+            <!-- Order Info -->
             <div class="order-info">
-                <h3 class="order-info-title">주문 정보</h3>
+                <h3>📋 주문 정보</h3>
                 <div class="info-row">
                     <span class="info-label">주문번호</span>
                     <span class="info-value" id="orderId">-</span>
@@ -329,65 +446,86 @@
                     <span class="info-value" id="productName">-</span>
                 </div>
                 <div class="info-row">
+                    <span class="info-label">구매자</span>
+                    <span class="info-value" id="customerName">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">이메일</span>
+                    <span class="info-value" id="customerEmail">-</span>
+                </div>
+                <div class="info-row">
                     <span class="info-label">결제금액</span>
-                    <span class="info-value" id="amount">-</span>
+                    <span class="info-value highlight" id="amount">-</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">결제일시</span>
                     <span class="info-value" id="paymentDate">-</span>
                 </div>
-                <div class="info-row">
-                    <span class="info-label">구매자</span>
-                    <span class="info-value" id="customerName">-</span>
-                </div>
             </div>
             
+            <!-- Download Section -->
             <div class="download-section">
-                <h3 class="download-title">📘 PDF 다운로드</h3>
-                <p class="download-description">
-                    구매하신 가이드북을 지금 바로 다운로드하세요!
-                </p>
-                <button class="download-button" onclick="downloadPDF()">
+                <div class="download-title">
                     <i class="fas fa-download"></i>
-                    PDF 다운로드
+                    <span>가이드북 다운로드</span>
+                </div>
+                <p class="download-text">
+                    구매하신 가이드북을 지금 바로 다운로드하실 수 있습니다.<br>
+                    PDF 파일은 모든 기기에서 열람 가능합니다.
+                </p>
+                <button class="download-button" onclick="downloadGuide()">
+                    <i class="fas fa-file-pdf"></i>
+                    PDF 다운로드하기
                 </button>
+                
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> 평생 소장 가능</li>
+                    <li><i class="fas fa-check-circle"></i> PC, 태블릿, 모바일 최적화</li>
+                    <li><i class="fas fa-check-circle"></i> 인쇄 가능 (고품질 PDF)</li>
+                    <li><i class="fas fa-check-circle"></i> 업데이트 무료 제공</li>
+                </ul>
             </div>
             
+            <!-- Email Notice -->
             <div class="email-notice">
                 <div class="email-notice-title">
                     <i class="fas fa-envelope"></i>
                     <span>이메일로도 전송되었습니다</span>
                 </div>
                 <p class="email-notice-text">
-                    입력하신 이메일 주소(<strong id="customerEmail">-</strong>)로 PDF 다운로드 링크가 전송되었습니다. 
-                    이메일이 도착하지 않았다면 스팸함을 확인해주세요.
+                    입력하신 이메일(<span id="emailConfirm">-</span>)로 가이드북 다운로드 링크가 전송되었습니다.<br>
+                    이메일이 도착하지 않았다면 스팸 메일함을 확인해주세요.
                 </p>
             </div>
             
+            <!-- Action Buttons -->
             <div class="action-buttons">
-                <a href="../guides.html" class="action-button">
-                    <i class="fas fa-book"></i> 다른 가이드북 보기
+                <a href="../mypage.html" class="btn-primary">
+                    <i class="fas fa-user"></i>
+                    내 결과 보기
                 </a>
-                <a href="../mypage.html" class="action-button primary">
-                    <i class="fas fa-user"></i> 내 결과 확인
+                <a href="../guides.html" class="btn-secondary">
+                    <i class="fas fa-book"></i>
+                    다른 가이드북 보기
                 </a>
             </div>
             
-            <div class="support-info">
+            <!-- Support Section -->
+            <div class="support-section">
                 <p class="support-title">도움이 필요하신가요?</p>
-                <div class="support-contacts">
-                    <div class="support-item">
+                <div class="support-links">
+                    <a href="mailto:mentora@gmail.com" class="support-link">
                         <i class="fas fa-envelope"></i>
-                        <span>mentora@gmail.com</span>
-                    </div>
-                    <div class="support-item">
+                        이메일 문의
+                    </a>
+                    <a href="tel:0502-1909-7788" class="support-link">
                         <i class="fas fa-phone"></i>
-                        <span>0502-1909-7788</span>
-                    </div>
-                    <div class="support-item">
-                        <i class="fas fa-clock"></i>
-                        <span>평일 09:00 - 18:00</span>
-                    </div>
+                        전화 상담
+                    </a>
+                    <a href="../refund.html" class="support-link">
+                        <i class="fas fa-undo"></i>
+                        환불 정책
+                    </a>
                 </div>
             </div>
         </div>
@@ -395,74 +533,72 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <!-- 회사 정보 -->
+        <div class="container">
+            <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <i class="fas fa-brain"></i>
+                        <div class="footer-logo-icon-text">
+                            <i class="fas fa-brain"></i>
+                        </div>
                         <span>Mentora</span>
                     </div>
+                    <p class="footer-tagline">진짜 나를 만나는 가장 정확한 방법</p>
                     <div class="company-info">
-                        <p><strong>큐브박스(CubeBox)</strong></p>
+                        <p><strong>큐브박스 (CubeBox)</strong></p>
                         <p>대표자: 김미화</p>
                         <p>사업자등록번호: 537-08-03349</p>
-                        <p>주소: 서울특별시 송파구 송파대로14길 7-10 2층</p>
-                        <p>전화: 0502-1909-7788</p>
-                        <p>이메일: mentora@gmail.com</p>
+                        <p>📍 서울특별시 송파구 송파대로14길 7-10 2층</p>
+                        <p>☎️ 0502-1909-7788</p>
+                        <p>📧 mentora@gmail.com</p>
                     </div>
                 </div>
-
-                <!-- 검사 메뉴 -->
+                
                 <div class="footer-section">
-                    <h4>심리검사</h4>
-                    <ul class="footer-links">
+                    <h4>검사 메뉴</h4>
+                    <ul>
                         <li><a href="../index.html#tests">전체 검사</a></li>
-                        <li><a href="../test-mbti.html">MBTI 성격 유형</a></li>
+                        <li><a href="../test-mbti.html">MBTI 검사</a></li>
                         <li><a href="../test-enneagram.html">에니어그램</a></li>
                         <li><a href="../test-bigfive.html">Big Five</a></li>
                     </ul>
                 </div>
-
-                <!-- 프리미엄 기능 -->
+                
                 <div class="footer-section">
                     <h4>프리미엄 기능</h4>
-                    <ul class="footer-links">
-                        <li><a href="../roadmap.html">AI 맞춤형 성장 로드맵</a></li>
-                        <li><a href="../couple-analysis.html">커플/팀 매칭 분석</a></li>
-                        <li><a href="../dashboard.html">심리 데이터 대시보드</a></li>
-                        <li><a href="../guides.html">PDF 가이드북</a></li>
+                    <ul>
+                        <li><a href="../roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../dashboard.html"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../guides.html">가이드북</a></li>
                     </ul>
                 </div>
 
-                <!-- 고객 지원 -->
                 <div class="footer-section">
                     <h4>고객 지원</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:mentora@gmail.com">이메일 문의</a></li>
-                        <li><a href="tel:0502-1909-7788">전화 상담</a></li>
+                    <ul>
+                        <li><a href="mailto:mentora@gmail.com"><i class="fas fa-envelope"></i> 이메일 문의</a></li>
+                        <li><a href="tel:0502-1909-7788"><i class="fas fa-phone"></i> 전화 상담</a></li>
                         <li><a href="../terms.html">이용약관</a></li>
                         <li><a href="../privacy.html">개인정보처리방침</a></li>
                         <li><a href="../refund.html">환불정책</a></li>
                     </ul>
                 </div>
             </div>
-
-            <!-- Footer Bottom -->
+            
             <div class="footer-bottom">
-                <div class="footer-bottom-left">
-                    <p>&copy; 2026 큐브박스(CubeBox). All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="footer-bottom-right">
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
+                    <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
                     <div class="footer-legal-links">
                         <a href="../terms.html">이용약관</a>
+                        <span class="separator">|</span>
                         <a href="../privacy.html">개인정보처리방침</a>
+                        <span class="separator">|</span>
                         <a href="../refund.html">환불정책</a>
                     </div>
                 </div>
@@ -472,83 +608,81 @@
 
     <!-- Scripts -->
     <script>
-        // URL 파라미터에서 결제 정보 가져오기
+        // URL에서 결제 정보 가져오기
         const urlParams = new URLSearchParams(window.location.search);
         const paymentKey = urlParams.get('paymentKey');
         const orderId = urlParams.get('orderId');
         const amount = urlParams.get('amount');
         
         // 로컬스토리지에서 주문 정보 가져오기
-        const orderInfo = JSON.parse(localStorage.getItem('pending_order') || '{}');
+        const pendingOrder = localStorage.getItem('pending_order');
+        let orderInfo = null;
         
-        // 페이지 로드 시 정보 표시
-        window.addEventListener('DOMContentLoaded', async () => {
-            // 주문 정보 표시
-            if (orderId) {
-                document.getElementById('orderId').textContent = orderId;
-            }
-            
-            if (orderInfo.productName) {
-                document.getElementById('productName').textContent = orderInfo.productName;
-            }
-            
-            if (amount) {
-                document.getElementById('amount').textContent = `₩${parseInt(amount).toLocaleString()}`;
-            }
-            
-            if (orderInfo.customerName) {
-                document.getElementById('customerName').textContent = orderInfo.customerName;
-            }
-            
-            if (orderInfo.customerEmail) {
-                document.getElementById('customerEmail').textContent = orderInfo.customerEmail;
-            }
-            
-            // 결제 날짜
-            const paymentDate = new Date();
-            document.getElementById('paymentDate').textContent = 
-                `${paymentDate.getFullYear()}-${String(paymentDate.getMonth() + 1).padStart(2, '0')}-${String(paymentDate.getDate()).padStart(2, '0')} ${String(paymentDate.getHours()).padStart(2, '0')}:${String(paymentDate.getMinutes()).padStart(2, '0')}`;
-            
-            // 결제 승인 (실제 구현 시 백엔드에서 처리)
-            // 여기서는 클라이언트 측에서만 처리
-            console.log('Payment approved:', {
-                paymentKey,
-                orderId,
-                amount,
-                orderInfo
-            });
-            
-            // 주문 정보를 완료 상태로 업데이트
-            const completedOrder = {
-                ...orderInfo,
-                paymentKey: paymentKey,
-                status: 'completed',
-                completedAt: Date.now()
-            };
-            
-            // 완료된 주문 목록에 추가
-            const orders = JSON.parse(localStorage.getItem('completed_orders') || '[]');
-            orders.push(completedOrder);
-            localStorage.setItem('completed_orders', JSON.stringify(orders));
-            
-            // pending_order 삭제
-            localStorage.removeItem('pending_order');
+        if (pendingOrder) {
+            orderInfo = JSON.parse(pendingOrder);
+        }
+        
+        // 페이지 로드 시 결제 정보 표시
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                // 로딩 숨기기
+                document.getElementById('loadingState').style.display = 'none';
+                
+                // 성공 카드 표시
+                document.getElementById('successCard').style.display = 'block';
+                
+                // 주문 정보 표시
+                if (orderInfo) {
+                    document.getElementById('orderId').textContent = orderId || orderInfo.orderId;
+                    document.getElementById('productName').textContent = orderInfo.productName;
+                    document.getElementById('customerName').textContent = orderInfo.customerName;
+                    document.getElementById('customerEmail').textContent = orderInfo.customerEmail;
+                    document.getElementById('emailConfirm').textContent = orderInfo.customerEmail;
+                    document.getElementById('amount').textContent = `₩${parseInt(amount || orderInfo.amount).toLocaleString()}`;
+                    document.getElementById('paymentDate').textContent = new Date().toLocaleString('ko-KR');
+                    
+                    // 구매 내역을 로컬스토리지에 저장
+                    const purchases = JSON.parse(localStorage.getItem('guidebook_purchases') || '[]');
+                    purchases.push({
+                        orderId: orderId || orderInfo.orderId,
+                        productName: orderInfo.productName,
+                        plan: orderInfo.plan,
+                        amount: parseInt(amount || orderInfo.amount),
+                        customerName: orderInfo.customerName,
+                        customerEmail: orderInfo.customerEmail,
+                        paymentDate: new Date().toISOString(),
+                        downloadUrl: '#', // 실제로는 서버에서 생성된 다운로드 링크
+                        status: 'completed'
+                    });
+                    localStorage.setItem('guidebook_purchases', JSON.stringify(purchases));
+                    
+                    // pending_order 제거
+                    localStorage.removeItem('pending_order');
+                }
+            }, 1500); // 1.5초 로딩
         });
         
-        // PDF 다운로드
-        function downloadPDF() {
-            // 실제 구현 시 서버에서 PDF 파일을 다운로드
-            // 여기서는 데모용으로 샘플 페이지로 이동
-            alert('PDF 다운로드가 시작됩니다.\n\n현재는 데모 버전으로, 실제 PDF 파일 제작 후 다운로드가 가능합니다.');
+        // 가이드북 다운로드 함수
+        function downloadGuide() {
+            // 실제로는 서버에서 PDF 파일을 제공해야 합니다
+            // 여기서는 알림 메시지만 표시
+            alert('가이드북 다운로드 기능은 실제 서버 연동 후 사용 가능합니다.\n\n현재는 테스트 모드입니다.');
             
-            // 샘플 페이지로 이동 (실제로는 PDF 파일 다운로드)
-            window.open('../guides/intj-sample.html', '_blank');
+            // 실제 구현 예시:
+            // const downloadUrl = orderInfo.downloadUrl;
+            // window.open(downloadUrl, '_blank');
         }
         
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
             navMenu.classList.toggle('active');
+        }
+        
+        // Close Mobile Menu
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('active');
         }
         
         // Theme Toggle
