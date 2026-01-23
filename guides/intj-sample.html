@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentora INTJ 가이드북 샘플</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* PDF Page Simulation */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #e0e0e0;
+            padding: 40px 20px;
+        }
+        
+        .pdf-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .page {
+            background: white;
+            width: 100%;
+            aspect-ratio: 210 / 297; /* A4 비율 */
+            margin-bottom: 30px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+        }
+        
+        /* Watermark */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 120px;
+            font-weight: 900;
+            color: rgba(224, 224, 224, 0.1);
+            z-index: 0;
+            user-select: none;
+            pointer-events: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Header */
+        .page-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid #e0e0e0;
+            background: linear-gradient(to bottom, white 90%, transparent);
+            z-index: 10;
+        }
+        
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: #2c5f4f;
+        }
+        
+        .header-logo i {
+            font-size: 1.5rem;
+        }
+        
+        .header-title {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .header-page {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Footer */
+        .page-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-top: 1px solid #e0e0e0;
+            background: #f5f7fa;
+            z-index: 10;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .footer-left {
+            font-weight: 500;
+        }
+        
+        .footer-center {
+            color: #2c5f4f;
+        }
+        
+        .footer-right {
+            color: #999;
+        }
+        
+        /* Content */
+        .page-content {
+            position: relative;
+            padding: 80px 60px 70px;
+            z-index: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* Cover Page */
+        .cover-page .page-content {
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .cover-logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .cover-brand {
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 60px;
+        }
+        
+        .cover-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        
+        .cover-subtitle {
+            font-size: 1.3rem;
+            color: #f0d98c;
+            margin-bottom: 80px;
+        }
+        
+        .cover-stamp {
+            position: absolute;
+            bottom: 100px;
+            right: 80px;
+            width: 100px;
+            height: 100px;
+            border: 4px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-15deg);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .stamp-text {
+            font-size: 0.7rem;
+            font-weight: 900;
+            color: #d4af37;
+            text-align: center;
+        }
+        
+        .cover-info {
+            position: absolute;
+            bottom: 70px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* TOC */
+        .toc-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .toc-list {
+            list-style: none;
+        }
+        
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px dotted #e0e0e0;
+        }
+        
+        .toc-section {
+            font-size: 0.95rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .toc-page {
+            font-size: 0.9rem;
+            color: #2c5f4f;
+            font-weight: 700;
+        }
+        
+        /* Section Title */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #2c5f4f;
+        }
+        
+        .section-number {
+            color: #d4af37;
+            margin-right: 10px;
+        }
+        
+        /* Body Text */
+        .body-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #333;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+        
+        /* Insight Box */
+        .insight-box {
+            background: rgba(240, 217, 140, 0.2);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .insight-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+        
+        .insight-icon {
+            font-size: 1.5rem;
+            color: #d4af37;
+        }
+        
+        .insight-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #444;
+        }
+        
+        /* Checklist */
+        .checklist {
+            background: white;
+            border: 2px solid #2c5f4f;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .checklist-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        
+        .checklist-icon {
+            color: #2c5f4f;
+            font-size: 1.2rem;
+        }
+        
+        /* Stamp Decorations */
+        .section-stamp {
+            display: inline-flex;
+            width: 60px;
+            height: 60px;
+            border: 3px solid #d4af37;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-10deg);
+            margin: 20px;
+            float: right;
+        }
+        
+        .section-stamp i {
+            font-size: 1.8rem;
+            color: #d4af37;
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pdf-container">
+        <!-- Page 1: Cover -->
+        <div class="page cover-page">
+            <div class="watermark">MENTORA</div>
+            <div class="page-content">
+                <div class="cover-logo">🧠</div>
+                <div class="cover-brand">Mentora</div>
+                <div class="cover-title">INTJ 성격 완벽 분석</div>
+                <div class="cover-subtitle">전략가를 위한 완벽 가이드북</div>
+                
+                <div class="cover-stamp">
+                    <div class="stamp-text">MENTORA<br>CERTIFIED</div>
+                </div>
+                
+                <div class="cover-info">
+                    © 2026 Mentora | 62 Pages
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Table of Contents -->
+        <div class="page">
+            <div class="watermark">MENTORA</div>
+            <div class="page-header">
+                <div class="header-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>Mentora</span>
+                </div>
+                <div class="header-title">INTJ 성격 완벽 분석</div>
+                <div class="header-page">Page 2</div>
+            </div>
+            
+            <div class="page-content">
+                <h1 class="toc-title">목차</h1>
+                
+                <ul class="toc-list">
+                    <li class="toc-item">
+                        <span class="toc-section">01. INTJ 성격 소개</span>
+                        <span class="toc-page">3</span>
+                    </li>
+                    <li class="toc-item">
+                        <span class="toc-section">02. 핵심 특징 분석</span>
+                        <span class="toc-page">8</span>
+                    </li>
+                    <li class="toc-item">
+                        <span class="toc-section">03. 강점과 약점</span>
+                        <span class="toc-page">15</span>
+                    </li>
+                    <li class="toc-item">
+                        <span class="toc-section">04. 직업 추천 30가지</span>
+                        <span class="toc-page">22</span>
+                    </li>
+                    <li class="toc-item">
+                        <span class="toc-section">05. 연애와 궁합</span>
+                        <span class="toc-page">35</span>
+                    </li>
+                    <li class="toc-item">
+                        <span class="toc-section">06. 성장 로드맵</span>
+                        <span class="toc-page">45</span>
+                    </li>
+                    <li class="toc-item">
+                        <span class="toc-section">07. 유명인 사례</span>
+                        <span class="toc-page">52</span>
+                    </li>
+                    <li class="toc-item">
+                        <span class="toc-section">08. 실천 가이드</span>
+                        <span class="toc-page">58</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="page-footer">
+                <div class="footer-left">© 2026 Mentora</div>
+                <div class="footer-center">https://mentora.co.kr</div>
+                <div class="footer-right">mentora@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- Page 3: Content Sample -->
+        <div class="page">
+            <div class="watermark">MENTORA</div>
+            <div class="page-header">
+                <div class="header-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>Mentora</span>
+                </div>
+                <div class="header-title">INTJ 성격 완벽 분석</div>
+                <div class="header-page">Page 3</div>
+            </div>
+            
+            <div class="page-content">
+                <h2 class="section-title">
+                    <span class="section-number">01.</span>
+                    INTJ 성격 소개
+                </h2>
+                
+                <div class="section-stamp">
+                    <i class="fas fa-check"></i>
+                </div>
+                
+                <p class="body-text">
+                    INTJ(전략가)는 MBTI 16가지 성격 유형 중 가장 희귀한 유형 중 하나로, 전체 인구의 약 2-4%를 차지합니다. 이들은 뛰어난 전략적 사고력과 독립적인 성향을 가지고 있으며, 복잡한 문제를 해결하는 데 탁월한 능력을 보입니다.
+                </p>
+                
+                <p class="body-text">
+                    INTJ는 내향적(Introverted), 직관적(Intuitive), 사고적(Thinking), 판단적(Judging) 특성을 가지고 있습니다. 이러한 특성의 조합은 INTJ를 독특하고 강력한 성격 유형으로 만듭니다.
+                </p>
+                
+                <div class="insight-box">
+                    <div class="insight-header">
+                        <span class="insight-icon">💡</span>
+                        <span>Mentora Insight</span>
+                    </div>
+                    <div class="insight-content">
+                        INTJ는 "마스터마인드"라고도 불립니다. 이들은 장기적인 비전을 가지고 체계적으로 목표를 달성하는 능력이 뛰어납니다. 혼자서도 잘 해내지만, 올바른 팀과 함께할 때 더욱 큰 성과를 이룰 수 있습니다.
+                    </div>
+                </div>
+                
+                <p class="body-text">
+                    이 가이드북은 INTJ의 모든 측면을 심층적으로 분석하여, 자신을 더 잘 이해하고 성장할 수 있도록 돕기 위해 제작되었습니다. Mentora의 전문가들이 직접 연구하고 작성한 독점 콘텐츠로, 실생활에 바로 적용할 수 있는 실용적인 조언을 담고 있습니다.
+                </p>
+            </div>
+            
+            <div class="page-footer">
+                <div class="footer-left">© 2026 Mentora</div>
+                <div class="footer-center">https://mentora.co.kr</div>
+                <div class="footer-right">mentora@gmail.com</div>
+            </div>
+        </div>
+
+        <!-- Page 4: Checklist Sample -->
+        <div class="page">
+            <div class="watermark">MENTORA</div>
+            <div class="page-header">
+                <div class="header-logo">
+                    <i class="fas fa-brain"></i>
+                    <span>Mentora</span>
+                </div>
+                <div class="header-title">INTJ 성격 완벽 분석</div>
+                <div class="header-page">Page 4</div>
+            </div>
+            
+            <div class="page-content">
+                <h2 class="section-title">
+                    <span class="section-number">02.</span>
+                    핵심 특징 분석
+                </h2>
+                
+                <p class="body-text">
+                    INTJ의 핵심 특징을 이해하는 것은 자신을 더 깊이 알아가는 첫 번째 단계입니다. 다음은 INTJ를 정의하는 주요 특징들입니다.
+                </p>
+                
+                <div class="checklist">
+                    <div class="checklist-title">✅ INTJ의 핵심 특징</div>
+                    
+                    <div class="checklist-item">
+                        <span class="checklist-icon"><i class="fas fa-check-circle"></i></span>
+                        <span><strong>전략적 사고:</strong> 장기적인 계획을 세우고 체계적으로 실행합니다.</span>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <span class="checklist-icon"><i class="fas fa-check-circle"></i></span>
+                        <span><strong>독립적 성향:</strong> 혼자서도 능률적으로 일할 수 있습니다.</span>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <span class="checklist-icon"><i class="fas fa-check-circle"></i></span>
+                        <span><strong>논리적 분석:</strong> 감정보다 논리를 우선시합니다.</span>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <span class="checklist-icon"><i class="fas fa-check-circle"></i></span>
+                        <span><strong>완벽주의:</strong> 높은 기준을 가지고 있으며 완벽을 추구합니다.</span>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <span class="checklist-icon"><i class="fas fa-check-circle"></i></span>
+                        <span><strong>혁신적 사고:</strong> 새로운 아이디어와 해결책을 찾아냅니다.</span>
+                    </div>
+                </div>
+                
+                <p class="body-text">
+                    이러한 특징들은 INTJ가 다양한 분야에서 성공할 수 있는 기반이 됩니다. 특히 전략 기획, 연구 개발, 기술 분야에서 두각을 나타냅니다.
+                </p>
+                
+                <div class="insight-box">
+                    <div class="insight-header">
+                        <span class="insight-icon">💡</span>
+                        <span>Mentora Insight</span>
+                    </div>
+                    <div class="insight-content">
+                        INTJ의 완벽주의는 양날의 검입니다. 높은 성과를 이끌어내지만, 때로는 과도한 스트레스의 원인이 되기도 합니다. 적절한 균형을 찾는 것이 중요합니다.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-footer">
+                <div class="footer-left">© 2026 Mentora</div>
+                <div class="footer-center">https://mentora.co.kr</div>
+                <div class="footer-right">mentora@gmail.com</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 40px; background: white; margin-top: 40px;">
+        <h2 style="color: #2c5f4f; margin-bottom: 20px;">📘 Mentora PDF 가이드북 샘플</h2>
+        <p style="color: #666; margin-bottom: 30px;">이것은 INTJ 가이드북의 4페이지 샘플입니다. 실제 제품은 62페이지의 완벽한 분석을 포함합니다.</p>
+        <a href="guides.html" style="display: inline-block; background: #d4af37; color: white; padding: 15px 40px; border-radius: 8px; text-decoration: none; font-weight: 700;">
+            전체 가이드북 구매하기 →
+        </a>
+    </div>
+</body>
+</html>
