@@ -4,135 +4,342 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>커플/팀 매칭 분석 - Mentora</title>
+    <meta name="description" content="두 사람의 성격을 분석하여 최적의 소통 방법과 관계 성장 전략을 제공합니다.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- 구글 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- 공통 네비게이션 CSS -->
     <link rel="stylesheet" href="css/nav-common.css">
+    
+    <!-- 기본 스타일 CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Disclaimer CSS -->
     <link rel="stylesheet" href="css/disclaimer.css">
     
     <style>
-        .couple-container { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; }
-        .couple-hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #ffe0f0, #ffffff); border-radius: 20px; margin-bottom: 60px; }
-        .couple-hero-icon { font-size: 64px; margin-bottom: 20px; }
-        .couple-hero-title { font-size: 42px; font-weight: 800; color: #d81b60; margin-bottom: 20px; }
-        .couple-hero-subtitle { font-size: 18px; color: #666; line-height: 1.8; }
-        
-        .analysis-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 40px 0; }
-        .analysis-card { background: white; border: 2px solid #e0e0e0; border-radius: 16px; padding: 35px; transition: all 0.3s ease; }
-        .analysis-card:hover { border-color: #d81b60; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(216, 27, 96, 0.2); }
-        .analysis-icon { font-size: 48px; margin-bottom: 15px; }
-        .analysis-title { font-size: 22px; font-weight: 700; color: #d81b60; margin-bottom: 10px; }
-        .analysis-description { font-size: 15px; color: #666; line-height: 1.6; }
-        
-        .cta-section { background: linear-gradient(135deg, #d81b60, #f06292); border-radius: 20px; padding: 60px 40px; text-align: center; color: white; margin-top: 60px; }
-        .cta-title { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
-        .btn-cta { padding: 18px 40px; border-radius: 12px; font-size: 18px; font-weight: 700; text-decoration: none; transition: all 0.3s ease; display: inline-block; background: white; color: #d81b60; }
-        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 255, 255, 0.5); }
-        
+        .couple-container {
+            max-width: 1200px;
+            margin: 100px auto 60px;
+            padding: 0 20px;
+        }
+
+        .couple-hero {
+            text-align: center;
+            background: linear-gradient(135deg, #ffe0f0 0%, #ffffff 100%);
+            padding: 40px 20px 35px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+        }
+
+        .couple-hero-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .couple-hero-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+
+        .couple-hero-subtitle {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .analysis-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(44, 95, 79, 0.15);
+        }
+
+        .analysis-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .analysis-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 15px;
+        }
+
+        .analysis-description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #ff9ebf 0%, #ff6b9d 100%);
+            border-radius: 20px;
+            color: white;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .btn-cta {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            background: white;
+            color: #ff6b9d;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
+        }
+
+        /* 반응형 디자인 */
         @media (max-width: 768px) {
-            .analysis-grid { grid-template-columns: 1fr; }
-            .couple-hero-title { font-size: 32px; }
+            .couple-container {
+                margin-top: 80px;
+            }
+
+            .couple-hero {
+                padding: 30px 20px;
+            }
+
+            .couple-hero-title {
+                font-size: 28px;
+            }
+
+            .couple-hero-subtitle {
+                font-size: 14px;
+            }
+
+            .analysis-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cta-title {
+                font-size: 24px;
+            }
+
+            .cta-description {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <a href="index.html" class="nav-logo">
-                <div class="logo-icon-text"><i class="fas fa-brain"></i></div>
-                <span class="logo-text">Mentora</span>
-            </a>
-            <ul class="nav-menu">
+    <!-- 네비게이션 바 -->
+    <header class="page-header">
+        <nav class="page-nav">
+            <div class="page-nav-left">
+                <a href="index.html" class="page-nav-logo">
+                    <div class="page-nav-logo-icon-text">M</div>
+                    <span class="page-nav-logo-text">Mentora</span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html#home" class="nav-link">홈</a></li>
                 <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link">프리미엄 ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 매칭 분석</a></li>
+                        <li><a href="ai-chatbot.html"><i class="fas fa-comments"></i> AI 코칭 챗봇</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> 심리 데이터 대시보드</a></li>
+                    </ul>
+                </li>
                 <li><a href="index.html#pricing" class="nav-link">요금제</a></li>
+                <li><a href="guides.html" class="nav-link">가이드북</a></li>
+                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
+                <li><a href="admin/index.html" class="nav-link admin-link">관리자</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-                <i class="fas fa-moon"></i>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
             </button>
         </nav>
     </header>
 
-    <div class="couple-container">
-        <div class="couple-hero">
+    <!-- 메인 컨텐츠 -->
+    <main class="couple-container">
+        <!-- Disclaimer 배너 삽입 위치 -->
+        <div id="disclaimer-container"></div>
+
+        <!-- 히어로 섹션 -->
+        <section class="couple-hero">
             <div class="couple-hero-icon">💕</div>
             <h1 class="couple-hero-title">커플/팀 매칭 분석</h1>
             <p class="couple-hero-subtitle">
-                두 사람의 성격을 비교 분석하여 관계 개선 방법과 소통 전략을 제시합니다.
+                두 사람의 성격을 심층 비교하여<br>
+                효과적인 소통 방법과 관계 개선 전략을 제공합니다.
             </p>
-        </div>
+        </section>
 
-        <div id="disclaimerContainer"></div>
+        <!-- 분석 항목 -->
+        <section>
+            <h2 class="section-title" style="text-align: center; font-size: 32px; font-weight: 800; color: #2c5f4f; margin-bottom: 50px;">분석 항목</h2>
+            
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <div class="analysis-icon">💝</div>
+                    <h3 class="analysis-title">성격 궁합도 분석</h3>
+                    <p class="analysis-description">
+                        두 사람의 성격 유형을 비교하여 호환성을 백분율로 표시합니다.
+                        강점과 주의할 점을 구체적으로 안내합니다.
+                    </p>
+                </div>
 
-        <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin: 60px 0 40px; color: #d81b60;">
-            ❤️ 분석 항목
-        </h2>
+                <div class="analysis-card">
+                    <div class="analysis-icon">💬</div>
+                    <h3 class="analysis-title">소통 스타일 비교</h3>
+                    <p class="analysis-description">
+                        각자의 의사소통 방식을 분석하고 효과적인 대화 방법을 제안합니다.
+                        상대방이 선호하는 소통 방식을 이해할 수 있습니다.
+                    </p>
+                </div>
 
-        <div class="analysis-grid">
-            <div class="analysis-card">
-                <div class="analysis-icon">🔍</div>
-                <h3 class="analysis-title">성격 궁합도 분석</h3>
-                <p class="analysis-description">
-                    두 사람의 성격 유형을 비교하여 호환성을 %로 표시하고, 강점과 주의사항을 알려드립니다.
-                </p>
+                <div class="analysis-card">
+                    <div class="analysis-icon">🤝</div>
+                    <h3 class="analysis-title">갈등 해결 가이드</h3>
+                    <p class="analysis-description">
+                        두 사람의 성격을 고려한 갈등 해결 전략을 제공합니다.
+                        예상되는 갈등 상황과 대처 방법을 미리 알 수 있습니다.
+                    </p>
+                </div>
+
+                <div class="analysis-card">
+                    <div class="analysis-icon">📈</div>
+                    <h3 class="analysis-title">관계 성장 플랜</h3>
+                    <p class="analysis-description">
+                        두 사람의 관계를 더욱 발전시킬 수 있는 구체적인 활동과 목표를 제안합니다.
+                        함께 성장하는 방법을 배울 수 있습니다.
+                    </p>
+                </div>
             </div>
+        </section>
 
-            <div class="analysis-card">
-                <div class="analysis-icon">💬</div>
-                <h3 class="analysis-title">소통 스타일 비교</h3>
-                <p class="analysis-description">
-                    각자의 의사소통 방식을 분석하여 효과적으로 대화하는 방법을 제안합니다.
-                </p>
-            </div>
+        <!-- CTA 섹션 -->
+        <section class="cta-section">
+            <h2 class="cta-title">지금 바로 분석하세요</h2>
+            <p class="cta-description">커플/팀 매칭 분석은 골드 멤버십 또는 개별 구매로 이용하실 수 있습니다.</p>
+            <a href="payment/checkout.html?plan=gold" class="btn-cta">골드 멤버십 구매하기</a>
+        </section>
+    </main>
 
-            <div class="analysis-card">
-                <div class="analysis-icon">⚡</div>
-                <h3 class="analysis-title">갈등 해결 가이드</h3>
-                <p class="analysis-description">
-                    예상되는 갈등 상황과 해결 전략을 미리 알려드려 문제를 예방합니다.
-                </p>
-            </div>
-
-            <div class="analysis-card">
-                <div class="analysis-icon">📈</div>
-                <h3 class="analysis-title">관계 성장 플랜</h3>
-                <p class="analysis-description">
-                    두 사람이 함께 성장할 수 있는 구체적인 활동과 목표를 제시합니다.
-                </p>
-            </div>
-        </div>
-
-        <div class="cta-section">
-            <h2 class="cta-title">💑 지금 바로 분석해보세요!</h2>
-            <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
-                커플/팀 매칭 분석은 골드 멤버십 또는 개별 구매로 이용하실 수 있습니다.
-            </p>
-            <a href="payment/checkout.html?plan=gold" class="btn-cta">
-                <i class="fas fa-heart"></i> 지금 시작하기
-            </a>
-        </div>
-    </div>
-
+    <!-- 푸터 -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3 class="footer-title">Mentora</h3>
+                <p class="footer-description">
+                    진짜 나를 만나는 가장 정확한 방법<br>
+                    100만 명이 선택한 심리검사 플랫폼
+                </p>
+                <div class="footer-company">
+                    <p><strong>회사명:</strong> CubeBox</p>
+                    <p><strong>대표:</strong> 박민수</p>
+                    <p><strong>주소:</strong> 서울특별시 송파구 송파대로14길 7-10 2층</p>
+                    <p><strong>전화:</strong> 050-2-1909-7788</p>
+                    <p><strong>이메일:</strong> mentora@gmail.com</p>
+                </div>
             </div>
+
+            <div class="footer-section">
+                <h4 class="footer-subtitle">심리검사</h4>
+                <ul class="footer-links">
+                    <li><a href="guides.html">전체 검사 보기</a></li>
+                    <li><a href="guides/intj-sample.html">INTJ 가이드북</a></li>
+                    <li><a href="guides/enfp-sample.html">ENFP 가이드북</a></li>
+                    <li><a href="guides/infp-sample.html">INFP 가이드북</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-subtitle">프리미엄 기능</h4>
+                <ul class="footer-links">
+                    <li><a href="roadmap.html">AI 성장 로드맵</a></li>
+                    <li><a href="couple-analysis.html">커플/팀 매칭 분석</a></li>
+                    <li><a href="ai-chatbot.html">AI 코칭 챗봇</a></li>
+                    <li><a href="dashboard.html">심리 데이터 대시보드</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-subtitle">고객지원</h4>
+                <ul class="footer-links">
+                    <li><a href="mypage.html">내 결과 보기</a></li>
+                    <li><a href="payment/checkout.html?plan=premium">프리미엄 구매</a></li>
+                    <li><a href="admin/index.html">관리자</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 CubeBox. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Disclaimer 스크립트 -->
     <script src="js/disclaimer.js"></script>
+
+    <!-- 모바일 메뉴 토글 -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('disclaimerContainer').innerHTML = createDisclaimerBanner();
-        });
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const icon = document.querySelector('#themeToggle i');
-            icon.classList.toggle('fa-moon');
-            icon.classList.toggle('fa-sun');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                const icon = this.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
         }
     </script>
 </body>
