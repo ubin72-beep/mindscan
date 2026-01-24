@@ -3,1223 +3,655 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>심리 데이터 대시보드 | Mentora</title>
-    <meta name="description" content="당신의 심리 데이터를 한눈에 확인하고 성장 과정을 추적하세요.">
+    <title>심리 데이터 대시보드 - Mentora</title>
+    <meta name="description" content="나의 심리 데이터를 한눈에 확인하고 성장 과정을 추적하세요.">
     
+    <!-- 구글 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- 공통 네비게이션 CSS -->
     <link rel="stylesheet" href="css/nav-common.css">
+    
+    <!-- 기본 스타일 CSS -->
     <link rel="stylesheet" href="css/style.css">
     
+    <!-- Disclaimer CSS -->
+    <link rel="stylesheet" href="css/disclaimer.css">
+    
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <style>
-        body {
-            padding-top: 80px;
-            background: #f5f5f5;
-        }
-
         .dashboard-container {
             max-width: 1400px;
-            margin: 40px auto 60px;
+            margin: 100px auto 60px;
             padding: 0 20px;
         }
 
         .dashboard-hero {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #e8f5f0, #ffffff);
+            background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+            padding: 40px 20px 35px;
             border-radius: 20px;
-            margin-bottom: 60px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
         }
 
         .dashboard-hero-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            font-size: 48px;
+            margin-bottom: 15px;
         }
 
         .dashboard-hero-title {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 800;
             color: #2c5f4f;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .dashboard-hero-subtitle {
-            font-size: 18px;
+            font-size: 16px;
             color: #666;
             line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-
-        .hero-features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto 30px;
-        }
-
-        .feature-box {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(44, 95, 79, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(44, 95, 79, 0.2);
-        }
-
-        .feature-box i {
-            font-size: 32px;
-            color: #d4af37;
-        }
-
-        .feature-box span {
-            font-weight: 600;
-            color: #333;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .btn-start {
-            padding: 18px 48px;
-            background: linear-gradient(135deg, #d4af37, #f4d03f);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-start:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            margin: 60px 0 40px;
-            color: #d4af37;
-        }
-
-        .features-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #d4af37, #f4d03f);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            max-width: 700px;
             margin: 0 auto 25px;
-            font-size: 36px;
-            color: white;
         }
 
-        .feature-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .feature-description {
-            font-size: 15px;
-            color: #666;
-            line-height: 1.7;
-        }
-
-        .demo-section {
-            margin: 60px 0;
-        }
-
-        .demo-section h2 {
-            font-size: 32px;
-            font-weight: 700;
-            text-align: center;
-            color: #2c5f4f;
-            margin-bottom: 15px;
-        }
-
-        .demo-section > p {
-            text-align: center;
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 40px;
-        }
-
-        .dashboard-preview {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .stat-card {
             background: white;
-            border-radius: 16px;
             padding: 30px;
-            text-align: center;
+            border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 25px rgba(44, 95, 79, 0.15);
         }
 
         .stat-icon {
-            width: 60px;
-            height: 60px;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .charts-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c5f4f;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .insights-section {
+            background: linear-gradient(135deg, #f9f6ed 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+        }
+
+        .insights-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .insight-item {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .insight-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .insight-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 28px;
-            color: white;
+            flex-shrink: 0;
+            font-size: 18px;
+            color: #2c5f4f;
         }
 
-        .stat-icon.blue { background: linear-gradient(135deg, #2196f3, #42a5f5); }
-        .stat-icon.green { background: linear-gradient(135deg, #4caf50, #66bb6a); }
-        .stat-icon.orange { background: linear-gradient(135deg, #ff9800, #ffa726); }
-        .stat-icon.purple { background: linear-gradient(135deg, #9c27b0, #ba68c8); }
-
-        .stat-card h4 {
-            font-size: 14px;
-            font-weight: 600;
-            color: #999;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .stat-number {
-            font-size: 32px;
-            font-weight: 800;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .stat-change {
-            font-size: 13px;
-            color: #4caf50;
-        }
-
-        .chart-area {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            margin-bottom: 40px;
-        }
-
-        .chart-area h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #333;
-            text-align: center;
-        }
-
-        .chart-wrapper {
-            position: relative;
-            width: 100%;
-            height: 400px;
-        }
-
-        .chart-wrapper canvas {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .results-list {
-            background: white;
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            margin-bottom: 40px;
-        }
-
-        .results-list h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #333;
-            text-align: center;
-        }
-
-        .result-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            transition: all 0.3s ease;
-        }
-
-        .result-item:last-child {
-            border-bottom: none;
-        }
-
-        .result-item:hover {
-            background: #f9f9f9;
-            border-radius: 8px;
-        }
-
-        .result-info {
+        .insight-content {
             flex: 1;
         }
 
-        .result-test-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .result-type {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .result-date {
-            font-size: 12px;
-            color: #999;
-        }
-
-        .result-score {
-            font-size: 32px;
-            font-weight: 800;
-            color: #d4af37;
-            margin: 0 30px;
-        }
-
-        .result-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-action {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-action.download {
-            background: #2196f3;
-            color: white;
-        }
-
-        .btn-action.download:hover {
-            background: #1976d2;
-            transform: translateY(-2px);
-        }
-
-        .btn-action.share {
-            background: #4caf50;
-            color: white;
-        }
-
-        .btn-action.share:hover {
-            background: #388e3c;
-            transform: translateY(-2px);
-        }
-
-        .btn-action.delete {
-            background: #f44336;
-            color: white;
-        }
-
-        .btn-action.delete:hover {
-            background: #d32f2f;
-            transform: translateY(-2px);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-
-        .empty-state i {
-            font-size: 64px;
-            margin-bottom: 20px;
-            opacity: 0.3;
-        }
-
-        .empty-state h4 {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .empty-state p {
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-
-        .pricing-section {
-            margin: 60px 0;
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .pricing-card.premium {
-            border: 3px solid #d4af37;
-            transform: scale(1.05);
-        }
-
-        .pricing-card.premium:hover {
-            transform: scale(1.05) translateY(-8px);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .pricing-badge.free {
-            background: #e0e0e0;
-            color: #666;
-        }
-
-        .pricing-badge.premium {
-            background: linear-gradient(135deg, #d4af37, #f4d03f);
-            color: white;
-        }
-
-        .pricing-price {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .price-number {
-            display: block;
-            font-size: 48px;
-            font-weight: 800;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .price-period {
-            display: block;
-            font-size: 16px;
-            color: #999;
-        }
-
-        .pricing-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 30px 0;
-        }
-
-        .pricing-features li {
-            padding: 12px 0;
-            font-size: 15px;
-            color: #666;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .pricing-features li i {
-            font-size: 16px;
-            width: 20px;
-            text-align: center;
-        }
-
-        .pricing-features li .fa-check {
-            color: #4caf50;
-        }
-
-        .pricing-features li .fa-times {
-            color: #ccc;
-        }
-
-        .btn-pricing {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
+        .insight-content-title {
             font-size: 16px;
             font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            color: #2c5f4f;
+            margin-bottom: 8px;
         }
 
-        .btn-pricing.free {
-            background: #f5f5f5;
+        .insight-content-text {
+            font-size: 14px;
             color: #666;
-        }
-
-        .btn-pricing.free:hover {
-            background: #e0e0e0;
-            transform: translateY(-2px);
-        }
-
-        .btn-pricing.premium {
-            background: linear-gradient(135deg, #d4af37, #f4d03f);
-            color: white;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-pricing.premium:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            line-height: 1.7;
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #d4af37, #f4d03f);
-            border-radius: 20px;
-            padding: 60px 40px;
             text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            border-radius: 20px;
             color: white;
-            margin-top: 60px;
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
         }
 
         .cta-title {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
             margin-bottom: 20px;
         }
 
         .cta-description {
             font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.95;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 40px;
+            opacity: 0.9;
         }
 
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
+        .btn-cta {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: #2c5f4f;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .loading i {
-            font-size: 48px;
-            animation: spin 1s linear infinite;
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        /* 반응형 디자인 */
         @media (max-width: 992px) {
-            .features-section {
-                grid-template-columns: 1fr;
-            }
-
-            .dashboard-preview {
+            .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .hero-features-grid {
+            .charts-section {
                 grid-template-columns: 1fr;
-            }
-
-            .pricing-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-card.premium {
-                transform: scale(1);
-            }
-
-            .pricing-card.premium:hover {
-                transform: translateY(-8px);
             }
         }
 
         @media (max-width: 768px) {
+            .dashboard-container {
+                margin-top: 80px;
+            }
+
+            .dashboard-hero {
+                padding: 30px 20px;
+            }
+
             .dashboard-hero-title {
-                font-size: 32px;
-            }
-
-            .dashboard-preview {
-                grid-template-columns: 1fr;
-            }
-
-            .chart-wrapper {
-                height: 300px;
-            }
-
-            .cta-title {
                 font-size: 28px;
             }
 
-            .result-item {
-                flex-direction: column;
-                align-items: flex-start;
+            .dashboard-hero-subtitle {
+                font-size: 14px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
                 gap: 15px;
             }
 
-            .result-actions {
-                width: 100%;
-                justify-content: space-between;
+            .chart-container {
+                height: 250px;
+            }
+
+            .insights-section {
+                padding: 25px;
+            }
+
+            .cta-title {
+                font-size: 24px;
+            }
+
+            .cta-description {
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <a href="index.html" class="nav-logo">
-                <div class="logo-icon-text"><i class="fas fa-brain"></i></div>
-                <span class="logo-text">Mentora</span>
-            </a>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
+    <!-- 네비게이션 바 -->
+    <header class="page-header">
+        <nav class="page-nav">
+            <div class="page-nav-left">
+                <a href="index.html" class="page-nav-logo">
+                    <div class="page-nav-logo-icon-text">M</div>
+                    <span class="page-nav-logo-text">Mentora</span>
+                </a>
+            </div>
+            
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
-                <li><a href="index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
-                <li><a href="index.html#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 기능</a></li>
-                <li><a href="index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
-                <li><a href="dashboard.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
-                <li><a href="admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+                <li><a href="index.html#home" class="nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link">프리미엄 ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 매칭 분석</a></li>
+                        <li><a href="ai-chatbot.html"><i class="fas fa-comments"></i> AI 코칭 챗봇</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> 심리 데이터 대시보드</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#pricing" class="nav-link">요금제</a></li>
+                <li><a href="guides.html" class="nav-link">가이드북</a></li>
+                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
+                <li><a href="admin/index.html" class="nav-link admin-link">관리자</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-                <i class="fas fa-moon"></i>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
             </button>
         </nav>
     </header>
 
-    <div class="dashboard-container">
-        <div class="dashboard-hero">
+    <!-- 메인 컨텐츠 -->
+    <main class="dashboard-container">
+        <!-- Disclaimer 배너 삽입 위치 -->
+        <div id="disclaimer-container"></div>
+
+        <!-- 히어로 섹션 -->
+        <section class="dashboard-hero">
             <div class="dashboard-hero-icon">📊</div>
             <h1 class="dashboard-hero-title">심리 데이터 대시보드</h1>
             <p class="dashboard-hero-subtitle">
-                당신의 검사 결과를 한눈에 확인하고 성장 과정을 추적하세요.<br>
-                검사를 완료하면 자동으로 결과가 저장됩니다.
+                나의 심리 데이터를 시각화하여 한눈에 확인하고<br>
+                성장 과정과 패턴을 추적하세요.
             </p>
+        </section>
 
-            <div class="hero-features-grid">
-                <div class="feature-box">
-                    <i class="fas fa-database"></i>
-                    <span>검사 결과 통합 관리</span>
-                </div>
-                <div class="feature-box">
+        <!-- 주요 통계 -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value">12</div>
+                <div class="stat-label">완료한 검사</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-value">85%</div>
+                <div class="stat-label">성장 지수</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-value">7</div>
+                <div class="stat-label">획득한 배지</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🔥</div>
+                <div class="stat-value">23</div>
+                <div class="stat-label">연속 활동일</div>
+            </div>
+        </section>
+
+        <!-- 차트 섹션 -->
+        <section class="charts-section">
+            <div class="chart-card">
+                <h3 class="chart-title">
                     <i class="fas fa-chart-line"></i>
-                    <span>시간별 변화 추적</span>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-download"></i>
-                    <span>리포트 PDF 다운로드</span>
+                    주간 활동 추이
+                </h3>
+                <div class="chart-container">
+                    <canvas id="activityChart"></canvas>
                 </div>
             </div>
 
-            <button class="btn-start" onclick="window.location.href='index.html#tests'">
-                <i class="fas fa-arrow-right"></i> 검사 시작하기
-            </button>
-        </div>
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-pie"></i>
+                    성격 특성 분포
+                </h3>
+                <div class="chart-container">
+                    <canvas id="personalityChart"></canvas>
+                </div>
+            </div>
 
-        <h2 class="section-title">🎯 주요 기능</h2>
-
-        <div class="features-section">
-            <div class="feature-card">
-                <div class="feature-icon">
+            <div class="chart-card">
+                <h3 class="chart-title">
                     <i class="fas fa-chart-bar"></i>
+                    월별 검사 완료율
+                </h3>
+                <div class="chart-container">
+                    <canvas id="completionChart"></canvas>
                 </div>
-                <h3 class="feature-title">검사 결과 통합 관리</h3>
-                <p class="feature-description">
-                    여러 검사 결과를 한곳에서 관리하고 언제든지 다시 확인할 수 있습니다.
-                </p>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-area"></i>
+                    감정 상태 변화
+                </h3>
+                <div class="chart-container">
+                    <canvas id="emotionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI 인사이트 -->
+        <section class="insights-section">
+            <h2 class="insights-title">
+                <i class="fas fa-lightbulb"></i>
+                AI 인사이트
+            </h2>
+
+            <div class="insight-item">
+                <div class="insight-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
-                <h3 class="feature-title">시간별 변화 추적</h3>
-                <p class="feature-description">
-                    시간에 따른 점수 변화를 차트로 확인하고 성장 과정을 분석할 수 있습니다.
+                <div class="insight-content">
+                    <div class="insight-content-title">긍정적인 성장 추세</div>
+                    <div class="insight-content-text">
+                        지난 한 달간 당신의 감정 안정성이 15% 향상되었습니다. 꾸준한 자기 관리가 좋은 결과를 만들고 있네요!
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-content-title">규칙적인 활동 패턴</div>
+                    <div class="insight-content-text">
+                        매주 월요일과 목요일에 가장 활발하게 활동하는 패턴이 관찰됩니다. 이 시간대를 활용하여 중요한 목표를 설정해보세요.
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-content-title">다음 마일스톤 임박</div>
+                    <div class="insight-content-text">
+                        '30일 연속 활동' 배지까지 7일 남았습니다! 조금만 더 노력하면 새로운 배지를 획득할 수 있어요.
+                    </div>
+                </div>
+            </div>
+
+            <div class="insight-item">
+                <div class="insight-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="insight-content">
+                    <div class="insight-content-title">강점 영역 발견</div>
+                    <div class="insight-content-text">
+                        논리적 사고와 분석 능력이 상위 5%에 속합니다. 이 강점을 활용한 커리어 발전 계획을 세워보시는 건 어떨까요?
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA 섹션 -->
+        <section class="cta-section">
+            <h2 class="cta-title">더 많은 데이터 인사이트를 원하시나요?</h2>
+            <p class="cta-description">프리미엄 플랜으로 업그레이드하여 고급 분석 기능을 이용하세요.</p>
+            <a href="payment/checkout.html?plan=premium" class="btn-cta">프리미엄 구매하기</a>
+        </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3 class="footer-title">Mentora</h3>
+                <p class="footer-description">
+                    진짜 나를 만나는 가장 정확한 방법<br>
+                    100만 명이 선택한 심리검사 플랫폼
                 </p>
+                <div class="footer-company">
+                    <p><strong>회사명:</strong> CubeBox</p>
+                    <p><strong>대표:</strong> 박민수</p>
+                    <p><strong>주소:</strong> 서울특별시 송파구 송파대로14길 7-10 2층</p>
+                    <p><strong>전화:</strong> 050-2-1909-7788</p>
+                    <p><strong>이메일:</strong> mentora@gmail.com</p>
+                </div>
             </div>
 
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-file-pdf"></i>
-                </div>
-                <h3 class="feature-title">맞춤형 리포트 생성</h3>
-                <p class="feature-description">
-                    검사 결과를 PDF로 다운로드하여 언제든지 다시 확인할 수 있습니다.
-                </p>
-            </div>
-        </div>
-
-        <div class="demo-section" id="demo">
-            <h2>📈 내 검사 현황</h2>
-            <p>완료한 검사 결과를 한눈에 확인해보세요</p>
-
-            <div id="loadingStats" class="loading">
-                <i class="fas fa-spinner"></i>
-                <p>데이터를 불러오는 중...</p>
+            <div class="footer-section">
+                <h4 class="footer-subtitle">심리검사</h4>
+                <ul class="footer-links">
+                    <li><a href="guides.html">전체 검사 보기</a></li>
+                    <li><a href="guides/intj-sample.html">INTJ 가이드북</a></li>
+                    <li><a href="guides/enfp-sample.html">ENFP 가이드북</a></li>
+                    <li><a href="guides/infp-sample.html">INFP 가이드북</a></li>
+                </ul>
             </div>
 
-            <div id="statsArea" style="display: none;">
-                <div class="dashboard-preview">
-                    <div class="stat-card">
-                        <div class="stat-icon blue">
-                            <i class="fas fa-clipboard-check"></i>
-                        </div>
-                        <h4>완료한 검사</h4>
-                        <p class="stat-number" id="totalTests">0</p>
-                        <span class="stat-change">총 검사 수</span>
-                    </div>
+            <div class="footer-section">
+                <h4 class="footer-subtitle">프리미엄 기능</h4>
+                <ul class="footer-links">
+                    <li><a href="roadmap.html">AI 성장 로드맵</a></li>
+                    <li><a href="couple-analysis.html">커플/팀 매칭 분석</a></li>
+                    <li><a href="ai-chatbot.html">AI 코칭 챗봇</a></li>
+                    <li><a href="dashboard.html">심리 데이터 대시보드</a></li>
+                </ul>
+            </div>
 
-                    <div class="stat-card">
-                        <div class="stat-icon green">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4>평균 점수</h4>
-                        <p class="stat-number" id="avgScore">0</p>
-                        <span class="stat-change">100점 만점</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon orange">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h4>최고 점수</h4>
-                        <p class="stat-number" id="maxScore">0</p>
-                        <span class="stat-change" id="maxScoreTest">-</span>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon purple">
-                            <i class="fas fa-calendar"></i>
-                        </div>
-                        <h4>최근 검사</h4>
-                        <p class="stat-number" id="recentTest">-</p>
-                        <span class="stat-change" id="recentTestName">-</span>
-                    </div>
-                </div>
-
-                <div class="chart-area">
-                    <h3>📊 검사 결과 점수</h3>
-                    <div class="chart-wrapper">
-                        <canvas id="resultChart"></canvas>
-                    </div>
-                </div>
+            <div class="footer-section">
+                <h4 class="footer-subtitle">고객지원</h4>
+                <ul class="footer-links">
+                    <li><a href="mypage.html">내 결과 보기</a></li>
+                    <li><a href="payment/checkout.html?plan=premium">프리미엄 구매</a></li>
+                    <li><a href="admin/index.html">관리자</a></li>
+                </ul>
             </div>
         </div>
 
-        <div class="results-list">
-            <h3>📋 검사 결과 목록</h3>
-            <div id="loadingResults" class="loading">
-                <i class="fas fa-spinner"></i>
-                <p>검사 결과를 불러오는 중...</p>
-            </div>
-            <div id="resultsContainer"></div>
-        </div>
-
-        <div class="pricing-section" id="pricing">
-            <h2 class="section-title">💎 요금 안내</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 40px;">
-                더 많은 기능을 원하신다면 프리미엄을 이용해보세요
-            </p>
-
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="pricing-badge free">무료</div>
-                    <div class="pricing-price">
-                        <span class="price-number">₩0</span>
-                        <span class="price-period">영구 무료</span>
-                    </div>
-                    <h3 class="pricing-title">기본 서비스</h3>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 기본 검사 결과 조회</li>
-                        <li><i class="fas fa-check"></i> 최근 3개 검사 저장</li>
-                        <li><i class="fas fa-check"></i> 기본 차트 조회</li>
-                        <li><i class="fas fa-times"></i> 전체 검사 히스토리</li>
-                        <li><i class="fas fa-times"></i> PDF 다운로드</li>
-                        <li><i class="fas fa-times"></i> 결과 공유 기능</li>
-                    </ul>
-                    <button class="btn-pricing free" onclick="window.location.href='index.html#tests'">
-                        무료로 시작하기
-                    </button>
-                </div>
-
-                <div class="pricing-card premium">
-                    <div class="pricing-badge premium">추천</div>
-                    <div class="pricing-price">
-                        <span class="price-number">₩9,900</span>
-                        <span class="price-period">/월</span>
-                    </div>
-                    <h3 class="pricing-title">프리미엄</h3>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 무제한 검사 결과 저장</li>
-                        <li><i class="fas fa-check"></i> 전체 검사 히스토리</li>
-                        <li><i class="fas fa-check"></i> 고급 차트 & 분석</li>
-                        <li><i class="fas fa-check"></i> PDF 무제한 다운로드</li>
-                        <li><i class="fas fa-check"></i> 결과 공유 기능</li>
-                        <li><i class="fas fa-check"></i> 데이터 백업</li>
-                    </ul>
-                    <button class="btn-pricing premium" onclick="alert('준비 중입니다')">
-                        프리미엄 시작하기
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="cta-section">
-            <h2 class="cta-title">🚀 지금 바로 시작하세요!</h2>
-            <p class="cta-description">
-                무료로 검사를 시작하고 결과를 자동으로 저장해보세요.
-            </p>
-            <button class="btn-start" onclick="window.location.href='index.html#tests'">
-                <i class="fas fa-arrow-right"></i> 검사 시작하기
-            </button>
-        </div>
-    </div>
-
-    <footer class="footer" style="background: #2c5f4f; color: #d4af37; padding: 40px 0 20px;">
-        <div class="footer-container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <div class="footer-content" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px;">
-                <div class="footer-section footer-about">
-                    <div class="footer-logo" style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                        <div class="footer-logo-icon" style="width: 50px; height: 50px; background: #d4af37; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-brain" style="font-size: 24px; color: #2c5f4f;"></i>
-                        </div>
-                        <div class="footer-logo-text">
-                            <h3 style="font-size: 24px; font-weight: 800; margin: 0; color: #d4af37;">Mentora</h3>
-                            <p style="font-size: 12px; margin: 0; color: #d4af37; opacity: 0.8;">진짜 나를 만나는 가장 정확한 방법</p>
-                        </div>
-                    </div>
-                    <div class="company-info" style="font-size: 13px; line-height: 1.8; color: #d4af37;">
-                        <p style="margin: 5px 0;"><strong>큐브박스 (CubeBox)</strong></p>
-                        <p style="margin: 5px 0;">대표자: 김미화</p>
-                        <p style="margin: 5px 0;">사업자등록번호: 537-08-03349</p>
-                        <p style="margin: 5px 0;">📍 서울특별시 송파구 송파대로14길 7-10 2층</p>
-                        <p style="margin: 5px 0;">☎️ 0502-1909-7788</p>
-                        <p style="margin: 5px 0;">📧 mentora@gmail.com</p>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #d4af37;">심리검사</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 12px;"><a href="index.html#tests" style="color: #d4af37; text-decoration: none; font-size: 14px; transition: all 0.3s;">전체 검사</a></li>
-                        <li style="margin-bottom: 12px;"><a href="blood-type-test.html" style="color: #d4af37; text-decoration: none; font-size: 14px;">혈액형 분석</a></li>
-                        <li style="margin-bottom: 12px;"><a href="sagunja-test-v2.html" style="color: #d4af37; text-decoration: none; font-size: 14px;">4군자 유형</a></li>
-                        <li style="margin-bottom: 12px;"><a href="personal-color-test.html" style="color: #d4af37; text-decoration: none; font-size: 14px;">퍼스널 컬러</a></li>
-                        <li style="margin-bottom: 12px;"><a href="animal-test.html" style="color: #d4af37; text-decoration: none; font-size: 14px;">애니멀 테스트</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #d4af37;">서비스</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 12px;"><a href="dashboard.html" style="color: #d4af37; text-decoration: none; font-size: 14px;"><i class="fas fa-chart-line"></i> 검사 결과 대시보드</a></li>
-                        <li style="margin-bottom: 12px;"><a href="index.html#tests" style="color: #d4af37; text-decoration: none; font-size: 14px;">무료 검사</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #d4af37;">고객지원</h4>
-                    <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 12px;"><a href="mailto:mentora@gmail.com" style="color: #d4af37; text-decoration: none; font-size: 14px;"><i class="fas fa-envelope"></i> 이메일 문의</a></li>
-                        <li style="margin-bottom: 12px;"><a href="tel:0502-1909-7788" style="color: #d4af37; text-decoration: none; font-size: 14px;"><i class="fas fa-phone"></i> 전화 상담</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom" style="border-top: 1px solid rgba(212, 175, 55, 0.2); padding-top: 20px; display: flex; justify-content: space-between; align-items: center;">
-                <div class="social-links" style="display: flex; gap: 15px;">
-                    <a href="#" aria-label="Facebook" style="width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; text-decoration: none; transition: all 0.3s;"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Instagram" style="width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; text-decoration: none;"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="Twitter" style="width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; text-decoration: none;"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="YouTube" style="width: 40px; height: 40px; background: rgba(212, 175, 55, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; text-decoration: none;"><i class="fab fa-youtube"></i></a>
-                </div>
-                <div class="footer-bottom-right" style="text-align: right;">
-                    <p style="margin: 0 0 10px 0; font-size: 13px; color: #d4af37;">&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
-                    <div class="footer-legal-links" style="display: flex; gap: 10px; justify-content: flex-end; font-size: 12px;">
-                        <a href="terms.html" style="color: #d4af37; text-decoration: none;">이용약관</a>
-                        <span style="color: #d4af37;">|</span>
-                        <a href="privacy.html" style="color: #d4af37; text-decoration: none;">개인정보처리방침</a>
-                    </div>
-                </div>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 CubeBox. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Disclaimer 스크립트 -->
+    <script src="js/disclaimer.js"></script>
+
+    <!-- Chart.js 초기화 -->
     <script>
-        function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const menuToggle = document.getElementById('mobileMenuToggle');
-            navMenu.classList.toggle('active');
-            
-            const icon = menuToggle.querySelector('i');
-            if (navMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-
-        function closeMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const menuToggle = document.getElementById('mobileMenuToggle');
-            navMenu.classList.remove('active');
-            
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-        let chartInstance = null;
-
-        async function loadDashboardData() {
-            try {
-                const response = await fetch('tables/test_results?limit=100');
-                const result = await response.json();
-                
-                if (result.data && result.data.length > 0) {
-                    displayStats(result.data);
-                    displayChart(result.data);
-                    displayResults(result.data);
-                } else {
-                    showEmptyState();
+        // 차트 공통 옵션
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom'
                 }
-            } catch (error) {
-                console.error('데이터 로드 실패:', error);
-                showEmptyState();
             }
-        }
+        };
 
-        function displayStats(data) {
-            document.getElementById('loadingStats').style.display = 'none';
-            document.getElementById('statsArea').style.display = 'block';
+        // 주간 활동 추이 차트
+        const activityCtx = document.getElementById('activityChart').getContext('2d');
+        new Chart(activityCtx, {
+            type: 'line',
+            data: {
+                labels: ['월', '화', '수', '목', '금', '토', '일'],
+                datasets: [{
+                    label: '활동 시간 (분)',
+                    data: [45, 32, 28, 50, 38, 25, 30],
+                    borderColor: '#2c5f4f',
+                    backgroundColor: 'rgba(44, 95, 79, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: commonOptions
+        });
 
-            document.getElementById('totalTests').textContent = data.length;
-
-            const avgScore = Math.round(data.reduce((sum, item) => sum + item.score, 0) / data.length);
-            document.getElementById('avgScore').textContent = avgScore;
-
-            const maxScoreItem = data.reduce((max, item) => item.score > max.score ? item : max, data[0]);
-            document.getElementById('maxScore').textContent = maxScoreItem.score;
-            document.getElementById('maxScoreTest').textContent = maxScoreItem.test_name;
-
-            const sortedData = [...data].sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
-            const recentItem = sortedData[0];
-            const daysDiff = Math.floor((new Date() - new Date(recentItem.completed_at)) / (1000 * 60 * 60 * 24));
-            document.getElementById('recentTest').textContent = daysDiff === 0 ? '오늘' : `${daysDiff}일전`;
-            document.getElementById('recentTestName').textContent = recentItem.test_name;
-        }
-
-        function displayChart(data) {
-            const ctx = document.getElementById('resultChart');
-            if (!ctx) return;
-
-            const labels = data.map(item => item.test_name);
-            const scores = data.map(item => item.score);
-
-            const colors = [
-                'rgba(212, 175, 55, 0.8)',
-                'rgba(76, 175, 80, 0.8)',
-                'rgba(33, 150, 243, 0.8)',
-                'rgba(156, 39, 176, 0.8)',
-                'rgba(255, 152, 0, 0.8)',
-                'rgba(233, 30, 99, 0.8)'
-            ];
-
-            const borderColors = [
-                '#d4af37',
-                '#4caf50',
-                '#2196f3',
-                '#9c27b0',
-                '#ff9800',
-                '#e91e63'
-            ];
-
-            if (chartInstance) {
-                chartInstance.destroy();
-            }
-
-            chartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: '검사 결과 점수',
-                        data: scores,
-                        backgroundColor: colors.slice(0, data.length),
-                        borderColor: borderColors.slice(0, data.length),
-                        borderWidth: 2,
-                        borderRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    aspectRatio: 2.5,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            labels: {
-                                font: {
-                                    family: "'Noto Sans KR', sans-serif",
-                                    size: 14,
-                                    weight: 600
-                                },
-                                color: '#333',
-                                padding: 15
-                            }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(44, 95, 79, 0.9)',
-                            titleFont: {
-                                family: "'Noto Sans KR', sans-serif",
-                                size: 14,
-                                weight: 700
-                            },
-                            bodyFont: {
-                                family: "'Noto Sans KR', sans-serif",
-                                size: 13
-                            },
-                            padding: 12,
-                            cornerRadius: 8
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: {
-                                font: {
-                                    family: "'Noto Sans KR', sans-serif",
-                                    size: 12
-                                },
-                                color: '#666'
-                            },
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)',
-                                drawBorder: false
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                font: {
-                                    family: "'Noto Sans KR', sans-serif",
-                                    size: 12
-                                },
-                                color: '#666'
-                            },
-                            grid: {
-                                display: false
-                            }
-                        }
+        // 성격 특성 분포 차트
+        const personalityCtx = document.getElementById('personalityChart').getContext('2d');
+        new Chart(personalityCtx, {
+            type: 'radar',
+            data: {
+                labels: ['외향성', '성실성', '개방성', '친화성', '안정성'],
+                datasets: [{
+                    label: '나의 점수',
+                    data: [65, 85, 75, 70, 80],
+                    borderColor: '#d4af37',
+                    backgroundColor: 'rgba(212, 175, 55, 0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100
                     }
+                }
+            }
+        });
+
+        // 월별 검사 완료율 차트
+        const completionCtx = document.getElementById('completionChart').getContext('2d');
+        new Chart(completionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+                datasets: [{
+                    label: '완료율 (%)',
+                    data: [70, 75, 85, 80, 90, 95],
+                    backgroundColor: [
+                        '#2c5f4f',
+                        '#357a66',
+                        '#3e957d',
+                        '#47b094',
+                        '#d4af37',
+                        '#f0d98c'
+                    ]
+                }]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // 감정 상태 변화 차트
+        const emotionCtx = document.getElementById('emotionChart').getContext('2d');
+        new Chart(emotionCtx, {
+            type: 'line',
+            data: {
+                labels: ['1주', '2주', '3주', '4주', '5주', '6주'],
+                datasets: [
+                    {
+                        label: '긍정 감정',
+                        data: [60, 65, 70, 72, 75, 78],
+                        borderColor: '#47b094',
+                        backgroundColor: 'rgba(71, 176, 148, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: '부정 감정',
+                        data: [40, 35, 30, 28, 25, 22],
+                        borderColor: '#ff6b6b',
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }
+                ]
+            },
+            options: commonOptions
+        });
+    </script>
+
+    <!-- 모바일 메뉴 토글 -->
+    <script>
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                const icon = this.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 }
             });
         }
-
-        function displayResults(data) {
-            document.getElementById('loadingResults').style.display = 'none';
-            const container = document.getElementById('resultsContainer');
-            
-            const sortedData = [...data].sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
-
-            container.innerHTML = sortedData.map(item => `
-                <div class="result-item">
-                    <div class="result-info">
-                        <div class="result-test-name">${item.test_name}</div>
-                        <div class="result-type">결과: ${item.result}</div>
-                        <div class="result-date">${formatDate(item.completed_at)}</div>
-                    </div>
-                    <div class="result-score">${item.score}</div>
-                    <div class="result-actions">
-                        <button class="btn-action download" onclick="downloadPDF('${item.id}')">
-                            <i class="fas fa-download"></i> PDF
-                        </button>
-                        <button class="btn-action share" onclick="shareResult('${item.id}')">
-                            <i class="fas fa-share"></i> 공유
-                        </button>
-                        <button class="btn-action delete" onclick="deleteResult('${item.id}')">
-                            <i class="fas fa-trash"></i> 삭제
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function showEmptyState() {
-            document.getElementById('loadingStats').style.display = 'none';
-            document.getElementById('loadingResults').style.display = 'none';
-            document.getElementById('resultsContainer').innerHTML = `
-                <div class="empty-state">
-                    <i class="fas fa-clipboard-list"></i>
-                    <h4>아직 완료한 검사가 없습니다</h4>
-                    <p>검사를 완료하면 여기에 결과가 자동으로 저장됩니다</p>
-                    <button class="btn-start" onclick="window.location.href='index.html#tests'">
-                        첫 검사 시작하기
-                    </button>
-                </div>
-            `;
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            const hours = String(date.getHours()).padStart(2, '0');
-            const minutes = String(date.getMinutes()).padStart(2, '0');
-            return `${year}.${month}.${day} ${hours}:${minutes}`;
-        }
-
-        async function downloadPDF(id) {
-            try {
-                const response = await fetch(`tables/test_results/${id}`);
-                const data = await response.json();
-                
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                
-                doc.setFont('helvetica', 'bold');
-                doc.setFontSize(20);
-                doc.text('Mentora - Test Result', 105, 20, { align: 'center' });
-                
-                doc.setFont('helvetica', 'normal');
-                doc.setFontSize(12);
-                doc.text(`Test: ${data.test_name}`, 20, 40);
-                doc.text(`Result: ${data.result}`, 20, 50);
-                doc.text(`Score: ${data.score}/100`, 20, 60);
-                doc.text(`Date: ${formatDate(data.completed_at)}`, 20, 70);
-                doc.text(`Details: ${data.details}`, 20, 80);
-                
-                doc.save(`mentora_${data.test_type}_result.pdf`);
-                alert('PDF 다운로드가 완료되었습니다!');
-            } catch (error) {
-                console.error('PDF 생성 실패:', error);
-                alert('PDF 생성에 실패했습니다.');
-            }
-        }
-
-        async function shareResult(id) {
-            const url = `${window.location.origin}/result.html?id=${id}`;
-            try {
-                await navigator.clipboard.writeText(url);
-                alert('공유 링크가 클립보드에 복사되었습니다!\n' + url);
-            } catch (error) {
-                prompt('아래 링크를 복사하세요:', url);
-            }
-        }
-
-        async function deleteResult(id) {
-            if (!confirm('정말 이 검사 결과를 삭제하시겠습니까?')) {
-                return;
-            }
-
-            try {
-                await fetch(`tables/test_results/${id}`, {
-                    method: 'DELETE'
-                });
-                alert('검사 결과가 삭제되었습니다.');
-                location.reload();
-            } catch (error) {
-                console.error('삭제 실패:', error);
-                alert('삭제에 실패했습니다.');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', loadDashboardData);
     </script>
 </body>
 </html>
