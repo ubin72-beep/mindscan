@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 맞춤형 성장 로드맵 - Mentora</title>
+    <meta name="description" content="AI가 분석한 나만의 성장 로드맵으로 체계적으로 목표를 달성하세요.">
     
+    <!-- 구글 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- 공통 네비게이션 CSS -->
     <link rel="stylesheet" href="css/nav-common.css">
+    
+    <!-- 기본 스타일 CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Disclaimer CSS -->
     <link rel="stylesheet" href="css/disclaimer.css">
     
     <style>
@@ -21,8 +30,8 @@
 
         .roadmap-hero {
             text-align: center;
+            background: linear-gradient(135deg, #f0f9f5 0%, #ffffff 100%);
             padding: 40px 20px 35px;
-            background: linear-gradient(135deg, #fff9e6, #ffffff);
             border-radius: 20px;
             margin-bottom: 50px;
         }
@@ -35,16 +44,16 @@
         .roadmap-hero-title {
             font-size: 36px;
             font-weight: 800;
-            color: #1a4838;
+            color: #2c5f4f;
             margin-bottom: 15px;
         }
 
         .roadmap-hero-subtitle {
             font-size: 16px;
             color: #666;
-            line-height: 1.7;
+            line-height: 1.8;
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 25px;
         }
 
         .roadmap-features {
@@ -56,17 +65,15 @@
 
         .feature-card {
             background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 16px;
-            padding: 35px 25px;
-            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            border-color: #d4af37;
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(44, 95, 79, 0.15);
         }
 
         .feature-icon {
@@ -77,111 +84,95 @@
         .feature-title {
             font-size: 20px;
             font-weight: 700;
-            color: #1a4838;
-            margin-bottom: 12px;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
         .feature-description {
             font-size: 15px;
             color: #666;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .roadmap-timeline {
-            position: relative;
-            padding: 40px 0;
+            background: linear-gradient(135deg, #f9f6ed 0%, #ffffff 100%);
+            padding: 50px 30px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+
+        .timeline-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #2c5f4f;
+            text-align: center;
+            margin-bottom: 50px;
         }
 
         .timeline-item {
             display: flex;
             gap: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             position: relative;
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 49px;
-            top: 50px;
-            width: 2px;
-            height: calc(100% + 50px);
-            background: linear-gradient(to bottom, #d4af37, #f4e4a6);
-        }
-
-        .timeline-item:last-child::before {
-            display: none;
+        .timeline-item:last-child {
+            margin-bottom: 0;
         }
 
         .timeline-number {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #d4af37, #f4e4a6);
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 800;
-            color: #1a4838;
-            flex-shrink: 0;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            color: #2c5f4f;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .timeline-content {
             flex: 1;
             background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 16px;
-            padding: 30px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
-        .timeline-title {
-            font-size: 24px;
+        .timeline-week {
+            font-size: 14px;
+            color: #d4af37;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content-title {
+            font-size: 20px;
             font-weight: 700;
-            color: #1a4838;
+            color: #2c5f4f;
             margin-bottom: 15px;
         }
 
-        .timeline-description {
-            font-size: 16px;
+        .timeline-content-description {
+            font-size: 15px;
             color: #666;
             line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .timeline-tasks {
-            list-style: none;
-            padding: 0;
-        }
-
-        .timeline-tasks li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
-            color: #333;
-        }
-
-        .timeline-tasks li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #4caf50;
-            font-weight: bold;
-            font-size: 18px;
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #1a4838, #2c5f4f);
-            border-radius: 20px;
-            padding: 60px 40px;
             text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            border-radius: 20px;
             color: white;
-            margin-top: 60px;
         }
 
         .cta-title {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
             margin-bottom: 20px;
         }
@@ -201,187 +192,159 @@
 
         .btn-cta {
             padding: 18px 40px;
-            border-radius: 12px;
             font-size: 18px;
             font-weight: 700;
+            border-radius: 50px;
             text-decoration: none;
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            display: inline-block;
         }
 
-        .btn-cta-primary {
-            background: linear-gradient(135deg, #d4af37, #f4e4a6);
-            color: #1a4838;
+        .btn-premium {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: #2c5f4f;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .btn-cta-primary:hover {
+        .btn-premium:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
         }
 
-        .btn-cta-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        .btn-test {
+            background: white;
+            color: #2c5f4f;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
         }
 
-        .btn-cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
+        .btn-test:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
         }
 
-        /* Dark Mode */
-        body.dark-mode .roadmap-hero {
-            background: linear-gradient(135deg, #1a1a1a, #0f3460);
-        }
-
-        body.dark-mode .roadmap-hero-title {
-            color: #d4af37;
-        }
-
-        body.dark-mode .feature-card,
-        body.dark-mode .timeline-content {
-            background: #0f3460;
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-
-        body.dark-mode .feature-title,
-        body.dark-mode .timeline-title {
-            color: #d4af37;
-        }
-
-        body.dark-mode .feature-description,
-        body.dark-mode .timeline-description {
-            color: #ccc;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .roadmap-features {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-item {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .timeline-item::before {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .timeline-number {
-                width: 80px;
-                height: 80px;
-                font-size: 28px;
-            }
-        }
-
+        /* 반응형 디자인 */
         @media (max-width: 768px) {
             .roadmap-container {
                 margin-top: 80px;
             }
 
+            .roadmap-hero {
+                padding: 30px 20px;
+            }
+
             .roadmap-hero-title {
-                font-size: 32px;
+                font-size: 28px;
+            }
+
+            .roadmap-hero-subtitle {
+                font-size: 14px;
+            }
+
+            .roadmap-features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .timeline-title {
+                font-size: 24px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .timeline-number {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
             }
 
             .cta-title {
-                font-size: 28px;
+                font-size: 24px;
+            }
+
+            .cta-description {
+                font-size: 16px;
             }
 
             .cta-buttons {
                 flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn-cta {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- 네비게이션 바 -->
     <header class="page-header">
         <nav class="page-nav">
             <div class="page-nav-left">
                 <a href="index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <span class="logo-text-main">Mentora</span>
+                    <div class="page-nav-logo-icon-text">M</div>
+                    <span class="page-nav-logo-text">Mentora</span>
                 </a>
             </div>
             
-            <ul class="page-nav-menu">
-                <li><a href="index.html#home" class="page-nav-link">홈</a></li>
-                <li><a href="index.html#tests" class="page-nav-link">검사하기</a></li>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#home" class="nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
                 <li class="nav-dropdown">
-                    <a href="#" class="page-nav-link dropdown-trigger">
-                        프리미엄 <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="roadmap.html" class="dropdown-item">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <span>AI 성장 로드맵</span>
-                        </a>
-                        <a href="couple-analysis.html" class="dropdown-item">
-                            <i class="fas fa-users"></i>
-                            <span>커플/팀 매칭 분석</span>
-                        </a>
-                        <a href="ai-chatbot.html" class="dropdown-item">
-                            <i class="fas fa-robot"></i>
-                            <span>AI 코칭 챗봇</span>
-                        </a>
-                        <a href="dashboard.html" class="dropdown-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>심리 데이터 대시보드</span>
-                        </a>
-                    </div>
+                    <a href="#premium-features" class="nav-link">프리미엄 ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 매칭 분석</a></li>
+                        <li><a href="ai-chatbot.html"><i class="fas fa-comments"></i> AI 코칭 챗봇</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> 심리 데이터 대시보드</a></li>
+                    </ul>
                 </li>
-                <li><a href="index.html#pricing" class="page-nav-link">요금제</a></li>
-                <li><a href="guides.html" class="page-nav-link">가이드북</a></li>
-                <li><a href="mypage.html" class="page-nav-link">내 결과</a></li>
-                <li><a href="admin/index.html" class="page-nav-link">관리자</a></li>
+                <li><a href="index.html#pricing" class="nav-link">요금제</a></li>
+                <li><a href="guides.html" class="nav-link">가이드북</a></li>
+                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
+                <li><a href="admin/index.html" class="nav-link admin-link">관리자</a></li>
             </ul>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
     </header>
 
-    <div class="roadmap-container">
-        <!-- Hero Section -->
-        <div class="roadmap-hero">
+    <!-- 메인 컨텐츠 -->
+    <main class="roadmap-container">
+        <!-- Disclaimer 배너 삽입 위치 -->
+        <div id="disclaimer-container"></div>
+
+        <!-- 히어로 섹션 -->
+        <section class="roadmap-hero">
             <div class="roadmap-hero-icon">🗺️</div>
             <h1 class="roadmap-hero-title">AI 맞춤형 성장 로드맵</h1>
             <p class="roadmap-hero-subtitle">
-                당신의 성격 유형과 목표에 맞춘 단계별 성장 계획을<br>
-                AI가 자동으로 생성하고 실시간으로 피드백합니다.
+                AI가 당신의 성격 유형과 목표를 분석하여<br>
+                자동으로 성장 로드맵을 생성하고 피드백을 제공합니다.
             </p>
-        </div>
-
-        <!-- 면책 조항 -->
-        <div id="disclaimerContainer"></div>
+        </section>
 
         <!-- 주요 기능 -->
-        <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 40px; color: #1a4838;">
-            ✨ 주요 기능
-        </h2>
-        
-        <div class="roadmap-features">
+        <section class="roadmap-features">
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
                 <h3 class="feature-title">개인 맞춤 목표 설정</h3>
                 <p class="feature-description">
-                    검사 결과를 분석하여 당신에게 가장 적합한 성장 목표를 AI가 제안합니다.
+                    AI가 당신의 성격 유형에 맞는 목표를 추천하고 설정을 도와드립니다.
                 </p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">📅</div>
+                <div class="feature-icon">📝</div>
                 <h3 class="feature-title">단계별 실천 플랜</h3>
                 <p class="feature-description">
-                    30일, 60일, 90일 단위로 구체적인 행동 계획을 수립하고 실천할 수 있습니다.
+                    목표 달성을 위한 구체적이고 실행 가능한 단계별 액션 플랜을 제공합니다.
                 </p>
             </div>
 
@@ -389,15 +352,15 @@
                 <div class="feature-icon">📊</div>
                 <h3 class="feature-title">주간 진도 체크</h3>
                 <p class="feature-description">
-                    매주 진행 상황을 확인하고 달성률을 시각화하여 동기부여를 유지합니다.
+                    매주 진행 상황을 점검하고 필요한 조정 사항을 제안합니다.
                 </p>
             </div>
 
             <div class="feature-card">
-                <div class="feature-icon">🤖</div>
+                <div class="feature-icon">💬</div>
                 <h3 class="feature-title">AI 실시간 피드백</h3>
                 <p class="feature-description">
-                    목표 달성 과정에서 AI가 실시간으로 조언하고 방향을 제시합니다.
+                    진행 상황에 대한 AI의 실시간 피드백과 격려를 받을 수 있습니다.
                 </p>
             </div>
 
@@ -405,7 +368,7 @@
                 <div class="feature-icon">📈</div>
                 <h3 class="feature-title">성장 그래프</h3>
                 <p class="feature-description">
-                    시간에 따른 성장 추이를 그래프로 확인하고 변화를 한눈에 파악합니다.
+                    시간에 따른 성장 과정을 시각화하여 동기 부여를 높입니다.
                 </p>
             </div>
 
@@ -413,194 +376,149 @@
                 <div class="feature-icon">🏆</div>
                 <h3 class="feature-title">성취 배지 시스템</h3>
                 <p class="feature-description">
-                    목표를 달성할 때마다 배지를 획득하고 성취감을 느낄 수 있습니다.
+                    마일스톤 달성 시 배지를 수여하여 성취감을 극대화합니다.
                 </p>
             </div>
-        </div>
+        </section>
 
         <!-- 로드맵 타임라인 -->
-        <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin: 60px 0 40px; color: #1a4838;">
-            📍 성장 로드맵 예시
-        </h2>
+        <section class="roadmap-timeline">
+            <h2 class="timeline-title">12주 성장 로드맵</h2>
 
-        <div class="roadmap-timeline">
             <div class="timeline-item">
                 <div class="timeline-number">1</div>
                 <div class="timeline-content">
-                    <h3 class="timeline-title">📋 1주차: 현재 상태 진단</h3>
-                    <p class="timeline-description">
-                        나의 강점과 약점을 명확히 파악하고 개선이 필요한 영역을 식별합니다.
+                    <div class="timeline-week">1주차</div>
+                    <h3 class="timeline-content-title">현재 상태 진단</h3>
+                    <p class="timeline-content-description">
+                        성격 검사 결과를 바탕으로 현재 강점과 개선 영역을 파악합니다.
+                        AI가 당신의 성향에 맞는 목표 영역을 추천합니다.
                     </p>
-                    <ul class="timeline-tasks">
-                        <li>전체 검사 결과 통합 분석</li>
-                        <li>강점 5가지, 약점 3가지 도출</li>
-                        <li>우선순위 개선 영역 선정</li>
-                    </ul>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-number">2</div>
                 <div class="timeline-content">
-                    <h3 class="timeline-title">🎯 2-4주차: 목표 설정 및 계획 수립</h3>
-                    <p class="timeline-description">
-                        AI가 제안한 목표 중에서 선택하고 구체적인 실천 계획을 세웁니다.
+                    <div class="timeline-week">2~4주차</div>
+                    <h3 class="timeline-content-title">목표 설정 및 계획 수립</h3>
+                    <p class="timeline-content-description">
+                        구체적이고 측정 가능한 목표를 설정합니다.
+                        AI가 단계별 실행 계획을 생성하고 일정을 제안합니다.
                     </p>
-                    <ul class="timeline-tasks">
-                        <li>SMART 목표 3가지 설정</li>
-                        <li>주간 실천 과제 선정</li>
-                        <li>체크리스트 작성</li>
-                    </ul>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-number">3</div>
                 <div class="timeline-content">
-                    <h3 class="timeline-title">🚀 5-8주차: 실천 및 피드백</h3>
-                    <p class="timeline-description">
-                        계획을 실행하고 AI로부터 실시간 피드백을 받으며 조정합니다.
+                    <div class="timeline-week">5~8주차</div>
+                    <h3 class="timeline-content-title">실천 및 피드백</h3>
+                    <p class="timeline-content-description">
+                        매주 진행 상황을 체크하고 AI의 피드백을 받습니다.
+                        필요시 계획을 조정하고 동기 부여 메시지를 받습니다.
                     </p>
-                    <ul class="timeline-tasks">
-                        <li>일일 실천 기록</li>
-                        <li>주간 AI 피드백 확인</li>
-                        <li>어려움 극복 전략 수립</li>
-                    </ul>
                 </div>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-number">4</div>
                 <div class="timeline-content">
-                    <h3 class="timeline-title">🏆 9-12주차: 평가 및 다음 단계</h3>
-                    <p class="timeline-description">
-                        3개월 동안의 변화를 평가하고 다음 성장 단계를 계획합니다.
+                    <div class="timeline-week">9~12주차</div>
+                    <h3 class="timeline-content-title">평가 및 다음 단계</h3>
+                    <p class="timeline-content-description">
+                        목표 달성도를 평가하고 성장 과정을 되돌아봅니다.
+                        AI가 다음 12주를 위한 새로운 목표를 제안합니다.
                     </p>
-                    <ul class="timeline-tasks">
-                        <li>목표 달성률 확인</li>
-                        <li>변화 전후 비교</li>
-                        <li>다음 3개월 목표 설정</li>
-                    </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <h2 class="cta-title">🚀 지금 바로 시작하세요!</h2>
-            <p class="cta-description">
-                프리미엄 플랜 구매 시 AI 맞춤형 성장 로드맵을 즉시 이용하실 수 있습니다.
-            </p>
+        <!-- CTA 섹션 -->
+        <section class="cta-section">
+            <h2 class="cta-title">지금 시작하세요</h2>
+            <p class="cta-description">프리미엄 플랜 구매 시 AI 맞춤형 성장 로드맵을 즉시 이용하실 수 있습니다.</p>
             <div class="cta-buttons">
-                <a href="payment/checkout.html?plan=premium" class="btn-cta btn-cta-primary">
-                    <i class="fas fa-crown"></i> 프리미엄 구매하기
-                </a>
-                <a href="index.html#tests" class="btn-cta btn-cta-secondary">
-                    <i class="fas fa-arrow-left"></i> 검사하러 가기
-                </a>
+                <a href="payment/checkout.html?plan=premium" class="btn-cta btn-premium">프리미엄 구매하기</a>
+                <a href="index.html#tests" class="btn-cta btn-test">먼저 검사하기</a>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
+    <!-- 푸터 -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-content">
-                <!-- 회사 정보 -->
-                <div class="footer-section footer-about">
-                    <div class="footer-logo">
-                        <div class="footer-logo-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="footer-logo-text">
-                            <h3>Mentora</h3>
-                            <p class="footer-slogan">진짜 나를 만나는 가장 정확한 방법</p>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-company-info">
-                        <p><strong>큐브박스 (CubeBox)</strong></p>
-                        <p>대표자: 김미화</p>
-                        <p>사업자등록번호: 537-08-03349</p>
-                        <p>주소: 서울특별시 송파구 송파대로14길 7-10 2층 (05854)</p>
-                        <p>전화: 0502-1909-7788</p>
-                        <p>이메일: mentora@gmail.com</p>
-                    </div>
-                </div>
-
-                <!-- 검사 메뉴 -->
-                <div class="footer-section">
-                    <h4>심리검사</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#tests">전체 검사</a></li>
-                        <li><a href="test-mbti.html">MBTI 성격유형검사</a></li>
-                        <li><a href="test-enneagram.html">에니어그램 성격검사</a></li>
-                        <li><a href="test-bigfive.html">Big Five 성격검사</a></li>
-                        <li><a href="blood-type-test.html">혈액형 성격 분석</a></li>
-                        <li><a href="sagunja-test.html">4군자 성격 유형</a></li>
-                        <li><a href="personal-color-test.html">퍼스널 컬러 진단</a></li>
-                    </ul>
-                </div>
-
-                <!-- 프리미엄 기능 -->
-                <div class="footer-section">
-                    <h4>프리미엄 기능</h4>
-                    <ul class="footer-links">
-                        <li><a href="roadmap.html">AI 성장 로드맵</a></li>
-                        <li><a href="couple-analysis.html">커플/팀 매칭 분석</a></li>
-                        <li><a href="ai-chatbot.html">AI 코칭 챗봇</a></li>
-                        <li><a href="dashboard.html">심리 데이터 대시보드</a></li>
-                        <li><a href="payment/checkout.html">프리미엄 구매</a></li>
-                        <li><a href="mypage.html">내 결과 보기</a></li>
-                    </ul>
-                </div>
-
-                <!-- 법적 고지 -->
-                <div class="footer-section">
-                    <h4>고객지원</h4>
-                    <ul class="footer-links">
-                        <li><a href="terms.html">이용약관</a></li>
-                        <li><a href="privacy.html">개인정보처리방침</a></li>
-                        <li><a href="refund.html">환불정책</a></li>
-                    </ul>
-                    
-                    <div class="footer-social">
-                        <h4 style="margin-top: 30px;">연결하기</h4>
-                        <div class="social-icons">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Mentora</h3>
+                <p class="footer-description">
+                    진짜 나를 만나는 가장 정확한 방법<br>
+                    100만 명이 선택한 심리검사 플랫폼
+                </p>
+                <div class="footer-company">
+                    <p><strong>회사명:</strong> CubeBox</p>
+                    <p><strong>대표:</strong> 박민수</p>
+                    <p><strong>주소:</strong> 서울특별시 송파구 송파대로14길 7-10 2층</p>
+                    <p><strong>전화:</strong> 050-2-1909-7788</p>
+                    <p><strong>이메일:</strong> mentora@gmail.com</p>
                 </div>
             </div>
 
-            <!-- 푸터 하단 -->
-            <div class="footer-bottom">
-                <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+            <div class="footer-section">
+                <h4 class="footer-subtitle">심리검사</h4>
+                <ul class="footer-links">
+                    <li><a href="guides.html">전체 검사 보기</a></li>
+                    <li><a href="guides/intj-sample.html">INTJ 가이드북</a></li>
+                    <li><a href="guides/enfp-sample.html">ENFP 가이드북</a></li>
+                    <li><a href="guides/infp-sample.html">INFP 가이드북</a></li>
+                </ul>
             </div>
+
+            <div class="footer-section">
+                <h4 class="footer-subtitle">프리미엄 기능</h4>
+                <ul class="footer-links">
+                    <li><a href="roadmap.html">AI 성장 로드맵</a></li>
+                    <li><a href="couple-analysis.html">커플/팀 매칭 분석</a></li>
+                    <li><a href="ai-chatbot.html">AI 코칭 챗봇</a></li>
+                    <li><a href="dashboard.html">심리 데이터 대시보드</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-subtitle">고객지원</h4>
+                <ul class="footer-links">
+                    <li><a href="mypage.html">내 결과 보기</a></li>
+                    <li><a href="payment/checkout.html?plan=premium">프리미엄 구매</a></li>
+                    <li><a href="admin/index.html">관리자</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 CubeBox. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Disclaimer 스크립트 -->
     <script src="js/disclaimer.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('disclaimerContainer').innerHTML = createDisclaimerBanner();
-        });
 
-        function toggleMobileMenu() {
-            const menu = document.querySelector('.page-nav-menu');
-            const toggle = document.getElementById('mobileMenuToggle');
-            menu.classList.toggle('active');
-            
-            const icon = toggle.querySelector('i');
-            if (menu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+    <!-- 모바일 메뉴 토글 -->
+    <script>
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                const icon = this.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
         }
     </script>
 </body>
