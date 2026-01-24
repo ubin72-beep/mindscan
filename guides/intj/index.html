@@ -21,44 +21,39 @@
     <div class="watermark">MENTORA</div>
 
     <!-- Header Navigation -->
-    <header class="page-header">
-        <nav class="page-nav">
-            <div class="page-nav-left">
-                <a href="../../index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon-text">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <span class="page-nav-logo-text">Mentora</span>
-                </a>
-            </div>
-            
-            <div class="page-nav-center">
-                <a href="../../index.html#home" class="page-nav-item">홈</a>
-                <a href="../../index.html#tests" class="page-nav-item">검사하기</a>
-                
-                <div class="page-nav-dropdown">
-                    <a href="#" class="page-nav-item">
-                        프리미엄 <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="page-nav-dropdown-content">
-                        <a href="../../roadmap.html">🗺️ AI 성장 로드맵</a>
-                        <a href="../../couple-analysis.html">💕 커플/팀 분석</a>
-                        <a href="../../dashboard.html">📊 데이터 대시보드</a>
-                        <a href="../../community.html">👥 멘토라 커뮤니티</a>
-                    </div>
+    <header class="header">
+        <nav class="nav">
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
                 </div>
-                
-                <a href="../../index.html#pricing" class="page-nav-item">요금제</a>
-                <a href="../../guides.html" class="page-nav-item active">가이드북 ✨</a>
-                <a href="../../mypage.html" class="page-nav-item">내 결과</a>
-                <a href="../../admin/index.html" class="page-nav-item">관리자</a>
-            </div>
+                <span class="logo-text">Mentora</span>
+            </a>
             
-            <div class="page-nav-right">
-                <button id="mobileMenuToggle" class="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../../index.html#home" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="../../index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../../couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../../dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../../community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="../../guides.html" class="nav-link" onclick="closeMobileMenu()">가이드북</a></li>
+                <li><a href="../../mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="../../admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
     </header>
 
@@ -232,34 +227,58 @@
     <!-- JavaScript -->
     <script>
         // 모바일 메뉴 토글
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const pageNavCenter = document.querySelector('.page-nav-center');
-        
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', function() {
-                pageNavCenter.classList.toggle('active');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            });
-        }
-
-        // 드롭다운 메뉴
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.page-nav-dropdown')) {
-                document.querySelectorAll('.page-nav-dropdown-content').forEach(dropdown => {
-                    dropdown.style.display = 'none';
-                });
-            }
-        });
-
-        // 모바일에서 외부 클릭 시 메뉴 닫기
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.page-nav') && pageNavCenter.classList.contains('active')) {
-                pageNavCenter.classList.remove('active');
-                const icon = mobileMenuToggle.querySelector('i');
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            navMenu.classList.toggle('active');
+            
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
+            }
+        }
+
+        // 모바일 메뉴 닫기
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // 다크 모드 토글
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // 페이지 로드 시 저장된 테마 적용
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                const icon = document.querySelector('#themeToggle i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
             }
         });
     </script>
