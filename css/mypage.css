@@ -314,6 +314,41 @@
     gap: 10px;
 }
 
+/* 가이드북 주문 하이라이트 */
+.guidebook-order {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(240, 217, 140, 0.05) 100%);
+    border-left: 4px solid #d4af37;
+}
+
+.guidebook-order .order-info h3 {
+    color: #2c5f4f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.guidebook-order .order-info h3:before {
+    content: "📘";
+    font-size: 1.2em;
+}
+
+.btn-outline {
+    background: white;
+    color: #666;
+    border: 2px solid #e0e0e0;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: #f5f5f5;
+    border-color: #2c5f4f;
+    color: #2c5f4f;
+}
+
 /* Refund */
 .refund-info-box {
     background: #fff3cd;
