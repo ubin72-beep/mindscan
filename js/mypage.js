@@ -180,23 +180,47 @@ function loadResults() {
 function loadOrders() {
     const container = document.getElementById('ordersContainer');
     
-    if (orders.length === 0) {
+    // 로컬스토리지에서 가이드북 구매 내역 불러오기
+    const guidebookPurchases = JSON.parse(localStorage.getItem('guidebook_purchases') || '[]');
+    
+    // 기존 주문 + 가이드북 주문 합치기
+    const allOrders = [...orders];
+    
+    guidebookPurchases.forEach(purchase => {
+        allOrders.push({
+            id: purchase.orderId,
+            productName: purchase.productName,
+            date: new Date(purchase.paymentDate).toLocaleDateString('ko-KR'),
+            price: `₩${purchase.amount.toLocaleString()}`,
+            status: 'completed',
+            statusText: '결제완료',
+            canRefund: true,
+            used: false,
+            isGuidebook: true,
+            downloadUrl: purchase.downloadUrl || '#'
+        });
+    });
+    
+    if (allOrders.length === 0) {
         container.innerHTML = `
             <div class="empty-state">
                 <i class="fas fa-receipt"></i>
                 <h3>구매 내역이 없습니다</h3>
                 <p>프리미엄 서비스를 이용해보세요!</p>
+                <button class="btn btn-primary" onclick="location.href='guides.html'" style="margin-top: 20px;">
+                    <i class="fas fa-book"></i> 가이드북 보러가기
+                </button>
             </div>
         `;
         return;
     }
 
-    container.innerHTML = orders.map(order => `
-        <div class="order-item">
+    container.innerHTML = allOrders.map(order => `
+        <div class="order-item ${order.isGuidebook ? 'guidebook-order' : ''}">
             <div class="order-header">
                 <span class="order-number">주문번호: ${order.id}</span>
                 <span class="order-status ${order.status === 'completed' ? 'completed' : 'pending'}">
-                    ${order.statusText}
+                    ${order.isGuidebook ? '📘 가이드북' : ''} ${order.statusText}
                 </span>
             </div>
             <div class="order-body">
@@ -207,17 +231,35 @@ function loadOrders() {
                 <div class="order-price">${order.price}</div>
             </div>
             <div class="order-actions">
-                <button class="btn btn-secondary" onclick="viewOrderDetail('${order.id}')">
-                    <i class="fas fa-file-invoice"></i> 상세보기
-                </button>
+                ${order.isGuidebook ? `
+                    <button class="btn btn-primary" onclick="downloadGuidebook('${order.downloadUrl}', '${order.productName}')">
+                        <i class="fas fa-download"></i> PDF 다운로드
+                    </button>
+                ` : `
+                    <button class="btn btn-secondary" onclick="viewOrderDetail('${order.id}')">
+                        <i class="fas fa-file-invoice"></i> 상세보기
+                    </button>
+                `}
                 ${order.canRefund && !order.used ? `
-                    <button class="btn btn-primary" onclick="openRefundModal('${order.id}')">
-                        <i class="fas fa-hand-holding-usd"></i> 환불 신청
+                    <button class="btn btn-outline" onclick="openRefundModal('${order.id}')">
+                        <i class="fas fa-undo"></i> 환불 신청
                     </button>
                 ` : ''}
             </div>
         </div>
     `).join('');
+}
+
+// 가이드북 다운로드
+function downloadGuidebook(url, productName) {
+    if (url === '#') {
+        alert(`${productName} PDF가 준비 중입니다.\n\n이메일로 다운로드 링크를 보내드렸습니다.\n받은편지함을 확인해주세요!`);
+        return;
+    }
+    
+    // 실제 다운로드
+    window.open(url, '_blank');
+    alert(`${productName} 다운로드를 시작합니다!`);
 }
 
 // 환불 관리 로드
