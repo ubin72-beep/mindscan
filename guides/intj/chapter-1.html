@@ -5,239 +5,247 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1장: INTJ 성격 완벽 분석 - Mentora</title>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- CSS Files -->
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../../css/nav-common.css">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/guidebook.css">
 </head>
 <body>
-    <!-- 워터마크 -->
+    <!-- Watermark -->
     <div class="watermark">MENTORA</div>
 
     <!-- Header Navigation -->
-    <header class="page-header">
-        <nav class="page-nav">
-            <div class="page-nav-left">
-                <a href="../../index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon-text">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <span class="page-nav-logo-text">Mentora</span>
-                </a>
-            </div>
-            
-            <div class="page-nav-center">
-                <a href="../../index.html#home" class="page-nav-item">홈</a>
-                <a href="../../index.html#tests" class="page-nav-item">검사하기</a>
-                
-                <div class="page-nav-dropdown">
-                    <a href="#" class="page-nav-item">
-                        프리미엄 <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="page-nav-dropdown-content">
-                        <a href="../../roadmap.html">🗺️ AI 성장 로드맵</a>
-                        <a href="../../couple-analysis.html">💕 커플/팀 분석</a>
-                        <a href="../../dashboard.html">📊 데이터 대시보드</a>
-                        <a href="../../community.html">👥 멘토라 커뮤니티</a>
-                    </div>
+    <header class="header">
+        <nav class="nav">
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
                 </div>
-                
-                <a href="../../index.html#pricing" class="page-nav-item">요금제</a>
-                <a href="../../guides.html" class="page-nav-item active">가이드북 ✨</a>
-                <a href="../../mypage.html" class="page-nav-item">내 결과</a>
-                <a href="../../admin/index.html" class="page-nav-item">관리자</a>
+                <span class="logo-text-main">Mentora</span>
+            </a>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
             </div>
-            
-            <div class="page-nav-right">
-                <button id="mobileMenuToggle" class="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="../../index.html#home" class="nav-link">홈</a></li>
+                <li class="nav-item"><a href="../../index.html#tests" class="nav-link">검사하기</a></li>
+                <li class="nav-item nav-dropdown">
+                    <a href="#" class="nav-link">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../../couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../../ai-chatbot.html"><i class="fas fa-comments"></i> AI 코칭 챗봇</a></li>
+                        <li><a href="../../dashboard.html"><i class="fas fa-chart-line"></i> 심리 데이터 대시보드</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="../../index.html#pricing" class="nav-link">요금제</a></li>
+                <li class="nav-item"><a href="../../guides.html" class="nav-link">가이드북</a></li>
+                <li class="nav-item"><a href="../../mypage.html" class="nav-link">내 결과</a></li>
+                <li class="nav-item"><a href="../../admin/index.html" class="nav-link admin-link"><i class="fas fa-user-shield"></i> 관리자</a></li>
+            </ul>
+
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
     </header>
 
     <!-- Main Content -->
     <div class="guidebook-container">
-        <!-- 가이드북 헤더 -->
+        <!-- Header -->
         <div class="guidebook-header">
-            <div class="chapter-badge">1장: INTJ 성격 완벽 분석</div>
-            <h1>전략가 (The Architect)의 본질</h1>
-            <p class="page-number">Page 1 / 62</p>
+            <div class="chapter-badge">📚 1장 / 총 5장</div>
+            <h1>INTJ 성격 완벽 분석</h1>
+            <p class="page-number">페이지 1-20 / 총 62페이지</p>
         </div>
 
-        <!-- 콘텐츠 -->
-        <div class="guidebook-content">
-            <div class="quote-box">
-                "나는 세상을 있는 그대로 보는 것이 아니라, 어떻게 개선할 수 있는지 본다."<br>
-                - INTJ의 대표적인 사고방식
+        <!-- Content Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-number">1.1</span>
+                INTJ란 무엇인가?
+            </h2>
+
+            <div class="info-box highlight">
+                <div class="info-icon">💡</div>
+                <div>
+                    <h4>핵심 요약</h4>
+                    <p>INTJ는 '전략가형'으로 불리며, 독립적이고 논리적인 사고방식을 가진 성격 유형입니다. 전체 인구의 약 2-3%만이 이 유형에 해당하며, 특히 여성 INTJ는 전체 여성 인구의 0.8%에 불과할 정도로 희귀합니다.</p>
+                </div>
             </div>
 
-            <h2>🧠 INTJ란 무엇인가?</h2>
-            <p>
-                INTJ(Introverted, Intuitive, Thinking, Judging)는 MBTI 16가지 성격 유형 중 
-                가장 희귀하고 독특한 유형입니다. 전체 인구의 약 2-4%만이 INTJ 성격을 가지고 있으며, 
-                특히 여성 INTJ는 전체 인구의 0.8%에 불과해 매우 드문 유형으로 알려져 있습니다.
-            </p>
+            <h3 class="subsection-title">📊 INTJ 인구 통계</h3>
 
-            <h3>📊 INTJ 인구 통계</h3>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">2-4%</div>
-                    <div class="stat-label">전체 인구 중 비율</div>
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">2-3%</div>
+                    <div class="stat-label">전체 인구 비율</div>
                 </div>
                 <div class="stat-card">
+                    <div class="stat-icon">👨</div>
+                    <div class="stat-number">3.3%</div>
+                    <div class="stat-label">남성 중 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👩</div>
                     <div class="stat-number">0.8%</div>
-                    <div class="stat-label">여성 INTJ 비율</div>
+                    <div class="stat-label">여성 중 비율</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">3위</div>
-                    <div class="stat-label">희귀 성격 순위</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">NT</div>
-                    <div class="stat-label">분석가 그룹</div>
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number">5위</div>
+                    <div class="stat-label">희귀도 순위</div>
                 </div>
             </div>
 
-            <h2>🎯 INTJ의 네 가지 핵심 기능</h2>
-            
-            <h3>1. I (Introverted) - 내향성</h3>
-            <p>
-                INTJ는 내향적 성격으로, 혼자만의 시간을 통해 에너지를 충전합니다. 
-                사교적인 활동보다는 깊이 있는 사고와 계획을 선호하며, 소수의 깊은 관계를 
-                많은 얕은 관계보다 가치 있게 여깁니다.
-            </p>
-            <div class="highlight-box">
-                <h3>내향성의 특징</h3>
-                <ul class="checklist">
-                    <li>혼자 있는 시간을 통해 에너지 재충전</li>
-                    <li>깊이 있는 사고와 계획 선호</li>
-                    <li>소수의 친밀한 관계 중시</li>
-                    <li>사회적 상호작용 후 회복 시간 필요</li>
-                    <li>내적 세계와 사고에 집중</li>
-                </ul>
+            <h3 class="subsection-title">🧩 INTJ의 네 가지 선호 경향</h3>
+
+            <div class="dimension-grid">
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">I</span>
+                        <span class="dimension-name">내향성 (Introversion)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">내면의 세계에 에너지를 집중하며, 혼자만의 시간을 통해 재충전합니다.</p>
+                        <ul class="dimension-traits">
+                            <li>깊은 사고와 성찰을 선호</li>
+                            <li>소수의 깊은 관계 유지</li>
+                            <li>혼자만의 시간 필요</li>
+                            <li>내면의 아이디어 중시</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">N</span>
+                        <span class="dimension-name">직관 (iNtuition)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">전체적인 패턴과 미래 가능성을 보며, 추상적 개념을 선호합니다.</p>
+                        <ul class="dimension-traits">
+                            <li>큰 그림과 패턴 파악</li>
+                            <li>미래 지향적 사고</li>
+                            <li>상징과 은유 이해</li>
+                            <li>새로운 가능성 탐구</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">T</span>
+                        <span class="dimension-name">사고 (Thinking)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">객관적이고 논리적인 분석을 통해 의사결정을 내립니다.</p>
+                        <ul class="dimension-traits">
+                            <li>논리적 일관성 추구</li>
+                            <li>객관적 분석 선호</li>
+                            <li>원칙과 공정성 중시</li>
+                            <li>감정보다 이성 우선</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">J</span>
+                        <span class="dimension-name">판단 (Judging)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">계획적이고 체계적인 방식으로 삶을 구조화합니다.</p>
+                        <ul class="dimension-traits">
+                            <li>명확한 계획 수립</li>
+                            <li>체계적인 실행</li>
+                            <li>마감 기한 준수</li>
+                            <li>결정 후 실행 선호</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <h3>2. N (Intuitive) - 직관</h3>
-            <p>
-                직관형인 INTJ는 현재보다 미래에 초점을 맞추고, 세부 사항보다는 
-                전체적인 그림과 패턴을 파악하는 데 능숙합니다. 추상적 개념과 
-                이론적 사고를 선호하며, 새로운 가능성을 탐구하는 것을 즐깁니다.
-            </p>
-            <div class="highlight-box">
-                <h3>직관의 특징</h3>
-                <ul class="checklist">
-                    <li>미래 지향적 사고방식</li>
-                    <li>패턴과 연결고리 파악 능력</li>
-                    <li>추상적·이론적 개념 선호</li>
-                    <li>혁신적 아이디어 창출</li>
-                    <li>가능성과 잠재력에 집중</li>
-                </ul>
+            <h3 class="subsection-title">🧠 인지 기능 스택</h3>
+
+            <div class="info-box">
+                <div class="info-icon">💭</div>
+                <div>
+                    <p>INTJ의 사고방식을 이해하려면 '인지 기능 스택'을 알아야 합니다. 이는 INTJ가 정보를 처리하고 결정을 내리는 방식을 설명합니다.</p>
+                </div>
             </div>
 
-            <h3>3. T (Thinking) - 사고</h3>
-            <p>
-                사고형인 INTJ는 감정보다 논리와 객관성을 우선시합니다. 
-                의사결정 시 개인적 감정보다는 사실과 데이터에 기반하며, 
-                공정성과 효율성을 중요하게 생각합니다.
-            </p>
-            <div class="highlight-box">
-                <h3>사고의 특징</h3>
-                <ul class="checklist">
-                    <li>논리적이고 분석적인 접근</li>
-                    <li>객관적 사실 중심의 판단</li>
-                    <li>감정보다 원칙 우선</li>
-                    <li>비판적 사고 능력</li>
-                    <li>효율성과 최적화 추구</li>
-                </ul>
+            <div class="function-stack">
+                <div class="function-card primary">
+                    <div class="function-rank">주기능 (1위)</div>
+                    <div class="function-name">Ni - 내향 직관</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 패턴 인식과 미래 예측의 마스터</p>
+                        <p>무의식적으로 정보를 통합하여 통찰력을 얻으며, "갑자기 깨달음"을 자주 경험합니다. 복잡한 상황에서 본질을 파악하고 미래를 예측하는 능력이 탁월합니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 회사의 작은 변화들을 보고 6개월 후 구조조정을 예측하고 미리 대비
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-card secondary">
+                    <div class="function-rank">부기능 (2위)</div>
+                    <div class="function-name">Te - 외향 사고</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 효율적인 실행과 체계화의 도구</p>
+                        <p>직관으로 얻은 통찰을 현실에서 구현하는 능력입니다. 논리적이고 체계적인 방법으로 목표를 달성하며, 비효율을 참지 못합니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 프로젝트 목표 달성을 위해 최적의 프로세스를 설계하고 팀을 이끌어 실행
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-card tertiary">
+                    <div class="function-rank">3차 기능 (3위)</div>
+                    <div class="function-name">Fi - 내향 감정</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 내면의 가치관과 진정성</p>
+                        <p>겉으로 드러나지 않지만 강한 내면의 가치관을 가지고 있습니다. 자신의 원칙에 어긋나는 일에는 단호하게 거부합니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 돈을 많이 주는 일이라도 가치관에 맞지 않으면 거절
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-card inferior">
+                    <div class="function-rank">열등 기능 (4위)</div>
+                    <div class="function-name">Se - 외향 감각</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 현재 순간의 감각적 경험 (약점)</p>
+                        <p>INTJ의 가장 약한 부분입니다. 현재 순간에 집중하거나 감각적 세부사항을 놓치기 쉽습니다. 스트레스를 받으면 과도한 감각 추구로 나타날 수 있습니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 생각에 빠져 길을 잃거나, 스트레스 받으면 과식/과소비 경향
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <h3>4. J (Judging) - 판단</h3>
-            <p>
-                판단형인 INTJ는 계획적이고 조직적인 삶을 선호합니다. 
-                즉흥적인 상황보다는 구조화되고 예측 가능한 환경에서 
-                최고의 능력을 발휘하며, 목표를 설정하고 체계적으로 달성해 나갑니다.
-            </p>
-            <div class="highlight-box">
-                <h3>판단의 특징</h3>
-                <ul class="checklist">
-                    <li>계획적이고 조직적인 접근</li>
-                    <li>명확한 목표 설정</li>
-                    <li>체계적인 실행 방식</li>
-                    <li>마감 시한 준수</li>
-                    <li>결정과 결론 선호</li>
-                </ul>
-            </div>
-
-            <h2>💎 INTJ의 인지 기능 스택</h2>
-            <p>
-                INTJ의 행동과 사고방식은 네 가지 주요 인지 기능에 의해 결정됩니다:
-            </p>
-
-            <table class="guidebook-table">
-                <tr>
-                    <th>순위</th>
-                    <th>기능</th>
-                    <th>설명</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td><strong>주기능: Ni (내향 직관)</strong></td>
-                    <td>미래 비전을 보고 패턴을 인식하는 능력. INTJ의 전략적 사고의 핵심.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><strong>부기능: Te (외향 사고)</strong></td>
-                    <td>효율적으로 목표를 달성하고 시스템을 최적화하는 능력.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><strong>3차 기능: Fi (내향 감정)</strong></td>
-                    <td>개인의 가치관과 신념을 형성하는 능력. 성숙할수록 발달.</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td><strong>열등 기능: Se (외향 감각)</strong></td>
-                    <td>현재 순간과 감각적 경험에 대한 인식. INTJ의 약점.</td>
-                </tr>
-            </table>
-
-            <div class="quote-box">
-                <p>
-                    "INTJ는 체스 선수처럼 생각한다. 항상 몇 수 앞을 내다보고, 
-                    모든 변수를 고려하여 최선의 전략을 수립한다."
-                </p>
-            </div>
-
-            <h2>🌟 INTJ의 별명들</h2>
-            <ul>
-                <li><strong>전략가 (The Strategist)</strong> - 장기적 계획 수립 능력</li>
-                <li><strong>건축가 (The Architect)</strong> - 시스템과 구조를 설계하는 능력</li>
-                <li><strong>마스터마인드 (The Mastermind)</strong> - 복잡한 문제 해결 능력</li>
-                <li><strong>과학자 (The Scientist)</strong> - 분석적이고 체계적인 접근</li>
-                <li><strong>비전가 (The Visionary)</strong> - 미래를 내다보는 통찰력</li>
-            </ul>
-        </div>
-
-        <!-- 페이지 네비게이션 -->
+        <!-- Navigation -->
         <div class="page-navigation">
-            <a href="index.html" class="nav-btn">
+            <a href="index.html" class="nav-btn prev-btn">
                 <i class="fas fa-arrow-left"></i>
-                <span>목차로</span>
+                <span>가이드북 목차</span>
             </a>
-            
-            <div class="page-indicator">
-                Page 1 / 62
-            </div>
-            
-            <a href="chapter-1-page-2.html" class="nav-btn">
-                <span>다음 페이지</span>
+            <a href="index.html" class="nav-btn home-btn">
+                <i class="fas fa-home"></i>
+                <span>목차 페이지</span>
+            </a>
+            <a href="chapter-1-page-2.html" class="nav-btn next-btn">
+                <span>1장 2페이지: 강점과 약점</span>
                 <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -245,27 +253,68 @@
 
     <!-- JavaScript -->
     <script>
-        // 모바일 메뉴 토글
+        // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const pageNavCenter = document.querySelector('.page-nav-center');
-        
+        const navMenu = document.getElementById('navMenu');
+
         if (mobileMenuToggle) {
             mobileMenuToggle.addEventListener('click', function() {
-                pageNavCenter.classList.toggle('active');
+                navMenu.classList.toggle('active');
                 const icon = this.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
             });
         }
 
-        // 모바일에서 외부 클릭 시 메뉴 닫기
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.page-nav') && pageNavCenter.classList.contains('active')) {
-                pageNavCenter.classList.remove('active');
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav') && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
                 const icon = mobileMenuToggle.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                const icon = this.querySelector('i');
+                if (document.body.classList.contains('dark-theme')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                const icon = themeToggle.querySelector('i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Dropdown menu
+        const dropdowns = document.querySelectorAll('.nav-dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('active');
+            });
         });
     </script>
 </body>
