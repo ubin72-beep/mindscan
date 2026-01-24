@@ -21,29 +21,29 @@
 
         .roadmap-hero {
             text-align: center;
-            padding: 60px 20px;
+            padding: 40px 20px 35px;
             background: linear-gradient(135deg, #fff9e6, #ffffff);
             border-radius: 20px;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .roadmap-hero-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+            font-size: 48px;
+            margin-bottom: 15px;
         }
 
         .roadmap-hero-title {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 800;
             color: #1a4838;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .roadmap-hero-subtitle {
-            font-size: 18px;
+            font-size: 16px;
             color: #666;
-            line-height: 1.8;
-            max-width: 800px;
+            line-height: 1.7;
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -300,24 +300,51 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <a href="index.html" class="nav-logo">
-                <div class="logo-icon-text">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <span class="logo-text">Mentora</span>
-            </a>
+    <header class="page-header">
+        <nav class="page-nav">
+            <div class="page-nav-left">
+                <a href="index.html" class="page-nav-logo">
+                    <div class="page-nav-logo-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <span class="logo-text-main">Mentora</span>
+                </a>
+            </div>
             
-            <ul class="nav-menu">
-                <li><a href="index.html#home" class="nav-link">홈</a></li>
-                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
-                <li><a href="index.html#pricing" class="nav-link">요금제</a></li>
-                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
+            <ul class="page-nav-menu">
+                <li><a href="index.html#home" class="page-nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="page-nav-link">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="page-nav-link dropdown-trigger">
+                        프리미엄 <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="roadmap.html" class="dropdown-item">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span>AI 성장 로드맵</span>
+                        </a>
+                        <a href="couple-analysis.html" class="dropdown-item">
+                            <i class="fas fa-users"></i>
+                            <span>커플/팀 매칭 분석</span>
+                        </a>
+                        <a href="ai-chatbot.html" class="dropdown-item">
+                            <i class="fas fa-robot"></i>
+                            <span>AI 코칭 챗봇</span>
+                        </a>
+                        <a href="dashboard.html" class="dropdown-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>심리 데이터 대시보드</span>
+                        </a>
+                    </div>
+                </li>
+                <li><a href="index.html#pricing" class="page-nav-link">요금제</a></li>
+                <li><a href="guides.html" class="page-nav-link">가이드북</a></li>
+                <li><a href="mypage.html" class="page-nav-link">내 결과</a></li>
+                <li><a href="admin/index.html" class="page-nav-link">관리자</a></li>
             </ul>
             
-            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-                <i class="fas fa-moon"></i>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
             </button>
         </nav>
     </header>
@@ -476,7 +503,79 @@
     </div>
 
     <footer class="footer">
-        <div class="container">
+        <div class="footer-container">
+            <div class="footer-content">
+                <!-- 회사 정보 -->
+                <div class="footer-section footer-about">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="footer-logo-text">
+                            <h3>Mentora</h3>
+                            <p class="footer-slogan">진짜 나를 만나는 가장 정확한 방법</p>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-company-info">
+                        <p><strong>큐브박스 (CubeBox)</strong></p>
+                        <p>대표자: 김미화</p>
+                        <p>사업자등록번호: 537-08-03349</p>
+                        <p>주소: 서울특별시 송파구 송파대로14길 7-10 2층 (05854)</p>
+                        <p>전화: 0502-1909-7788</p>
+                        <p>이메일: mentora@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- 검사 메뉴 -->
+                <div class="footer-section">
+                    <h4>심리검사</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#tests">전체 검사</a></li>
+                        <li><a href="test-mbti.html">MBTI 성격유형검사</a></li>
+                        <li><a href="test-enneagram.html">에니어그램 성격검사</a></li>
+                        <li><a href="test-bigfive.html">Big Five 성격검사</a></li>
+                        <li><a href="blood-type-test.html">혈액형 성격 분석</a></li>
+                        <li><a href="sagunja-test.html">4군자 성격 유형</a></li>
+                        <li><a href="personal-color-test.html">퍼스널 컬러 진단</a></li>
+                    </ul>
+                </div>
+
+                <!-- 프리미엄 기능 -->
+                <div class="footer-section">
+                    <h4>프리미엄 기능</h4>
+                    <ul class="footer-links">
+                        <li><a href="roadmap.html">AI 성장 로드맵</a></li>
+                        <li><a href="couple-analysis.html">커플/팀 매칭 분석</a></li>
+                        <li><a href="ai-chatbot.html">AI 코칭 챗봇</a></li>
+                        <li><a href="dashboard.html">심리 데이터 대시보드</a></li>
+                        <li><a href="payment/checkout.html">프리미엄 구매</a></li>
+                        <li><a href="mypage.html">내 결과 보기</a></li>
+                    </ul>
+                </div>
+
+                <!-- 법적 고지 -->
+                <div class="footer-section">
+                    <h4>고객지원</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">이용약관</a></li>
+                        <li><a href="privacy.html">개인정보처리방침</a></li>
+                        <li><a href="refund.html">환불정책</a></li>
+                    </ul>
+                    
+                    <div class="footer-social">
+                        <h4 style="margin-top: 30px;">연결하기</h4>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 푸터 하단 -->
             <div class="footer-bottom">
                 <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
             </div>
@@ -489,15 +588,18 @@
             document.getElementById('disclaimerContainer').innerHTML = createDisclaimerBanner();
         });
 
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-            const icon = document.querySelector('#themeToggle i');
-            if (document.body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.page-nav-menu');
+            const toggle = document.getElementById('mobileMenuToggle');
+            menu.classList.toggle('active');
+            
+            const icon = toggle.querySelector('i');
+            if (menu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
             } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         }
     </script>
