@@ -45,9 +45,18 @@
 .page-nav-logo-icon {
     width: 50px;
     height: 50px;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
+    background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
     transition: all 0.3s ease;
+}
+
+.page-nav-logo-icon i {
+    font-size: 24px;
+    color: #2c5f4f;
 }
 
 /* 텍스트 로고 아이콘 "M" - 검사 페이지용 */
@@ -124,7 +133,7 @@
 
 .page-nav-logo:hover .page-nav-logo-icon {
     transform: scale(1.08) translateY(-2px);
-    filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5));
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.7);
 }
 
 .page-nav-logo:hover .page-nav-logo-icon-text,
@@ -134,7 +143,8 @@
     background: linear-gradient(135deg, #f0d98c 0%, #d4af37 100%);
 }
 
-.page-nav-logo-text {
+.page-nav-logo-text,
+.logo-text-main {
     font-size: 1.7rem;
     font-weight: 800;
     background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%);
@@ -155,7 +165,8 @@
     text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
 }
 
-.nav-menu {
+.nav-menu,
+.page-nav-menu {
     display: flex;
     list-style: none;
     gap: 45px;
@@ -164,7 +175,8 @@
     padding: 0;
 }
 
-.nav-link {
+.nav-link,
+.page-nav-link {
     color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     font-weight: 600;
@@ -175,7 +187,8 @@
     border-radius: 8px;
 }
 
-.nav-link::after {
+.nav-link::after,
+.page-nav-link::after {
     content: '';
     position: absolute;
     bottom: 2px;
@@ -187,13 +200,15 @@
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.page-nav-link:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.page-nav-link:hover::after {
     width: calc(100% - 32px);
 }
 
@@ -407,18 +422,24 @@
     position: relative;
 }
 
-.nav-dropdown > .nav-link {
+.nav-dropdown > .nav-link,
+.nav-dropdown > .page-nav-link,
+.dropdown-trigger {
     display: flex;
     align-items: center;
     gap: 5px;
 }
 
-.nav-dropdown > .nav-link i {
+.nav-dropdown > .nav-link i,
+.nav-dropdown > .page-nav-link i,
+.dropdown-trigger i {
     font-size: 12px;
     transition: transform 0.3s ease;
 }
 
-.nav-dropdown:hover > .nav-link i {
+.nav-dropdown:hover > .nav-link i,
+.nav-dropdown:hover > .page-nav-link i,
+.nav-dropdown:hover .dropdown-trigger i {
     transform: rotate(180deg);
 }
 
@@ -455,7 +476,8 @@
     margin-bottom: 0;
 }
 
-.dropdown-menu a {
+.dropdown-menu a,
+.dropdown-item {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -469,7 +491,8 @@
     background: white;
 }
 
-.dropdown-menu a i {
+.dropdown-menu a i,
+.dropdown-item i {
     color: #d4af37;
     font-size: 18px;
     width: 24px;
@@ -477,14 +500,16 @@
     transition: all 0.3s ease;
 }
 
-.dropdown-menu a:hover {
+.dropdown-menu a:hover,
+.dropdown-item:hover {
     background: linear-gradient(135deg, #f9f6ed, #ffffff);
     color: #1a4838 !important;
     transform: translateX(3px);
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
 }
 
-.dropdown-menu a:hover i {
+.dropdown-menu a:hover i,
+.dropdown-item:hover i {
     color: #2c5f4f;
     transform: scale(1.1);
 }
