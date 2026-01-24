@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI 코칭 챗봇 | Mentora</title>
-    <meta name="description" content="24시간 AI 코칭 챗봇과 함께 실시간 상담을 받으세요. 무제한 질문과 맞춤형 피드백을 제공합니다.">
+    <title>AI 코칭 챗봇 - Mentora</title>
+    <meta name="description" content="AI 챗봇과 대화하며 개인 맞춤형 심리 코칭을 받아보세요.">
     
+    <!-- 구글 폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- 공통 네비게이션 CSS -->
     <link rel="stylesheet" href="css/nav-common.css">
+    
+    <!-- 기본 스타일 CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <!-- 챗봇 전용 CSS -->
     <link rel="stylesheet" href="css/chatbot.css">
+    
+    <!-- Disclaimer CSS -->
     <link rel="stylesheet" href="css/disclaimer.css">
     
     <style>
@@ -23,575 +33,558 @@
 
         .chatbot-hero {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #e8eaf6, #ffffff);
+            background: linear-gradient(135deg, #e0f2ff 0%, #ffffff 100%);
+            padding: 40px 20px 35px;
             border-radius: 20px;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .chatbot-hero-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+            font-size: 48px;
+            margin-bottom: 15px;
         }
 
         .chatbot-hero-title {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 800;
-            color: #3f51b5;
-            margin-bottom: 20px;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
         .chatbot-hero-subtitle {
-            font-size: 18px;
+            font-size: 16px;
             color: #666;
             line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto 30px;
+            max-width: 700px;
+            margin: 0 auto 25px;
         }
 
-        .hero-features {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .feature-badge {
-            background: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            color: #3f51b5;
-            box-shadow: 0 4px 15px rgba(63, 81, 181, 0.2);
-        }
-
-        .btn-start {
-            padding: 18px 48px;
-            background: linear-gradient(135deg, #3f51b5, #5c6bc0);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-start:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(63, 81, 181, 0.4);
-        }
-
-        .capabilities-section {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin: 60px 0;
+            margin-bottom: 60px;
         }
 
-        .capability-card {
+        .feature-card {
             background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 16px;
-            padding: 35px 25px;
-            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
 
-        .capability-card:hover {
-            border-color: #3f51b5;
+        .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(63, 81, 181, 0.2);
+            box-shadow: 0 8px 25px rgba(44, 95, 79, 0.15);
         }
 
-        .capability-icon {
+        .feature-icon {
             font-size: 48px;
             margin-bottom: 20px;
-            color: #3f51b5;
         }
 
-        .capability-title {
+        .feature-title {
             font-size: 20px;
             font-weight: 700;
-            color: #333;
-            margin-bottom: 12px;
+            color: #2c5f4f;
+            margin-bottom: 15px;
         }
 
-        .capability-description {
+        .feature-description {
             font-size: 15px;
             color: #666;
+            line-height: 1.8;
+        }
+
+        .chatbot-demo {
+            background: linear-gradient(135deg, #f0f9f5 0%, #ffffff 100%);
+            padding: 50px 30px;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .demo-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2c5f4f;
+            margin-bottom: 20px;
+        }
+
+        .demo-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .chatbot-window {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chatbot-header-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .chatbot-header-text h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .chatbot-header-text p {
+            margin: 5px 0 0 0;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .chatbot-messages {
+            padding: 30px;
+            min-height: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+            background: #f9fafb;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .message.ai {
+            flex-direction: row;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .message.ai .message-avatar {
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: #2c5f4f;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 15px 18px;
+            border-radius: 15px;
+            font-size: 15px;
             line-height: 1.6;
         }
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin: 60px 0;
-        }
-
-        .pricing-card {
+        .message.ai .message-content {
             background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 16px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: #3f51b5;
-            box-shadow: 0 10px 40px rgba(63, 81, 181, 0.2);
-            transform: scale(1.05);
-        }
-
-        .pricing-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #3f51b5, #5c6bc0);
-            color: white;
-            padding: 6px 20px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .pricing-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
             color: #333;
+            border-top-left-radius: 4px;
         }
 
-        .pricing-price {
-            font-size: 36px;
-            font-weight: 800;
-            color: #3f51b5;
-            margin-bottom: 10px;
-        }
-
-        .pricing-period {
-            font-size: 16px;
-            color: #999;
-            margin-bottom: 30px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .pricing-features li i {
-            color: #4caf50;
-        }
-
-        .pricing-features li.disabled i {
-            color: #e0e0e0;
-        }
-
-        .btn-pricing {
-            width: 100%;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+        .message.user .message-content {
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
             color: white;
+            border-top-right-radius: 4px;
+        }
+
+        .chatbot-input-area {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 12px;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input:focus {
+            border-color: #2c5f4f;
+        }
+
+        .chatbot-send-btn {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
+            border-radius: 50%;
+            color: #2c5f4f;
+            font-size: 18px;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .btn-pricing:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(63, 81, 181, 0.3);
+        .chatbot-send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
         }
 
         .cta-section {
-            background: linear-gradient(135deg, #3f51b5, #5c6bc0);
-            border-radius: 20px;
-            padding: 60px 40px;
             text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+            border-radius: 20px;
             color: white;
-            margin-top: 60px;
         }
 
         .cta-title {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
             margin-bottom: 20px;
         }
 
-        @media (max-width: 992px) {
-            .capabilities-section,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
-            }
+        .cta-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
         }
 
+        .btn-cta {
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            color: #2c5f4f;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        /* 반응형 디자인 */
         @media (max-width: 768px) {
             .chatbot-container {
                 margin-top: 80px;
             }
 
-            .chatbot-hero-title {
-                font-size: 32px;
+            .chatbot-hero {
+                padding: 30px 20px;
             }
 
-            .hero-features {
-                flex-direction: column;
-                gap: 15px;
+            .chatbot-hero-title {
+                font-size: 28px;
+            }
+
+            .chatbot-hero-subtitle {
+                font-size: 14px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+
+            .cta-title {
+                font-size: 24px;
+            }
+
+            .cta-description {
+                font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- 네비게이션 바 -->
     <header class="page-header">
         <nav class="page-nav">
             <div class="page-nav-left">
                 <a href="index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <span class="logo-text-main">Mentora</span>
+                    <div class="page-nav-logo-icon-text">M</div>
+                    <span class="page-nav-logo-text">Mentora</span>
                 </a>
             </div>
             
-            <ul class="page-nav-menu">
-                <li><a href="index.html#home" class="page-nav-link">홈</a></li>
-                <li><a href="index.html#tests" class="page-nav-link">검사하기</a></li>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#home" class="nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
                 <li class="nav-dropdown">
-                    <a href="#" class="page-nav-link dropdown-trigger">
-                        프리미엄 <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="roadmap.html" class="dropdown-item">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <span>AI 성장 로드맵</span>
-                        </a>
-                        <a href="couple-analysis.html" class="dropdown-item">
-                            <i class="fas fa-users"></i>
-                            <span>커플/팀 매칭 분석</span>
-                        </a>
-                        <a href="ai-chatbot.html" class="dropdown-item">
-                            <i class="fas fa-robot"></i>
-                            <span>AI 코칭 챗봇</span>
-                        </a>
-                        <a href="dashboard.html" class="dropdown-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>심리 데이터 대시보드</span>
-                        </a>
-                    </div>
+                    <a href="#premium-features" class="nav-link">프리미엄 ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 매칭 분석</a></li>
+                        <li><a href="ai-chatbot.html"><i class="fas fa-comments"></i> AI 코칭 챗봇</a></li>
+                        <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> 심리 데이터 대시보드</a></li>
+                    </ul>
                 </li>
-                <li><a href="index.html#pricing" class="page-nav-link">요금제</a></li>
-                <li><a href="mypage.html" class="page-nav-link">내 결과</a></li>
-                <li><a href="admin/index.html" class="page-nav-link">관리자</a></li>
+                <li><a href="index.html#pricing" class="nav-link">요금제</a></li>
+                <li><a href="guides.html" class="nav-link">가이드북</a></li>
+                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
+                <li><a href="admin/index.html" class="nav-link admin-link">관리자</a></li>
             </ul>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <i class="fas fa-bars"></i>
             </button>
         </nav>
     </header>
 
-    <div class="chatbot-container">
-        <!-- Hero Section -->
-        <div class="chatbot-hero">
+    <!-- 메인 컨텐츠 -->
+    <main class="chatbot-container">
+        <!-- Disclaimer 배너 삽입 위치 -->
+        <div id="disclaimer-container"></div>
+
+        <!-- 히어로 섹션 -->
+        <section class="chatbot-hero">
             <div class="chatbot-hero-icon">🤖</div>
-            <h1 class="chatbot-hero-title">24시간 AI 코칭 챗봇</h1>
+            <h1 class="chatbot-hero-title">AI 코칭 챗봇</h1>
             <p class="chatbot-hero-subtitle">
-                당신의 고민을 이해하고 맞춤형 조언을 제공하는 AI 코치<br>
-                언제 어디서나 무제한으로 상담하고 실시간 피드백을 받으세요
+                AI 챗봇과 자연스럽게 대화하며<br>
+                개인 맞춤형 심리 코칭과 조언을 받아보세요.
+            </p>
+        </section>
+
+        <!-- 주요 기능 -->
+        <section class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">24/7 대화 가능</h3>
+                <p class="feature-description">
+                    언제든지 AI 챗봇과 대화할 수 있습니다. 밤낮없이 당신의 이야기를 들어드립니다.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">맞춤형 조언</h3>
+                <p class="feature-description">
+                    당신의 성격 유형과 상황을 고려한 개인 맞춤형 조언을 제공합니다.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">안전한 공간</h3>
+                <p class="feature-description">
+                    모든 대화는 안전하게 암호화되어 저장됩니다. 편안하게 대화하세요.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">감정 패턴 분석</h3>
+                <p class="feature-description">
+                    대화를 통해 감정 패턴을 분석하고 인사이트를 제공합니다.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3 class="feature-title">전문적 지식</h3>
+                <p class="feature-description">
+                    심리학 이론과 최신 연구를 바탕으로 한 전문적인 조언을 받을 수 있습니다.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">성장 추적</h3>
+                <p class="feature-description">
+                    대화 기록을 통해 당신의 심리적 성장 과정을 추적할 수 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 챗봇 데모 -->
+        <section class="chatbot-demo">
+            <h2 class="demo-title">AI 챗봇 체험</h2>
+            <p class="demo-description">
+                실제로 AI 챗봇과 대화하는 것처럼 경험해보세요.<br>
+                프리미엄 플랜 구매 시 무제한 대화가 가능합니다.
             </p>
 
-            <div class="hero-features">
-                <div class="feature-badge">
-                    <i class="fas fa-clock"></i>
-                    <span>24/7 실시간</span>
+            <div class="chatbot-window">
+                <div class="chatbot-header">
+                    <div class="chatbot-header-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chatbot-header-text">
+                        <h3>Mentora AI 코치</h3>
+                        <p>온라인 • 언제든 답변 가능</p>
+                    </div>
                 </div>
-                <div class="feature-badge">
-                    <i class="fas fa-infinity"></i>
-                    <span>무제한 질문</span>
+
+                <div class="chatbot-messages" id="chatMessages">
+                    <div class="message ai">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            안녕하세요! 저는 Mentora AI 코치입니다. 😊<br>
+                            당신의 고민을 들어드리고 함께 해결책을 찾아드리겠습니다.<br>
+                            무엇을 도와드릴까요?
+                        </div>
+                    </div>
+
+                    <div class="message user">
+                        <div class="message-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="message-content">
+                            요즘 직장 생활이 힘들어요. 어떻게 하면 좋을까요?
+                        </div>
+                    </div>
+
+                    <div class="message ai">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            직장 생활이 힘드시군요. 당신의 성격 유형(INTJ)을 고려하면, 체계적인 접근이 도움이 될 것 같습니다.<br><br>
+                            1️⃣ 구체적으로 어떤 부분이 가장 힘드신가요?<br>
+                            2️⃣ 업무 자체인가요, 아니면 대인관계인가요?<br><br>
+                            더 자세히 말씀해주시면 맞춤형 조언을 드리겠습니다.
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-badge">
-                    <i class="fas fa-brain"></i>
-                    <span>맞춤형 AI</span>
+
+                <div class="chatbot-input-area">
+                    <input type="text" class="chatbot-input" placeholder="메시지를 입력하세요... (데모 버전)" disabled>
+                    <button class="chatbot-send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
+        </section>
 
-            <button class="btn-start" onclick="scrollToPricing()">
-                <i class="fas fa-comments"></i> 지금 시작하기
-            </button>
-        </div>
+        <!-- CTA 섹션 -->
+        <section class="cta-section">
+            <h2 class="cta-title">지금 바로 시작하세요</h2>
+            <p class="cta-description">프리미엄 플랜 구매 시 AI 코칭 챗봇을 무제한으로 이용하실 수 있습니다.</p>
+            <a href="payment/checkout.html?plan=premium" class="btn-cta">프리미엄 구매하기</a>
+        </section>
+    </main>
 
-        <!-- 면책 조항 -->
-        <div id="disclaimerContainer"></div>
-
-        <!-- AI 챗봇이 할 수 있는 것 -->
-        <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin: 60px 0 40px; color: #3f51b5;">
-            🎯 AI 챗봇이 할 수 있는 것
-        </h2>
-
-        <div class="capabilities-section">
-            <div class="capability-card">
-                <div class="capability-icon">
-                    <i class="fas fa-comments"></i>
-                </div>
-                <h3 class="capability-title">공감과 경청</h3>
-                <p class="capability-description">
-                    당신의 감정을 이해하고 공감하며, 판단없이 경청합니다.
-                </p>
-            </div>
-
-            <div class="capability-card">
-                <div class="capability-icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <h3 class="capability-title">맞춤형 조언</h3>
-                <p class="capability-description">
-                    검사 결과를 바탕으로 당신에게 딱 맞는 해결책을 제시합니다.
-                </p>
-            </div>
-
-            <div class="capability-card">
-                <div class="capability-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="capability-title">성장 추적</h3>
-                <p class="capability-description">
-                    대화 내용을 분석하여 성장 과정을 함께 추적합니다.
-                </p>
-            </div>
-
-            <div class="capability-card">
-                <div class="capability-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-                <h3 class="capability-title">리소스 추천</h3>
-                <p class="capability-description">
-                    상황에 맞는 책, 영상, 활동 등을 추천해드립니다.
-                </p>
-            </div>
-
-            <div class="capability-card">
-                <div class="capability-icon">
-                    <i class="fas fa-tasks"></i>
-                </div>
-                <h3 class="capability-title">실천 계획</h3>
-                <p class="capability-description">
-                    구체적이고 실행 가능한 액션 플랜을 함께 만들어갑니다.
-                </p>
-            </div>
-
-            <div class="capability-card">
-                <div class="capability-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 class="capability-title">안전한 공간</h3>
-                <p class="capability-description">
-                    모든 대화는 암호화되어 완전히 비밀이 보장됩니다.
-                </p>
-            </div>
-        </div>
-
-        <!-- 요금 안내 -->
-        <h2 style="font-size: 32px; font-weight: 700; text-align: center; margin: 60px 0 40px; color: #3f51b5;" id="pricing">
-            💰 요금 안내
-        </h2>
-
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3 class="pricing-title">무료 체험</h3>
-                <div class="pricing-price">₩0</div>
-                <div class="pricing-period">7일 무료</div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> 7일 무료 체험</li>
-                    <li><i class="fas fa-check"></i> 일 10회 대화 제한</li>
-                    <li><i class="fas fa-check"></i> 기본 AI 응답</li>
-                    <li class="disabled"><i class="fas fa-times"></i> 검사 연동</li>
-                    <li class="disabled"><i class="fas fa-times"></i> 대화 히스토리</li>
-                </ul>
-                <button class="btn-pricing" onclick="startTrial()">무료 체험 시작</button>
-            </div>
-
-            <div class="pricing-card featured">
-                <div class="pricing-badge">추천</div>
-                <h3 class="pricing-title">프리미엄</h3>
-                <div class="pricing-price">₩29,900</div>
-                <div class="pricing-period">/ 월</div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> 무제한 대화</li>
-                    <li><i class="fas fa-check"></i> 검사 결과 연동</li>
-                    <li><i class="fas fa-check"></i> 맞춤형 AI 분석</li>
-                    <li><i class="fas fa-check"></i> 대화 히스토리 저장</li>
-                    <li><i class="fas fa-check"></i> 우선 응답</li>
-                    <li><i class="fas fa-check"></i> 리소스 추천</li>
-                </ul>
-                <button class="btn-pricing" onclick="subscribePremium()">프리미엄 시작</button>
-            </div>
-
-            <div class="pricing-card">
-                <h3 class="pricing-title">기업/팀</h3>
-                <div class="pricing-price">문의</div>
-                <div class="pricing-period">맞춤 견적</div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> 모든 프리미엄 기능</li>
-                    <li><i class="fas fa-check"></i> 팀 전용 AI</li>
-                    <li><i class="fas fa-check"></i> 관리자 대시보드</li>
-                    <li><i class="fas fa-check"></i> 맞춤형 트레이닝</li>
-                    <li><i class="fas fa-check"></i> 전담 지원</li>
-                </ul>
-                <button class="btn-pricing" onclick="contactSales()">문의하기</button>
-            </div>
-        </div>
-
-        <!-- CTA Section -->
-        <div class="cta-section">
-            <h2 class="cta-title">🚀 지금 바로 시작하세요!</h2>
-            <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
-                7일 무료 체험으로 AI 코칭 챗봇의 강력한 기능을 경험해보세요.
-            </p>
-            <button class="btn-start" onclick="startTrial()">
-                <i class="fas fa-rocket"></i> 무료 체험 시작
-            </button>
-        </div>
-    </div>
-
+    <!-- 푸터 -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-content">
-                <!-- 회사 정보 -->
-                <div class="footer-section footer-about">
-                    <div class="footer-logo">
-                        <div class="footer-logo-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="footer-logo-text">
-                            <h3>Mentora</h3>
-                            <p class="footer-slogan">진짜 나를 만나는 가장 정확한 방법</p>
-                        </div>
-                    </div>
-                    
-                    <div class="footer-company-info">
-                        <p><strong>큐브박스 (CubeBox)</strong></p>
-                        <p>대표자: 김미화</p>
-                        <p>사업자등록번호: 537-08-03349</p>
-                        <p>주소: 서울특별시 송파구 송파대로14길 7-10 2층 (05854)</p>
-                        <p>전화: 0502-1909-7788</p>
-                        <p>이메일: mentora@gmail.com</p>
-                    </div>
-                </div>
-
-                <!-- 검사 메뉴 -->
-                <div class="footer-section">
-                    <h4>심리검사</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html#tests">전체 검사</a></li>
-                        <li><a href="test-mbti.html">MBTI 성격유형검사</a></li>
-                        <li><a href="test-enneagram.html">에니어그램 성격검사</a></li>
-                        <li><a href="test-bigfive.html">Big Five 성격검사</a></li>
-                        <li><a href="blood-type-test.html">혈액형 성격 분석</a></li>
-                        <li><a href="sagunja-test.html">4군자 성격 유형</a></li>
-                        <li><a href="personal-color-test.html">퍼스널 컬러 진단</a></li>
-                    </ul>
-                </div>
-
-                <!-- 프리미엄 기능 -->
-                <div class="footer-section">
-                    <h4>프리미엄 기능</h4>
-                    <ul class="footer-links">
-                        <li><a href="roadmap.html">AI 성장 로드맵</a></li>
-                        <li><a href="couple-analysis.html">커플/팀 매칭 분석</a></li>
-                        <li><a href="ai-chatbot.html">AI 코칭 챗봇</a></li>
-                        <li><a href="dashboard.html">심리 데이터 대시보드</a></li>
-                        <li><a href="payment/checkout.html">프리미엄 구매</a></li>
-                        <li><a href="mypage.html">내 결과 보기</a></li>
-                    </ul>
-                </div>
-
-                <!-- 법적 고지 -->
-                <div class="footer-section">
-                    <h4>고객지원</h4>
-                    <ul class="footer-links">
-                        <li><a href="terms.html">이용약관</a></li>
-                        <li><a href="privacy.html">개인정보처리방침</a></li>
-                        <li><a href="refund.html">환불정책</a></li>
-                    </ul>
-                    
-                    <div class="footer-social">
-                        <h4 style="margin-top: 30px;">연결하기</h4>
-                        <div class="social-icons">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Mentora</h3>
+                <p class="footer-description">
+                    진짜 나를 만나는 가장 정확한 방법<br>
+                    100만 명이 선택한 심리검사 플랫폼
+                </p>
+                <div class="footer-company">
+                    <p><strong>회사명:</strong> CubeBox</p>
+                    <p><strong>대표:</strong> 박민수</p>
+                    <p><strong>주소:</strong> 서울특별시 송파구 송파대로14길 7-10 2층</p>
+                    <p><strong>전화:</strong> 050-2-1909-7788</p>
+                    <p><strong>이메일:</strong> mentora@gmail.com</p>
                 </div>
             </div>
 
-            <!-- 푸터 하단 -->
-            <div class="footer-bottom">
-                <p>&copy; 2026 큐브박스 (CubeBox). All rights reserved.</p>
+            <div class="footer-section">
+                <h4 class="footer-subtitle">심리검사</h4>
+                <ul class="footer-links">
+                    <li><a href="guides.html">전체 검사 보기</a></li>
+                    <li><a href="guides/intj-sample.html">INTJ 가이드북</a></li>
+                    <li><a href="guides/enfp-sample.html">ENFP 가이드북</a></li>
+                    <li><a href="guides/infp-sample.html">INFP 가이드북</a></li>
+                </ul>
             </div>
+
+            <div class="footer-section">
+                <h4 class="footer-subtitle">프리미엄 기능</h4>
+                <ul class="footer-links">
+                    <li><a href="roadmap.html">AI 성장 로드맵</a></li>
+                    <li><a href="couple-analysis.html">커플/팀 매칭 분석</a></li>
+                    <li><a href="ai-chatbot.html">AI 코칭 챗봇</a></li>
+                    <li><a href="dashboard.html">심리 데이터 대시보드</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-subtitle">고객지원</h4>
+                <ul class="footer-links">
+                    <li><a href="mypage.html">내 결과 보기</a></li>
+                    <li><a href="payment/checkout.html?plan=premium">프리미엄 구매</a></li>
+                    <li><a href="admin/index.html">관리자</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 CubeBox. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Disclaimer 스크립트 -->
     <script src="js/disclaimer.js"></script>
+
+    <!-- 모바일 메뉴 토글 -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('disclaimerContainer').innerHTML = createDisclaimerBanner();
-        });
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
 
-        function toggleMobileMenu() {
-            const menu = document.querySelector('.page-nav-menu');
-            const toggle = document.getElementById('mobileMenuToggle');
-            menu.classList.toggle('active');
-            
-            const icon = toggle.querySelector('i');
-            if (menu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-
-        function scrollToPricing() {
-            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function startTrial() {
-            alert('무료 체험 신청이 곧 가능합니다!');
-        }
-
-        function subscribePremium() {
-            window.location.href = 'payment/checkout.html?plan=gold';
-        }
-
-        function contactSales() {
-            alert('기업 문의: mentora@gmail.com');
+        if (mobileMenuToggle && navMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                const icon = this.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
         }
     </script>
 </body>
