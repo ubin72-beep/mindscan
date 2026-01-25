@@ -4,363 +4,594 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2장: INTP 직업 추천 - Mentora</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/nav-common.css?v=1.2">
-    <link rel="stylesheet" href="../../css/style.css?v=1.2">
-    <link rel="stylesheet" href="../../css/guidebook.css?v=1.3">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/nav-common.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/guidebook.css">
 </head>
 <body>
-    <div class="watermark">Mentora</div>
+    <!-- Watermark -->
+    <div class="watermark">MENTORA</div>
 
+    <!-- Header Navigation -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">
-                <a href="../../index.html" class="logo-link">
-                    <div class="logo-icon">
-                        <img src="../../images/logo-brain-hd.png" alt="Mentora Brain Logo">
-                    </div>
-                    <span class="logo-text">Mentora</span>
-                </a>
-            </div>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="메뉴 열기">
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
-
-            <div class="page-nav-center">
-                <ul class="nav-menu">
-                    <li><a href="../../index.html#home">홈</a></li>
-                    <li><a href="../../index.html#tests">검사하기</a></li>
-                    <li class="nav-dropdown">
-                        <a href="#" class="dropdown-trigger">프리미엄 <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../../roadmap.html">🗺️ AI 성장 로드맵</a></li>
-                            <li><a href="../../couple-analysis.html">💕 커플/팀 분석</a></li>
-                            <li><a href="../../dashboard.html">📊 데이터 대시보드</a></li>
-                            <li><a href="../../community.html">👥 멘토라 커뮤니티</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="../../index.html#pricing">요금제</a></li>
-                    <li><a href="../../guides.html" class="active">가이드북</a></li>
-                    <li><a href="../../mypage.html">내 결과</a></li>
-                    <li><a href="../../admin/index.html">관리자</a></li>
-                </ul>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환">
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../../index.html#home" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="../../index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../../couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../../dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../../community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="../../guides.html" class="nav-link" onclick="closeMobileMenu()">가이드북</a></li>
+                <li><a href="../../mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="../../admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
                 <i class="fas fa-moon"></i>
             </button>
         </nav>
     </header>
 
-    <main class="guidebook-container">
-        <header class="guidebook-header">
-            <div class="chapter-badge">Chapter 2</div>
-            <h1>INTP 직업 추천 30가지</h1>
-            <div class="page-number">Page 15 / 62</div>
-        </header>
+    <!-- Main Content -->
+    <div class="guidebook-container">
+        <!-- Header -->
+        <div class="guidebook-header">
+            <div class="chapter-badge">📚 2장 / 총 5장</div>
+            <h1>INTP 맞춤 직업 추천 30가지</h1>
+            <p class="page-number">페이지 21-35 / 총 62페이지</p>
+        </div>
 
-        <article class="guidebook-content">
-            <section id="intro">
-                <h2>💼 INTP에게 최적화된 직업</h2>
-                <p class="intro-text">
-                    INTP는 논리적 사고, 창의성, 그리고 독립적인 업무 환경을 선호합니다. 
-                    이들에게 가장 적합한 직업은 복잡한 문제를 해결하고, 새로운 아이디어를 탐구하며, 
-                    지적 자극을 받을 수 있는 분야입니다.
-                </p>
+        <!-- Content Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-number">2.1</span>
+                INTP에게 맞는 직업의 특징
+            </h2>
 
-                <div class="highlight-box">
-                    <h4>🎯 INTP 직업 선택의 핵심 기준</h4>
+            <div class="info-box highlight">
+                <div class="info-icon">💼</div>
+                <div>
+                    <h4>INTP가 직업에서 중요하게 여기는 것</h4>
+                    <p>INTP는 <strong>지적 자극, 논리적 분석, 독립성</strong>을 추구합니다. 반복적이고 예측 가능한 업무보다는 새로운 문제를 해결하고 창의적으로 사고할 수 있는 환경을 선호합니다.</p>
+                </div>
+            </div>
+
+            <div class="career-criteria">
+                <h3>✅ INTP 최적 직업 조건</h3>
+                <div class="criteria-grid">
+                    <div class="criteria-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>지적 자극</h4>
+                        <p>복잡한 문제를 분석하고 해결</p>
+                    </div>
+                    <div class="criteria-card">
+                        <i class="fas fa-user-circle"></i>
+                        <h4>독립성</h4>
+                        <p>자율적으로 일할 수 있는 환경</p>
+                    </div>
+                    <div class="criteria-card">
+                        <i class="fas fa-rocket"></i>
+                        <h4>혁신 기회</h4>
+                        <p>새로운 아이디어를 시도할 자유</p>
+                    </div>
+                    <div class="criteria-card">
+                        <i class="fas fa-brain"></i>
+                        <h4>논리적 사고</h4>
+                        <p>체계적 분석이 핵심인 업무</p>
+                    </div>
+                    <div class="criteria-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>유연한 일정</h4>
+                        <p>엄격한 루틴보다 유연한 스케줄</p>
+                    </div>
+                    <div class="criteria-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>지속 학습</h4>
+                        <p>계속 배우고 성장할 기회</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 60px;">
+                <span class="section-number">2.2</span>
+                분야별 추천 직업 30가지
+            </h2>
+
+            <!-- 과학/연구 분야 -->
+            <div class="career-category">
+                <h3 class="category-title">
+                    <i class="fas fa-flask"></i>
+                    과학 & 연구 분야 (10개)
+                </h3>
+                <p class="category-desc">INTP의 분석력과 호기심이 빛나는 분야</p>
+
+                <div class="job-grid">
+                    <div class="job-card excellent">
+                        <div class="job-header">
+                            <h4>1. 연구 과학자</h4>
+                            <span class="fit-badge">완벽 적합</span>
+                        </div>
+                        <p class="job-desc">물리학, 화학, 생물학 등 기초과학 연구</p>
+                        <div class="job-why">
+                            <strong>왜 적합한가:</strong>
+                            <ul>
+                                <li>깊이 있는 이론 탐구</li>
+                                <li>독립적 연구 환경</li>
+                                <li>지적 호기심 충족</li>
+                            </ul>
+                        </div>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~8,000만원</div>
+                    </div>
+
+                    <div class="job-card excellent">
+                        <div class="job-header">
+                            <h4>2. 데이터 과학자</h4>
+                            <span class="fit-badge">완벽 적합</span>
+                        </div>
+                        <p class="job-desc">빅데이터 분석 및 머신러닝 모델 개발</p>
+                        <div class="job-why">
+                            <strong>왜 적합한가:</strong>
+                            <ul>
+                                <li>복잡한 데이터 패턴 발견</li>
+                                <li>논리적 분석과 프로그래밍</li>
+                                <li>높은 수요와 연봉</li>
+                            </ul>
+                        </div>
+                        <div class="job-salary">💰 평균 연봉: 6,000만원~1억원+</div>
+                    </div>
+
+                    <div class="job-card excellent">
+                        <div class="job-header">
+                            <h4>3. 수학자</h4>
+                            <span class="fit-badge">완벽 적합</span>
+                        </div>
+                        <p class="job-desc">순수/응용 수학 연구, 알고리즘 개발</p>
+                        <div class="job-why">
+                            <strong>왜 적합한가:</strong>
+                            <ul>
+                                <li>추상적 사고의 극치</li>
+                                <li>논리적 증명과 패턴</li>
+                                <li>혼자서 깊이 파고들기</li>
+                            </ul>
+                        </div>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~7,000만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>4. 천문학자</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">우주 현상 연구 및 관측 데이터 분석</p>
+                        <div class="job-why">
+                            <strong>왜 적합한가:</strong>
+                            <ul>
+                                <li>우주의 신비 탐구</li>
+                                <li>복잡한 이론 분석</li>
+                            </ul>
+                        </div>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~7,500만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>5. 심리학 연구원</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">인간 행동과 사고 패턴 연구</p>
+                        <div class="job-why">
+                            <strong>왜 적합한가:</strong>
+                            <ul>
+                                <li>인간 행동의 논리 분석</li>
+                                <li>실험 설계와 데이터 분석</li>
+                            </ul>
+                        </div>
+                        <div class="job-salary">💰 평균 연봉: 4,500만원~6,500만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>6. 약학 연구원</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">신약 개발 및 약물 메커니즘 연구</p>
+                        <div class="job-salary">💰 평균 연봉: 5,500만원~8,000만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>7. 경제학 연구원</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">경제 이론 및 시장 분석 연구</p>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~7,500만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>8. 생명공학 연구원</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">유전자, 세포, 분자생물학 연구</p>
+                        <div class="job-salary">💰 평균 연봉: 4,500만원~7,000만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>9. 철학 연구자</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">논리학, 인식론, 윤리학 등 연구</p>
+                        <div class="job-salary">💰 평균 연봉: 4,000만원~6,000만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>10. 환경 과학자</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">환경 문제 분석 및 해결책 연구</p>
+                        <div class="job-salary">💰 평균 연봉: 4,500만원~6,500만원</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IT/기술 분야 -->
+            <div class="career-category" style="margin-top: 60px;">
+                <h3 class="category-title">
+                    <i class="fas fa-laptop-code"></i>
+                    IT & 기술 분야 (8개)
+                </h3>
+                <p class="category-desc">논리와 창의성이 결합된 INTP의 천국</p>
+
+                <div class="job-grid">
+                    <div class="job-card excellent">
+                        <div class="job-header">
+                            <h4>11. 소프트웨어 개발자</h4>
+                            <span class="fit-badge">완벽 적합</span>
+                        </div>
+                        <p class="job-desc">백엔드, 프론트엔드, 풀스택 개발</p>
+                        <div class="job-why">
+                            <strong>왜 적합한가:</strong>
+                            <ul>
+                                <li>논리적 문제 해결</li>
+                                <li>창의적 코드 설계</li>
+                                <li>원격 근무 가능</li>
+                                <li>높은 수요와 연봉</li>
+                            </ul>
+                        </div>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~1억원+</div>
+                    </div>
+
+                    <div class="job-card excellent">
+                        <div class="job-header">
+                            <h4>12. 시스템 아키텍트</h4>
+                            <span class="fit-badge">완벽 적합</span>
+                        </div>
+                        <p class="job-desc">대규모 시스템 설계 및 구조 설계</p>
+                        <div class="job-why">
+                            <strong>왜 적합한가:</strong>
+                            <ul>
+                                <li>복잡한 시스템 설계</li>
+                                <li>전체적인 구조 파악</li>
+                                <li>최적화 전략 수립</li>
+                            </ul>
+                        </div>
+                        <div class="job-salary">💰 평균 연봉: 8,000만원~1억 5천만원</div>
+                    </div>
+
+                    <div class="job-card excellent">
+                        <div class="job-header">
+                            <h4>13. AI/머신러닝 엔지니어</h4>
+                            <span class="fit-badge">완벽 적합</span>
+                        </div>
+                        <p class="job-desc">인공지능 모델 개발 및 최적화</p>
+                        <div class="job-salary">💰 평균 연봉: 7,000만원~1억 5천만원+</div>
+                    </div>
+
+                    <div class="job-card excellent">
+                        <div class="job-header">
+                            <h4>14. 사이버 보안 전문가</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">해킹 방어, 취약점 분석, 보안 시스템 설계</p>
+                        <div class="job-salary">💰 평균 연봉: 6,000만원~1억원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>15. 블록체인 개발자</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">분산 시스템 및 스마트 컨트랙트 개발</p>
+                        <div class="job-salary">💰 평균 연봉: 7,000만원~1억 2천만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>16. 게임 개발자</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">게임 엔진, 로직, 시스템 프로그래밍</p>
+                        <div class="job-salary">💰 평균 연봉: 4,500만원~8,000만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>17. 네트워크 엔지니어</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">네트워크 설계, 구축, 최적화</p>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~7,500만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>18. DevOps 엔지니어</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">개발/운영 자동화 및 인프라 관리</p>
+                        <div class="job-salary">💰 평균 연봉: 6,000만원~9,000만원</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 경영/전략 분야 -->
+            <div class="career-category" style="margin-top: 60px;">
+                <h3 class="category-title">
+                    <i class="fas fa-chart-pie"></i>
+                    경영 & 전략 분야 (5개)
+                </h3>
+
+                <div class="job-grid">
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>19. 전략 컨설턴트</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">기업 전략 수립, 문제 해결 컨설팅</p>
+                        <div class="job-salary">💰 평균 연봉: 6,000만원~1억 5천만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>20. 프로덕트 매니저</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">제품 기획, 전략 수립, 개발 관리</p>
+                        <div class="job-salary">💰 평균 연봉: 6,000만원~1억원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>21. 비즈니스 분석가</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">데이터 기반 비즈니스 인사이트 도출</p>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~8,000만원</div>
+                    </div>
+
+                    <div class="job-card moderate">
+                        <div class="job-header">
+                            <h4>22. 재무 분석가</h4>
+                            <span class="fit-badge">보통</span>
+                        </div>
+                        <p class="job-desc">재무 데이터 분석 및 투자 전략 수립</p>
+                        <div class="job-salary">💰 평균 연봉: 5,500만원~9,000만원</div>
+                    </div>
+
+                    <div class="job-card moderate">
+                        <div class="job-header">
+                            <h4>23. 시장조사 분석가</h4>
+                            <span class="fit-badge">보통</span>
+                        </div>
+                        <p class="job-desc">시장 트렌드 및 소비자 행동 분석</p>
+                        <div class="job-salary">💰 평균 연봉: 4,500만원~7,000만원</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 창작/디자인 분야 -->
+            <div class="career-category" style="margin-top: 60px;">
+                <h3 class="category-title">
+                    <i class="fas fa-palette"></i>
+                    창작 & 디자인 분야 (4개)
+                </h3>
+
+                <div class="job-grid">
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>24. UX 디자이너</h4>
+                            <span class="fit-badge">매우 적합</span>
+                        </div>
+                        <p class="job-desc">사용자 경험 설계 및 인터랙션 디자인</p>
+                        <div class="job-why">
+                            <strong>왜 적합한가:</strong>
+                            <ul>
+                                <li>논리적 사용자 흐름 설계</li>
+                                <li>문제 해결 중심 디자인</li>
+                            </ul>
+                        </div>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~8,500만원</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>25. 작가/저술가</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">소설, 논픽션, 기술 문서 작성</p>
+                        <div class="job-salary">💰 평균 연봉: 변동 큼 (프리랜서)</div>
+                    </div>
+
+                    <div class="job-card moderate">
+                        <div class="job-header">
+                            <h4>26. 건축가</h4>
+                            <span class="fit-badge">보통</span>
+                        </div>
+                        <p class="job-desc">건축 설계 및 공간 구조 계획</p>
+                        <div class="job-salary">💰 평균 연봉: 5,000만원~8,000만원</div>
+                    </div>
+
+                    <div class="job-card moderate">
+                        <div class="job-header">
+                            <h4>27. 음악 프로듀서</h4>
+                            <span class="fit-badge">보통</span>
+                        </div>
+                        <p class="job-desc">음악 제작, 편곡, 사운드 디자인</p>
+                        <div class="job-salary">💰 평균 연봉: 변동 큼</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 기타 분야 -->
+            <div class="career-category" style="margin-top: 60px;">
+                <h3 class="category-title">
+                    <i class="fas fa-ellipsis-h"></i>
+                    기타 추천 직업 (3개)
+                </h3>
+
+                <div class="job-grid">
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>28. 변호사 (특허/IT법)</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">논리적 법률 분석, 특허 전문</p>
+                        <div class="job-salary">💰 평균 연봉: 7,000만원~2억원+</div>
+                    </div>
+
+                    <div class="job-card good">
+                        <div class="job-header">
+                            <h4>29. 대학 교수</h4>
+                            <span class="fit-badge">적합</span>
+                        </div>
+                        <p class="job-desc">연구와 교육을 병행</p>
+                        <div class="job-salary">💰 평균 연봉: 6,000만원~1억원</div>
+                    </div>
+
+                    <div class="job-card moderate">
+                        <div class="job-header">
+                            <h4>30. 독립 연구자/창업가</h4>
+                            <span class="fit-badge">적합 (리스크 높음)</span>
+                        </div>
+                        <p class="job-desc">자신의 아이디어로 독립적 연구/사업</p>
+                        <div class="job-salary">💰 평균 연봉: 매우 변동적</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 피해야 할 직업 -->
+            <div class="info-box warning" style="margin-top: 60px;">
+                <div class="info-icon">⚠️</div>
+                <div>
+                    <h4>INTP가 피해야 할 직업</h4>
                     <ul>
-                        <li><strong>지적 도전:</strong> 복잡한 문제 해결 기회</li>
-                        <li><strong>독립성:</strong> 자율적인 업무 환경</li>
-                        <li><strong>창의성:</strong> 혁신적 아이디어 개발 가능</li>
-                        <li><strong>분석:</strong> 논리적 사고 활용</li>
-                        <li><strong>유연성:</strong> 틀에 박히지 않은 업무 방식</li>
+                        <li><strong>엄격한 루틴:</strong> 반복적이고 변화 없는 업무 (생산직, 행정직)</li>
+                        <li><strong>강한 사회성 요구:</strong> 지속적인 대면 영업, 고객 서비스</li>
+                        <li><strong>감정 노동:</strong> 상담사, 사회복지사 (Fe 열등 기능)</li>
+                        <li><strong>엄격한 위계질서:</strong> 군대식 조직 문화</li>
+                        <li><strong>실시간 의사결정:</strong> 응급실 의사, 트레이더 (Si 약함)</li>
                     </ul>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="tech">
-                <h2>💻 기술 및 IT 분야 (10개)</h2>
-
-                <div class="job-item">
-                    <h3>1. 소프트웨어 개발자/엔지니어</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                    <p>논리적 사고와 문제 해결 능력을 최대한 활용할 수 있는 직업입니다.</p>
-                    <ul>
-                        <li><strong>주요 업무:</strong> 소프트웨어 설계, 코딩, 디버깅</li>
-                        <li><strong>필요 역량:</strong> 프로그래밍 언어, 알고리즘, 자료구조</li>
-                        <li><strong>평균 연봉:</strong> 5,000만원 ~ 1억원+</li>
-                    </ul>
-                </div>
-
-                <div class="job-item">
-                    <h3>2. 데이터 과학자/분석가</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                    <p>대량의 데이터를 분석하고 패턴을 발견하는 일에 최적화되어 있습니다.</p>
-                    <ul>
-                        <li><strong>주요 업무:</strong> 데이터 분석, 통계 모델링, 인사이트 도출</li>
-                        <li><strong>필요 역량:</strong> Python, R, 통계학, 머신러닝</li>
-                        <li><strong>평균 연봉:</strong> 6,000만원 ~ 1억 2천만원+</li>
-                    </ul>
-                </div>
-
-                <div class="job-item">
-                    <h3>3. 시스템 아키텍트</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                    <p>복잡한 시스템을 설계하고 전체 구조를 구상하는 능력이 요구됩니다.</p>
-                </div>
-
-                <div class="job-item">
-                    <h3>4. AI/머신러닝 엔지니어</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                    <p>최신 기술을 연구하고 혁신적인 AI 솔루션을 개발합니다.</p>
-                </div>
-
-                <div class="job-item">
-                    <h3>5. 사이버 보안 전문가</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                    <p>논리적 사고로 보안 취약점을 찾고 해결책을 제시합니다.</p>
-                </div>
-
-                <div class="job-item">
-                    <h3>6. 블록체인 개발자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>7. 게임 개발자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>8. 네트워크 엔지니어</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>9. 데이터베이스 관리자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>10. UX 리서처</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-            </section>
-
-            <section id="research">
-                <h2>🔬 연구 및 학술 분야 (7개)</h2>
-
-                <div class="job-item">
-                    <h3>11. 대학 교수/연구원</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                    <p>깊이 있는 연구와 지식 탐구를 평생 할 수 있는 직업입니다.</p>
-                </div>
-
-                <div class="job-item">
-                    <h3>12. 물리학자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>13. 수학자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>14. 철학자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>15. 생명과학 연구원</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>16. 천문학자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>17. 경제학자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-            </section>
-
-            <section id="creative">
-                <h2>🎨 창의적 분야 (6개)</h2>
-
-                <div class="job-item">
-                    <h3>18. 작가/저술가</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                    <p>복잡한 아이디어를 글로 표현하는 창의적 작업입니다.</p>
-                </div>
-
-                <div class="job-item">
-                    <h3>19. 발명가</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>20. 영화 감독/프로듀서</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>21. 음악 프로듀서</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>22. 건축가</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>23. 제품 디자이너</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-            </section>
-
-            <section id="professional">
-                <h2>💼 전문 서비스 분야 (7개)</h2>
-
-                <div class="job-item">
-                    <h3>24. 변호사 (특허, 기술)</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>25. 컨설턴트 (전략, IT)</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>26. 금융 분석가</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>27. 정신과 의사/심리학자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>28. 전략 기획자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>29. 독립 연구자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐⭐</strong></p>
-                </div>
-
-                <div class="job-item">
-                    <h3>30. 기업가/스타트업 창업자</h3>
-                    <p><strong>적합도: ⭐⭐⭐⭐</strong></p>
-                    <p>혁신적인 아이디어를 현실로 만들 수 있는 기회입니다.</p>
-                </div>
-            </section>
-
-            <section id="avoid">
-                <h2>⚠️ INTP가 피해야 할 직업</h2>
-                
-                <div class="warning-box">
-                    <h4>주의: 다음 직업은 INTP의 성향과 맞지 않을 수 있습니다</h4>
-                    <ul>
-                        <li><strong>영업/마케팅:</strong> 과도한 사회적 상호작용 요구</li>
-                        <li><strong>고객 서비스:</strong> 반복적인 감정 노동</li>
-                        <li><strong>행정/사무직:</strong> 단순 반복 업무</li>
-                        <li><strong>단순 제조업:</strong> 창의성 발휘 기회 부족</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="tips">
-                <h2>🎯 INTP 커리어 성공 전략</h2>
-                
-                <div class="info-box">
-                    <h4>💡 성공을 위한 5가지 팁</h4>
-                    <ol>
-                        <li><strong>전문성 개발:</strong> 한 분야의 깊이 있는 전문가가 되세요</li>
-                        <li><strong>네트워킹:</strong> 약점인 사회성도 조금씩 키워가세요</li>
-                        <li><strong>프로젝트 완성:</strong> 시작한 일은 끝까지 마무리하는 습관</li>
-                        <li><strong>소통 능력:</strong> 복잡한 아이디어를 쉽게 설명하는 연습</li>
-                        <li><strong>실용성:</strong> 이론과 실무의 균형 유지</li>
-                    </ol>
-                </div>
-
-                <div class="quote-box">
-                    <p>"논리는 당신을 A에서 B로 데려다 줍니다. 상상력은 당신을 어디든 데려다 줍니다."</p>
-                    <cite>- 알베르트 아인슈타인 (INTP)</cite>
-                </div>
-            </section>
-        </article>
-
-        <nav class="page-navigation">
+        <!-- Navigation -->
+        <div class="page-navigation">
             <a href="chapter-1-page-2.html" class="nav-btn prev-btn">
-                <i class="fas fa-arrow-left"></i> 이전 장
+                <i class="fas fa-arrow-left"></i>
+                <span>1장: INTP 분석</span>
             </a>
             <a href="index.html" class="nav-btn home-btn">
-                <i class="fas fa-home"></i> 목차로
+                <i class="fas fa-home"></i>
+                <span>목차 페이지</span>
             </a>
             <a href="chapter-3.html" class="nav-btn next-btn">
-                다음 장 <i class="fas fa-arrow-right"></i>
+                <span>3장: 연애 & 궁합</span>
+                <i class="fas fa-arrow-right"></i>
             </a>
-        </nav>
-    </main>
+        </div>
+    </div>
 
+    <!-- JavaScript -->
     <script>
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const pageNavCenter = document.querySelector('.page-nav-center');
-        
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                pageNavCenter.classList.toggle('active');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            });
-        }
-
-        document.addEventListener('click', function(e) {
-            if (pageNavCenter && pageNavCenter.classList.contains('active')) {
-                if (!e.target.closest('.page-nav-center') && !e.target.closest('.mobile-menu-toggle')) {
-                    pageNavCenter.classList.remove('active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const icon = document.querySelector('#mobileMenuToggle i');
+            navMenu.classList.toggle('active');
+            
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
-        });
-
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        body.classList.toggle('dark-mode', savedTheme === 'dark');
-        
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                const isDark = body.classList.contains('dark-mode');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                themeToggle.querySelector('i').classList.toggle('fa-moon');
-                themeToggle.querySelector('i').classList.toggle('fa-sun');
-            });
         }
 
-        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
-            const trigger = dropdown.querySelector('.dropdown-trigger');
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-            });
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const icon = document.querySelector('#mobileMenuToggle i');
+            navMenu.classList.remove('active');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const icon = document.querySelector('#themeToggle i');
+            
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            const icon = document.querySelector('#themeToggle i');
+            if (icon) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            if (!event.target.closest('.nav') && navMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
         });
     </script>
 </body>
-</html>
+</html
