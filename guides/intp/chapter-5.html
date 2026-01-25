@@ -3,412 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5장: INTP 유명인 사례 - Mentora</title>
+    <title>5장: 유명인 사례 분석 - Mentora</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/nav-common.css?v=1.2">
-    <link rel="stylesheet" href="../../css/style.css?v=1.2">
-    <link rel="stylesheet" href="../../css/guidebook.css?v=1.3">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../../css/nav-common.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/guidebook.css">
 </head>
 <body>
-    <div class="watermark">Mentora</div>
+    <!-- 워터마크 -->
+    <div class="watermark">MENTORA</div>
 
+    <!-- Header Navigation -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">
-                <a href="../../index.html" class="logo-link">
-                    <div class="logo-icon">
-                        <img src="../../images/logo-brain-hd.png" alt="Mentora Brain Logo">
-                    </div>
-                    <span class="logo-text">Mentora</span>
-                </a>
-            </div>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="메뉴 열기">
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
-
-            <div class="page-nav-center">
-                <ul class="nav-menu">
-                    <li><a href="../../index.html#home">홈</a></li>
-                    <li><a href="../../index.html#tests">검사하기</a></li>
-                    <li class="nav-dropdown">
-                        <a href="#" class="dropdown-trigger">프리미엄 <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../../roadmap.html">🗺️ AI 성장 로드맵</a></li>
-                            <li><a href="../../couple-analysis.html">💕 커플/팀 분석</a></li>
-                            <li><a href="../../dashboard.html">📊 데이터 대시보드</a></li>
-                            <li><a href="../../community.html">👥 멘토라 커뮤니티</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="../../index.html#pricing">요금제</a></li>
-                    <li><a href="../../guides.html" class="active">가이드북</a></li>
-                    <li><a href="../../mypage.html">내 결과</a></li>
-                    <li><a href="../../admin/index.html">관리자</a></li>
-                </ul>
-            </div>
-
-            <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환">
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../../index.html#home" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="../../index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../../couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../../dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../../community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="../../guides.html" class="nav-link" onclick="closeMobileMenu()">가이드북</a></li>
+                <li><a href="../../mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="../../admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
                 <i class="fas fa-moon"></i>
             </button>
         </nav>
     </header>
 
-    <main class="guidebook-container">
-        <header class="guidebook-header">
-            <div class="chapter-badge">Chapter 5</div>
+    <!-- Main Content -->
+    <div class="guidebook-container">
+        <!-- 가이드북 헤더 -->
+        <div class="guidebook-header">
+            <div class="chapter-badge">5장: 유명인 사례 분석</div>
             <h1>세계를 바꾼 INTP들의 이야기</h1>
-            <div class="page-number">Page 56 / 62</div>
-        </header>
+            <p class="page-number">Page 58 / 62</p>
+        </div>
 
-        <article class="guidebook-content">
-            <section id="intro">
-                <h2>🌟 INTP 유명인 리스트</h2>
-                <p class="intro-text">
-                    역사상 가장 위대한 과학자, 철학자, 혁신가들 중 많은 이들이 INTP 유형입니다. 
-                    이들은 논리적 사고와 창의성으로 세상을 바꾸고, 인류의 지식을 확장시켰습니다.
+        <!-- 콘텐츠 -->
+        <div class="guidebook-content">
+            <div class="quote-box">
+                "역사를 만든 많은 발명가, 과학자, 철학자들이 INTP였습니다. 
+                그들의 성공과 실패에서 배우고, 당신만의 길을 찾으세요."
+            </div>
+
+            <h2>🌟 INTP 유명인 리스트</h2>
+            <p>
+                이들은 모두 논리적 사고, 창의성, 독립성을 통해 
+                각자의 분야에서 혁명을 일으켰습니다.
+            </p>
+
+            <h2>🔬 과학 & 기술</h2>
+
+            <h3>1. 알버트 아인슈타인 (Albert Einstein)</h3>
+            <div class="highlight-box">
+                <p><strong>분야:</strong> 물리학자</p>
+                <p><strong>주요 업적:</strong></p>
+                <ul class="checklist">
+                    <li>상대성 이론 (E=mc²)</li>
+                    <li>노벨 물리학상 수상</li>
+                    <li>현대 물리학의 기초 확립</li>
+                </ul>
+
+                <p><strong>INTP 특성 발현:</strong></p>
+                <ul>
+                    <li><strong>사고 실험:</strong> 머릿속으로 복잡한 이론 시뮬레이션</li>
+                    <li><strong>독립적 사고:</strong> 기존 물리학 체계에 도전</li>
+                    <li><strong>추상적 개념:</strong> 시간과 공간의 본질 탐구</li>
+                    <li><strong>평생 호기심:</strong> 죽을 때까지 통일장 이론 연구</li>
+                </ul>
+
+                <p><strong>배울 점:</strong></p>
+                <ul class="checklist">
+                    <li>복잡한 개념도 단순하게 설명하는 능력 (E=mc²)</li>
+                    <li>실패를 두려워하지 않는 탐구 정신</li>
+                    <li>상상력과 논리의 완벽한 결합</li>
+                </ul>
+            </div>
+
+            <h3>2. 빌 게이츠 (Bill Gates)</h3>
+            <div class="highlight-box">
+                <p><strong>분야:</strong> 기업가, 프로그래머</p>
+                <p><strong>주요 업적:</strong></p>
+                <ul class="checklist">
+                    <li>마이크로소프트 창업</li>
+                    <li>개인용 컴퓨터 혁명 주도</li>
+                    <li>빌 & 멜린다 게이츠 재단</li>
+                </ul>
+
+                <p><strong>INTP 특성 발현:</strong></p>
+                <ul>
+                    <li><strong>프로그래밍 천재:</strong> 어린 시절부터 코딩에 몰입</li>
+                    <li><strong>시스템 사고:</strong> PC 소프트웨어 생태계 구축</li>
+                    <li><strong>지속적 학습:</strong> 은퇴 후에도 독서와 학습</li>
+                    <li><strong>논리적 자선:</strong> 데이터 기반 효율적 기부</li>
+                </ul>
+
+                <p><strong>배울 점:</strong></p>
+                <ul class="checklist">
+                    <li>기술력과 비즈니스 감각의 결합 (INTP 약점 보완)</li>
+                    <li>성공 후에도 새로운 목표 설정 (자선 활동)</li>
+                    <li>평생 학습자의 자세</li>
+                </ul>
+            </div>
+
+            <h3>3. 래리 페이지 (Larry Page)</h3>
+            <div class="highlight-box">
+                <p><strong>분야:</strong> 구글 공동 창업자</p>
+                <p><strong>주요 업적:</strong></p>
+                <ul class="checklist">
+                    <li>PageRank 알고리즘 개발</li>
+                    <li>구글 검색 엔진 혁명</li>
+                    <li>알파벳 CEO</li>
+                </ul>
+
+                <p><strong>INTP 특성 발현:</strong></p>
+                <ul>
+                    <li><strong>알고리즘 사고:</strong> 웹 페이지를 수학적으로 분석</li>
+                    <li><strong>혁신적 접근:</strong> 기존 검색 엔진과 완전히 다른 방식</li>
+                    <li><strong>미래 지향:</strong> 자율주행, AI 등 미래 기술 투자</li>
+                </ul>
+
+                <p><strong>배울 점:</strong></p>
+                <ul class="checklist">
+                    <li>학문적 연구를 비즈니스로 전환</li>
+                    <li>INTP의 논리력으로 세계적 기업 창업</li>
+                    <li>대담한 혁신 프로젝트 추진</li>
+                </ul>
+            </div>
+
+            <h2>🎨 철학 & 문화</h2>
+
+            <h3>4. 찰스 다윈 (Charles Darwin)</h3>
+            <div class="highlight-box">
+                <p><strong>분야:</strong> 생물학자, 진화론 창시자</p>
+                <p><strong>주요 업적:</strong></p>
+                <ul class="checklist">
+                    <li>자연선택 이론</li>
+                    <li>《종의 기원》 저술</li>
+                    <li>현대 생물학의 기초</li>
+                </ul>
+
+                <p><strong>INTP 특성 발현:</strong></p>
+                <ul>
+                    <li><strong>패턴 인식:</strong> 생물 종들의 유사성 발견</li>
+                    <li><strong>데이터 수집:</strong> 비글호 항해 중 방대한 관찰</li>
+                    <li><strong>논리적 추론:</strong> 증거를 바탕으로 이론 구축</li>
+                    <li><strong>신중함:</strong> 20년간 이론 검증 후 발표</li>
+                </ul>
+            </div>
+
+            <h3>5. 르네 데카르트 (René Descartes)</h3>
+            <div class="highlight-box">
+                <p><strong>분야:</strong> 철학자, 수학자</p>
+                <p><strong>주요 업적:</strong></p>
+                <ul class="checklist">
+                    <li>"나는 생각한다, 고로 존재한다"</li>
+                    <li>해석기하학 창시</li>
+                    <li>근대 철학의 아버지</li>
+                </ul>
+
+                <p><strong>INTP 특성 발현:</strong></p>
+                <ul>
+                    <li><strong>근본 질문:</strong> 확실한 것이 무엇인가?</li>
+                    <li><strong>체계적 의심:</strong> 모든 것을 의심하는 방법론</li>
+                    <li><strong>논리 구조:</strong> 철학을 수학처럼 증명</li>
+                </ul>
+            </div>
+
+            <h2>💻 현대 기술</h2>
+
+            <h3>6. 리누스 토발즈 (Linus Torvalds)</h3>
+            <div class="highlight-box">
+                <p><strong>분야:</strong> 프로그래머</p>
+                <p><strong>주요 업적:</strong></p>
+                <ul class="checklist">
+                    <li>Linux 커널 개발</li>
+                    <li>Git 버전 관리 시스템 개발</li>
+                    <li>오픈소스 운동 주도</li>
+                </ul>
+
+                <p><strong>INTP 특성 발현:</strong></p>
+                <ul>
+                    <li><strong>기술 순수주의:</strong> 최적의 코드 추구</li>
+                    <li><strong>독립성:</strong> 혼자서 OS 커널 개발</li>
+                    <li><strong>솔직함:</strong> 직설적인 코드 리뷰로 유명</li>
+                </ul>
+            </div>
+
+            <h3>7. 제임스 고슬링 (James Gosling)</h3>
+            <div class="highlight-box">
+                <p><strong>분야:</strong> 컴퓨터 과학자</p>
+                <p><strong>주요 업적:</strong></p>
+                <ul class="checklist">
+                    <li>Java 프로그래밍 언어 개발</li>
+                    <li>"Java의 아버지"</li>
+                </ul>
+
+                <p><strong>INTP 특성 발현:</strong></p>
+                <ul>
+                    <li><strong>언어 설계:</strong> 우아하고 논리적인 언어 구조</li>
+                    <li><strong>플랫폼 독립성:</strong> "Write Once, Run Anywhere"</li>
+                </ul>
+            </div>
+
+            <h2>🎯 성공 패턴 분석</h2>
+            <div class="highlight-box">
+                <h3>INTP 유명인들의 공통점</h3>
+                <ul class="checklist">
+                    <li><strong>깊은 사색</strong>: 문제를 깊이 파고드는 능력</li>
+                    <li><strong>논리적 체계</strong>: 복잡한 개념을 체계화</li>
+                    <li><strong>독립적 연구</strong>: 혼자서 깊이 탐구</li>
+                    <li><strong>평생 학습</strong>: 끊임없는 호기심과 탐구</li>
+                    <li><strong>혁신적 사고</strong>: 기존 틀을 깨는 아이디어</li>
+                    <li><strong>패턴 인식</strong>: 숨겨진 연결성 발견</li>
+                    <li><strong>신중한 발표</strong>: 충분히 검증 후 공개</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 20px;">
+                <h3>⚠️ 주의해야 할 함정</h3>
+                <ul>
+                    <li><strong>실행력 부족</strong>: 아인슈타인도 실험은 다른 사람 도움</li>
+                    <li><strong>사회적 고립</strong>: 너무 깊은 사색으로 현실과 단절</li>
+                    <li><strong>완벽주의</strong>: 다윈처럼 20년 미루지 말고 적절한 시점에 공개</li>
+                    <li><strong>감정 소통 부족</strong>: 논리만으로는 사람을 움직이기 어려움</li>
+                    <li><strong>비즈니스 감각</strong>: 기술만으로는 부족, 실용화 전략 필요</li>
+                </ul>
+            </div>
+
+            <h2>💭 나만의 롤모델 찾기</h2>
+            <p>
+                위 사례들에서 당신에게 영감을 주는 요소를 찾으세요:
+            </p>
+            <ul>
+                <li>어떤 INTP의 어떤 면이 가장 공감되나요?</li>
+                <li>그들의 성공 전략 중 무엇을 적용할 수 있나요?</li>
+                <li>그들의 실수에서 무엇을 배울 수 있나요?</li>
+                <li>당신만의 독특한 강점은 무엇인가요?</li>
+            </ul>
+
+            <div class="quote-box">
+                "이들은 모두 완벽하지 않았습니다. 하지만 자신의 강점을 극대화하고, 
+                약점을 보완하며, 끊임없는 호기심으로 세상을 변화시켰습니다. 
+                당신도 할 수 있습니다."
+            </div>
+
+            <h2>🎓 마무리: 당신의 INTP 여정</h2>
+            <p>
+                이 가이드북을 통해 INTP로서의 자신을 깊이 이해하고, 
+                잠재력을 최대한 발휘하는 방법을 배웠습니다.
+            </p>
+            
+            <div class="highlight-box">
+                <h3>🚀 다음 단계</h3>
+                <ol>
+                    <li>이 가이드북을 정기적으로 재방문하여 새로운 통찰 얻기</li>
+                    <li>각 챕터의 실전 전략을 하나씩 실행하기</li>
+                    <li>자신만의 성장 로드맵 작성하기</li>
+                    <li>INTP 커뮤니티에 참여하여 경험 공유</li>
+                    <li>6개월, 1년 후 자신의 변화 돌아보기</li>
+                </ol>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 40px; border-radius: 12px; text-align: center; margin-top: 40px;">
+                <h2 style="color: white; margin-bottom: 20px;">🎉 축하합니다!</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                    INTP 성격 완벽 분석 가이드북 62페이지를 모두 완료했습니다!
                 </p>
-
-                <div class="highlight-box">
-                    <h4>💡 INTP 유명인의 공통점</h4>
-                    <ul>
-                        <li><strong>혁신적 사고:</strong> 기존 틀을 깨는 새로운 아이디어</li>
-                        <li><strong>깊이 있는 탐구:</strong> 한 분야의 본질까지 파고듦</li>
-                        <li><strong>독립적 연구:</strong> 혼자만의 시간과 공간 활용</li>
-                        <li><strong>논리적 체계:</strong> 복잡한 이론을 체계화</li>
-                        <li><strong>호기심:</strong> 끝없는 질문과 탐구</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="scientists">
-                <h2>🔬 과학자 & 발명가</h2>
-
-                <div class="celebrity-item">
-                    <h3>1. 알베르트 아인슈타인 (Albert Einstein)</h3>
-                    <p class="role">이론물리학자, 상대성이론 창시자</p>
-                    <div class="celebrity-content">
-                        <h4>🎯 INTP 특징</h4>
-                        <ul>
-                            <li>복잡한 우주의 원리를 논리적으로 설명</li>
-                            <li>사고 실험(Thought Experiment)을 통한 이론 개발</li>
-                            <li>독립적이고 창의적인 연구 스타일</li>
-                            <li>"상상력은 지식보다 중요하다" - 직관과 논리의 조화</li>
-                        </ul>
-                        <h4>🏆 주요 업적</h4>
-                        <ul>
-                            <li>특수 상대성이론 (E=mc²)</li>
-                            <li>일반 상대성이론</li>
-                            <li>광전 효과 설명 (노벨 물리학상)</li>
-                        </ul>
-                        <h4>💭 배울 점</h4>
-                        <p>복잡한 문제를 단순하게 만드는 능력, 상상력과 논리의 결합</p>
-                    </div>
-                </div>
-
-                <div class="celebrity-item">
-                    <h3>2. 아이작 뉴턴 (Isaac Newton)</h3>
-                    <p class="role">물리학자, 수학자, 만유인력의 법칙 발견</p>
-                    <div class="celebrity-content">
-                        <h4>🎯 INTP 특징</h4>
-                        <ul>
-                            <li>혼자서 깊이 있는 연구에 몰두</li>
-                            <li>수학적 논리로 자연 현상 설명</li>
-                            <li>사회적 교류보다 학문에 집중</li>
-                        </ul>
-                        <h4>🏆 주요 업적</h4>
-                        <ul>
-                            <li>만유인력의 법칙</li>
-                            <li>운동의 3법칙</li>
-                            <li>미적분학 개발</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="celebrity-item">
-                    <h3>3. 찰스 다윈 (Charles Darwin)</h3>
-                    <p class="role">생물학자, 진화론 창시자</p>
-                    <div class="celebrity-content">
-                        <h4>🎯 INTP 특징</h4>
-                        <ul>
-                            <li>방대한 관찰과 데이터 수집</li>
-                            <li>논리적 추론을 통한 이론 구축</li>
-                            <li>기존 학설에 도전하는 용기</li>
-                        </ul>
-                        <h4>🏆 주요 업적</h4>
-                        <ul>
-                            <li>자연선택에 의한 진화론</li>
-                            <li>『종의 기원』 출판</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="celebrity-item">
-                    <h3>4. 마리 퀴리 (Marie Curie)</h3>
-                    <p class="role">물리학자, 화학자, 노벨상 2회 수상</p>
-                    <div class="celebrity-content">
-                        <h4>🎯 INTP 특징</h4>
-                        <ul>
-                            <li>끈질긴 연구와 실험 정신</li>
-                            <li>논리적이고 체계적인 연구 방법</li>
-                            <li>사회적 편견을 극복한 독립성</li>
-                        </ul>
-                        <h4>🏆 주요 업적</h4>
-                        <ul>
-                            <li>방사능 연구 (라듐, 폴로늄 발견)</li>
-                            <li>노벨 물리학상 (1903)</li>
-                            <li>노벨 화학상 (1911)</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section id="philosophers">
-                <h2>📚 철학자 & 사상가</h2>
-
-                <div class="celebrity-item">
-                    <h3>5. 소크라테스 (Socrates)</h3>
-                    <p class="role">고대 그리스 철학자</p>
-                    <div class="celebrity-content">
-                        <h4>🎯 INTP 특징</h4>
-                        <ul>
-                            <li>끊임없는 질문과 논리적 대화</li>
-                            <li>진리 탐구에 대한 열정</li>
-                            <li>비판적 사고의 대가</li>
-                        </ul>
-                        <h4>🏆 주요 업적</h4>
-                        <ul>
-                            <li>소크라테스식 문답법</li>
-                            <li>서양 철학의 기초 확립</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="celebrity-item">
-                    <h3>6. 르네 데카르트 (René Descartes)</h3>
-                    <p class="role">철학자, 수학자, "나는 생각한다, 고로 존재한다"</p>
-                    <div class="celebrity-content">
-                        <h4>🎯 INTP 특징</h4>
-                        <ul>
-                            <li>체계적이고 논리적인 사고</li>
-                            <li>회의주의적 접근 (방법적 회의)</li>
-                            <li>이성을 통한 진리 탐구</li>
-                        </ul>
-                        <h4>🏆 주요 업적</h4>
-                        <ul>
-                            <li>근대 철학의 아버지</li>
-                            <li>해석기하학 개발</li>
-                            <li>『방법서설』 저술</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tech">
-                <h2>💻 기술 혁신가</h2>
-
-                <div class="celebrity-item">
-                    <h3>7. 빌 게이츠 (Bill Gates)</h3>
-                    <p class="role">마이크로소프트 창업자, 기술 혁신가</p>
-                    <div class="celebrity-content">
-                        <h4>🎯 INTP 특징</h4>
-                        <ul>
-                            <li>논리적 문제 해결 능력</li>
-                            <li>기술과 비즈니스의 융합</li>
-                            <li>장기적 비전과 전략적 사고</li>
-                            <li>지속적인 학습과 독서</li>
-                        </ul>
-                        <h4>🏆 주요 업적</h4>
-                        <ul>
-                            <li>PC 혁명 주도 (Windows OS)</li>
-                            <li>마이크로소프트를 글로벌 기업으로 성장</li>
-                            <li>빌&멀린다 게이츠 재단 (자선 활동)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="celebrity-item">
-                    <h3>8. 래리 페이지 (Larry Page)</h3>
-                    <p class="role">구글 공동 창업자</p>
-                    <div class="celebrity-content">
-                        <h4>🎯 INTP 특징</h4>
-                        <ul>
-                            <li>혁신적인 알고리즘 개발 (PageRank)</li>
-                            <li>논리적이고 체계적인 접근</li>
-                            <li>기술로 세상을 바꾸려는 비전</li>
-                        </ul>
-                        <h4>🏆 주요 업적</h4>
-                        <ul>
-                            <li>구글 검색 엔진 개발</li>
-                            <li>정보 접근성 혁명</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section id="patterns">
-                <h2>🎯 INTP 성공의 공통 패턴</h2>
-
-                <div class="info-box">
-                    <h4>📊 성공한 INTP들의 7가지 습관</h4>
-                    <ol>
-                        <li><strong>깊이 있는 탐구:</strong> 한 분야를 파고들어 전문가가 됨</li>
-                        <li><strong>독립적 사고:</strong> 기존 통념에 도전하고 새로운 관점 제시</li>
-                        <li><strong>논리적 체계화:</strong> 복잡한 아이디어를 명확한 이론으로 정리</li>
-                        <li><strong>지속적 학습:</strong> 평생 호기심을 유지하고 배움</li>
-                        <li><strong>집중력:</strong> 중요한 문제에 깊이 몰입</li>
-                        <li><strong>인내심:</strong> 즉각적인 결과보다 장기적 성과 추구</li>
-                        <li><strong>용기:</strong> 비판을 두려워하지 않고 자신의 신념 관철</li>
-                    </ol>
-                </div>
-            </section>
-
-            <section id="warnings">
-                <h2>⚠️ INTP가 피해야 할 함정</h2>
-
-                <div class="warning-box">
-                    <h4>🚫 성공을 방해하는 요소들</h4>
-                    <ul>
-                        <li><strong>완벽주의:</strong> 완벽을 추구하다 아무것도 완성하지 못함</li>
-                        <li><strong>고립:</strong> 혼자만의 세계에 갇혀 협업 기회 놓침</li>
-                        <li><strong>실행 부족:</strong> 아이디어만 많고 실천이 없음</li>
-                        <li><strong>소통 부재:</strong> 훌륭한 아이디어를 제대로 전달하지 못함</li>
-                        <li><strong>현실 무시:</strong> 이론에만 집중하고 실용성 간과</li>
-                    </ul>
-                </div>
-
-                <div class="solution-box">
-                    <h4>✅ 해결 방법</h4>
-                    <ul>
-                        <li>작은 프로젝트부터 완성하는 습관</li>
-                        <li>정기적인 네트워킹과 협업</li>
-                        <li>데드라인 설정과 외부 책임감 활용</li>
-                        <li>소통 능력 개발 (글쓰기, 발표 연습)</li>
-                        <li>이론과 실무의 균형 유지</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="role-model">
-                <h2>🎓 나만의 롤모델 찾기</h2>
-
-                <div class="highlight-box">
-                    <h4>💡 롤모델 선택 가이드</h4>
-                    <p>위 유명인들 중에서 자신과 가장 닮은 사람을 찾아보세요:</p>
-                    <ul>
-                        <li><strong>과학에 관심:</strong> 아인슈타인, 뉴턴, 마리 퀴리</li>
-                        <li><strong>철학적 탐구:</strong> 소크라테스, 데카르트</li>
-                        <li><strong>기술 혁신:</strong> 빌 게이츠, 래리 페이지</li>
-                        <li><strong>생물학/진화:</strong> 찰스 다윈</li>
-                    </ul>
-                </div>
-
-                <div class="checklist">
-                    <h4>✅ 롤모델 따라하기 체크리스트</h4>
-                    <ul>
-                        <li><input type="checkbox"> 롤모델의 전기나 자서전 읽기</li>
-                        <li><input type="checkbox"> 그들의 사고방식 연구하기</li>
-                        <li><input type="checkbox"> 비슷한 습관 1가지 실천하기</li>
-                        <li><input type="checkbox"> 그들의 명언 노트에 적기</li>
-                        <li><input type="checkbox"> 같은 분야 공부 시작하기</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="conclusion">
-                <h2>🎉 마무리: 당신도 세상을 바꿀 수 있습니다</h2>
-
-                <div class="quote-box">
-                    <p>"논리는 당신을 A에서 B로 데려다 줍니다. 상상력은 당신을 어디든 데려다 줍니다."</p>
-                    <cite>- 알베르트 아인슈타인</cite>
-                </div>
-
-                <p class="intro-text">
-                    INTP인 당신은 세상을 다르게 보는 능력을 가지고 있습니다. 
-                    논리적 사고와 창의성, 깊이 있는 탐구 정신은 인류를 발전시키는 원동력입니다. 
-                    이 가이드북에서 배운 내용을 바탕으로, 당신만의 길을 개척해 나가세요.
+                <p style="font-size: 1rem; opacity: 0.9;">
+                    이제 당신은 INTP로서의 강점을 극대화하고, 
+                    약점을 보완하며, 성공적인 커리어와 관계를 구축할 준비가 되었습니다.
                 </p>
+            </div>
+        </div>
 
-                <div class="highlight-box">
-                    <h4>🚀 다음 단계</h4>
-                    <ol>
-                        <li><strong>자기 이해:</strong> 이 가이드북을 다시 읽으며 자신을 깊이 이해하기</li>
-                        <li><strong>강점 활용:</strong> INTP의 강점을 최대한 활용할 분야 선택</li>
-                        <li><strong>약점 보완:</strong> 실행력, 소통 능력 개발 시작</li>
-                        <li><strong>AI 활용:</strong> AI 도구로 생산성 극대화</li>
-                        <li><strong>커뮤니티:</strong> 같은 유형의 사람들과 교류하기</li>
-                        <li><strong>실천:</strong> 오늘부터 작은 프로젝트 시작하기</li>
-                    </ol>
-                </div>
-
-                <div class="celebration-box">
-                    <h3>🎊 축하합니다!</h3>
-                    <p>INTP 가이드북 62페이지를 모두 완독하셨습니다!</p>
-                    <p>당신은 이제 자신을 더 깊이 이해하고, 잠재력을 최대한 발휘할 준비가 되었습니다.</p>
-                    <p><strong>멘토라와 함께 계속 성장해 나가세요! 🚀</strong></p>
-                </div>
-            </section>
-        </article>
-
-        <nav class="page-navigation">
-            <a href="chapter-4.html" class="nav-btn prev-btn">
-                <i class="fas fa-arrow-left"></i> 이전 장
+        <!-- 페이지 네비게이션 -->
+        <div class="page-navigation">
+            <a href="chapter-4.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>4장으로</span>
             </a>
-            <a href="index.html" class="nav-btn home-btn">
-                <i class="fas fa-home"></i> 목차로
+            
+            <div class="page-indicator">
+                Page 58-62 / 62
+            </div>
+            
+            <a href="index.html" class="nav-btn">
+                <span>목차로 돌아가기</span>
+                <i class="fas fa-arrow-right"></i>
             </a>
-            <a href="../../guides.html" class="nav-btn next-btn">
-                가이드북 홈 <i class="fas fa-arrow-right"></i>
-            </a>
-        </nav>
-    </main>
+        </div>
+    </div>
 
+    <!-- JavaScript -->
     <script>
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const pageNavCenter = document.querySelector('.page-nav-center');
-        
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                pageNavCenter.classList.toggle('active');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            });
-        }
-
-        document.addEventListener('click', function(e) {
-            if (pageNavCenter && pageNavCenter.classList.contains('active')) {
-                if (!e.target.closest('.page-nav-center') && !e.target.closest('.mobile-menu-toggle')) {
-                    pageNavCenter.classList.remove('active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const icon = document.querySelector('#mobileMenuToggle i');
+            navMenu.classList.toggle('active');
+            
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
-        });
-
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        body.classList.toggle('dark-mode', savedTheme === 'dark');
-        
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                const isDark = body.classList.contains('dark-mode');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                themeToggle.querySelector('i').classList.toggle('fa-moon');
-                themeToggle.querySelector('i').classList.toggle('fa-sun');
-            });
         }
 
-        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
-            const trigger = dropdown.querySelector('.dropdown-trigger');
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-            });
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const icon = document.querySelector('#mobileMenuToggle i');
+            navMenu.classList.remove('active');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const icon = document.querySelector('#themeToggle i');
+            
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            const icon = document.querySelector('#themeToggle i');
+            if (icon) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            if (!event.target.closest('.nav') && navMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
         });
     </script>
 </body>
