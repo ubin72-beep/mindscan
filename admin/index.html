@@ -568,7 +568,7 @@
             // 인기 가이드북 계산
             const productCount = {};
             purchases.forEach(p => {
-                const productName = p.productName.split(' ')[0]; // INTJ, INTP 등
+                const productName = p.productName.split(' ')[0];
                 productCount[productName] = (productCount[productName] || 0) + 1;
             });
             
@@ -677,7 +677,6 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: false,
                     plugins: {
                         legend: {
                             display: true,
@@ -728,7 +727,6 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: false,
                     plugins: {
                         legend: {
                             display: false
@@ -771,7 +769,6 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                animation: false,
                 plugins: {
                     legend: { display: false }
                 },
@@ -802,7 +799,6 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                animation: false,
                 plugins: {
                     legend: { display: false }
                 },
