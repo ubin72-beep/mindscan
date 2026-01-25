@@ -4,346 +4,316 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1장: ENTJ 성격 완벽 분석 - Mentora</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/nav-common.css?v=1.2">
-    <link rel="stylesheet" href="../../css/style.css?v=1.2">
-    <link rel="stylesheet" href="../../css/guidebook.css?v=1.3">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/nav-common.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/guidebook.css">
 </head>
 <body>
-    <div class="watermark">Mentora</div>
+    <!-- Watermark -->
+    <div class="watermark">MENTORA</div>
 
+    <!-- Header Navigation -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">
-                <a href="../../index.html" class="logo-link">
-                    <div class="logo-icon">
-                        <img src="../../images/logo-brain-hd.png" alt="Mentora Brain Logo">
-                    </div>
-                    <span class="logo-text">Mentora</span>
-                </a>
-            </div>
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text-main">Mentora</span>
+            </a>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="메뉴 열기">
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
                 <i class="fas fa-bars"></i>
-            </button>
-
-            <div class="page-nav-center">
-                <ul class="nav-menu">
-                    <li><a href="../../index.html#home">홈</a></li>
-                    <li><a href="../../index.html#tests">검사하기</a></li>
-                    <li class="nav-dropdown">
-                        <a href="#" class="dropdown-trigger">프리미엄 <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../../roadmap.html">🗺️ AI 성장 로드맵</a></li>
-                            <li><a href="../../couple-analysis.html">💕 커플/팀 분석</a></li>
-                            <li><a href="../../dashboard.html">📊 데이터 대시보드</a></li>
-                            <li><a href="../../community.html">👥 멘토라 커뮤니티</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="../../index.html#pricing">요금제</a></li>
-                    <li><a href="../../guides.html" class="active">가이드북</a></li>
-                    <li><a href="../../mypage.html">내 결과</a></li>
-                    <li><a href="../../admin/index.html">관리자</a></li>
-                </ul>
             </div>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환">
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="../../index.html#home" class="nav-link">홈</a></li>
+                <li class="nav-item"><a href="../../index.html#tests" class="nav-link">검사하기</a></li>
+                <li class="nav-item nav-dropdown">
+                    <a href="#" class="nav-link">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../../couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../../ai-chatbot.html"><i class="fas fa-comments"></i> AI 코칭 챗봇</a></li>
+                        <li><a href="../../dashboard.html"><i class="fas fa-chart-line"></i> 심리 데이터 대시보드</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="../../index.html#pricing" class="nav-link">요금제</a></li>
+                <li class="nav-item"><a href="../../guides.html" class="nav-link">가이드북</a></li>
+                <li class="nav-item"><a href="../../mypage.html" class="nav-link">내 결과</a></li>
+                <li class="nav-item"><a href="../../admin/index.html" class="nav-link admin-link"><i class="fas fa-user-shield"></i> 관리자</a></li>
+            </ul>
+
+            <button class="theme-toggle" id="themeToggle">
                 <i class="fas fa-moon"></i>
             </button>
         </nav>
     </header>
 
-    <main class="guidebook-container">
-        <header class="guidebook-header">
-            <div class="chapter-badge">Chapter 1</div>
+    <!-- Main Content -->
+    <div class="guidebook-container">
+        <!-- Header -->
+        <div class="guidebook-header">
+            <div class="chapter-badge">📚 1장 / 총 5장</div>
             <h1>ENTJ 성격 완벽 분석</h1>
-            <div class="page-number">Page 1 / 62</div>
-        </header>
+            <p class="page-number">페이지 1-20 / 총 62페이지</p>
+        </div>
 
-        <nav class="guidebook-toc">
-            <h3>목차</h3>
-            <ul>
-                <li><a href="#intro">1.1 ENTJ란?</a></li>
-                <li><a href="#traits">1.2 핵심 특징</a></li>
-                <li><a href="#cognitive">1.3 인지 기능</a></li>
-                <li><a href="#next">다음: 강점과 약점</a></li>
-            </ul>
-        </nav>
+        <!-- Content Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-number">1.1</span>
+                ENTJ란 무엇인가?
+            </h2>
 
-        <article class="guidebook-content">
-            <section id="intro">
-                <h2>📘 ENTJ란? (The Commander)</h2>
-                <p class="intro-text">
-                    ENTJ는 <strong>지휘관형</strong>으로, 전체 인구의 약 <strong>2-5%</strong>를 차지하는 희귀한 유형입니다. 
-                    타고난 리더십과 전략적 사고로 조직을 이끌고, 목표를 달성하는 데 탁월한 능력을 가진 유형입니다.
-                </p>
-
-                <div class="highlight-box">
-                    <h4>💡 ENTJ의 별명들</h4>
-                    <ul>
-                        <li><strong>지휘관</strong> - 리더십의 화신</li>
-                        <li><strong>CEO형</strong> - 타고난 경영자</li>
-                        <li><strong>전략가</strong> - 장기적 비전 수립</li>
-                        <li><strong>결단자</strong> - 빠르고 확실한 의사결정</li>
-                    </ul>
+            <div class="info-box highlight">
+                <div class="info-icon">💡</div>
+                <div>
+                    <h4>핵심 요약</h4>
+                    <p>ENTJ는 '지휘관형'으로 불리며, 타고난 리더십과 전략적 사고를 가진 성격 유형입니다. 전체 인구의 약 2-5%만이 이 유형에 해당하며, 목표 달성을 위해 조직을 이끄는 능력이 탁월합니다.</p>
                 </div>
-            </section>
+            </div>
 
-            <section id="traits">
-                <h2>🎯 핵심 특징</h2>
-                
-                <h3>1. 외향적 사고 (Extraverted Thinking - Te)</h3>
-                <p>
-                    ENTJ의 주기능은 <strong>외향적 사고(Te)</strong>입니다. 이들은 논리와 효율성을 중시하며, 
-                    목표 달성을 위한 최적의 시스템을 구축하는 능력이 뛰어납니다.
-                </p>
-                <ul>
-                    <li>효율성과 생산성 극대화</li>
-                    <li>명확한 목표 설정과 실행</li>
-                    <li>논리적이고 객관적인 판단</li>
-                    <li>구조화된 시스템 선호</li>
-                </ul>
+            <h3 class="subsection-title">📊 ENTJ 인구 통계</h3>
 
-                <h3>2. 내향적 직관 (Introverted Intuition - Ni)</h3>
-                <p>
-                    보조 기능인 <strong>내향적 직관(Ni)</strong>은 ENTJ에게 장기적 비전과 통찰력을 제공합니다. 
-                    이들은 미래를 예측하고 전략을 수립하는 데 탁월합니다.
-                </p>
-                <ul>
-                    <li>장기적 비전과 목표 설정</li>
-                    <li>패턴 인식과 미래 예측</li>
-                    <li>본질을 꿰뚫는 통찰력</li>
-                    <li>복잡한 문제의 핵심 파악</li>
-                </ul>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">2-5%</div>
+                    <div class="stat-label">전체 인구 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👨</div>
+                    <div class="stat-number">5.5%</div>
+                    <div class="stat-label">남성 중 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👩</div>
+                    <div class="stat-number">1.5%</div>
+                    <div class="stat-label">여성 중 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number">7위</div>
+                    <div class="stat-label">희귀도 순위</div>
+                </div>
+            </div>
 
-                <h3>3. 외향적 감각 (Extraverted Sensing - Se)</h3>
-                <p>
-                    3차 기능인 <strong>외향적 감각(Se)</strong>은 현재 상황에 대한 빠른 대응력을 제공합니다. 
-                    이 기능이 발달하면 실행력과 적응력이 향상됩니다.
-                </p>
+            <h3 class="subsection-title">🧩 ENTJ의 네 가지 선호 경향</h3>
 
-                <h3>4. 내향적 감정 (Introverted Feeling - Fi)</h3>
-                <p>
-                    열등 기능인 <strong>내향적 감정(Fi)</strong>은 ENTJ가 가장 어려워하는 영역입니다. 
-                    자신과 타인의 감정을 이해하고 표현하는 것이 도전 과제가 될 수 있습니다.
-                </p>
-            </section>
-
-            <section id="cognitive">
-                <h2>🧠 인지 기능 스택</h2>
-                
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">1st</div>
-                        <div class="stat-label">Te - 외향적 사고</div>
-                        <p>효율성과 논리적 실행</p>
+            <div class="dimension-grid">
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">E</span>
+                        <span class="dimension-name">외향성 (Extraversion)</span>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2nd</div>
-                        <div class="stat-label">Ni - 내향적 직관</div>
-                        <p>전략적 비전과 통찰</p>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3rd</div>
-                        <div class="stat-label">Se - 외향적 감각</div>
-                        <p>현실 감각과 대응력</p>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4th</div>
-                        <div class="stat-label">Fi - 내향적 감정</div>
-                        <p>내면의 가치와 감정</p>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">외부 세계와 소통하며 에너지를 얻고, 사람들과 상호작용을 즐깁니다.</p>
+                        <ul class="dimension-traits">
+                            <li>활발한 대외 활동</li>
+                            <li>사람들과의 교류 선호</li>
+                            <li>외부 자극으로 재충전</li>
+                            <li>적극적인 표현</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="quote-box">
-                    <p>"좋은 리더는 사람들이 자신을 믿게 만든다. 위대한 리더는 사람들이 스스로를 믿게 만든다."</p>
-                    <cite>- ENTJ의 리더십 철학</cite>
-                </div>
-            </section>
-
-            <section id="characteristics">
-                <h2>⭐ ENTJ의 대표적 특징</h2>
-
-                <div class="strength-item">
-                    <h3>1. 🎯 명확한 목표 지향성</h3>
-                    <p>ENTJ는 무엇을 원하는지 명확히 알고 있으며, 그것을 달성하기 위해 체계적으로 움직입니다.</p>
-                    <div class="example-box">
-                        <strong>실제 예시:</strong> 5년 후 CEO가 되겠다는 목표 → 1년마다 달성해야 할 마일스톤 설정 → 월별 실행 계획 수립
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">N</span>
+                        <span class="dimension-name">직관 (iNtuition)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">전체적인 패턴과 미래 가능성을 보며, 큰 그림을 그립니다.</p>
+                        <ul class="dimension-traits">
+                            <li>전략적 사고</li>
+                            <li>미래 비전 수립</li>
+                            <li>혁신과 변화 추구</li>
+                            <li>가능성 탐색</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="strength-item">
-                    <h3>2. 👥 타고난 리더십</h3>
-                    <p>자연스럽게 리더 역할을 맡게 되며, 팀을 이끌고 방향을 제시하는 능력이 뛰어납니다.</p>
-                    <div class="example-box">
-                        <strong>실제 예시:</strong> 그룹 프로젝트에서 자연스럽게 리더 역할, 역할 분담과 일정 관리
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">T</span>
+                        <span class="dimension-name">사고 (Thinking)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">논리와 객관성을 바탕으로 의사결정을 내립니다.</p>
+                        <ul class="dimension-traits">
+                            <li>논리적 분석</li>
+                            <li>객관적 판단</li>
+                            <li>효율성 추구</li>
+                            <li>원칙 중시</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="strength-item">
-                    <h3>3. 💪 강력한 실행력</h3>
-                    <p>계획을 세우는 것에 그치지 않고, 반드시 실행에 옮기는 추진력이 있습니다.</p>
-                    <div class="example-box">
-                        <strong>실제 예시:</strong> 사업 아이디어 → 즉시 사업 계획서 작성 → 투자자 미팅 → 3개월 내 론칭
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">J</span>
+                        <span class="dimension-name">판단 (Judging)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">계획적이고 체계적인 방식으로 목표를 달성합니다.</p>
+                        <ul class="dimension-traits">
+                            <li>명확한 계획</li>
+                            <li>체계적 실행</li>
+                            <li>시간 엄수</li>
+                            <li>결단력</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">🧠 인지 기능 스택</h3>
+
+            <div class="info-box">
+                <div class="info-icon">💭</div>
+                <div>
+                    <p>ENTJ의 사고방식을 이해하려면 '인지 기능 스택'을 알아야 합니다. 이는 ENTJ가 정보를 처리하고 결정을 내리는 방식을 설명합니다.</p>
+                </div>
+            </div>
+
+            <div class="function-stack">
+                <div class="function-card primary">
+                    <div class="function-rank">주기능 (1위)</div>
+                    <div class="function-name">Te - 외향 사고</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 효율적 실행과 논리적 체계화</p>
+                        <p>객관적 기준과 논리로 세상을 분석하고 조직화합니다. 목표를 향해 가장 효율적인 방법을 찾아내며, 비효율을 견디지 못합니다. 리더십을 발휘하여 조직을 이끌고 결과를 만들어냅니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 프로젝트 목표 달성을 위해 최적의 프로세스를 설계하고 팀원들을 효율적으로 배치
+                        </div>
                     </div>
                 </div>
 
-                <div class="strength-item">
-                    <h3>4. 🔍 전략적 사고</h3>
-                    <p>장기적 관점에서 문제를 바라보고, 최적의 전략을 수립합니다.</p>
+                <div class="function-card secondary">
+                    <div class="function-rank">부기능 (2위)</div>
+                    <div class="function-name">Ni - 내향 직관</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 미래 비전과 전략적 통찰력</p>
+                        <p>장기적인 비전을 수립하고 복잡한 상황에서 본질을 파악합니다. 패턴을 인식하여 미래를 예측하고 전략적 목표를 설정하는 능력이 뛰어납니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 시장 트렌드를 분석해 5년 후 사업 방향을 설정하고 전략을 수립
+                        </div>
+                    </div>
                 </div>
 
-                <div class="strength-item">
-                    <h3>5. 🗣️ 뛰어난 설득력</h3>
-                    <p>논리적이고 카리스마 있는 소통으로 사람들을 설득하고 동기부여합니다.</p>
+                <div class="function-card tertiary">
+                    <div class="function-rank">3차 기능 (3위)</div>
+                    <div class="function-name">Se - 외향 감각</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 현재 순간의 현실 파악</p>
+                        <p>현재 상황을 정확히 인식하고 즉각적으로 대응하는 능력입니다. 발달하면 현실감각이 좋아지고 순간의 기회를 포착할 수 있습니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 회의 중 상대방의 미묘한 표정 변화를 감지하고 전략을 즉시 수정
+                        </div>
+                    </div>
                 </div>
 
-                <div class="strength-item">
-                    <h3>6. ⚡ 빠른 의사결정</h3>
-                    <p>정보를 빠르게 분석하고, 확신을 가지고 결정을 내립니다.</p>
+                <div class="function-card inferior">
+                    <div class="function-rank">열등 기능 (4위)</div>
+                    <div class="function-name">Fi - 내향 감정</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 개인의 감정과 가치관 (약점)</p>
+                        <p>ENTJ의 가장 약한 부분입니다. 자신과 타인의 감정을 이해하고 공감하는 데 어려움을 겪을 수 있습니다. 효율성을 추구하다 보니 감정적 배려가 부족해 보일 수 있습니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 목표 달성에 집중하다가 팀원들의 감정적 소진을 놓치는 경우
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="strength-item">
-                    <h3>7. 📊 체계적 조직력</h3>
-                    <p>복잡한 프로젝트를 체계적으로 구조화하고 관리합니다.</p>
-                </div>
-
-                <div class="strength-item">
-                    <h3>8. 🚀 도전 정신</h3>
-                    <p>어려운 목표일수록 더 불타는 도전 의식을 가집니다.</p>
-                </div>
-
-                <div class="strength-item">
-                    <h3>9. 💼 비즈니스 감각</h3>
-                    <p>시장을 읽고, 기회를 포착하는 능력이 뛰어납니다.</p>
-                </div>
-
-                <div class="strength-item">
-                    <h3>10. 🎓 지속적 자기계발</h3>
-                    <p>끊임없이 배우고 성장하려는 열망이 있습니다.</p>
-                </div>
-            </section>
-
-            <section id="workplace">
-                <h2>💼 직장에서의 ENTJ</h2>
-
-                <div class="info-box">
-                    <h4>👔 ENTJ의 업무 스타일</h4>
-                    <ul>
-                        <li><strong>목표 중심:</strong> 결과를 최우선으로 생각</li>
-                        <li><strong>효율 추구:</strong> 불필요한 과정 제거</li>
-                        <li><strong>리더십 발휘:</strong> 자연스럽게 팀을 이끔</li>
-                        <li><strong>직설적 소통:</strong> 명확하고 솔직한 피드백</li>
-                        <li><strong>혁신 지향:</strong> 더 나은 방법을 끊임없이 모색</li>
-                    </ul>
-                </div>
-
-                <div class="highlight-box">
-                    <h4>🌟 ENTJ가 선호하는 업무 환경</h4>
-                    <ul>
-                        <li>명확한 목표와 권한이 주어지는 환경</li>
-                        <li>성과 기반의 평가 시스템</li>
-                        <li>도전적이고 복잡한 프로젝트</li>
-                        <li>빠른 의사결정이 가능한 구조</li>
-                        <li>리더십을 발휘할 수 있는 기회</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="growth">
-                <h2>🌱 ENTJ의 성장 방향</h2>
-
-                <div class="quote-box">
-                    <p>"리더십은 직책이 아니라 행동이다. ENTJ는 타고난 리더십을 지혜롭게 사용할 책임이 있다."</p>
-                </div>
-
-                <div class="info-box">
-                    <h4>📈 발전을 위한 핵심 과제</h4>
-                    <ol>
-                        <li><strong>감정 지능 개발:</strong> 타인의 감정을 이해하고 배려하기</li>
-                        <li><strong>경청 능력:</strong> 말하기보다 듣기를 먼저</li>
-                        <li><strong>인내심 키우기:</strong> 모든 사람이 같은 속도로 움직이지 않음을 인정</li>
-                        <li><strong>유연성 증진:</strong> 때로는 계획을 조정할 줄 알기</li>
-                        <li><strong>관계 중시:</strong> 목표만큼 사람도 중요</li>
-                    </ol>
-                </div>
-            </section>
-
-            <section id="next">
-                <h2>📖 다음 장 미리보기</h2>
-                <p>
-                    다음 페이지에서는 ENTJ의 <strong>강점과 약점</strong>을 깊이 있게 분석하고, 
-                    이를 실생활에서 어떻게 활용하고 보완할 수 있는지 알아봅니다.
-                </p>
-                
-                <div class="info-box">
-                    <h4>🎯 다음에 배울 내용</h4>
-                    <ul>
-                        <li>ENTJ의 10가지 핵심 강점</li>
-                        <li>극복해야 할 5가지 주요 약점</li>
-                        <li>강점 극대화 전략</li>
-                        <li>약점 보완 로드맵</li>
-                    </ul>
-                </div>
-            </section>
-        </article>
-
-        <nav class="page-navigation">
+        <!-- Navigation -->
+        <div class="page-navigation">
+            <a href="index.html" class="nav-btn prev-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>가이드북 목차</span>
+            </a>
             <a href="index.html" class="nav-btn home-btn">
-                <i class="fas fa-home"></i> 목차로
+                <i class="fas fa-home"></i>
+                <span>목차 페이지</span>
             </a>
             <a href="chapter-1-page-2.html" class="nav-btn next-btn">
-                다음 페이지 <i class="fas fa-arrow-right"></i>
+                <span>1장 2페이지: 강점과 약점</span>
+                <i class="fas fa-arrow-right"></i>
             </a>
-        </nav>
-    </main>
+        </div>
+    </div>
 
+    <!-- JavaScript -->
     <script>
+        // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const pageNavCenter = document.querySelector('.page-nav-center');
-        
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                pageNavCenter.classList.toggle('active');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            });
-        }
+        const navMenu = document.getElementById('navMenu');
 
-        document.addEventListener('click', function(e) {
-            if (pageNavCenter && pageNavCenter.classList.contains('active')) {
-                if (!e.target.closest('.page-nav-center') && !e.target.closest('.mobile-menu-toggle')) {
-                    pageNavCenter.classList.remove('active');
-                    const icon = mobileMenuToggle.querySelector('i');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 }
-            }
-        });
-
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        body.classList.toggle('dark-mode', savedTheme === 'dark');
-        
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                const isDark = body.classList.contains('dark-mode');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                themeToggle.querySelector('i').classList.toggle('fa-moon');
-                themeToggle.querySelector('i').classList.toggle('fa-sun');
             });
         }
 
-        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
-            const trigger = dropdown.querySelector('.dropdown-trigger');
-            trigger.addEventListener('click', (e) => {
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav') && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                const icon = this.querySelector('i');
+                if (document.body.classList.contains('dark-theme')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                const icon = themeToggle.querySelector('i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+
+        // Dropdown menu
+        const dropdowns = document.querySelectorAll('.nav-dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
                 e.preventDefault();
-                dropdown.classList.toggle('active');
+                this.classList.toggle('active');
             });
         });
     </script>
