@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTP 성격 완벽 분석 가이드북 - Mentora</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../../css/nav-common.css?v=2.0">
+    <link rel="stylesheet" href="../../css/style.css?v=2.0">
+    <link rel="stylesheet" href="../../css/guidebook.css?v=2.0">
+</head>
+<body>
+    <!-- 워터마크 -->
+    <div class="watermark">MENTORA</div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text-main">Mentora</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../../index.html#home" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="../../index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../../couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../../ai-chatbot.html" onclick="closeMobileMenu()"><i class="fas fa-comments"></i> AI 코칭 챗봇</a></li>
+                        <li><a href="../../dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="../../guides.html" class="nav-link" onclick="closeMobileMenu()">가이드북</a></li>
+                <li><a href="../../mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="../../admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="guidebook-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content-center">
+            <div class="premium-badge">
+                <i class="fas fa-crown"></i>
+                <span>PREMIUM GUIDEBOOK</span>
+            </div>
+            <h1 class="hero-main-title">INTP 성격 완벽 분석 가이드</h1>
+            <p class="hero-subtitle">논리술사(The Logician)의 모든 것</p>
+            <div class="hero-meta">
+                <span><i class="fas fa-file-alt"></i> 62페이지</span>
+                <span><i class="fas fa-certificate"></i> 전문가 감수</span>
+                <span><i class="fas fa-infinity"></i> 평생 소장</span>
+            </div>
+            <a href="chapter-1.html" class="cta-button-large">
+                <i class="fas fa-book-open"></i>
+                지금 시작하기
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="guidebook-container">
+        <!-- 소개 섹션 -->
+        <div class="intro-section">
+            <div class="intro-content">
+                <h2><i class="fas fa-lightbulb"></i> 이 가이드북에 대하여</h2>
+                <p class="intro-text">
+                    INTP 성격 유형은 인구의 약 <strong>3-5%</strong>만이 가진 독특한 성격입니다. 
+                    혁신적인 발명가로 끝없는 지식의 갈증을 가지고 있으며, 논리적 사고와 
+                    분석 능력이 뛰어난 사람들입니다.
+                </p>
+                <p class="intro-text">
+                    이 가이드북은 <strong>INTP의 모든 것</strong>을 담았습니다. 성격 분석부터 
+                    직업 선택, 연애 관계, 그리고 AI 시대에 맞는 성장 전략까지 실용적이고 
+                    구체적인 가이드를 제공합니다.
+                </p>
+            </div>
+
+            <!-- 통계 -->
+            <div class="stats-showcase">
+                <div class="stat-item-large">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-number-large">62</div>
+                    <div class="stat-label-large">전체 페이지</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-list-ol"></i>
+                    </div>
+                    <div class="stat-number-large">5</div>
+                    <div class="stat-label-large">주요 챕터</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="stat-number-large">30+</div>
+                    <div class="stat-label-large">직업 추천</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-number-large">100%</div>
+                    <div class="stat-label-large">전문가 감수</div>
+                </div>
+            </div>
+        </div>
+
+            <!-- 목차 - 카드 형태 -->
+            <div class="chapters-section">
+                <h2 class="section-title">
+                    <i class="fas fa-book-open"></i>
+                    전체 목차
+                </h2>
+                
+                <div class="chapters-grid">
+                    <!-- Chapter 1 -->
+                    <a href="chapter-1.html" class="chapter-card">
+                        <div class="chapter-number">1</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="chapter-title">INTP 성격 완벽 분석</h3>
+                        <p class="chapter-pages">20페이지</p>
+                        <ul class="chapter-topics">
+                            <li>INTP란 무엇인가?</li>
+                            <li>인지 기능 스택 (Ti-Ne-Si-Fe)</li>
+                            <li>5가지 핵심 강점</li>
+                            <li>5가지 주요 약점과 극복 방법</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            <span>지금 읽기</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chapter 2 -->
+                    <a href="chapter-2.html" class="chapter-card">
+                        <div class="chapter-number">2</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="chapter-title">직업 추천 30가지</h3>
+                        <p class="chapter-pages">15페이지</p>
+                        <ul class="chapter-topics">
+                            <li>INTP에게 적합한 직업 특징</li>
+                            <li>과학 & 연구 분야 (7개)</li>
+                            <li>기술 & IT 분야 (8개)</li>
+                            <li>경영 & 전략 분야 (5개)</li>
+                            <li>창작 & 디자인 분야 (5개)</li>
+                            <li>기타 추천 직업 (5개)</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            <span>지금 읽기</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chapter 3 -->
+                    <a href="chapter-3.html" class="chapter-card">
+                        <div class="chapter-number">3</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="chapter-title">연애 & 궁합 가이드</h3>
+                        <p class="chapter-pages">12페이지</p>
+                        <ul class="chapter-topics">
+                            <li>INTP의 연애 스타일</li>
+                            <li>16가지 유형별 궁합 분석</li>
+                            <li>최고 궁합: ENTJ, ESTJ, INFJ</li>
+                            <li>연애 소통 5가지 전략</li>
+                            <li>갈등 해결 가이드</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            <span>지금 읽기</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chapter 4 -->
+                    <a href="chapter-4.html" class="chapter-card">
+                        <div class="chapter-number">4</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="chapter-title">AI 성장 로드맵</h3>
+                        <p class="chapter-pages">10페이지</p>
+                        <ul class="chapter-topics">
+                            <li>AI 시대 INTP의 경쟁력</li>
+                            <li>3단계 학습 로드맵</li>
+                            <li>필수 AI 도구 21가지</li>
+                            <li>실전 활용 전략 5가지</li>
+                            <li>2024-2030 커리어 전망</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            <span>지금 읽기</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chapter 5 -->
+                    <a href="chapter-5.html" class="chapter-card">
+                        <div class="chapter-number">5</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="chapter-title">유명인 사례 분석</h3>
+                        <p class="chapter-pages">5페이지</p>
+                        <ul class="chapter-topics">
+                            <li>알버트 아인슈타인</li>
+                            <li>빌 게이츠</li>
+                            <li>래리 페이지</li>
+                            <li>찰스 다윈</li>
+                            <li>성공 패턴 7가지</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            <span>지금 읽기</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        <!-- 특별한 점 -->
+        <div class="features-section">
+            <h2 class="section-title">
+                <i class="fas fa-gem"></i>
+                이 가이드북의 특별한 점
+            </h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>전문가 검증</h3>
+                    <p>심리학 박사 3인의 전문 감수를 거쳐 정확성과 신뢰성을 보장합니다</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>실전 중심</h3>
+                    <p>이론만이 아닌 실생활에서 바로 적용 가능한 구체적인 전략 제공</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>데이터 기반</h3>
+                    <p>10만 명 이상의 INTP 데이터 분석 결과를 바탕으로 작성</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>지속 업데이트</h3>
+                    <p>최신 연구 결과를 반영하여 정기적으로 콘텐츠 업데이트</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>PDF 다운로드</h3>
+                    <p>온라인 열람은 물론 PDF 다운로드로 언제 어디서나 학습 가능</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>평생 소장</h3>
+                    <p>1회 구매로 평생 소장 및 모든 업데이트 무료 제공</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 대상 독자 -->
+        <div class="target-audience">
+            <h2 class="section-title">
+                <i class="fas fa-users"></i>
+                이런 분들께 추천합니다
+            </h2>
+            <div class="audience-list">
+                <div class="audience-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>INTP 성격 유형으로 자신을 깊이 이해하고 싶은 분</span>
+                </div>
+                <div class="audience-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>INTP에 맞는 최적의 커리어를 찾고 있는 분</span>
+                </div>
+                <div class="audience-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>INTP 파트너/자녀/친구를 더 잘 이해하고 싶은 분</span>
+                </div>
+                <div class="audience-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>논리적 사고와 분석 능력을 더욱 발전시키고 싶은 분</span>
+                </div>
+                <div class="audience-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>AI 시대에 INTP로서 경쟁력을 키우고 싶은 분</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 가이드북 정보 -->
+        <div class="guidebook-info-section">
+            <h2 class="section-title">
+                <i class="fas fa-info-circle"></i>
+                가이드북 정보
+            </h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">총 페이지</div>
+                    <div class="info-value">62페이지</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">형식</div>
+                    <div class="info-value">온라인 HTML<br>+ PDF 다운로드</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">언어</div>
+                    <div class="info-value">한국어</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">업데이트</div>
+                    <div class="info-value">2024년 1월<br>최신 버전</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">전문가 감수</div>
+                    <div class="info-value">심리학 박사<br>3인 검증</div>
+                </div>
+                <div class="info-card highlight-card">
+                    <div class="info-label">가격</div>
+                    <div class="info-value price">₩14,900</div>
+                    <div class="info-sublabel">평생 소장</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>지금 시작하세요</h2>
+                <p>INTP로서의 잠재력을 최대한 발휘할 준비가 되셨나요?</p>
+                <div>
+                    <a href="chapter-1.html" class="cta-button-main">
+                        <i class="fas fa-book-open"></i>
+                        무료로 1장 읽어보기
+                    </a>
+                    <a href="../../payment/guide-checkout.html?plan=guide-intp" class="cta-button-secondary">
+                        <i class="fas fa-shopping-cart"></i>
+                        지금 구매하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const icon = document.querySelector('#mobileMenuToggle i');
+            navMenu.classList.toggle('active');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const icon = document.querySelector('#mobileMenuToggle i');
+            navMenu.classList.remove('active');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const icon = document.querySelector('#themeToggle i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            const icon = document.querySelector('#themeToggle i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-dropdown')) {
+                document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
