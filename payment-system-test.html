@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 시스템 테스트 - Mentora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .test-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .test-section h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .test-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .test-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .test-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-item i {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+        
+        .info-item strong {
+            color: #333;
+            min-width: 80px;
+        }
+        
+        .test-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .test-button i {
+            margin-right: 8px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .checklist li {
+            padding: 12px;
+            background: white;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .checklist li i {
+            color: #28a745;
+            font-size: 1.2rem;
+        }
+        
+        .test-code {
+            background: #2d3748;
+            color: #a0aec0;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+        
+        .test-code pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .payment-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .flow-step {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #667eea;
+            position: relative;
+        }
+        
+        .flow-step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #667eea;
+        }
+        
+        .flow-step:last-child::after {
+            display: none;
+        }
+        
+        .flow-number {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            line-height: 35px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .flow-step h4 {
+            font-size: 0.95rem;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-credit-card"></i> 결제 시스템 테스트</h1>
+            <p>INTP 가이드북 결제 플로우 완벽 점검</p>
+        </div>
+        
+        <!-- 현재 상태 -->
+        <div class="test-section">
+            <h2><i class="fas fa-check-circle"></i> 시스템 상태</h2>
+            <ul class="checklist">
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <strong>결제 페이지:</strong> payment/guide-checkout.html 구축 완료
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <strong>INTP 데이터:</strong> products['guide-intp'] 등록 완료
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Toss Payments:</strong> SDK 연동 완료 (테스트 모드)
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <strong>성공 페이지:</strong> payment/guide-success.html 준비 완료
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <strong>실패 페이지:</strong> payment/fail.html 준비 완료
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    <strong>네비게이션:</strong> guides/intj 기준 통일 완료
+                </li>
+            </ul>
+        </div>
+        
+        <!-- INTP 가이드북 정보 -->
+        <div class="test-section">
+            <h2><i class="fas fa-book"></i> INTP 가이드북 정보</h2>
+            <div class="test-card">
+                <h3>논리술사형 (INTP) <span class="status-badge status-success">✅ 활성화</span></h3>
+                <div class="test-info">
+                    <div class="info-item">
+                        <i class="fas fa-file-alt"></i>
+                        <strong>페이지:</strong> 60페이지
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-won-sign"></i>
+                        <strong>가격:</strong> ₩14,900
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-tag"></i>
+                        <strong>Order ID:</strong> INTP_GUIDE
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-link"></i>
+                        <strong>Plan:</strong> guide-intp
+                    </div>
+                </div>
+                <a href="guides/intp/index.html" class="test-button">
+                    <i class="fas fa-external-link-alt"></i> INTP 가이드북으로 이동
+                </a>
+            </div>
+        </div>
+        
+        <!-- 결제 플로우 -->
+        <div class="test-section">
+            <h2><i class="fas fa-route"></i> 결제 플로우</h2>
+            <div class="payment-flow">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <h4>가이드북 페이지</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">guides/intp/index.html</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <h4>구매 버튼 클릭</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">?plan=guide-intp</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <h4>결제 페이지</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">guide-checkout.html</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <h4>정보 입력</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">이름, 이메일</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">5</div>
+                    <h4>결제 진행</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">Toss Payments</p>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number">6</div>
+                    <h4>완료</h4>
+                    <p style="font-size: 0.85rem; color: #666; margin-top: 8px;">guide-success.html</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 빠른 테스트 -->
+        <div class="test-section">
+            <h2><i class="fas fa-rocket"></i> 빠른 테스트</h2>
+            <div class="test-card">
+                <h3>시나리오 1: 정상 결제</h3>
+                <ol style="line-height: 2; margin: 15px 0 15px 25px;">
+                    <li>INTP 가이드북 페이지 접속</li>
+                    <li>"지금 구매하기" 버튼 클릭</li>
+                    <li>상품 정보 확인 (INTP, 60페이지, ₩14,900)</li>
+                    <li>구매자 정보 입력 (이름, 이메일)</li>
+                    <li>약관 동의 체크</li>
+                    <li>결제하기 버튼 클릭</li>
+                    <li>Toss Payments 테스트 결제</li>
+                    <li>성공 페이지 확인</li>
+                </ol>
+                <a href="payment/guide-checkout.html?plan=guide-intp" class="test-button">
+                    <i class="fas fa-credit-card"></i> 결제 페이지 바로가기
+                </a>
+            </div>
+            
+            <div class="test-card">
+                <h3>테스트 카드 정보</h3>
+                <div class="test-code">
+                    <pre>카드번호: 4000-0000-0000-0001
+유효기간: 12/25
+CVC: 123
+비밀번호 앞 2자리: 00
+생년월일: 901231</pre>
+                </div>
+                <p style="margin-top: 15px; color: #666; font-size: 0.95rem;">
+                    <i class="fas fa-info-circle"></i> Toss Payments 테스트 환경에서 위 카드로 결제 가능합니다
+                </p>
+            </div>
+        </div>
+        
+        <!-- 전체 가이드북 -->
+        <div class="test-section">
+            <h2><i class="fas fa-book-open"></i> 등록된 전체 가이드북 (16종)</h2>
+            <div class="test-info" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="info-item">✅ INTJ (전략가) - 62p</div>
+                <div class="info-item" style="color: #667eea; font-weight: 700;">✅ INTP (논리술사) - 60p</div>
+                <div class="info-item">✅ ENTJ (통솔자) - 65p</div>
+                <div class="info-item">✅ ENTP (변론가) - 63p</div>
+                <div class="info-item">✅ INFJ (옹호자) - 68p</div>
+                <div class="info-item">✅ INFP (중재자) - 67p</div>
+                <div class="info-item">✅ ENFJ (선도자) - 64p</div>
+                <div class="info-item">✅ ENFP (활동가) - 65p</div>
+                <div class="info-item">✅ ISTJ (논리주의자) - 61p</div>
+                <div class="info-item">✅ ISFJ (수호자) - 62p</div>
+                <div class="info-item">✅ ESTJ (경영자) - 62p</div>
+                <div class="info-item">✅ ESFJ (집정관) - 64p</div>
+                <div class="info-item">✅ ISTP (장인) - 60p</div>
+                <div class="info-item">✅ ISFP (모험가) - 65p</div>
+                <div class="info-item">✅ ESTP (사업가) - 61p</div>
+                <div class="info-item">✅ ESFP (연예인) - 66p</div>
+            </div>
+        </div>
+        
+        <!-- 다음 단계 -->
+        <div class="test-section">
+            <h2><i class="fas fa-forward"></i> 다음 단계</h2>
+            <div class="test-card">
+                <h3>옵션 1: 나머지 14개 유형 가이드북 생성</h3>
+                <p style="margin: 10px 0;">INTP와 동일한 구조로 ENTJ, ENFP, INFJ 등 생성</p>
+                <span class="status-badge status-warning">⏳ 대기 중</span>
+            </div>
+            
+            <div class="test-card">
+                <h3>옵션 2: chapter-1-page-2.html 생성</h3>
+                <p style="margin: 10px 0;">INTP 강점/약점 상세 페이지 추가</p>
+                <span class="status-badge status-warning">⏳ 대기 중</span>
+            </div>
+            
+            <div class="test-card">
+                <h3>옵션 3: 실제 운영 환경 전환</h3>
+                <p style="margin: 10px 0;">Toss Payments 실제 클라이언트 키 적용</p>
+                <span class="status-badge status-warning">⏳ 대기 중</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
