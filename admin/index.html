@@ -3,16 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentora Admin - 관리자 대시보드</title>
-    <link rel="icon" type="image/png" href="../images/logo-brain-hd.png">
+    <title>관리자 대시보드 - Mentora</title>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
-    <!-- Chart.js -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
@@ -23,83 +17,76 @@
         }
 
         body {
-            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
-            background: #f8f9fa;
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        .admin-container {
             display: flex;
             min-height: 100vh;
         }
 
-        /* 사이드바 */
+        /* Sidebar */
         .sidebar {
             width: 260px;
-            background: linear-gradient(180deg, #2c5f4f 0%, #1a4838 100%);
+            background: linear-gradient(135deg, #2c5f4f, #1a4838);
             color: white;
             padding: 2rem 0;
             position: fixed;
             height: 100vh;
             overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         }
 
-        .sidebar-header {
+        .logo {
             padding: 0 2rem 2rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 2rem;
+            text-align: center;
         }
 
-        .sidebar-header h2 {
-            font-size: 1.8rem;
-            font-weight: 900;
+        .logo h2 {
+            font-size: 1.5rem;
             color: #d4af37;
         }
 
-        .sidebar-header p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 0.5rem;
-        }
-
-        .sidebar-menu {
+        .nav-menu {
             list-style: none;
+            padding: 2rem 0;
         }
 
-        .sidebar-menu li {
-            margin-bottom: 0.5rem;
-        }
-
-        .sidebar-menu a {
+        .nav-item {
+            padding: 1rem 2rem;
             display: flex;
             align-items: center;
-            padding: 1rem 2rem;
-            color: white;
+            gap: 1rem;
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .sidebar-menu a:hover,
-        .sidebar-menu a.active {
+        .nav-item:hover, .nav-item.active {
             background: rgba(212, 175, 55, 0.2);
-            border-right: 4px solid #d4af37;
+            color: white;
+            border-left: 4px solid #d4af37;
         }
 
-        .sidebar-menu a i {
-            margin-right: 1rem;
+        .nav-item i {
             font-size: 1.2rem;
         }
 
-        /* 메인 컨텐츠 */
+        /* Main Content */
         .main-content {
-            flex: 1;
             margin-left: 260px;
+            flex: 1;
             padding: 2rem;
         }
 
         .topbar {
             background: white;
-            border-radius: 12px;
             padding: 1.5rem 2rem;
-            margin-bottom: 2rem;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -108,48 +95,36 @@
         .topbar h1 {
             font-size: 1.8rem;
             color: #2c5f4f;
-            font-weight: 700;
         }
 
         .topbar-actions {
             display: flex;
             gap: 1rem;
-            align-items: center;
         }
 
         .btn {
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary {
-            background: #2c5f4f;
+            background: linear-gradient(135deg, #d4af37, #b8962f);
             color: white;
         }
 
         .btn-primary:hover {
-            background: #1a4838;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
 
-        .btn-outline {
-            background: white;
-            color: #2c5f4f;
-            border: 2px solid #2c5f4f;
-        }
-
-        .btn-outline:hover {
-            background: #2c5f4f;
-            color: white;
-        }
-
-        /* 통계 카드 그리드 */
+        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -159,145 +134,110 @@
 
         .stat-card {
             background: white;
-            border-radius: 12px;
             padding: 2rem;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .stat-card-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
         }
 
-        .stat-card-title {
-            font-size: 0.9rem;
-            color: #666;
-            font-weight: 500;
-        }
-
-        .stat-card-icon {
-            width: 50px;
-            height: 50px;
+        .stat-icon {
+            width: 60px;
+            height: 60px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            color: white;
         }
 
-        .stat-card-value {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #2c5f4f;
+        .stat-icon.users { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .stat-icon.tests { background: linear-gradient(135deg, #27ae60, #229954); }
+        .stat-icon.revenue { background: linear-gradient(135deg, #d4af37, #b8962f); }
+        .stat-icon.pending { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+
+        .stat-info h3 {
+            font-size: 0.9rem;
+            color: #666;
             margin-bottom: 0.5rem;
         }
 
-        .stat-card-change {
-            font-size: 0.9rem;
-            color: #28a745;
+        .stat-info p {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c5f4f;
         }
 
-        .stat-card-change.negative {
-            color: #dc3545;
-        }
-
-        /* 차트 그리드 */
+        /* Charts */
         .charts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 1.5rem;
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .chart-card {
             background: white;
-            border-radius: 12px;
             padding: 2rem;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .chart-card h3 {
-            font-size: 1.2rem;
             color: #2c5f4f;
             margin-bottom: 1.5rem;
-            font-weight: 700;
+            font-size: 1.2rem;
         }
 
-        .chart-container {
-            position: relative;
+        .chart-canvas {
             height: 300px;
         }
 
-        /* 활동 카드 */
-        .activity-card {
+        /* Activities */
+        .activities {
             background: white;
-            border-radius: 12px;
             padding: 2rem;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .activity-card h3 {
-            font-size: 1.2rem;
+        .activities h3 {
             color: #2c5f4f;
             margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .activity-list {
-            list-style: none;
         }
 
         .activity-item {
-            padding: 1.5rem;
+            padding: 1rem;
             border-bottom: 1px solid #f0f0f0;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            gap: 1rem;
         }
 
         .activity-item:last-child {
             border-bottom: none;
         }
 
-        .activity-item:hover {
-            background: #f8f9fa;
-            padding-left: 2rem;
-        }
-
-        .activity-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
         .activity-icon {
             width: 40px;
             height: 40px;
             border-radius: 50%;
+            background: #f5f7fa;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            color: #2c5f4f;
         }
 
-        .activity-text h4 {
-            font-size: 1rem;
+        .activity-info {
+            flex: 1;
+        }
+
+        .activity-text {
             color: #333;
             margin-bottom: 0.25rem;
-        }
-
-        .activity-text p {
-            font-size: 0.85rem;
-            color: #999;
         }
 
         .activity-time {
@@ -305,50 +245,46 @@
             color: #999;
         }
 
-        /* 가이드북 판매 섹션 */
-        #guidebook-section {
-            margin-top: 3rem;
-            padding-top: 3rem;
-            border-top: 2px solid #e0e0e0;
+        /* 가이드북 섹션 */
+        .guidebook-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(212,175,55,0.03), rgba(240,217,140,0.03));
+            border-radius: 16px;
+            border: 2px dashed #d4af37;
         }
 
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
             margin-bottom: 2rem;
         }
 
-        .section-header h2 {
-            font-size: 1.8rem;
-            color: #2c5f4f;
-            font-weight: 900;
+        .guidebook-orders table {
+            border-radius: 8px;
+            overflow: hidden;
         }
 
-        .section-header p {
-            color: #666;
-            margin-top: 0.5rem;
+        .guidebook-orders table thead {
+            background: linear-gradient(135deg, #2c5f4f, #1a4838);
+            color: white;
         }
 
-        /* 반응형 */
+        .guidebook-orders table tbody tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+            cursor: pointer;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 width: 0;
-                padding: 0;
-                overflow: hidden;
+                position: fixed;
+                z-index: 1000;
             }
 
             .main-content {
                 margin-left: 0;
-                padding: 1rem;
             }
 
-            .topbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .stats-grid,
             .charts-grid {
                 grid-template-columns: 1fr;
             }
@@ -356,299 +292,316 @@
     </style>
 </head>
 <body>
-    <!-- 사이드바 -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <h2>🧠 Mentora</h2>
-            <p>관리자 대시보드</p>
-        </div>
-
-        <ul class="sidebar-menu">
-            <li><a href="#dashboard" class="active"><i class="fas fa-chart-line"></i> 대시보드</a></li>
-            <li><a href="users.html"><i class="fas fa-users"></i> 사용자 관리</a></li>
-            <li><a href="tests.html"><i class="fas fa-clipboard-check"></i> 검사 관리</a></li>
-            <li><a href="premium.html"><i class="fas fa-crown"></i> 프리미엄</a></li>
-            <li><a href="#guidebook-section"><i class="fas fa-book"></i> 가이드북 판매</a></li>
-            <li><a href="refunds.html"><i class="fas fa-undo"></i> 환불 관리</a></li>
-            <li><a href="settings.html"><i class="fas fa-cog"></i> 설정</a></li>
-            <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> 로그아웃</a></li>
-        </ul>
-    </aside>
-
-    <!-- 메인 컨텐츠 -->
-    <main class="main-content">
-        <!-- 상단바 -->
-        <div class="topbar">
-            <div>
-                <h1>대시보드</h1>
-                <p style="color: #999; margin-top: 0.5rem;">전체 시스템 현황을 확인하세요</p>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2><i class="fas fa-brain"></i> Mentora Admin</h2>
             </div>
-            <div class="topbar-actions">
-                <button class="btn btn-outline">📊 리포트 생성</button>
-                <a href="../index.html" class="btn btn-primary">🌐 사이트 보기</a>
-            </div>
-        </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>대시보드</span>
+                </a>
+                <a href="users.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>사용자 관리</span>
+                </a>
+                <a href="tests.html" class="nav-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>검사 관리</span>
+                </a>
+                <a href="#guidebook" class="nav-item" onclick="scrollToGuidebook(); return false;">
+                    <i class="fas fa-book"></i>
+                    <span>가이드북 판매</span>
+                </a>
+                <a href="refunds.html" class="nav-item">
+                    <i class="fas fa-undo"></i>
+                    <span>환불 관리</span>
+                </a>
+                <a href="https://mentora.co.kr/index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>사이트로 이동</span>
+                </a>
+                <a href="#" class="nav-item" onclick="logout(); return false;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>로그아웃</span>
+                </a>
+            </nav>
+        </aside>
 
-        <!-- 통계 카드 -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-card-header">
-                    <span class="stat-card-title">전체 사용자</span>
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                        <i class="fas fa-users"></i>
-                    </div>
-                </div>
-                <div class="stat-card-value">1,250</div>
-                <div class="stat-card-change">
-                    <i class="fas fa-arrow-up"></i> +12.5% 지난주 대비
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-card-header">
-                    <span class="stat-card-title">완료된 검사</span>
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                </div>
-                <div class="stat-card-value">8,542</div>
-                <div class="stat-card-change">
-                    <i class="fas fa-arrow-up"></i> +8.3% 지난주 대비
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-card-header">
-                    <span class="stat-card-title">총 매출</span>
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                </div>
-                <div class="stat-card-value">₩2.5M</div>
-                <div class="stat-card-change">
-                    <i class="fas fa-arrow-up"></i> +15.2% 지난주 대비
-                </div>
-            </div>
-
-            <div class="stat-card">
-                <div class="stat-card-header">
-                    <span class="stat-card-title">환불 대기</span>
-                    <div class="stat-card-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white;">
-                        <i class="fas fa-undo"></i>
-                    </div>
-                </div>
-                <div class="stat-card-value">12</div>
-                <div class="stat-card-change negative">
-                    <i class="fas fa-arrow-down"></i> -3 건 (처리 필요)
-                </div>
-            </div>
-        </div>
-
-        <!-- 차트 그리드 -->
-        <div class="charts-grid">
-            <div class="chart-card">
-                <h3>📈 검사 완료 추이 (최근 7일)</h3>
-                <div class="chart-container">
-                    <canvas id="testChart"></canvas>
-                </div>
-            </div>
-
-            <div class="chart-card">
-                <h3>🔥 인기 검사 TOP 5</h3>
-                <div class="chart-container">
-                    <canvas id="popularChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- 최근 활동 -->
-        <div class="activity-card">
-            <h3>🕐 최근 활동</h3>
-            <ul class="activity-list">
-                <li class="activity-item">
-                    <div class="activity-info">
-                        <div class="activity-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                            <i class="fas fa-user-plus"></i>
-                        </div>
-                        <div class="activity-text">
-                            <h4>김민지님이 회원가입했습니다</h4>
-                            <p>새로운 사용자</p>
-                        </div>
-                    </div>
-                    <span class="activity-time">5분 전</span>
-                </li>
-
-                <li class="activity-item">
-                    <div class="activity-info">
-                        <div class="activity-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="activity-text">
-                            <h4>이준호님이 MBTI 검사를 완료했습니다</h4>
-                            <p>검사 결과: INFP</p>
-                        </div>
-                    </div>
-                    <span class="activity-time">12분 전</span>
-                </li>
-
-                <li class="activity-item">
-                    <div class="activity-info">
-                        <div class="activity-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <div class="activity-text">
-                            <h4>박서연님이 프리미엄 플랜을 구매했습니다</h4>
-                            <p>월간 구독 ₩9,900</p>
-                        </div>
-                    </div>
-                    <span class="activity-time">23분 전</span>
-                </li>
-
-                <li class="activity-item">
-                    <div class="activity-info">
-                        <div class="activity-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white;">
-                            <i class="fas fa-exclamation-circle"></i>
-                        </div>
-                        <div class="activity-text">
-                            <h4>최지우님이 환불을 요청했습니다</h4>
-                            <p>처리 필요</p>
-                        </div>
-                    </div>
-                    <span class="activity-time">1시간 전</span>
-                </li>
-            </ul>
-        </div>
-
-        <!-- 가이드북 판매 섹션 -->
-        <section id="guidebook-section">
-            <div class="section-header">
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="topbar">
                 <div>
-                    <h2>📚 가이드북 판매 현황</h2>
-                    <p>PDF 가이드북 판매 통계 및 매출 현황</p>
+                    <h1>관리자 대시보드</h1>
+                    <p style="color: #666; margin-top: 0.5rem;">Mentora 플랫폼 전체 현황</p>
                 </div>
-                <button class="btn btn-primary" onclick="location.reload()">🔄 새로고침</button>
+                <div class="topbar-actions">
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <i class="fas fa-sync-alt"></i> 새로고침
+                    </button>
+                </div>
             </div>
 
-            <!-- 가이드북 통계 카드 -->
+            <!-- Stats -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-card-header">
-                        <span class="stat-card-title">총 판매 건수</span>
-                        <div class="stat-card-icon" style="background: linear-gradient(135deg, #d4af37 0%, #f2c94c 100%); color: white;">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
+                    <div class="stat-icon users">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div class="stat-card-value" id="guidebook_sales">0</div>
-                    <div class="stat-card-change">
-                        <i class="fas fa-book"></i> 가이드북 판매
+                    <div class="stat-info">
+                        <h3>전체 사용자</h3>
+                        <p>1,250</p>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-card-header">
-                        <span class="stat-card-title">총 매출</span>
-                        <div class="stat-card-icon" style="background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); color: white;">
-                            <i class="fas fa-won-sign"></i>
-                        </div>
+                    <div class="stat-icon tests">
+                        <i class="fas fa-clipboard-check"></i>
                     </div>
-                    <div class="stat-card-value" id="guidebookRevenue">₩0</div>
-                    <div class="stat-card-change">
-                        <i class="fas fa-arrow-up"></i> 가이드북 매출
+                    <div class="stat-info">
+                        <h3>완료된 검사</h3>
+                        <p>8,542</p>
                     </div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-card-header">
-                        <span class="stat-card-title">인기 가이드북</span>
-                        <div class="stat-card-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                            <i class="fas fa-star"></i>
-                        </div>
+                    <div class="stat-icon revenue">
+                        <i class="fas fa-dollar-sign"></i>
                     </div>
-                    <div class="stat-card-value" id="topGuidebook" style="font-size: 1.8rem;">-</div>
-                    <div class="stat-card-change">
-                        <i class="fas fa-fire"></i> 가장 많이 판매된 상품
+                    <div class="stat-info">
+                        <h3>총 매출</h3>
+                        <p>₩2.5M</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>환불 대기</h3>
+                        <p>12</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 가이드북 차트 -->
+            <!-- Charts -->
             <div class="charts-grid">
                 <div class="chart-card">
-                    <h3>📊 가이드북 판매 추이 (최근 7일)</h3>
-                    <div class="chart-container">
-                        <canvas id="guidebookSalesChart"></canvas>
-                    </div>
+                    <h3>검사 완료 추이 (최근 7일)</h3>
+                    <canvas id="testChart" class="chart-canvas"></canvas>
                 </div>
 
                 <div class="chart-card">
-                    <h3>🏆 인기 가이드북 TOP 5</h3>
-                    <div class="chart-container">
-                        <canvas id="guidebookTopChart"></canvas>
+                    <h3>인기 검사 TOP 5</h3>
+                    <canvas id="popularChart" class="chart-canvas"></canvas>
+                </div>
+            </div>
+
+            <!-- 가이드북 판매 통계 -->
+            <div class="guidebook-section">
+                <div class="section-header">
+                    <h2 style="color: #2c5f4f; margin-bottom: 0.5rem;">
+                        <i class="fas fa-book"></i> 가이드북 판매 현황
+                    </h2>
+                    <p style="color: #666;">로컬스토리지 기반 실시간 판매 데이터</p>
+                </div>
+
+                <!-- 가이드북 판매 통계 카드 -->
+                <div class="stats-grid" style="margin-top: 1.5rem;">
+                    <div class="stat-card" style="background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(240,217,140,0.1)); border-left: 4px solid #d4af37;">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #d4af37, #b8962f);">
+                            <i class="fas fa-shopping-cart" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>가이드북 판매</h3>
+                            <p id="guidebookSalesCount">0건</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" style="background: linear-gradient(135deg, rgba(44,95,79,0.05), rgba(26,72,56,0.05)); border-left: 4px solid #2c5f4f;">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #2c5f4f, #1a4838);">
+                            <i class="fas fa-won-sign" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>가이드북 매출</h3>
+                            <p id="guidebookRevenue">₩0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" style="background: linear-gradient(135deg, rgba(103,126,234,0.05), rgba(118,75,162,0.05)); border-left: 4px solid #667eea;">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <i class="fas fa-crown" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>인기 가이드북</h3>
+                            <p id="topGuidebook">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 가이드북 판매 차트 -->
+                <div class="charts-grid" style="margin-top: 1.5rem;">
+                    <div class="chart-card">
+                        <h3>📊 가이드북 판매 추이 (일별)</h3>
+                        <canvas id="guidebookSalesChart" class="chart-canvas"></canvas>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>🏆 인기 가이드북 TOP 5</h3>
+                        <canvas id="guidebookTopChart" class="chart-canvas"></canvas>
+                    </div>
+                </div>
+
+                <!-- 최근 가이드북 구매 내역 -->
+                <div class="guidebook-orders" style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-top: 1.5rem;">
+                    <h3 style="margin-bottom: 1.5rem; color: #2c5f4f;">📋 최근 가이드북 구매 내역</h3>
+                    <div id="guidebookOrdersList">
+                        <!-- 동적으로 로드됨 -->
                     </div>
                 </div>
             </div>
 
-            <!-- 최근 구매 내역 -->
-            <div class="activity-card">
-                <h3>📦 최근 가이드북 구매 내역 (최근 10건)</h3>
-                <div id="guidebookOrdersList" style="margin-top: 1.5rem;">
-                    <p style="text-align: center; color: #999; padding: 2rem;">
-                        <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
-                        구매 내역이 없습니다
-                    </p>
+            <!-- Activities -->
+            <div class="activities">
+                <h3>최근 활동</h3>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="activity-info">
+                        <p class="activity-text"><strong>김민지</strong>님이 가입했습니다</p>
+                        <p class="activity-time">5분 전</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="activity-info">
+                        <p class="activity-text"><strong>이준호</strong>님이 <strong>MBTI 검사</strong>를 완료했습니다</p>
+                        <p class="activity-time">12분 전</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="activity-info">
+                        <p class="activity-text"><strong>박서연</strong>님이 프리미엄 플랜을 구매했습니다</p>
+                        <p class="activity-time">23분 전</p>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <div class="activity-info">
+                        <p class="activity-text"><strong>최지우</strong>님의 환불 요청이 접수되었습니다</p>
+                        <p class="activity-time">1시간 전</p>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </main>
+    </div>
 
     <script>
-        // 로그인 확인
-        const isLoggedIn = localStorage.getItem('adminAuth');
-        if (!isLoggedIn) {
-            alert('로그인이 필요합니다.');
-            window.location.href = 'login.html';
-        }
+        // 로그인 확인 (페이지 로드 즉시 실행)
+        (function checkAuth() {
+            const adminAuth = localStorage.getItem('adminAuth') || sessionStorage.getItem('adminAuth');
+            
+            if (!adminAuth) {
+                window.location.replace('login.html');
+                return;
+            }
+            
+            try {
+                const authData = JSON.parse(adminAuth);
+                if (!authData.isLoggedIn) {
+                    window.location.replace('login.html');
+                    return;
+                }
+            } catch (e) {
+                localStorage.removeItem('adminAuth');
+                sessionStorage.removeItem('adminAuth');
+                window.location.replace('login.html');
+                return;
+            }
+        })();
 
         // 로그아웃 함수
         function logout() {
-            localStorage.removeItem('adminAuth');
-            alert('로그아웃되었습니다.');
-            window.location.href = 'login.html';
+            if (confirm('로그아웃 하시겠습니까?')) {
+                localStorage.removeItem('adminAuth');
+                sessionStorage.removeItem('adminAuth');
+                alert('✅ 로그아웃 되었습니다.');
+                window.location.href = 'login.html';
+            }
         }
 
-        // 가이드북 데이터 로드
+        // 가이드북 섹션으로 스크롤
+        function scrollToGuidebook() {
+            const section = document.querySelector('.guidebook-section');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+
+    <script>
+        // 가이드북 판매 데이터 로드
         function loadGuidebookData() {
             const purchases = JSON.parse(localStorage.getItem('guidebook_purchases') || '[]');
             
-            if (purchases.length === 0) {
-                document.getElementById('guidebook_sales').textContent = '0';
-                document.getElementById('guidebookRevenue').textContent = '₩0';
-                document.getElementById('topGuidebook').textContent = '-';
-                return;
-            }
-
             // 총 판매 건수
-            document.getElementById('guidebook_sales').textContent = purchases.length;
-
+            document.getElementById('guidebookSalesCount').textContent = `${purchases.length}건`;
+            
             // 총 매출
             const totalRevenue = purchases.reduce((sum, p) => sum + p.amount, 0);
             document.getElementById('guidebookRevenue').textContent = `₩${totalRevenue.toLocaleString()}`;
-
-            // 상품별 판매 건수 계산
+            
+            // 인기 가이드북 계산
             const productCount = {};
             purchases.forEach(p => {
-                const name = p.productName;
-                productCount[name] = (productCount[name] || 0) + 1;
+                const productName = p.productName.split(' ')[0]; // INTJ, INTP 등
+                productCount[productName] = (productCount[productName] || 0) + 1;
             });
-
-            // 인기 가이드북
+            
             const topProduct = Object.entries(productCount)
                 .sort((a, b) => b[1] - a[1])[0];
-            document.getElementById('topGuidebook').textContent = topProduct[0];
+            
+            document.getElementById('topGuidebook').textContent = 
+                topProduct ? `${topProduct[0]} (${topProduct[1]}건)` : '데이터 없음';
+            
+            // 최근 구매 내역 표시
+            loadRecentOrders(purchases);
+            
+            // 차트 그리기
+            drawGuidebookCharts(purchases, productCount);
+        }
 
-            // 최근 10건 구매 내역 표시
+        // 최근 구매 내역 표시
+        function loadRecentOrders(purchases) {
+            const container = document.getElementById('guidebookOrdersList');
+            
+            if (purchases.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #999;">
+                        <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p>아직 가이드북 구매 내역이 없습니다</p>
+                    </div>
+                `;
+                return;
+            }
+            
             const recent = purchases.slice(-10).reverse();
-            document.getElementById('guidebookOrdersList').innerHTML = `
+            
+            container.innerHTML = `
                 <table style="width: 100%; border-collapse: collapse;">
                     <thead>
                         <tr style="border-bottom: 2px solid #e0e0e0;">
@@ -672,9 +625,6 @@
                     </tbody>
                 </table>
             `;
-
-            // 차트 그리기
-            drawGuidebookCharts(purchases, productCount);
         }
 
         // 차트 인스턴스 저장 변수
@@ -815,8 +765,7 @@
                     borderColor: '#2c5f4f',
                     backgroundColor: 'rgba(44, 95, 79, 0.1)',
                     tension: 0.4,
-                    fill: true,
-                    borderWidth: 3
+                    fill: true
                 }]
             },
             options: {
@@ -824,18 +773,10 @@
                 maintainAspectRatio: false,
                 animation: false,
                 plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    }
+                    legend: { display: false }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 50
-                        }
-                    }
+                    y: { beginAtZero: true }
                 }
             }
         });
@@ -845,25 +786,17 @@
         new Chart(popularCtx, {
             type: 'bar',
             data: {
-                labels: ['MBTI', 'Enneagram', 'Big Five', 'EQ', 'DISC'],
+                labels: ['MBTI', '에니어그램', 'Big Five', 'DISC', 'Holland'],
                 datasets: [{
-                    label: '완료 건수',
-                    data: [3200, 2150, 1800, 1650, 1420],
+                    label: '완료 수',
+                    data: [2500, 1800, 1500, 1200, 1000],
                     backgroundColor: [
-                        'rgba(212, 175, 55, 0.8)',
                         'rgba(44, 95, 79, 0.8)',
-                        'rgba(103, 126, 234, 0.8)',
-                        'rgba(255, 159, 64, 0.8)',
-                        'rgba(153, 102, 255, 0.8)'
-                    ],
-                    borderColor: [
-                        '#d4af37',
-                        '#2c5f4f',
-                        '#667eea',
-                        '#ff9f40',
-                        '#9966ff'
-                    ],
-                    borderWidth: 2
+                        'rgba(212, 175, 55, 0.8)',
+                        'rgba(52, 152, 219, 0.8)',
+                        'rgba(231, 76, 60, 0.8)',
+                        'rgba(39, 174, 96, 0.8)'
+                    ]
                 }]
             },
             options: {
@@ -871,17 +804,10 @@
                 maintainAspectRatio: false,
                 animation: false,
                 plugins: {
-                    legend: {
-                        display: false
-                    }
+                    legend: { display: false }
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 500
-                        }
-                    }
+                    y: { beginAtZero: true }
                 }
             }
         });
