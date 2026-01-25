@@ -4,8 +4,8 @@
 
 // 샘플 데이터
 const userData = {
-    name: '김민지',
-    email: 'minjikim@example.com',
+    name: localStorage.getItem('user_name') || '김민지',
+    email: localStorage.getItem('user_email') || 'minjikim@example.com',
     joinDate: '최근',
     testCount: '여러 개',
     premiumCount: '일부'
@@ -410,22 +410,40 @@ function viewOrderDetail(orderId) {
 
 // 프로필 저장
 function saveProfile() {
-    const name = document.getElementById('settingName').value;
-    const email = document.getElementById('settingEmail').value;
-    const phone = document.getElementById('settingPhone').value;
+    const name = document.getElementById('settingName').value.trim();
+    const email = document.getElementById('settingEmail').value.trim();
+    const phone = document.getElementById('settingPhone').value.trim();
 
     if (!name || !email) {
         alert('이름과 이메일은 필수입니다.');
         return;
     }
 
-    console.log('프로필 저장:', { name, email, phone });
-    alert('프로필이 저장되었습니다!');
+    // 이메일 형식 검증
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('올바른 이메일 형식을 입력해주세요.');
+        return;
+    }
 
     // 화면 업데이트
     userData.name = name;
     userData.email = email;
-    loadUserProfile();
+    
+    // 프로필 영역 즉시 업데이트
+    document.getElementById('profileAvatar').textContent = name[0];
+    document.getElementById('profileName').textContent = name;
+    document.getElementById('profileEmail').textContent = email;
+    
+    // 로컬스토리지에 저장
+    localStorage.setItem('user_name', name);
+    localStorage.setItem('user_email', email);
+    if (phone) {
+        localStorage.setItem('user_phone', phone);
+    }
+    
+    console.log('프로필 저장:', { name, email, phone });
+    alert('✅ 프로필이 저장되었습니다!');
 }
 
 // 비밀번호 변경
