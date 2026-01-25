@@ -4,244 +4,329 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1장: INTP 성격 완벽 분석 - Mentora</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/nav-common.css?v=1.2">
-    <link rel="stylesheet" href="../../css/style.css?v=1.2">
-    <link rel="stylesheet" href="../../css/guidebook.css?v=1.3">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../css/nav-common.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/guidebook.css">
 </head>
 <body>
-    <div class="watermark">Mentora</div>
+    <!-- Watermark -->
+    <div class="watermark">MENTORA</div>
 
+    <!-- Header Navigation -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">
-                <a href="../../index.html" class="logo-link">
-                    <div class="logo-icon">
-                        <img src="../../images/logo-brain-hd.png" alt="Mentora Brain Logo">
-                    </div>
-                    <span class="logo-text">Mentora</span>
-                </a>
-            </div>
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="메뉴 열기">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="page-nav-center">
-                <ul class="nav-menu">
-                    <li><a href="../../index.html#home">홈</a></li>
-                    <li><a href="../../index.html#tests">검사하기</a></li>
-                    <li class="nav-dropdown">
-                        <a href="#" class="dropdown-trigger">프리미엄 <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../../roadmap.html">🗺️ AI 성장 로드맵</a></li>
-                            <li><a href="../../couple-analysis.html">💕 커플/팀 분석</a></li>
-                            <li><a href="../../dashboard.html">📊 데이터 대시보드</a></li>
-                            <li><a href="../../community.html">👥 멘토라 커뮤니티</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="../../index.html#pricing">요금제</a></li>
-                    <li><a href="../../guides.html" class="active">가이드북</a></li>
-                    <li><a href="../../mypage.html">내 결과</a></li>
-                    <li><a href="../../admin/index.html">관리자</a></li>
-                </ul>
-            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../../index.html#home" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="../../index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../../couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../../dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../../community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="../../guides.html" class="nav-link" onclick="closeMobileMenu()">가이드북</a></li>
+                <li><a href="../../mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="../../admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            </ul>
 
-            <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환">
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
                 <i class="fas fa-moon"></i>
             </button>
         </nav>
     </header>
 
-    <main class="guidebook-container">
-        <header class="guidebook-header">
-            <div class="chapter-badge">Chapter 1</div>
+    <!-- Main Content -->
+    <div class="guidebook-container">
+        <!-- Header -->
+        <div class="guidebook-header">
+            <div class="chapter-badge">📚 1장 / 총 5장</div>
             <h1>INTP 성격 완벽 분석</h1>
-            <div class="page-number">Page 1 / 62</div>
-        </header>
+            <p class="page-number">페이지 1-20 / 총 62페이지</p>
+        </div>
 
-        <nav class="guidebook-toc">
-            <h3>목차</h3>
-            <ul>
-                <li><a href="#intro">1.1 INTP란?</a></li>
-                <li><a href="#traits">1.2 핵심 특징</a></li>
-                <li><a href="#cognitive">1.3 인지 기능</a></li>
-                <li><a href="#next">다음: 강점과 약점</a></li>
-            </ul>
-        </nav>
+        <!-- Content Section -->
+        <section class="content-section">
+            <h2 class="section-title">
+                <span class="section-number">1.1</span>
+                INTP란 무엇인가?
+            </h2>
 
-        <article class="guidebook-content">
-            <section id="intro">
-                <h2>📘 INTP란? (The Logician)</h2>
-                <p class="intro-text">
-                    INTP는 <strong>논리학자형</strong>으로, 전체 인구의 약 <strong>3-5%</strong>를 차지하는 희귀한 유형입니다. 
-                    이들은 복잡한 이론과 시스템을 분석하고 이해하는 데 탁월한 능력을 가진 지적 탐구자입니다.
-                </p>
-
-                <div class="highlight-box">
-                    <h4>💡 INTP의 별명들</h4>
-                    <ul>
-                        <li><strong>논리학자</strong> - 논리적 사고의 대가</li>
-                        <li><strong>사색가</strong> - 깊이 있는 철학적 탐구</li>
-                        <li><strong>이론가</strong> - 추상적 개념의 전문가</li>
-                        <li><strong>창의적 사고자</strong> - 독창적인 아이디어 창출</li>
-                    </ul>
+            <div class="info-box highlight">
+                <div class="info-icon">💡</div>
+                <div>
+                    <h4>핵심 요약</h4>
+                    <p>INTP는 '논리술사형'으로 불리며, 독창적이고 분석적인 사고방식을 가진 성격 유형입니다. 전체 인구의 약 3-5%만이 이 유형에 해당하며, 논리적 사고와 이론적 탐구에 뛰어난 능력을 보입니다.</p>
                 </div>
-            </section>
+            </div>
 
-            <section id="traits">
-                <h2>🎯 핵심 특징</h2>
-                
-                <h3>1. 내향적 사고 (Introverted Thinking - Ti)</h3>
-                <p>
-                    INTP의 주기능은 <strong>내향적 사고(Ti)</strong>입니다. 이들은 내면의 논리 체계를 통해 
-                    세상을 이해하고, 모든 것을 분석하고 분류하려는 강한 욕구를 가지고 있습니다.
-                </p>
-                <ul>
-                    <li>완벽한 논리적 일관성 추구</li>
-                    <li>복잡한 문제를 단순화하는 능력</li>
-                    <li>원리와 원칙에 대한 깊은 이해</li>
-                    <li>비판적 사고와 분석력</li>
-                </ul>
+            <h3 class="subsection-title">📊 INTP 인구 통계</h3>
 
-                <h3>2. 외향적 직관 (Extraverted Intuition - Ne)</h3>
-                <p>
-                    보조 기능인 <strong>외향적 직관(Ne)</strong>은 INTP에게 창의성과 가능성 탐색 능력을 제공합니다. 
-                    이들은 새로운 아이디어와 연결고리를 발견하는 데 뛰어납니다.
-                </p>
-                <ul>
-                    <li>다양한 가능성 탐색</li>
-                    <li>창의적인 문제 해결</li>
-                    <li>패턴과 연관성 발견</li>
-                    <li>추상적 개념 이해</li>
-                </ul>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-number">3-5%</div>
+                    <div class="stat-label">전체 인구 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👨</div>
+                    <div class="stat-number">4.8%</div>
+                    <div class="stat-label">남성 중 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👩</div>
+                    <div class="stat-number">1.7%</div>
+                    <div class="stat-label">여성 중 비율</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number">7위</div>
+                    <div class="stat-label">희귀도 순위</div>
+                </div>
+            </div>
 
-                <h3>3. 내향적 감각 (Introverted Sensing - Si)</h3>
-                <p>
-                    3차 기능인 <strong>내향적 감각(Si)</strong>은 경험과 기억을 통해 정보를 처리합니다. 
-                    이 기능이 발달하면 과거 경험을 효과적으로 활용할 수 있습니다.
-                </p>
+            <h3 class="subsection-title">🧩 INTP의 네 가지 선호 경향</h3>
 
-                <h3>4. 외향적 감정 (Extraverted Feeling - Fe)</h3>
-                <p>
-                    열등 기능인 <strong>외향적 감정(Fe)</strong>은 INTP가 가장 어려워하는 영역입니다. 
-                    타인의 감정을 읽고 사회적 관계를 유지하는 것이 도전 과제가 될 수 있습니다.
-                </p>
-            </section>
-
-            <section id="cognitive">
-                <h2>🧠 인지 기능 스택</h2>
-                
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">1st</div>
-                        <div class="stat-label">Ti - 내향적 사고</div>
-                        <p>논리적 분석과 이해</p>
+            <div class="dimension-grid">
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">I</span>
+                        <span class="dimension-name">내향성 (Introversion)</span>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2nd</div>
-                        <div class="stat-label">Ne - 외향적 직관</div>
-                        <p>가능성 탐색과 창의성</p>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">3rd</div>
-                        <div class="stat-label">Si - 내향적 감각</div>
-                        <p>경험과 기억 활용</p>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4th</div>
-                        <div class="stat-label">Fe - 외향적 감정</div>
-                        <p>사회적 조화와 공감</p>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">내면의 세계에 에너지를 집중하며, 혼자만의 시간을 통해 재충전합니다.</p>
+                        <ul class="dimension-traits">
+                            <li>깊은 사고와 성찰을 선호</li>
+                            <li>소수의 깊은 관계 유지</li>
+                            <li>혼자만의 시간 필요</li>
+                            <li>내면의 아이디어 중시</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="quote-box">
-                    <p>"논리는 A에서 B로 가는 길을 제시하지만, 상상력은 어디든 갈 수 있다."</p>
-                    <cite>- 알베르트 아인슈타인 (INTP)</cite>
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">N</span>
+                        <span class="dimension-name">직관 (iNtuition)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">전체적인 패턴과 미래 가능성을 보며, 추상적 개념을 선호합니다.</p>
+                        <ul class="dimension-traits">
+                            <li>큰 그림과 패턴 파악</li>
+                            <li>미래 지향적 사고</li>
+                            <li>상징과 은유 이해</li>
+                            <li>새로운 가능성 탐구</li>
+                        </ul>
+                    </div>
                 </div>
-            </section>
 
-            <section id="next">
-                <h2>📖 다음 장 미리보기</h2>
-                <p>
-                    다음 페이지에서는 INTP의 <strong>강점과 약점</strong>을 깊이 있게 분석하고, 
-                    이를 실생활에서 어떻게 활용하고 보완할 수 있는지 알아봅니다.
-                </p>
-                
-                <div class="info-box">
-                    <h4>🎯 다음에 배울 내용</h4>
-                    <ul>
-                        <li>INTP의 10가지 핵심 강점</li>
-                        <li>극복해야 할 5가지 주요 약점</li>
-                        <li>강점 극대화 전략</li>
-                        <li>약점 보완 로드맵</li>
-                    </ul>
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">T</span>
+                        <span class="dimension-name">사고 (Thinking)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">객관적이고 논리적인 분석을 통해 의사결정을 내립니다.</p>
+                        <ul class="dimension-traits">
+                            <li>논리적 일관성 추구</li>
+                            <li>객관적 분석 선호</li>
+                            <li>원칙과 공정성 중시</li>
+                            <li>감정보다 이성 우선</li>
+                        </ul>
+                    </div>
                 </div>
-            </section>
-        </article>
 
-        <nav class="page-navigation">
+                <div class="dimension-card">
+                    <div class="dimension-header">
+                        <span class="dimension-letter">P</span>
+                        <span class="dimension-name">인식 (Perceiving)</span>
+                    </div>
+                    <div class="dimension-body">
+                        <p class="dimension-desc">유연하고 개방적인 방식으로 삶을 탐색합니다.</p>
+                        <ul class="dimension-traits">
+                            <li>유연한 계획 선호</li>
+                            <li>즉흥적 대응 능력</li>
+                            <li>새로운 정보에 개방적</li>
+                            <li>다양한 가능성 유지</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">🧠 인지 기능 스택</h3>
+
+            <div class="info-box">
+                <div class="info-icon">💭</div>
+                <div>
+                    <p>INTP의 사고방식을 이해하려면 '인지 기능 스택'을 알아야 합니다. 이는 INTP가 정보를 처리하고 결정을 내리는 방식을 설명합니다.</p>
+                </div>
+            </div>
+
+            <div class="function-stack">
+                <div class="function-card primary">
+                    <div class="function-rank">주기능 (1위)</div>
+                    <div class="function-name">Ti - 내향 사고</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 논리적 분석과 이해의 마스터</p>
+                        <p>내면의 논리 체계를 구축하고 모든 것을 분석하려는 강한 욕구를 가집니다. 완벽한 논리적 일관성을 추구하며, 복잡한 문제를 단순화하는 능력이 탁월합니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 복잡한 시스템의 작동 원리를 분석하고 더 효율적인 방법 고안
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-card secondary">
+                    <div class="function-rank">부기능 (2위)</div>
+                    <div class="function-name">Ne - 외향 직관</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 가능성 탐색과 창의적 사고</p>
+                        <p>새로운 아이디어와 연결고리를 발견하는 데 뛰어나며, 다양한 가능성을 탐색합니다. 창의적인 문제 해결과 패턴 인식 능력이 있습니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 하나의 문제에 대해 10가지 다른 해결 방법 제시
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-card tertiary">
+                    <div class="function-rank">3차 기능 (3위)</div>
+                    <div class="function-name">Si - 내향 감각</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 경험과 기억 활용</p>
+                        <p>과거 경험과 기억을 통해 정보를 처리합니다. 이 기능이 발달하면 과거 경험을 효과적으로 활용할 수 있습니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 과거의 비슷한 상황을 참고하여 현재 문제 해결
+                        </div>
+                    </div>
+                </div>
+
+                <div class="function-card inferior">
+                    <div class="function-rank">열등 기능 (4위)</div>
+                    <div class="function-name">Fe - 외향 감정</div>
+                    <div class="function-desc">
+                        <p><strong>역할:</strong> 사회적 조화와 공감 (약점)</p>
+                        <p>INTP의 가장 약한 부분입니다. 타인의 감정을 읽고 사회적 관계를 유지하는 것이 도전 과제가 될 수 있습니다. 스트레스를 받으면 감정적으로 압도될 수 있습니다.</p>
+                        <div class="function-example">
+                            <strong>예시:</strong> 사회적 신호를 놓치거나, 타인의 감정에 둔감한 모습
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation -->
+        <div class="page-navigation">
+            <a href="index.html" class="nav-btn prev-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>가이드북 목차</span>
+            </a>
             <a href="index.html" class="nav-btn home-btn">
-                <i class="fas fa-home"></i> 목차로
+                <i class="fas fa-home"></i>
+                <span>목차 페이지</span>
             </a>
             <a href="chapter-1-page-2.html" class="nav-btn next-btn">
-                다음 페이지 <i class="fas fa-arrow-right"></i>
+                <span>1장 2페이지: 강점과 약점</span>
+                <i class="fas fa-arrow-right"></i>
             </a>
-        </nav>
-    </main>
+        </div>
+    </div>
 
+    <!-- JavaScript -->
     <script>
         // 모바일 메뉴 토글
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const pageNavCenter = document.querySelector('.page-nav-center');
-        
-        if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                pageNavCenter.classList.toggle('active');
-                const icon = this.querySelector('i');
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            });
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            navMenu.classList.toggle('active');
+            
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         }
 
-        // 외부 클릭 시 메뉴 닫기
-        document.addEventListener('click', function(e) {
-            if (pageNavCenter && pageNavCenter.classList.contains('active')) {
-                if (!e.target.closest('.page-nav-center') && !e.target.closest('.mobile-menu-toggle')) {
-                    pageNavCenter.classList.remove('active');
-                    const icon = mobileMenuToggle.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+        // 모바일 메뉴 닫기
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // 다크 모드 토글
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // 페이지 로드 시 저장된 테마 적용
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                const icon = document.querySelector('#themeToggle i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
             }
         });
 
-        // 다크모드 토글
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        
-        // 저장된 테마 불러오기
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        body.classList.toggle('dark-mode', savedTheme === 'dark');
-        
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                const isDark = body.classList.contains('dark-mode');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                themeToggle.querySelector('i').classList.toggle('fa-moon');
-                themeToggle.querySelector('i').classList.toggle('fa-sun');
-            });
-        }
+        // 외부 클릭 시 메뉴 닫기
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            if (!event.target.closest('.nav') && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
 
         // 드롭다운 메뉴
-        document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
-            const trigger = dropdown.querySelector('.dropdown-trigger');
-            trigger.addEventListener('click', (e) => {
+        const dropdowns = document.querySelectorAll('.nav-dropdown');
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
                 e.preventDefault();
-                dropdown.classList.toggle('active');
+                this.classList.toggle('active');
             });
         });
     </script>
