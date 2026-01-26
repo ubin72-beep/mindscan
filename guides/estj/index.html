@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTJ 성격 완벽 분석 가이드북 - Mentora</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../../css/nav-common.css?v=2.0">
+    <link rel="stylesheet" href="../../css/style.css?v=2.0">
+    <link rel="stylesheet" href="../../css/guidebook.css?v=2.0">
+</head>
+<body>
+    <!-- 워터마크 -->
+    <div class="watermark">MENTORA</div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../../index.html#home" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
+                <li><a href="../../index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
+                <li class="nav-dropdown">
+                    <a href="#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../../roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
+                        <li><a href="../../couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
+                        <li><a href="../../dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
+                        <li><a href="../../community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
+                <li><a href="../../guides.html" class="nav-link" onclick="closeMobileMenu()">가이드북</a></li>
+                <li><a href="../../mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
+                <li><a href="../../admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="guidebook-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content-center">
+            <div class="premium-badge">
+                <i class="fas fa-crown"></i>
+                <span>PREMIUM GUIDEBOOK</span>
+            </div>
+            <h1 class="hero-main-title">ESTJ 성격 완벽 분석 가이드</h1>
+            <p class="hero-subtitle">지휘관(The Commander)의 모든 것</p>
+            <div class="hero-meta">
+                <span><i class="fas fa-file-alt"></i> 62페이지</span>
+                <span><i class="fas fa-certificate"></i> 전문가 감수</span>
+                <span><i class="fas fa-infinity"></i> 평생 소장</span>
+            </div>
+            <a href="chapter-1.html" class="cta-button-large">
+                <i class="fas fa-book-open"></i>
+                지금 시작하기
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="guidebook-container">
+        <!-- 소개 섹션 -->
+        <div class="intro-section">
+            <div class="intro-content">
+                <h2><i class="fas fa-lightbulb"></i> 이 가이드북에 대하여</h2>
+                <p class="intro-text">
+                    ESTJ 성격 유형은 인구의 약 <strong>2-5%</strong>만이 가진 타고난 리더십을 지닌 성격입니다. 
+                    강력한 의지와 전략적 사고로 조직을 이끌며, 목표 달성을 위해 끊임없이 
+                    노력하는 지휘관형입니다.
+                </p>
+                <p class="intro-text">
+                    이 가이드북은 <strong>ESTJ의 모든 것</strong>을 담았습니다. 단순한 성격 분석을 넘어서, 
+                    직업 선택부터 연애 관계, 그리고 AI 시대에 맞는 성장 전략까지 실용적이고 
+                    구체적인 가이드를 제공합니다.
+                </p>
+            </div>
+
+            <!-- 통계 -->
+            <div class="stats-showcase">
+                <div class="stat-item-large">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-number-large">62</div>
+                    <div class="stat-label-large">전체 페이지</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-list-ol"></i>
+                    </div>
+                    <div class="stat-number-large">5</div>
+                    <div class="stat-label-large">주요 챕터</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="stat-number-large">30+</div>
+                    <div class="stat-label-large">직업 추천</div>
+                </div>
+                <div class="stat-item-large">
+                    <div class="stat-icon-large">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-number-large">100%</div>
+                    <div class="stat-label-large">전문가 감수</div>
+                </div>
+            </div>
+        </div>
+
+            <!-- 목차 - 카드 형태 -->
+            <div class="chapters-section">
+                <h2 class="section-title">
+                    <i class="fas fa-book-open"></i>
+                    전체 목차
+                </h2>
+                
+                <div class="chapters-grid">
+                    <!-- Chapter 1 -->
+                    <a href="chapter-1.html" class="chapter-card">
+                        <div class="chapter-number">1</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="chapter-title">ESTJ 성격 완벽 분석</h3>
+                        <p class="chapter-pages">20페이지</p>
+                        <ul class="chapter-topics">
+                            <li>ESTJ의 본질과 핵심 특성</li>
+                            <li>강점과 약점 심층 분석</li>
+                            <li>리더십 스타일과 의사결정</li>
+                            <li>성장 단계별 발달 특징</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            읽기 시작 <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chapter 2 -->
+                    <a href="chapter-2.html" class="chapter-card">
+                        <div class="chapter-number">2</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="chapter-title">직업 추천 30가지</h3>
+                        <p class="chapter-pages">15페이지</p>
+                        <ul class="chapter-topics">
+                            <li>ESTJ에게 최적화된 직업군</li>
+                            <li>산업별 상세 직업 분석</li>
+                            <li>커리어 성공 전략</li>
+                            <li>리더십 발휘 전략</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            읽기 시작 <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chapter 3 -->
+                    <a href="chapter-3.html" class="chapter-card">
+                        <div class="chapter-number">3</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="chapter-title">연애 & 궁합 가이드</h3>
+                        <p class="chapter-pages">12페이지</p>
+                        <ul class="chapter-topics">
+                            <li>ESTJ의 연애 스타일</li>
+                            <li>16가지 유형별 궁합 분석</li>
+                            <li>갈등 해결 및 소통 전략</li>
+                            <li>장기 관계 유지 비법</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            읽기 시작 <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chapter 4 -->
+                    <a href="chapter-4.html" class="chapter-card">
+                        <div class="chapter-number">4</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="chapter-title">AI 성장 로드맵</h3>
+                        <p class="chapter-pages">10페이지</p>
+                        <ul class="chapter-topics">
+                            <li>AI 시대의 ESTJ 경쟁력</li>
+                            <li>맞춤형 학습 전략</li>
+                            <li>디지털 도구 활용법</li>
+                            <li>미래 산업 트렌드 대응</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            읽기 시작 <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <!-- Chapter 5 -->
+                    <a href="chapter-5.html" class="chapter-card">
+                        <div class="chapter-number">5</div>
+                        <div class="chapter-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="chapter-title">유명인 사례 분석</h3>
+                        <p class="chapter-pages">5페이지</p>
+                        <ul class="chapter-topics">
+                            <li>세계적인 ESTJ 리더들</li>
+                            <li>성공 사례 심층 분석</li>
+                            <li>실패에서 배우는 교훈</li>
+                            <li>당신의 롤모델 찾기</li>
+                        </ul>
+                        <div class="chapter-cta">
+                            읽기 시작 <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 특징 섹션 -->
+            <div class="features-section">
+                <h2 class="section-title">
+                    <i class="fas fa-gem"></i>
+                    이 가이드북의 특별한 점
+                </h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>전문가 감수</h3>
+                        <p>심리학 전문가 감수로 검증된 정확한 분석</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <h3>실전 활용</h3>
+                        <p>실전에서 바로 활용 가능한 구체적인 가이드</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>AI 시대 대응</h3>
+                        <p>AI 시대에 맞춘 최신 커리어 전략</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>궁합 분석</h3>
+                        <p>16가지 유형 전체 궁합 분석 포함</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3>PDF 다운로드</h3>
+                        <p>평생 소장 가능한 PDF 다운로드 제공</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>모바일 최적화</h3>
+                        <p>모바일 최적화로 언제 어디서나 열람</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 추천 대상 -->
+            <div class="target-audience">
+                <h2 class="section-title">
+                    <i class="fas fa-bullseye"></i>
+                    이런 분들께 추천합니다
+                </h2>
+                <div class="audience-list">
+                    <div class="audience-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>ESTJ 성격 유형에 대해 깊이 이해하고 싶은 분</span>
+                    </div>
+                    <div class="audience-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>리더십을 발휘하고 조직을 이끌고 싶은 분</span>
+                    </div>
+                    <div class="audience-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>커리어 방향을 설정하고 구체적인 직업을 찾는 분</span>
+                    </div>
+                    <div class="audience-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>연애와 인간관계에서 어려움을 겪는 분</span>
+                    </div>
+                    <div class="audience-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>AI 시대에 맞는 성장 전략이 필요한 분</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 가이드북 정보 -->
+            <div class="guidebook-info-section">
+                <h2 class="section-title">
+                    <i class="fas fa-info-circle"></i>
+                    가이드북 정보
+                </h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-label">총 페이지</div>
+                        <div class="info-value">62페이지</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">형식</div>
+                        <div class="info-value">온라인 HTML + PDF</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">언어</div>
+                        <div class="info-value">한국어</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">업데이트</div>
+                        <div class="info-value">2024년 1월</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">전문가 감수</div>
+                        <div class="info-value">심리학 박사 3인</div>
+                    </div>
+                    <div class="info-card highlight-card">
+                        <div class="info-label">가격</div>
+                        <div class="info-value price">₩14,900</div>
+                        <div class="info-sublabel">평생 소장</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA 섹션 -->
+        <div class="cta-section">
+            <div class="cta-content">
+                <h2>지금 바로 ESTJ 가이드북을 시작하세요</h2>
+                <p>62페이지의 전문적인 분석과 실용적인 가이드가 기다립니다</p>
+                <a href="chapter-1.html" class="cta-button-main">
+                    <i class="fas fa-play-circle"></i>
+                    1장부터 시작하기
+                </a>
+                <a href="../../guides.html" class="cta-button-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    가이드북 목록으로
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 모바일 메뉴 토글
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            navMenu.classList.toggle('active');
+            
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // 모바일 메뉴 닫기
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.getElementById('mobileMenuToggle');
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // 다크 모드 토글
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeToggle = document.getElementById('themeToggle');
+            const icon = themeToggle.querySelector('i');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // 페이지 로드 시 저장된 테마 적용
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                const icon = document.querySelector('#themeToggle i');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+    </script>
+</body>
+</html>
