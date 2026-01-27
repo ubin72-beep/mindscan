@@ -3,348 +3,604 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>커플/팀 매칭 분석 - Mentora</title>
-    <meta name="description" content="두 사람의 성격을 분석하여 최적의 소통 방법과 관계 성장 전략을 제공합니다.">
-    
-    <!-- 구글 폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+    <title>💑 MBTI 커플 궁합 분석 - 우리 둘은 얼마나 잘 맞을까? | Mentora</title>
+    <meta name="description" content="MBTI 16가지 유형별 완벽한 커플 궁합 분석. 256가지 조합의 상세한 분석으로 우리의 사랑을 더 깊게 이해하세요.">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- 공통 네비게이션 CSS -->
-    <link rel="stylesheet" href="css/nav-common.css">
-    
-    <!-- 기본 스타일 CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Disclaimer CSS -->
-    <link rel="stylesheet" href="css/disclaimer.css">
-    
     <style>
-        .couple-container {
-            max-width: 1200px;
-            margin: 100px auto 60px;
-            padding: 0 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .couple-hero {
-            text-align: center;
-            background: linear-gradient(135deg, #ffe0f0 0%, #ffffff 100%);
-            padding: 40px 20px 35px;
-            border-radius: 20px;
-            margin-bottom: 50px;
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
         }
 
-        .couple-hero-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(44, 95, 79, 0.98) 0%, rgba(26, 72, 56, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            z-index: 1000;
         }
 
-        .couple-hero-title {
-            font-size: 36px;
-            font-weight: 800;
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon-text {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .logo-icon-text i {
+            font-size: 24px;
             color: #2c5f4f;
-            margin-bottom: 15px;
         }
 
-        .couple-hero-subtitle {
-            font-size: 16px;
-            color: #666;
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 20px 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23ffffff" opacity="0.1"/></svg>') bottom center no-repeat;
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 .emoji {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.2); }
+            20%, 40% { transform: scale(1); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 40px;
             line-height: 1.8;
-            max-width: 700px;
-            margin: 0 auto 25px;
         }
 
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: #f5576c;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 20px;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
             margin-bottom: 60px;
         }
 
-        .analysis-card {
-            background: white;
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .analysis-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(44, 95, 79, 0.15);
-        }
-
-        .analysis-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .analysis-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: #2c5f4f;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #2d3748;
             margin-bottom: 15px;
         }
 
-        .analysis-description {
-            font-size: 15px;
-            color: #666;
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #718096;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            font-size: 1rem;
+            color: #718096;
             line-height: 1.8;
         }
 
-        .cta-section {
-            text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(135deg, #ff9ebf 0%, #ff6b9d 100%);
-            border-radius: 20px;
+        /* Top Couples Section */
+        .top-couples {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .top-couples .section-title,
+        .top-couples .section-subtitle {
             color: white;
         }
 
+        .couples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .couple-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .couple-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .couple-types {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .couple-score {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .couple-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .cta-title {
-            font-size: 32px;
-            font-weight: 800;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #2d3748;
             margin-bottom: 20px;
         }
 
-        .cta-description {
-            font-size: 18px;
+        .cta-desc {
+            font-size: 1.3rem;
+            color: #718096;
             margin-bottom: 40px;
-            opacity: 0.9;
         }
 
-        .btn-cta {
-            padding: 18px 40px;
-            font-size: 18px;
-            font-weight: 700;
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px 60px;
             border-radius: 50px;
             text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.3);
             transition: all 0.3s ease;
-            display: inline-block;
-            background: white;
-            color: #ff6b9d;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
         }
 
-        .btn-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(245, 87, 108, 0.4);
         }
 
-        /* 반응형 디자인 */
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .couple-container {
-                margin-top: 80px;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .couple-hero {
-                padding: 30px 20px;
+            .hero p {
+                font-size: 1.1rem;
             }
 
-            .couple-hero-title {
-                font-size: 28px;
+            .hero-stats {
+                flex-direction: column;
+                gap: 30px;
             }
 
-            .couple-hero-subtitle {
-                font-size: 14px;
-            }
-
-            .analysis-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .section-title {
+                font-size: 2rem;
             }
 
             .cta-title {
-                font-size: 24px;
+                font-size: 2rem;
             }
 
-            .cta-description {
-                font-size: 16px;
+            .nav {
+                padding: 15px 20px;
+            }
+
+            .nav-menu {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 네비게이션 바 -->
-    <header class="page-header">
-        <nav class="page-nav">
-            <div class="page-nav-left">
-                <a href="index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon-text">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <span class="page-nav-logo-text">Mentora</span>
-                </a>
-            </div>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#home" class="nav-link">홈</a></li>
-                <li><a href="index.html#tests" class="nav-link">검사하기</a></li>
-                <li class="nav-dropdown">
-                    <a href="#premium-features" class="nav-link">프리미엄 ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="roadmap.html"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
-                        <li><a href="couple-analysis.html"><i class="fas fa-heart"></i> 커플/팀 매칭 분석</a></li>
-                        <li><a href="ai-chatbot.html"><i class="fas fa-comments"></i> AI 코칭 챗봇</a></li>
-                        <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> 심리 데이터 대시보드</a></li>
-                    </ul>
-                </li>
-                <li><a href="index.html#pricing" class="nav-link">요금제</a></li>
-                <li><a href="guides.html" class="nav-link">가이드북</a></li>
-                <li><a href="mypage.html" class="nav-link">내 결과</a></li>
-                <li><a href="admin/index.html" class="nav-link admin-link">관리자</a></li>
+    <!-- Header -->
+    <header>
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="couple/input.html">커플 궁합</a></li>
+                <li><a href="guides.html">가이드북</a></li>
             </ul>
-
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
         </nav>
     </header>
 
-    <!-- 메인 컨텐츠 -->
-    <main class="couple-container">
-        <!-- Disclaimer 배너 삽입 위치 -->
-        <div id="disclaimer-container"></div>
-
-        <!-- 히어로 섹션 -->
-        <section class="couple-hero">
-            <div class="couple-hero-icon">💕</div>
-            <h1 class="couple-hero-title">커플/팀 매칭 분석</h1>
-            <p class="couple-hero-subtitle">
-                두 사람의 성격을 심층 비교하여<br>
-                효과적인 소통 방법과 관계 개선 전략을 제공합니다.
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-fire"></i>
+                <span>실시간 1,247명이 분석 중</span>
+            </div>
+            <h1>
+                <span class="emoji">💑</span><br>
+                MBTI 커플 궁합 분석
+            </h1>
+            <p>
+                우리 둘은 얼마나 잘 맞을까?<br>
+                과학적인 MBTI 분석으로 두 사람의 궁합을 확인해보세요
             </p>
-        </section>
-
-        <!-- 분석 항목 -->
-        <section>
-            <h2 class="section-title" style="text-align: center; font-size: 32px; font-weight: 800; color: #2c5f4f; margin-bottom: 50px;">분석 항목</h2>
-            
-            <div class="analysis-grid">
-                <div class="analysis-card">
-                    <div class="analysis-icon">💝</div>
-                    <h3 class="analysis-title">성격 궁합도 분석</h3>
-                    <p class="analysis-description">
-                        두 사람의 성격 유형을 비교하여 호환성을 백분율로 표시합니다.
-                        강점과 주의할 점을 구체적으로 안내합니다.
-                    </p>
+            <a href="couple/input.html" class="hero-btn">
+                <i class="fas fa-heart"></i>
+                지금 바로 분석하기
+            </a>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">256</div>
+                    <div class="stat-label">가지 조합 분석</div>
                 </div>
-
-                <div class="analysis-card">
-                    <div class="analysis-icon">💬</div>
-                    <h3 class="analysis-title">소통 스타일 비교</h3>
-                    <p class="analysis-description">
-                        각자의 의사소통 방식을 분석하고 효과적인 대화 방법을 제안합니다.
-                        상대방이 선호하는 소통 방식을 이해할 수 있습니다.
-                    </p>
+                <div class="stat-item">
+                    <div class="stat-number">50만+</div>
+                    <div class="stat-label">누적 분석 건수</div>
                 </div>
-
-                <div class="analysis-card">
-                    <div class="analysis-icon">🤝</div>
-                    <h3 class="analysis-title">갈등 해결 가이드</h3>
-                    <p class="analysis-description">
-                        두 사람의 성격을 고려한 갈등 해결 전략을 제공합니다.
-                        예상되는 갈등 상황과 대처 방법을 미리 알 수 있습니다.
-                    </p>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">만족도</div>
                 </div>
-
-                <div class="analysis-card">
-                    <div class="analysis-icon">📈</div>
-                    <h3 class="analysis-title">관계 성장 플랜</h3>
-                    <p class="analysis-description">
-                        두 사람의 관계를 더욱 발전시킬 수 있는 구체적인 활동과 목표를 제안합니다.
-                        함께 성장하는 방법을 배울 수 있습니다.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA 섹션 -->
-        <section class="cta-section">
-            <h2 class="cta-title">지금 바로 분석하세요</h2>
-            <p class="cta-description">커플/팀 매칭 분석은 골드 멤버십 또는 개별 구매로 이용하실 수 있습니다.</p>
-            <a href="payment/checkout.html?plan=gold" class="btn-cta">골드 멤버십 구매하기</a>
-        </section>
-    </main>
-
-    <!-- 푸터 -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="footer-title">Mentora</h3>
-                    <p class="footer-description">
-                        진짜 나를 만나는 가장 정확한 방법<br>
-                        100만 명이 선택한 심리검사 플랫폼
-                    </p>
-                    <div class="footer-company">
-                        <p><strong>회사명:</strong> CubeBox</p>
-                        <p><strong>대표:</strong> 박민수</p>
-                        <p><strong>주소:</strong> 서울특별시 송파구 송파대로14길 7-10 2층</p>
-                        <p><strong>전화:</strong> 050-2-1909-7788</p>
-                        <p><strong>이메일:</strong> mentora@gmail.com</p>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-subtitle">심리검사</h4>
-                    <ul class="footer-links">
-                        <li><a href="guides.html">전체 검사 보기</a></li>
-                        <li><a href="guides/intj-sample.html">INTJ 가이드북</a></li>
-                        <li><a href="guides/enfp-sample.html">ENFP 가이드북</a></li>
-                        <li><a href="guides/infp-sample.html">INFP 가이드북</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-subtitle">프리미엄 기능</h4>
-                    <ul class="footer-links">
-                        <li><a href="roadmap.html">AI 성장 로드맵</a></li>
-                        <li><a href="couple-analysis.html">커플/팀 매칭 분석</a></li>
-                        <li><a href="ai-chatbot.html">AI 코칭 챗봇</a></li>
-                        <li><a href="dashboard.html">심리 데이터 대시보드</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4 class="footer-subtitle">고객지원</h4>
-                    <ul class="footer-links">
-                        <li><a href="mypage.html">내 결과 보기</a></li>
-                        <li><a href="payment/checkout.html?plan=premium">프리미엄 구매</a></li>
-                        <li><a href="admin/index.html">관리자</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 CubeBox. All rights reserved.</p>
             </div>
         </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">💕 왜 Mentora 궁합 분석일까요?</h2>
+                <p class="section-subtitle">가장 정확하고 상세한 MBTI 커플 궁합 분석</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">정확한 분석</h3>
+                    <p class="feature-desc">256가지 모든 MBTI 조합에 대한 상세한 궁합 분석을 제공합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">소통 가이드</h3>
+                    <p class="feature-desc">두 사람의 소통 스타일을 이해하고 갈등을 해결하는 방법을 알려드립니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">실전 팁</h3>
+                    <p class="feature-desc">연애 단계별 가이드와 실전 데이트 팁을 제공합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💍</div>
+                    <h3 class="feature-title">결혼 적합도</h3>
+                    <p class="feature-desc">장기적인 관계와 결혼 생활에서의 궁합을 분석합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">강점 & 약점</h3>
+                    <p class="feature-desc">관계의 강점을 강화하고 약점을 극복하는 방법을 제시합니다</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3 class="feature-title">무료 분석</h3>
+                    <p class="feature-desc">모든 궁합 분석을 완전 무료로 제공합니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Couples Section -->
+    <section class="top-couples">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🔥 최고의 궁합 TOP 10</h2>
+                <p class="section-subtitle">가장 완벽한 조합을 확인해보세요</p>
+            </div>
+            <div class="couples-grid">
+                <div class="couple-card">
+                    <div class="couple-types">INTJ ♥ ENFP</div>
+                    <div class="couple-score">95점</div>
+                    <div class="couple-label">정반대의 완벽한 조화</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">INFJ ♥ ENTP</div>
+                    <div class="couple-score">94점</div>
+                    <div class="couple-label">지적 교감의 정점</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">ENFJ ♥ INFP</div>
+                    <div class="couple-score">93점</div>
+                    <div class="couple-label">감성적 완벽 매치</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">ENTJ ♥ INFP</div>
+                    <div class="couple-score">92점</div>
+                    <div class="couple-label">리더와 힐러의 조화</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">ISTJ ♥ ESFP</div>
+                    <div class="couple-score">91점</div>
+                    <div class="couple-label">안정과 활력의 균형</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">ISTP ♥ ESFJ</div>
+                    <div class="couple-score">90점</div>
+                    <div class="couple-label">실용과 따뜻함</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">INTP ♥ ENTJ</div>
+                    <div class="couple-score">90점</div>
+                    <div class="couple-label">논리적 완벽주의</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">ISFJ ♥ ESTP</div>
+                    <div class="couple-score">89점</div>
+                    <div class="couple-label">돌봄과 모험</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">ENFP ♥ INFJ</div>
+                    <div class="couple-score">88점</div>
+                    <div class="couple-label">창의와 통찰의 만남</div>
+                </div>
+                <div class="couple-card">
+                    <div class="couple-types">ESFP ♥ ISFJ</div>
+                    <div class="couple-score">88점</div>
+                    <div class="couple-label">즐거움과 안정</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">💖 지금 바로 확인해보세요!</h2>
+            <p class="cta-desc">
+                단 2분이면 두 사람의 궁합을 완벽하게 분석할 수 있습니다.<br>
+                무료로 시작하고 더 깊은 관계를 만들어보세요.
+            </p>
+            <a href="couple/input.html" class="cta-btn">
+                <i class="fas fa-heart"></i>
+                궁합 분석 시작하기
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mentora. All rights reserved.</p>
+        </div>
     </footer>
-
-    <!-- Disclaimer 스크립트 -->
-    <script src="js/disclaimer.js"></script>
-
-    <!-- 모바일 메뉴 토글 -->
-    <script>
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        if (mobileMenuToggle && navMenu) {
-            mobileMenuToggle.addEventListener('click', function() {
-                navMenu.classList.toggle('active');
-                
-                const icon = this.querySelector('i');
-                if (navMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-        }
-    </script>
 </body>
 </html>
