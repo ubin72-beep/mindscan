@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💑 MBTI 커플 궁합 분석 - 우리 둘은 얼마나 잘 맞을까? | Mentora</title>
-    <meta name="description" content="MBTI 16가지 유형별 완벽한 커플 궁합 분석. 256가지 조합의 상세한 분석으로 우리의 사랑을 더 깊게 이해하세요.">
+    <title>커플 MBTI 입력 - Mentora</title>
+    <meta name="description" content="나와 상대방의 MBTI를 입력하고 궁합을 분석해보세요">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -16,11 +16,23 @@
 
         body {
             font-family: 'Noto Sans KR', 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding-top: 80px;
         }
 
-        /* Header */
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         header {
             position: fixed;
             top: 0;
@@ -47,6 +59,7 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
+            transition: all 0.3s ease;
         }
 
         .logo-icon-text {
@@ -57,7 +70,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 24px;
+            font-weight: 900;
+            color: #2c5f4f;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+            transition: all 0.3s ease;
         }
 
         .logo-icon-text i {
@@ -69,7 +86,8 @@
             font-size: 1.8rem;
             font-weight: 900;
             color: #ffffff;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+            letter-spacing: -0.5px;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
@@ -86,69 +104,214 @@
             font-weight: 600;
             font-size: 1rem;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .nav-menu li a:hover {
             color: #d4af37;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 150px 20px 100px;
-            text-align: center;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
+        .nav-menu li a::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: -5px;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23ffffff" opacity="0.1"/></svg>') bottom center no-repeat;
-            background-size: cover;
-            opacity: 0.5;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            transition: width 0.3s ease;
         }
 
-        .hero-content {
-            max-width: 1000px;
+        .nav-menu li a:hover::after {
+            width: 100%;
+        }
+
+        .container {
+            max-width: 900px;
             margin: 0 auto;
-            position: relative;
-            z-index: 1;
+            padding: 40px 20px;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 10px 20px;
-            border-radius: 50px;
-            color: white;
-            font-weight: 600;
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
+        .input-card {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+            animation: slideUp 0.5s ease;
         }
 
-        @keyframes float {
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        .header-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
         }
 
-        .hero h1 .emoji {
+        .header-section .subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+        }
+
+        .step-container {
+            margin-bottom: 50px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.3);
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .mbti-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+        }
+
+        .mbti-btn {
+            padding: 20px;
+            border: 3px solid #e2e8f0;
+            border-radius: 15px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #4a5568;
+        }
+
+        .mbti-btn:hover {
+            border-color: #f093fb;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+        }
+
+        .mbti-btn.selected {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-color: transparent;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 25px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.3);
+        }
+
+        .analyze-btn:hover:not(:disabled) {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(245, 87, 108, 0.4);
+        }
+
+        .analyze-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .selected-display {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+            border-radius: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .selected-item {
+            text-align: center;
+        }
+
+        .selected-item .label {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-bottom: 10px;
+        }
+
+        .selected-item .value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .heart-icon {
+            font-size: 2.5rem;
+            color: #f5576c;
+            display: flex;
+            align-items: center;
             animation: heartbeat 1.5s ease-in-out infinite;
         }
 
@@ -158,259 +321,23 @@
             20%, 40% { transform: scale(1); }
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-
-        .hero-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: white;
-            color: #f5576c;
-            padding: 20px 50px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 700;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 60px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 20px;
-            background: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #2d3748;
-            margin-bottom: 15px;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: #718096;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 2.5rem;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 15px;
-        }
-
-        .feature-desc {
-            font-size: 1rem;
-            color: #718096;
-            line-height: 1.8;
-        }
-
-        /* Top Couples Section */
-        .top-couples {
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .top-couples .section-title,
-        .top-couples .section-subtitle {
-            color: white;
-        }
-
-        .couples-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .couple-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .couple-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .couple-types {
-            font-size: 2rem;
-            font-weight: 900;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .couple-score {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-
-        .couple-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 20px;
-            background: white;
-            text-align: center;
-        }
-
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-title {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #2d3748;
-            margin-bottom: 20px;
-        }
-
-        .cta-desc {
-            font-size: 1.3rem;
-            color: #718096;
-            margin-bottom: 40px;
-        }
-
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 25px 60px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 700;
-            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(245, 87, 108, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: #2d3748;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        footer p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .input-card {
+                padding: 30px 20px;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            .header-section h1 {
+                font-size: 1.8rem;
             }
 
-            .hero-stats {
-                flex-direction: column;
-                gap: 30px;
+            .mbti-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
             }
 
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .cta-title {
-                font-size: 2rem;
+            .mbti-btn {
+                padding: 15px 10px;
+                font-size: 1rem;
             }
 
             .nav {
@@ -424,183 +351,142 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <div class="watermark">MENTORA</div>
+
     <header>
         <nav class="nav">
-            <a href="index.html" class="nav-logo">
+            <a href="../index.html" class="nav-logo">
                 <div class="logo-icon-text">
                     <i class="fas fa-brain"></i>
                 </div>
                 <span class="logo-text">Mentora</span>
             </a>
             <ul class="nav-menu">
-                <li><a href="index.html">홈</a></li>
-                <li><a href="couple/input.html">커플 궁합</a></li>
-                <li><a href="guides.html">가이드북</a></li>
+                <li><a href="../index.html">홈</a></li>
+                <li><a href="../couple-analysis.html">커플 궁합</a></li>
+                <li><a href="../guides.html">가이드북</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-fire"></i>
-                <span>실시간 1,247명이 분석 중</span>
+    <div class="container">
+        <div class="input-card">
+            <div class="header-section">
+                <div class="header-icon">💑</div>
+                <h1>MBTI 커플 궁합 분석</h1>
+                <p class="subtitle">나와 상대방의 MBTI를 선택하고 궁합을 확인해보세요</p>
             </div>
-            <h1>
-                <span class="emoji">💑</span><br>
-                MBTI 커플 궁합 분석
-            </h1>
-            <p>
-                우리 둘은 얼마나 잘 맞을까?<br>
-                과학적인 MBTI 분석으로 두 사람의 궁합을 확인해보세요
-            </p>
-            <a href="couple/input.html" class="hero-btn">
-                <i class="fas fa-heart"></i>
-                지금 바로 분석하기
-            </a>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">256</div>
-                    <div class="stat-label">가지 조합 분석</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50만+</div>
-                    <div class="stat-label">누적 분석 건수</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">만족도</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">💕 왜 Mentora 궁합 분석일까요?</h2>
-                <p class="section-subtitle">가장 정확하고 상세한 MBTI 커플 궁합 분석</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">정확한 분석</h3>
-                    <p class="feature-desc">256가지 모든 MBTI 조합에 대한 상세한 궁합 분석을 제공합니다</p>
+            <div class="step-container">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">내 MBTI 선택</div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3 class="feature-title">소통 가이드</h3>
-                    <p class="feature-desc">두 사람의 소통 스타일을 이해하고 갈등을 해결하는 방법을 알려드립니다</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h3 class="feature-title">실전 팁</h3>
-                    <p class="feature-desc">연애 단계별 가이드와 실전 데이트 팁을 제공합니다</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💍</div>
-                    <h3 class="feature-title">결혼 적합도</h3>
-                    <p class="feature-desc">장기적인 관계와 결혼 생활에서의 궁합을 분석합니다</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">강점 & 약점</h3>
-                    <p class="feature-desc">관계의 강점을 강화하고 약점을 극복하는 방법을 제시합니다</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎁</div>
-                    <h3 class="feature-title">무료 분석</h3>
-                    <p class="feature-desc">모든 궁합 분석을 완전 무료로 제공합니다</p>
+                <div class="mbti-grid" id="myMbtiGrid">
+                    <button class="mbti-btn" data-mbti="INTJ">INTJ</button>
+                    <button class="mbti-btn" data-mbti="INTP">INTP</button>
+                    <button class="mbti-btn" data-mbti="ENTJ">ENTJ</button>
+                    <button class="mbti-btn" data-mbti="ENTP">ENTP</button>
+                    <button class="mbti-btn" data-mbti="INFJ">INFJ</button>
+                    <button class="mbti-btn" data-mbti="INFP">INFP</button>
+                    <button class="mbti-btn" data-mbti="ENFJ">ENFJ</button>
+                    <button class="mbti-btn" data-mbti="ENFP">ENFP</button>
+                    <button class="mbti-btn" data-mbti="ISTJ">ISTJ</button>
+                    <button class="mbti-btn" data-mbti="ISFJ">ISFJ</button>
+                    <button class="mbti-btn" data-mbti="ESTJ">ESTJ</button>
+                    <button class="mbti-btn" data-mbti="ESFJ">ESFJ</button>
+                    <button class="mbti-btn" data-mbti="ISTP">ISTP</button>
+                    <button class="mbti-btn" data-mbti="ISFP">ISFP</button>
+                    <button class="mbti-btn" data-mbti="ESTP">ESTP</button>
+                    <button class="mbti-btn" data-mbti="ESFP">ESFP</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Top Couples Section -->
-    <section class="top-couples">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">🔥 최고의 궁합 TOP 10</h2>
-                <p class="section-subtitle">가장 완벽한 조합을 확인해보세요</p>
-            </div>
-            <div class="couples-grid">
-                <div class="couple-card">
-                    <div class="couple-types">INTJ ♥ ENFP</div>
-                    <div class="couple-score">95점</div>
-                    <div class="couple-label">정반대의 완벽한 조화</div>
+            <div class="step-container">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">상대방 MBTI 선택</div>
                 </div>
-                <div class="couple-card">
-                    <div class="couple-types">INFJ ♥ ENTP</div>
-                    <div class="couple-score">94점</div>
-                    <div class="couple-label">지적 교감의 정점</div>
-                </div>
-                <div class="couple-card">
-                    <div class="couple-types">ENFJ ♥ INFP</div>
-                    <div class="couple-score">93점</div>
-                    <div class="couple-label">감성적 완벽 매치</div>
-                </div>
-                <div class="couple-card">
-                    <div class="couple-types">ENTJ ♥ INFP</div>
-                    <div class="couple-score">92점</div>
-                    <div class="couple-label">리더와 힐러의 조화</div>
-                </div>
-                <div class="couple-card">
-                    <div class="couple-types">ISTJ ♥ ESFP</div>
-                    <div class="couple-score">91점</div>
-                    <div class="couple-label">안정과 활력의 균형</div>
-                </div>
-                <div class="couple-card">
-                    <div class="couple-types">ISTP ♥ ESFJ</div>
-                    <div class="couple-score">90점</div>
-                    <div class="couple-label">실용과 따뜻함</div>
-                </div>
-                <div class="couple-card">
-                    <div class="couple-types">INTP ♥ ENTJ</div>
-                    <div class="couple-score">90점</div>
-                    <div class="couple-label">논리적 완벽주의</div>
-                </div>
-                <div class="couple-card">
-                    <div class="couple-types">ISFJ ♥ ESTP</div>
-                    <div class="couple-score">89점</div>
-                    <div class="couple-label">돌봄과 모험</div>
-                </div>
-                <div class="couple-card">
-                    <div class="couple-types">ENFP ♥ INFJ</div>
-                    <div class="couple-score">88점</div>
-                    <div class="couple-label">창의와 통찰의 만남</div>
-                </div>
-                <div class="couple-card">
-                    <div class="couple-types">ESFP ♥ ISFJ</div>
-                    <div class="couple-score">88점</div>
-                    <div class="couple-label">즐거움과 안정</div>
+                <div class="mbti-grid" id="partnerMbtiGrid">
+                    <button class="mbti-btn" data-mbti="INTJ">INTJ</button>
+                    <button class="mbti-btn" data-mbti="INTP">INTP</button>
+                    <button class="mbti-btn" data-mbti="ENTJ">ENTJ</button>
+                    <button class="mbti-btn" data-mbti="ENTP">ENTP</button>
+                    <button class="mbti-btn" data-mbti="INFJ">INFJ</button>
+                    <button class="mbti-btn" data-mbti="INFP">INFP</button>
+                    <button class="mbti-btn" data-mbti="ENFJ">ENFJ</button>
+                    <button class="mbti-btn" data-mbti="ENFP">ENFP</button>
+                    <button class="mbti-btn" data-mbti="ISTJ">ISTJ</button>
+                    <button class="mbti-btn" data-mbti="ISFJ">ISFJ</button>
+                    <button class="mbti-btn" data-mbti="ESTJ">ESTJ</button>
+                    <button class="mbti-btn" data-mbti="ESFJ">ESFJ</button>
+                    <button class="mbti-btn" data-mbti="ISTP">ISTP</button>
+                    <button class="mbti-btn" data-mbti="ISFP">ISFP</button>
+                    <button class="mbti-btn" data-mbti="ESTP">ESTP</button>
+                    <button class="mbti-btn" data-mbti="ESFP">ESFP</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-content">
-            <h2 class="cta-title">💖 지금 바로 확인해보세요!</h2>
-            <p class="cta-desc">
-                단 2분이면 두 사람의 궁합을 완벽하게 분석할 수 있습니다.<br>
-                무료로 시작하고 더 깊은 관계를 만들어보세요.
-            </p>
-            <a href="couple/input.html" class="cta-btn">
-                <i class="fas fa-heart"></i>
-                궁합 분석 시작하기
-            </a>
-        </div>
-    </section>
+            <div class="selected-display" id="selectedDisplay" style="display: none;">
+                <div class="selected-item">
+                    <div class="label">나</div>
+                    <div class="value" id="mySelected">-</div>
+                </div>
+                <div class="heart-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="selected-item">
+                    <div class="label">상대방</div>
+                    <div class="value" id="partnerSelected">-</div>
+                </div>
+            </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Mentora. All rights reserved.</p>
+            <button class="analyze-btn" id="analyzeBtn" disabled>
+                <i class="fas fa-heart"></i> 궁합 분석하기
+            </button>
         </div>
-    </footer>
+    </div>
+
+    <script>
+        let myMbti = null;
+        let partnerMbti = null;
+
+        document.querySelectorAll('#myMbtiGrid .mbti-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#myMbtiGrid .mbti-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                myMbti = btn.getAttribute('data-mbti');
+                document.getElementById('mySelected').textContent = myMbti;
+                updateDisplay();
+            });
+        });
+
+        document.querySelectorAll('#partnerMbtiGrid .mbti-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#partnerMbtiGrid .mbti-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                partnerMbti = btn.getAttribute('data-mbti');
+                document.getElementById('partnerSelected').textContent = partnerMbti;
+                updateDisplay();
+            });
+        });
+
+        function updateDisplay() {
+            const display = document.getElementById('selectedDisplay');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+
+            if (myMbti && partnerMbti) {
+                display.style.display = 'flex';
+                analyzeBtn.disabled = false;
+            }
+        }
+
+        document.getElementById('analyzeBtn').addEventListener('click', () => {
+            if (myMbti && partnerMbti) {
+                const url = `result/${myMbti.toLowerCase()}-${partnerMbti.toLowerCase()}.html`;
+                window.location.href = url;
+            }
+        });
+    </script>
 </body>
 </html>
