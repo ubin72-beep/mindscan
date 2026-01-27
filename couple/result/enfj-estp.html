@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTJ ♥ INTJ 궁합 분석 - Mentora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            z-index: 0;
+            pointer-events: none;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(44, 95, 79, 0.98) 0%, rgba(26, 72, 56, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            z-index: 1000;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-icon-text {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+        }
+        .logo-icon-text i {
+            font-size: 24px;
+            color: #2c5f4f;
+        }
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+        .nav-menu li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .nav-menu li a:hover {
+            color: #d4af37;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .result-card {
+            background: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+            animation: slideUp 0.5s ease;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .couple-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .couple-types {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .type-badge {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .heart-icon {
+            font-size: 2.5rem;
+            color: #f5576c;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.2); }
+            20%, 40% { transform: scale(1); }
+        }
+        .couple-header h1 {
+            font-size: 2rem;
+            color: #2d3748;
+            font-weight: 700;
+        }
+        .compatibility-score {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(245, 87, 108, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .score-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+        }
+        .score-label {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-top: 20px;
+        }
+        .section {
+            margin: 50px 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #2d3748;
+            margin-bottom: 25px;
+        }
+        .content-box {
+            background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid #f5576c;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .content-box h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f5576c;
+            margin-bottom: 15px;
+        }
+        .content-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+        .strength-item, .weakness-item {
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #f093fb;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .strength-item:hover, .weakness-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .strength-item h4, .weakness-item h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+            border-left: 5px solid #f5576c;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.1);
+        }
+        .tip-box h4 {
+            color: #c53030;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+        }
+        .btn {
+            flex: 1;
+            padding: 20px;
+            border-radius: 50px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.3);
+        }
+        .btn-secondary {
+            background: white;
+            color: #f5576c;
+            border: 3px solid #f5576c;
+        }
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.4);
+        }
+        @media (max-width: 768px) {
+            .result-card {
+                padding: 30px 20px;
+            }
+            .type-badge {
+                font-size: 2rem;
+            }
+            .nav-menu {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">MENTORA</div>
+    
+    <header>
+        <nav class="nav">
+            <a href="../../index.html" class="nav-logo">
+                <div class="logo-icon-text">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <span class="logo-text">Mentora</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="../../index.html">홈</a></li>
+                <li><a href="../../couple-analysis.html">커플 궁합</a></li>
+                <li><a href="../../guides.html">가이드북</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="result-card">
+            <div class="couple-header">
+                <div class="couple-types">
+                    <span class="type-badge">INTJ</span>
+                    <span class="heart-icon"><i class="fas fa-heart"></i></span>
+                    <span class="type-badge">INTJ</span>
+                </div>
+                <h1>전략가 ♥ 전략가</h1>
+            </div>
+
+            <div class="compatibility-score">
+                <div class="score-circle">
+                    <span class="score-number">88</span>
+                </div>
+                <p class="score-label">궁합 점수</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">💕 종합 궁합 분석</h2>
+                <div class="content-box">
+                    <p>두 INTJ의 만남은 서로의 독립성과 논리적 사고를 존중하는 관계입니다. 같은 성향이기에 서로를 깊이 이해할 수 있지만, 감정 표현의 부족으로 인해 거리감이 생길 수 있습니다. 둘 다 장기적인 목표와 계획을 중시하므로, 함께 비전을 공유하면 강력한 파트너십을 형성할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">💪 이 커플의 강점</h2>
+                <div class="strength-item">
+                    <h4>🎯 공동 목표 설정</h4>
+                    <p>둘 다 미래 지향적이고 전략적이라 함께 장기 계획을 세우고 실행하는 데 탁월합니다.</p>
+                </div>
+                <div class="strength-item">
+                    <h4>🧠 지적 교류</h4>
+                    <p>깊이 있는 대화와 논리적 토론을 즐기며 서로의 지적 능력을 존중합니다.</p>
+                </div>
+                <div class="strength-item">
+                    <h4>🔒 독립성 존중</h4>
+                    <p>각자의 개인 시간과 공간을 이해하고 존중하여 건강한 관계를 유지합니다.</p>
+                </div>
+                <div class="strength-item">
+                    <h4>📊 효율적 문제 해결</h4>
+                    <p>감정보다 논리로 문제를 접근하여 갈등을 빠르게 해결할 수 있습니다.</p>
+                </div>
+                <div class="strength-item">
+                    <h4>🎓 성장 지향</h4>
+                    <p>둘 다 자기계발과 발전을 중시하여 서로의 성장을 응원합니다.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">⚠️ 주의할 점</h2>
+                <div class="weakness-item">
+                    <h4>❄️ 감정 표현 부족</h4>
+                    <p>둘 다 감정 표현에 서툴러 관계가 차갑게 느껴질 수 있습니다. 의식적으로 애정 표현을 연습하세요.</p>
+                </div>
+                <div class="weakness-item">
+                    <h4>🗿 고집 충돌</h4>
+                    <p>둘 다 자신의 생각이 옳다고 믿는 경향이 있어 의견 충돌 시 타협이 어려울 수 있습니다.</p>
+                </div>
+                <div class="weakness-item">
+                    <h4>😐 일상의 무미건조</h4>
+                    <p>효율과 논리만 추구하다 보면 관계에 감성적 요소가 부족해질 수 있습니다.</p>
+                </div>
+                <div class="weakness-item">
+                    <h4>🤐 소통 단절</h4>
+                    <p>문제가 생겨도 혼자 해결하려 하다 보면 소통이 단절될 수 있습니다.</p>
+                </div>
+                <div class="weakness-item">
+                    <h4>📉 사회성 부족</h4>
+                    <p>둘 다 내향적이라 사회적 활동이나 인간관계 확장에 소극적일 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">💬 소통 가이드</h2>
+                <div class="tip-box">
+                    <h4>💡 효과적인 대화법</h4>
+                    <p><strong>정기적인 감정 공유 시간을 가지세요.</strong> 매주 한 번씩 서로의 감정과 생각을 나누는 시간을 정해두면 관계가 더 깊어집니다. "나는 ~라고 느꼈어"처럼 I-message를 사용하세요.</p>
+                </div>
+                <div class="tip-box">
+                    <h4>💡 갈등 해결 팁</h4>
+                    <p><strong>논쟁보다 협력을 선택하세요.</strong> 누가 옳은지 따지기보다 "우리에게 가장 좋은 해결책은 무엇일까?"라는 관점으로 접근하세요.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">💑 연애 단계별 가이드</h2>
+                <div class="content-box">
+                    <h3>초반 (0-3개월)</h3>
+                    <p>지적 대화를 즐기되, 가벼운 감정 표현도 시도해보세요. 데이트는 박물관, 책방, 강연회 등 배울 수 있는 장소가 좋습니다.</p>
+                </div>
+                <div class="content-box">
+                    <h3>중반 (3-12개월)</h3>
+                    <p>장기 계획을 함께 세우고, 서로의 목표를 지원하세요. 정기적인 감정 체크인 시간을 만드는 것이 중요합니다.</p>
+                </div>
+                <div class="content-box">
+                    <h3>장기 (1년 이상)</h3>
+                    <p>일상에 작은 로맨스를 더하세요. 효율적인 관계도 좋지만, 감성적 연결도 필요합니다. 함께 새로운 도전을 시도해보세요.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🎁 실전 데이트 팁</h2>
+                <div class="content-box">
+                    <ul style="line-height: 2;">
+                        <li>📚 <strong>서점 데이트:</strong> 함께 책을 고르고 카페에서 독서하기</li>
+                        <li>🎮 <strong>전략 게임:</strong> 보드게임이나 방탈출 카페에서 협력하기</li>
+                        <li>🏛️ <strong>전시회 관람:</strong> 미술관이나 과학관에서 지적 자극 받기</li>
+                        <li>🌄 <strong>조용한 여행:</strong> 인적 드문 자연에서 깊은 대화 나누기</li>
+                        <li>🎓 <strong>함께 배우기:</strong> 온라인 강의나 워크숍 함께 듣기</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">💍 결혼 적합도</h2>
+                <div class="content-box">
+                    <p><strong>결혼 적합도: 85/100</strong></p>
+                    <p>두 INTJ는 장기적인 비전을 공유하고 서로의 독립성을 존중하는 안정적인 결혼 생활을 만들 수 있습니다. 다만 감정 표현과 로맨스에 더 신경 써야 행복한 결혼 생활을 유지할 수 있습니다. 재정 관리와 미래 계획에 있어서는 최고의 팀워크를 보일 것입니다.</p>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <a href="../input.html" class="btn btn-secondary">
+                    <i class="fas fa-redo"></i> 다시 분석하기
+                </a>
+                <a href="../../guides.html" class="btn btn-primary">
+                    <i class="fas fa-book"></i> 가이드북 보기
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
