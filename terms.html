@@ -3,16 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이용약관 | Mentora</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <title>이용약관 - Mentora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/legal.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #f7fafc;
+            padding-top: 80px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .terms-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        .terms-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .terms-header h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        .terms-header p {
+            font-size: 1rem;
+            color: #718096;
+        }
+        .terms-section {
+            margin-bottom: 40px;
+        }
+        .terms-section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 5px solid #2c5f4f;
+        }
+        .terms-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin: 25px 0 15px;
+        }
+        .terms-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 15px;
+        }
+        .terms-section ul, .terms-section ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .terms-section li {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+        .important {
+            background: #fff5f5;
+            border-left: 5px solid #f5576c;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .important strong {
+            color: #c53030;
+        }
+        @media (max-width: 768px) {
+            .terms-card {
+                padding: 30px 20px;
+            }
+            .terms-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
+    <header>
         <nav class="nav">
             <a href="index.html" class="nav-logo">
                 <div class="logo-icon-text">
@@ -20,263 +107,199 @@
                 </div>
                 <span class="logo-text">Mentora</span>
             </a>
-            
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="nav-link" onclick="closeMobileMenu()">홈</a></li>
-                <li><a href="index.html#tests" class="nav-link" onclick="closeMobileMenu()">검사하기</a></li>
-                <li class="nav-dropdown">
-                    <a href="index.html#premium-features" class="nav-link" onclick="closeMobileMenu()">프리미엄 <i class="fas fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="roadmap.html" onclick="closeMobileMenu()"><i class="fas fa-route"></i> AI 성장 로드맵</a></li>
-                        <li><a href="couple-analysis.html" onclick="closeMobileMenu()"><i class="fas fa-heart"></i> 커플/팀 분석</a></li>
-                        <li><a href="dashboard.html" onclick="closeMobileMenu()"><i class="fas fa-chart-line"></i> 데이터 대시보드</a></li>
-                        <li><a href="community.html" onclick="closeMobileMenu()"><i class="fas fa-user-friends"></i> 멘토라 커뮤니티</a></li>
-                    </ul>
-                </li>
-                <li><a href="index.html#pricing" class="nav-link" onclick="closeMobileMenu()">요금제</a></li>
-                <li><a href="guides.html" class="nav-link" onclick="closeMobileMenu()">가이드북</a></li>
-                <li><a href="mypage.html" class="nav-link" onclick="closeMobileMenu()">내 결과</a></li>
-                <li><a href="admin/index.html" class="nav-link admin-link" onclick="closeMobileMenu()"><i class="fas fa-shield-alt"></i> 관리자</a></li>
+            <ul class="nav-menu">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="couple-analysis.html">커플 궁합</a></li>
+                <li><a href="guides.html">가이드북</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-                <i class="fas fa-moon"></i>
-            </button>
         </nav>
     </header>
 
-    <section class="legal-hero">
-        <div class="container">
-            <h1 class="legal-title">이용약관</h1>
-            <p class="legal-subtitle">Mentora 서비스 이용약관</p>
-            <p class="legal-date">최종 수정일: 2026년 1월 15일</p>
-        </div>
-    </section>
-
-    <section class="legal-content">
-        <div class="container">
-            <div class="legal-nav">
-                <a href="terms.html" class="legal-nav-link active">이용약관</a>
-                <a href="privacy.html" class="legal-nav-link">개인정보처리방침</a>
-                <a href="refund.html" class="legal-nav-link">환불정책</a>
+    <div class="container">
+        <div class="terms-card">
+            <div class="terms-header">
+                <h1>이용약관</h1>
+                <p>최종 수정일: 2026년 2월 11일</p>
             </div>
 
-            <div class="legal-body">
-                <article class="legal-article">
-                    <h2>제1조 (목적)</h2>
-                    <p>본 약관은 Mentora(이하 "회사")가 제공하는 심리검사 플랫폼 서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
-                </article>
+            <div class="terms-section">
+                <h2>제1조 (목적)</h2>
+                <p>본 약관은 큐브박스(이하 "회사")가 운영하는 Mentora 웹사이트(이하 "사이트")에서 제공하는 심리검사 및 분석 서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+            </div>
 
-                <article class="legal-article">
-                    <h2>제2조 (정의)</h2>
-                    <p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
-                    <ol>
-                        <li><strong>"서비스"</strong>란 회사가 제공하는 온라인 심리검사, 분석, 상담 등 모든 서비스를 의미합니다.</li>
-                        <li><strong>"회원"</strong>이란 회사와 서비스 이용계약을 체결하고 회사가 제공하는 서비스를 이용하는 자를 말합니다.</li>
-                        <li><strong>"아이디(ID)"</strong>란 회원의 식별과 서비스 이용을 위하여 회원이 정하고 회사가 승인하는 문자와 숫자의 조합을 의미합니다.</li>
-                        <li><strong>"비밀번호"</strong>란 회원이 부여받은 아이디와 일치되는 회원임을 확인하고 비밀보호를 위해 회원 자신이 정한 문자 또는 숫자의 조합을 의미합니다.</li>
-                        <li><strong>"유료서비스"</strong>란 회사가 유료로 제공하는 프리미엄 검사, AI 상담 등의 서비스를 의미합니다.</li>
-                    </ol>
-                </article>
+            <div class="terms-section">
+                <h2>제2조 (정의)</h2>
+                <p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다:</p>
+                <ol>
+                    <li><strong>"서비스"</strong>란 회사가 제공하는 MBTI 성격검사, 에니어그램, 커플 궁합 분석 등 모든 심리 분석 관련 콘텐츠를 의미합니다.</li>
+                    <li><strong>"이용자"</strong>란 사이트에 접속하여 본 약관에 따라 회사가 제공하는 서비스를 이용하는 자를 의미합니다.</li>
+                    <li><strong>"프리미엄 서비스"</strong>란 유료 결제를 통해 이용할 수 있는 심화 분석, PDF 다운로드 등의 추가 서비스를 의미합니다.</li>
+                    <li><strong>"디지털 콘텐츠"</strong>란 사이트에서 제공하는 검사 결과, 가이드북, 분석 리포트 등 전자적 형태의 콘텐츠를 의미합니다.</li>
+                </ol>
+            </div>
 
-                <article class="legal-article">
-                    <h2>제3조 (약관의 게시와 개정)</h2>
-                    <ol>
-                        <li>회사는 본 약관의 내용을 회원이 쉽게 알 수 있도록 서비스 초기 화면에 게시합니다.</li>
-                        <li>회사는 필요한 경우 관련 법령을 위배하지 않는 범위에서 본 약관을 개정할 수 있습니다.</li>
-                        <li>약관을 개정할 경우 적용일자 및 개정사유를 명시하여 현행약관과 함께 서비스 초기화면에 그 적용일자 7일 전부터 적용일자 전일까지 공지합니다.</li>
-                        <li>회원은 개정된 약관에 동의하지 않을 경우 서비스 이용을 중단하고 이용계약을 해지할 수 있습니다.</li>
-                    </ol>
-                </article>
+            <div class="terms-section">
+                <h2>제3조 (약관의 효력 및 변경)</h2>
+                <ol>
+                    <li>본 약관은 서비스를 이용하고자 하는 모든 이용자에게 그 효력을 발생합니다.</li>
+                    <li>회사는 필요한 경우 관련 법령을 위배하지 않는 범위 내에서 본 약관을 변경할 수 있습니다.</li>
+                    <li>약관이 변경되는 경우 회사는 변경사항을 시행일자 7일 전부터 사이트에 공지합니다.</li>
+                    <li>이용자가 변경된 약관에 동의하지 않을 경우 서비스 이용을 중단하고 탈퇴할 수 있습니다.</li>
+                </ol>
+            </div>
 
-                <article class="legal-article">
-                    <h2>제4조 (회원가입)</h2>
-                    <ol>
-                        <li>이용자는 회사가 정한 가입 양식에 따라 회원정보를 기입한 후 본 약관에 동의한다는 의사표시를 함으로써 회원가입을 신청합니다.</li>
-                        <li>회사는 다음 각 호에 해당하는 경우 회원가입을 승낙하지 않거나 사후에 이용계약을 해지할 수 있습니다.
-                            <ul>
-                                <li>가입신청자가 본 약관에 의하여 이전에 회원자격을 상실한 적이 있는 경우</li>
-                                <li>실명이 아니거나 타인의 명의를 이용한 경우</li>
-                                <li>허위의 정보를 기재하거나, 회사가 제시하는 내용을 기재하지 않은 경우</li>
-                                <li>만 14세 미만 아동이 법정대리인의 동의를 얻지 아니한 경우</li>
-                            </ul>
-                        </li>
-                        <li>회원가입계약의 성립 시기는 회사의 승낙이 회원에게 도달한 시점으로 합니다.</li>
-                    </ol>
-                </article>
+            <div class="terms-section">
+                <h2>제4조 (서비스의 제공)</h2>
+                <ol>
+                    <li>회사는 다음과 같은 서비스를 제공합니다:
+                        <ul>
+                            <li>MBTI 성격유형 검사 및 분석</li>
+                            <li>에니어그램 검사 및 분석</li>
+                            <li>Big Five 성격검사</li>
+                            <li>커플 MBTI 궁합 분석</li>
+                            <li>프리미엄 가이드북 (유료)</li>
+                            <li>기타 심리 분석 관련 서비스</li>
+                        </ul>
+                    </li>
+                    <li>서비스는 연중무휴, 1일 24시간 제공함을 원칙으로 합니다.</li>
+                    <li>회사는 시스템 점검, 보수, 교체 등의 사유로 서비스 제공을 일시적으로 중단할 수 있으며, 사전에 공지합니다.</li>
+                </ol>
+            </div>
 
-                <article class="legal-article">
-                    <h2>제5조 (서비스의 제공 및 변경)</h2>
-                    <ol>
-                        <li>회사는 회원에게 아래와 같은 서비스를 제공합니다.
-                            <ul>
-                                <li>MBTI, 에니어그램 등 12가지 심리검사 서비스</li>
-                                <li>검사 결과 분석 및 리포트 제공</li>
-                                <li>AI 기반 맞춤형 조언 및 상담</li>
-                                <li>프리미엄 서비스 (상세 분석, PDF 다운로드 등)</li>
-                                <li>커뮤니티 및 멘토링 서비스</li>
-                            </ul>
-                        </li>
-                        <li>회사는 상당한 이유가 있는 경우 운영상, 기술상의 필요에 따라 제공하고 있는 서비스를 변경할 수 있습니다.</li>
-                        <li>서비스의 내용, 이용방법, 이용시간에 대하여 변경이 있는 경우 변경사유, 변경될 서비스의 내용 및 제공일자 등을 그 변경 전 7일 이상 해당 서비스 초기화면에 게시합니다.</li>
-                    </ol>
-                </article>
-
-                <article class="legal-article">
-                    <h2>제6조 (서비스의 중단)</h2>
-                    <ol>
-                        <li>회사는 컴퓨터 등 정보통신설비의 보수점검, 교체 및 고장, 통신의 두절 등의 사유가 발생한 경우 서비스의 제공을 일시적으로 중단할 수 있습니다.</li>
-                        <li>회사는 제1항의 사유로 서비스의 제공이 일시적으로 중단됨으로 인하여 이용자 또는 제3자가 입은 손해에 대하여 배상합니다. 단, 회사에 고의 또는 과실이 없음을 입증하는 경우에는 그러하지 아니합니다.</li>
-                    </ol>
-                </article>
-
-                <article class="legal-article">
-                    <h2>제7조 (유료서비스의 이용)</h2>
-                    <ol>
-                        <li>유료서비스는 회원이 서비스 이용료를 납부한 후 이용할 수 있습니다.</li>
-                        <li>회사가 제공하는 유료서비스의 종류와 요금은 서비스 화면에 표시됩니다.</li>
-                        <li>회원이 유료서비스를 구매하고자 할 경우 다음 사항을 확인하고 결제를 진행해야 합니다.
-                            <ul>
-                                <li>서비스의 명칭 및 종류</li>
-                                <li>서비스 이용료</li>
-                                <li>결제수단 및 결제방법</li>
-                                <li>환불 정책</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </article>
-
-                <article class="legal-article">
-                    <h2>제8조 (회원의 의무)</h2>
-                    <ol>
-                        <li>회원은 다음 행위를 하여서는 안 됩니다.
-                            <ul>
-                                <li>신청 또는 변경 시 허위 내용의 등록</li>
-                                <li>타인의 정보 도용</li>
-                                <li>회사가 게시한 정보의 변경</li>
-                                <li>회사가 정한 정보 이외의 정보(컴퓨터 프로그램 등) 등의 송신 또는 게시</li>
-                                <li>회사와 기타 제3자의 저작권 등 지적재산권에 대한 침해</li>
-                                <li>회사 및 기타 제3자의 명예를 손상시키거나 업무를 방해하는 행위</li>
-                                <li>외설 또는 폭력적인 메시지, 화상, 음성, 기타 공서양속에 반하는 정보를 서비스에 공개 또는 게시하는 행위</li>
-                            </ul>
-                        </li>
-                    </ol>
-                </article>
-
-                <article class="legal-article">
-                    <h2>제9조 (개인정보보호)</h2>
-                    <ol>
-                        <li>회사는 회원의 개인정보를 보호하기 위하여 정보통신망법 및 개인정보보호법 등 관계 법령에서 정하는 바를 준수합니다.</li>
-                        <li>회사는 회원의 개인정보를 보호하기 위한 개인정보처리방침을 수립하고 이를 웹사이트에 공개합니다.</li>
-                    </ol>
-                </article>
-
-                <article class="legal-article">
-                    <h2>제10조 (회사의 의무)</h2>
-                    <ol>
-                        <li>회사는 관련법과 본 약관이 금지하거나 미풍양속에 반하는 행위를 하지 않으며, 계속적이고 안정적으로 서비스를 제공하기 위하여 최선을 다하여 노력합니다.</li>
-                        <li>회사는 회원이 안전하게 서비스를 이용할 수 있도록 개인정보(신용정보 포함)보호를 위해 보안시스템을 갖추어야 하며 개인정보처리방침을 공시하고 준수합니다.</li>
-                        <li>회사는 서비스이용과 관련하여 회원으로부터 제기된 의견이나 불만이 정당하다고 인정할 경우 이를 처리하여야 합니다.</li>
-                    </ol>
-                </article>
-
-                <article class="legal-article">
-                    <h2>제11조 (환불 및 취소)</h2>
-                    <p>유료서비스의 환불 및 취소에 관한 사항은 별도의 환불정책에 따릅니다. 자세한 내용은 <a href="refund.html" class="legal-link">환불정책</a>을 참조하시기 바랍니다.</p>
-                </article>
-
-                <article class="legal-article">
-                    <h2>제12조 (면책조항)</h2>
-                    <ol>
-                        <li>회사는 천재지변 또는 이에 준하는 불가항력으로 인하여 서비스를 제공할 수 없는 경우 서비스 제공에 관한 책임이 면제됩니다.</li>
-                        <li>회사는 회원의 귀책사유로 인한 서비스 이용의 장애에 대하여 책임을 지지 않습니다.</li>
-                        <li>회사는 회원이 서비스를 이용하여 기대하는 수익을 상실한 것에 대하여 책임을 지지 않으며, 그 밖에 서비스를 통하여 얻은 자료로 인한 손해 등에 대하여도 책임을 지지 않습니다.</li>
-                        <li>회사는 회원이 게재한 정보, 자료, 사실의 신뢰도, 정확성 등의 내용에 관하여는 책임을 지지 않습니다.</li>
-                    </ol>
-                </article>
-
-                <article class="legal-article">
-                    <h2>제13조 (분쟁의 해결)</h2>
-                    <ol>
-                        <li>회사는 회원으로부터 제출되는 불만사항 및 의견을 우선적으로 처리합니다.</li>
-                        <li>회사와 회원 간 발생한 분쟁에 관한 소송은 민사소송법상의 관할법원에 제소합니다.</li>
-                    </ol>
-                </article>
-
-                <article class="legal-article">
-                    <h2>부칙</h2>
-                    <p>본 약관은 2026년 1월 15일부터 시행됩니다.</p>
-                </article>
-
-                <div class="legal-contact">
-                    <h3>문의</h3>
-                    <p>본 약관에 대한 문의사항이 있으시면 아래로 연락주시기 바랍니다.</p>
-                    <ul>
-                        <li><strong>회사명:</strong> Mentora (멘토라)</strong></li>
-                        <li><strong>주소:</strong> 서울 송파구 송파대로14길 7-10 2층</li>
-                        <li><strong>전화:</strong> 0502-1909-7788</li>
-                        <li><strong>이메일:</strong> contact@mentora.co.kr</li>
-                    </ul>
+            <div class="terms-section">
+                <h2>제5조 (서비스의 성격 및 제한)</h2>
+                <div class="important">
+                    <p><strong>중요: 본 서비스는 다음과 같은 특성과 제한사항이 있습니다:</strong></p>
                 </div>
+                <ol>
+                    <li>본 서비스는 <strong>MBTI 성격 유형 이론에 기반한 일반적인 정보 제공 및 엔터테인먼트 목적</strong>의 콘텐츠입니다.</li>
+                    <li>본 서비스는 <strong>심리 상담, 치료, 의학적 진단을 대체할 수 없으며</strong>, 전문적인 심리치료나 정신건강 의료 서비스가 아닙니다.</li>
+                    <li>본 서비스의 분석 결과는 <strong>참고 자료로만 활용</strong>되어야 하며, 중요한 인생 결정의 유일한 근거로 사용되어서는 안 됩니다.</li>
+                    <li>심각한 정신건강 문제, 관계 문제가 있는 경우 <strong>반드시 전문가(정신건강의학과 의사, 심리상담사 등)와 상담</strong>하시기 바랍니다.</li>
+                    <li>커플 궁합 분석은 일반적인 성격 유형 간의 통계적 경향성을 안내하는 것이며, 개별 관계의 성공 여부를 보장하거나 예측하지 않습니다.</li>
+                </ol>
             </div>
-        </div>
-    </section>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <img src="images/logo-brain-hd.png" alt="Mentora" class="footer-logo-image">
-                    <h3>Mentora</h3>
-                </div>
-                <p class="footer-tagline">당신 내면의 빛을 찾다</p>
+            <div class="terms-section">
+                <h2>제6조 (유료 서비스 및 결제)</h2>
+                <ol>
+                    <li>프리미엄 서비스는 별도의 요금을 지불해야 이용할 수 있습니다.</li>
+                    <li>결제 수단은 신용카드, 체크카드, 계좌이체, 간편결제 등이 있습니다.</li>
+                    <li>결제 금액에는 부가가치세가 포함되어 있습니다.</li>
+                    <li>회사는 사전 공지 후 서비스 요금을 변경할 수 있습니다.</li>
+                </ol>
             </div>
-            
-            <div class="footer-section">
-                <h4>법률 정보</h4>
-                <ul class="footer-links">
-                    <li><a href="terms.html">이용약관</a></li>
-                    <li><a href="privacy.html">개인정보처리방침</a></li>
-                    <li><a href="refund.html">환불정책</a></li>
+
+            <div class="terms-section">
+                <h2>제7조 (청약철회 및 환불)</h2>
+                <div class="important">
+                    <p><strong>디지털 콘텐츠의 특성상 다음과 같은 환불 정책이 적용됩니다:</strong></p>
+                </div>
+                <ol>
+                    <li>이용자는 <strong>구매일로부터 7일 이내에, 디지털 콘텐츠를 열람하기 전</strong>에 한하여 청약을 철회할 수 있습니다.</li>
+                    <li>다음의 경우 청약철회가 제한됩니다:
+                        <ul>
+                            <li>구매한 디지털 콘텐츠(프리미엄 분석, PDF 등)를 한 번이라도 열람한 경우</li>
+                            <li>구매일로부터 7일이 경과한 경우</li>
+                        </ul>
+                    </li>
+                    <li>청약철회는 고객센터(mentora@gmail.com)를 통해 신청할 수 있습니다.</li>
+                    <li>환불은 신청일로부터 3영업일 이내에 처리되며, 결제 수단에 따라 환불 소요 기간이 다를 수 있습니다.</li>
+                    <li>결제 시 사용한 할인 쿠폰은 환불 시 재발급되지 않습니다.</li>
+                </ol>
+            </div>
+
+            <div class="terms-section">
+                <h2>제8조 (저작권 및 지적재산권)</h2>
+                <ol>
+                    <li>사이트 내 모든 콘텐츠(텍스트, 이미지, 로고, 분석 결과 등)의 저작권 및 지적재산권은 회사에 귀속됩니다.</li>
+                    <li>이용자는 회사의 사전 서면 동의 없이 서비스 내 콘텐츠를 복제, 전송, 배포, 방송 등 상업적으로 이용할 수 없습니다.</li>
+                    <li>개인적인 용도로 프리미엄 콘텐츠를 다운로드하여 소장하는 것은 허용되나, 제3자에게 재배포하는 것은 금지됩니다.</li>
+                </ol>
+            </div>
+
+            <div class="terms-section">
+                <h2>제9조 (이용자의 의무)</h2>
+                <ol>
+                    <li>이용자는 다음 행위를 하여서는 안 됩니다:
+                        <ul>
+                            <li>타인의 정보 도용</li>
+                            <li>회사가 게시한 정보의 변경</li>
+                            <li>회사가 정한 정보 이외의 정보(컴퓨터 프로그램 등) 송신 또는 게시</li>
+                            <li>회사와 기타 제3자의 저작권 등 지적재산권에 대한 침해</li>
+                            <li>회사 및 기타 제3자의 명예를 손상시키거나 업무를 방해하는 행위</li>
+                            <li>외설 또는 폭력적인 메시지, 화상, 음성, 기타 공서양속에 반하는 정보를 공개 또는 게시하는 행위</li>
+                            <li>서비스를 상업적 목적으로 무단 이용하는 행위</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="terms-section">
+                <h2>제10조 (회사의 의무)</h2>
+                <ol>
+                    <li>회사는 관련 법령과 본 약관을 준수하며, 지속적이고 안정적으로 서비스를 제공하기 위해 최선을 다합니다.</li>
+                    <li>회사는 이용자의 개인정보 보호를 위해 보안시스템을 구축하고 개인정보처리방침을 공시하고 준수합니다.</li>
+                    <li>회사는 서비스 이용과 관련하여 이용자로부터 제기된 의견이나 불만이 정당하다고 인정될 경우 이를 처리하여야 합니다.</li>
+                </ol>
+            </div>
+
+            <div class="terms-section">
+                <h2>제11조 (책임의 제한)</h2>
+                <div class="important">
+                    <p><strong>서비스 이용에 따른 책임 제한 사항:</strong></p>
+                </div>
+                <ol>
+                    <li>회사는 천재지변, 전쟁, 기간통신사업자의 서비스 중지 등 불가항력적인 사유로 서비스를 제공할 수 없는 경우 책임이 면제됩니다.</li>
+                    <li>회사는 이용자의 귀책사유로 인한 서비스 이용 장애에 대하여 책임을 지지 않습니다.</li>
+                    <li>회사는 본 서비스의 분석 결과를 기반으로 이용자가 내린 결정에 대해 책임을 지지 않습니다.</li>
+                    <li>회사는 이용자가 서비스를 이용하여 기대하는 수익을 얻지 못하거나 상실한 것에 대하여 책임을 지지 않습니다.</li>
+                    <li>본 서비스는 참고 정보 제공 목적이며, 전문적인 심리상담이나 치료를 대체하지 않습니다. 이용자가 전문가 상담을 받지 않아 발생한 문제에 대해 회사는 책임을 지지 않습니다.</li>
+                </ol>
+            </div>
+
+            <div class="terms-section">
+                <h2>제12조 (분쟁의 해결)</h2>
+                <ol>
+                    <li>회사와 이용자 간에 발생한 전자상거래 분쟁에 관한 소송은 민사소송법상의 관할법원에 제기합니다.</li>
+                    <li>회사와 이용자 간에 제기된 전자상거래 소송에는 대한민국 법을 적용합니다.</li>
+                </ol>
+            </div>
+
+            <div class="terms-section">
+                <h2>제13조 (고객센터)</h2>
+                <p>서비스 이용 관련 문의사항이 있으신 경우 다음의 고객센터로 연락 주시기 바랍니다:</p>
+                <ul>
+                    <li><strong>이메일:</strong> mentora@gmail.com</li>
+                    <li><strong>전화:</strong> 02-1909-7788</li>
+                    <li><strong>주소:</strong> 서울특별시 송파구 송파대로14길 7-10 2층</li>
+                    <li><strong>사업자등록번호:</strong> [사업자등록번호]</li>
+                    <li><strong>통신판매업 신고번호:</strong> [신고번호]</li>
                 </ul>
             </div>
+
+            <div class="terms-section">
+                <h2>부칙</h2>
+                <p>본 약관은 2026년 2월 11일부터 시행됩니다.</p>
+            </div>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2026 Mentora. All rights reserved.</p>
+    </div>
+
+    <footer style="background: linear-gradient(135deg, rgba(44, 95, 79, 0.98) 0%, rgba(26, 72, 56, 0.98) 100%); color: white; padding: 40px 20px; text-align: center; margin-top: 50px;">
+        <div style="margin-bottom: 20px;">
+            <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                <i class="fas fa-brain" style="font-size: 32px; color: #d4af37;"></i>
+                <span style="font-size: 28px; font-weight: 700; color: white;">Mentora</span>
+            </div>
         </div>
+        <p style="margin-bottom: 15px; font-size: 14px; opacity: 0.9;">당신 내면의 빛을 찾다</p>
+        <div style="margin: 20px 0; padding: 15px 0; border-top: 1px solid rgba(255, 255, 255, 0.2); border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
+            <a href="index.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; margin: 0 15px; font-size: 14px; transition: color 0.3s;">홈</a>
+            <a href="terms.html" style="color: #d4af37; text-decoration: none; margin: 0 15px; font-size: 14px; font-weight: 600;">이용약관</a>
+            <a href="privacy.html" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; margin: 0 15px; font-size: 14px; transition: color 0.3s;">개인정보처리방침</a>
+        </div>
+        <p style="font-size: 13px; opacity: 0.7; margin-top: 20px;">&copy; 2026 Mentora (큐브박스). All rights reserved.</p>
+        <p style="font-size: 12px; opacity: 0.6; margin-top: 10px;">이메일: mentora@gmail.com | 전화: +82-502-1909-7788</p>
     </footer>
-
-    <script>
-        function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const toggle = document.getElementById('mobileMenuToggle');
-            navMenu.classList.toggle('active');
-            const icon = toggle.querySelector('i');
-            if (navMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-
-        function closeMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const toggle = document.getElementById('mobileMenuToggle');
-            navMenu.classList.remove('active');
-            const icon = toggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script>
 </body>
 </html>
