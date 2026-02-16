@@ -456,7 +456,9 @@
         border-radius: 10px;
     }
     
-    .page-nav-logo-text {
+    .page-nav-logo-text,
+    .logo-text-main,
+    .logo-text {
         font-size: 1.2rem;
     }
     
@@ -483,6 +485,17 @@
     
     .page-nav-btn i {
         margin-right: 0 !important;
+    }
+    
+    /* 모바일에서 메뉴 숨기기 */
+    .page-nav-menu,
+    .nav-menu {
+        display: none;
+    }
+    
+    /* 모바일 토글 버튼 표시 */
+    .mobile-menu-toggle {
+        display: block !important;
     }
 }
 
