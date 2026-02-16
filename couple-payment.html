@@ -7,7 +7,7 @@
     <meta name="description" content="MBTI 커플 궁합 프리미엄을 지금 바로 구매하세요. 안전한 결제, 즉시 이용 가능.">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/nav-common.css">
+    <link rel="stylesheet" href="css/nav-common.css?v=12">
     <style>
         * {
             margin: 0;
@@ -16,9 +16,130 @@
         }
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #6c5b7b 100%);
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: 0;
+            position: relative;
+        }
+
+        /* 헤더 고정 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-bottom: 3px solid rgba(212, 175, 55, 0.4);
+        }
+
+        /* 데스크톱 메뉴 */
+        .page-nav-menu {
+            display: flex !important;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* 모바일 메뉴 */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .page-nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 400px;
+                height: 100vh;
+                background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
+                flex-direction: column;
+                justify-content: flex-start;
+                padding: 80px 30px 30px;
+                gap: 0;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+                z-index: 999;
+            }
+
+            .page-nav-menu.active {
+                right: 0;
+            }
+
+            .page-nav-menu li {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .page-nav-link {
+                display: block;
+                width: 100%;
+                padding: 15px 20px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* 드롭다운 */
+        .page-nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            background: rgba(26, 72, 56, 0.98);
+            backdrop-filter: blur(20px);
+            min-width: 220px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            z-index: 1001;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            list-style: none;
+        }
+
+        .page-nav-dropdown:hover .page-nav-dropdown-menu {
+            display: block;
+        }
+
+        .page-nav-dropdown-menu a {
+            display: block;
+            padding: 12px 18px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .page-nav-dropdown-menu a:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, rgba(255,192,203,0.12) 2px, transparent 2px);
+            background-size: 50px 50px, 80px 80px;
+            background-position: 0 0, 40px 40px;
+            animation: sparkleMove 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkleMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
         }
         
         .container {
@@ -28,11 +149,25 @@
         }
         
         .payment-card {
-            background: white;
-            border-radius: 30px;
-            padding: 50px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-            animation: slideUp 0.5s ease;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 35px;
+            padding: 60px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.3), 0 0 80px rgba(255,107,157,0.2);
+            animation: slideUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255,255,255,0.8);
+            position: relative;
+        }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b9d 0%, #c06c84 50%, #6c5b7b 100%);
+            border-radius: 35px 35px 0 0;
         }
         
         @keyframes slideUp {
@@ -54,9 +189,12 @@
         }
         
         .payment-header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
-            color: #2d3748;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 15px;
         }
         
@@ -66,12 +204,31 @@
         }
         
         .price-section {
-            background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
-            padding: 30px;
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255,107,157,0.05) 0%, rgba(255,255,255,0.8) 100%);
+            padding: 40px;
+            border-radius: 25px;
             text-align: center;
             margin-bottom: 40px;
-            border: 2px solid #f093fb;
+            border: 3px solid #ff6b9d;
+            box-shadow: 0 10px 40px rgba(255,107,157,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,107,157,0.1) 0%, transparent 70%);
+            animation: priceGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes priceGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
         
         .price-section h2 {
@@ -95,22 +252,27 @@
         }
         
         .price-final {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            position: relative;
+            z-index: 1;
         }
         
         .discount-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
             color: white;
-            padding: 8px 20px;
+            padding: 10px 25px;
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 25px rgba(255,107,157,0.4);
+            position: relative;
+            z-index: 1;
         }
         
         .features-summary {
@@ -186,23 +348,45 @@
         }
         
         .payment-method {
-            padding: 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 15px;
+            padding: 25px;
+            border: 3px solid #e2e8f0;
+            border-radius: 18px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            background: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-method::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,107,157,0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .payment-method:hover::before {
+            width: 300px;
+            height: 300px;
         }
         
         .payment-method:hover {
-            border-color: #f5576c;
-            transform: translateY(-3px);
+            border-color: #ff6b9d;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255,107,157,0.3);
         }
         
         .payment-method.active {
-            border-color: #f5576c;
-            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
+            border-color: #ff6b9d;
+            background: linear-gradient(135deg, rgba(255,107,157,0.15) 0%, rgba(192,108,132,0.15) 100%);
+            box-shadow: 0 10px 30px rgba(255,107,157,0.25);
         }
         
         .payment-method i {
@@ -219,26 +403,46 @@
         
         .pay-button {
             width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 25px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #6c5b7b 100%);
             color: white;
             border: none;
             border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 800;
+            font-size: 1.5rem;
+            font-weight: 900;
             cursor: pointer;
-            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 60px rgba(255, 107, 157, 0.4), 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-family: 'Noto Sans KR', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pay-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .pay-button:hover::before {
+            width: 500px;
+            height: 500px;
         }
         
         .pay-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(245, 87, 108, 0.4);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(255, 107, 157, 0.5), 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
         .pay-button:active {
-            transform: translateY(0);
+            transform: translateY(-4px) scale(1);
         }
         
         .security-notice {
@@ -300,55 +504,61 @@
         
         @media (max-width: 768px) {
             body {
-                padding-top: 70px;
+                padding-top: 75px;
             }
             
             .container {
-                padding: 20px 15px;
+                padding: 30px 20px;
             }
             
             .payment-card {
-                padding: 25px 20px;
-                border-radius: 20px;
+                padding: 40px 30px;
+                border-radius: 30px;
             }
             
             .payment-header {
-                margin-bottom: 30px;
-                padding-bottom: 20px;
+                margin-bottom: 35px;
+                padding-bottom: 25px;
             }
             
             .payment-header h1 {
-                font-size: 1.8rem;
-            }
-            
-            .payment-header p {
-                font-size: 0.95rem;
-            }
-            
-            .price-section {
-                padding: 25px 20px;
-            }
-            
-            .price-section h2 {
-                font-size: 1.2rem;
-            }
-            
-            .price-final {
                 font-size: 2.2rem;
             }
             
+            .payment-header p {
+                font-size: 1.05rem;
+            }
+            
+            .price-section {
+                padding: 30px 25px;
+            }
+            
+            .price-section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .price-final {
+                font-size: 2.8rem;
+            }
+            
             .price-original {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             
             .payment-methods {
                 grid-template-columns: 1fr;
-                gap: 12px;
+                gap: 15px;
             }
             
             .payment-method {
-                padding: 18px;
+                padding: 22px;
             }
+
+            .pay-button {
+                padding: 22px;
+                font-size: 1.3rem;
+            }
+        }
             
             .payment-method i {
                 font-size: 1.8rem;
@@ -411,18 +621,36 @@
 </head>
 <body>
     <header>
-        <nav class="nav">
-            <a href="index.html" class="nav-logo">
+        <nav class="page-nav">
+            <a href="index.html" class="page-nav-logo">
                 <div class="logo-icon-text">
                     <i class="fas fa-brain"></i>
                 </div>
-                <span class="logo-text">Mentora</span>
+                <span class="page-nav-logo-text">Mentora</span>
             </a>
-            <ul class="nav-menu">
-                <li><a href="index.html">홈</a></li>
-                <li><a href="couple-analysis.html">커플 궁합</a></li>
-                <li><a href="guides.html">가이드북</a></li>
-                <li><a href="admin/index.html">관리자</a></li>
+            
+            <button class="mobile-menu-toggle" aria-label="메뉴 열기">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="page-nav-menu">
+                <li><a href="index.html" class="page-nav-link">홈</a></li>
+                <li><a href="index.html#tests" class="page-nav-link">검사하기</a></li>
+                <li class="page-nav-dropdown">
+                    <a href="#" class="page-nav-link">프리미엄 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="page-nav-dropdown-menu">
+                        <li><a href="roadmap.html">AI 로드맵</a></li>
+                        <li><a href="couple-analysis.html">커플 궁합</a></li>
+                        <li><a href="team-analysis.html">팀 분석</a></li>
+                        <li><a href="dashboard.html">대시보드</a></li>
+                        <li><a href="community.html">커뮤니티</a></li>
+                    </ul>
+                </li>
+                <li><a href="pricing.html" class="page-nav-link">요금제</a></li>
+                <li><a href="guides.html" class="page-nav-link">가이드북</a></li>
+                <li><a href="mypage.html" class="page-nav-link">내 결과</a></li>
+                <li><a href="admin/index.html" class="page-nav-link">관리자</a></li>
+                <li><button class="theme-toggle" aria-label="다크모드 토글"><i class="fas fa-moon"></i></button></li>
             </ul>
         </nav>
     </header>
@@ -588,6 +816,65 @@
                 'transfer': '계좌 이체'
             };
             return names[method] || '카드 결제';
+        }
+
+        // 모바일 메뉴 토글
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const pageNavMenu = document.querySelector('.page-nav-menu');
+
+        if (mobileMenuToggle && pageNavMenu) {
+            mobileMenuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                pageNavMenu.classList.toggle('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (pageNavMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.page-nav')) {
+                    pageNavMenu.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            const dropdownTriggers = document.querySelectorAll('.page-nav-dropdown > .page-nav-link');
+            dropdownTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const dropdown = trigger.parentElement;
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+        }
+
+        // 다크모드 토글
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) {
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            body.classList.toggle('dark-mode', savedTheme === 'dark');
+            icon.classList.toggle('fa-moon', savedTheme === 'light');
+            icon.classList.toggle('fa-sun', savedTheme === 'dark');
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDark = body.classList.contains('dark-mode');
+                icon.classList.toggle('fa-moon', !isDark);
+                icon.classList.toggle('fa-sun', isDark);
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
         }
     </script>
 
