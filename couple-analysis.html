@@ -17,6 +17,28 @@
     <link rel="stylesheet" href="css/nav-common.css?v=11">
     
     <style>
+        /* 헤더 고정 스타일 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            border-bottom: 3px solid rgba(212, 175, 55, 0.4);
+        }
+        
+        /* 데스크톱 기본 스타일 */
+        .page-nav-menu {
+            display: flex !important;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+        
         /* 모바일 메뉴 스타일 */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
@@ -145,6 +167,7 @@
             font-family: 'Noto Sans KR', 'Poppins', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             overflow-x: hidden;
+            padding-top: 0;
         }
 
         /* Hero Section */
