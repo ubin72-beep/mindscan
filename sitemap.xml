@@ -1,167 +1,369 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <!-- 메인 페이지 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- 메인 페이지 (최우선) -->
   <url>
     <loc>https://mentora.co.kr/</loc>
-    <lastmod>2026-01-17</lastmod>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
+  <!-- 핵심 서비스 페이지 -->
   <url>
-    <loc>https://mentora.co.kr/index.html</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  
-  <!-- MBTI 검사 -->
-  <url>
-    <loc>https://mentora.co.kr/test-mbti.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/couple-analysis.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- 에니어그램 검사 -->
+
   <url>
-    <loc>https://mentora.co.kr/test-enneagram.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/team-analysis.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- Big Five 검사 -->
+
   <url>
-    <loc>https://mentora.co.kr/test-bigfive.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/couple/input.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- DISC 행동유형 검사 -->
+
+  <!-- 프리미엄 페이지 -->
   <url>
-    <loc>https://mentora.co.kr/test-disc.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/pricing.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- Holland 적성검사 -->
+
   <url>
-    <loc>https://mentora.co.kr/test-holland.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/roadmap.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 애착유형 검사 -->
+
   <url>
-    <loc>https://mentora.co.kr/test-attachment.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/dashboard.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 감성지능(EQ) 검사 -->
+
   <url>
-    <loc>https://mentora.co.kr/test-eq.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/ai-chatbot.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 지능지수(IQ) 검사 -->
+
   <url>
-    <loc>https://mentora.co.kr/test-iq.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/couple-premium.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 사회지능(SQ) 검사 -->
+
+  <!-- 가이드 메인 -->
   <url>
-    <loc>https://mentora.co.kr/test-sq.html</loc>
-    <lastmod>2026-01-17</lastmod>
+    <loc>https://mentora.co.kr/guides.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 자존감 검사 -->
+
+  <!-- MBTI 16가지 유형별 가이드 인덱스 -->
   <url>
-    <loc>https://mentora.co.kr/test-selfesteem.html</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- 우울증 검사 -->
-  <url>
-    <loc>https://mentora.co.kr/test-depression.html</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- 번아웃 검사 -->
-  <url>
-    <loc>https://mentora.co.kr/test-burnout.html</loc>
-    <lastmod>2026-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- 내 결과 페이지 -->
-  <url>
-    <loc>https://mentora.co.kr/mypage.html</loc>
-    <lastmod>2026-01-16</lastmod>
+    <loc>https://mentora.co.kr/guides/intj/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <!-- 정책 페이지 -->
+
+  <url>
+    <loc>https://mentora.co.kr/guides/intp/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/entj/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/entp/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/infj/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/infp/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/enfj/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/enfp/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/istj/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/isfj/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/estj/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/esfj/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/istp/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/isfp/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/estp/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/guides/esfp/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 마이페이지 & 커뮤니티 -->
+  <url>
+    <loc>https://mentora.co.kr/mypage.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/community.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 결제 페이지 -->
+  <url>
+    <loc>https://mentora.co.kr/couple-payment.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/payment/checkout.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 추가 테스트 페이지 (재미 콘텐츠) -->
+  <url>
+    <loc>https://mentora.co.kr/blood-type-test.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/sagunja-test-v2.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/personal-color-test.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/animal-test.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/flower-test.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/season-test.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 전문 심리 테스트 -->
+  <url>
+    <loc>https://mentora.co.kr/test-mbti.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/test-enneagram.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/test-bigfive.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/test-disc.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/test-holland.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/test-eq.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/test-iq.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/test-sq.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/test-attachment.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- B2B 및 마케팅 페이지 -->
+  <url>
+    <loc>https://mentora.co.kr/b2b.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- 법적 페이지 -->
   <url>
     <loc>https://mentora.co.kr/terms.html</loc>
-    <lastmod>2026-01-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  
-  <url>
-    <loc>https://mentora.co.kr/privacy.html</loc>
-    <lastmod>2026-01-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  
-  <url>
-    <loc>https://mentora.co.kr/refund.html</loc>
-    <lastmod>2026-01-16</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
+  <url>
+    <loc>https://mentora.co.kr/privacy.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://mentora.co.kr/refund.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- 관리자 페이지 (낮은 우선순위) -->
+  <url>
+    <loc>https://mentora.co.kr/admin/index.html</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.1</priority>
+  </url>
+
 </urlset>
-📊 포함된 페이지 (총 16개)
-⭐ 메인 페이지 (우선순위: 1.0)
-/ (홈페이지)
-index.html (메인)
-🧠 심리검사 페이지 (우선순위: 0.9 - 0.8)
-test-mbti.html (MBTI)
-test-enneagram.html (에니어그램)
-test-bigfive.html (Big Five)
-test-disc.html (DISC)
-test-holland.html (Holland)
-test-attachment.html (애착유형)
-test-eq.html (감성지능)
-test-iq.html (지능지수)
-test-sq.html (사회지능)
-test-selfesteem.html (자존감)
-test-depression.html (우울증)
-test-burnout.html (번아웃)
-📄 기타 페이지 (우선순위: 0.3 - 0.7)
-mypage.html (내 결과)
-terms.html (이용약관)
-privacy.html (개인정보처리방침)
-refund.html (환불정책)
