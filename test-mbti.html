@@ -3,433 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBTI 성격유형검사 - Mentora</title>
-    <meta name="description" content="16가지 성격 유형으로 나를 이해하는 MBTI 검사">
+    <title>MBTI 성격유형검사 - Mentora | 무료 MBTI 검사</title>
+    <meta name="description" content="과학적으로 검증된 MBTI 성격유형검사로 나를 이해하세요. 16가지 성격 유형 분석, 60개 문항, 12분 완성. ISTJ, ENFP 등 성격 유형별 특징과 직업 추천. 무료 MBTI 검사.">
+    <meta name="keywords" content="MBTI 검사, MBTI 무료, 성격유형검사, 16가지 성격, MBTI 테스트, ISTJ, ENFP, INFJ, MBTI 무료검사, 성격 분석">
+    <meta name="author" content="Mentora">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mentora.co.kr/test-mbti.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="MBTI 성격유형검사 - Mentora">
+    <meta property="og:description" content="16가지 성격 유형으로 나를 이해하는 MBTI 검사. 무료 성격 분석.">
+    <meta property="og:url" content="https://mentora.co.kr/test-mbti.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mentora.co.kr/images/logo-brain-hd.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
+    <link rel="stylesheet" href="css/test-common.css">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TF2P4SJKT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9TF2P4SJKT');
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            min-height: 100vh;
-        }
-
-        .test-container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px 20px;
-        }
-
-        .test-header {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .test-header h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #2c5f4f;
-            margin-bottom: 10px;
-        }
-
-        .test-header p {
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-        /* Start Screen */
-        .start-screen {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .start-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .start-screen h2 {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #2c5f4f;
-            margin-bottom: 15px;
-        }
-
-        .start-screen > p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .test-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .info-item {
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            padding: 20px 15px;
-            border-radius: 12px;
-            color: white;
-            transition: transform 0.3s ease;
-        }
-
-        .info-item:hover {
-            transform: translateY(-3px);
-        }
-
-        .info-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .info-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-bottom: 8px;
-        }
-
-        .info-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #d4af37;
-        }
-
-        /* Test Screen */
-        .progress-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .progress-text {
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2c5f4f;
-            margin-bottom: 12px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%);
-            border-radius: 8px;
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        .question-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 35px 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .question-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c5f4f;
-            text-align: center;
-            margin-bottom: 35px;
-            line-height: 1.5;
-        }
-
-        .answer-options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .answer-btn {
-            background: white;
-            border: 3px solid #e0e0e0;
-            border-radius: 14px;
-            padding: 18px 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1rem;
-            color: #333;
-        }
-
-        .answer-btn:hover {
-            border-color: #d4af37;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
-            transform: translateX(5px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .answer-btn.selected {
-            border-color: #d4af37;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .answer-number {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            color: #d4af37;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
-        .answer-btn.selected .answer-number {
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
-            color: #2c5f4f;
-        }
-
-        .answer-text {
-            flex: 1;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .test-navigation {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 15px 35px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
-            color: #2c5f4f;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #2c5f4f;
-            border: 3px solid #2c5f4f;
-        }
-
-        .btn-secondary:hover:not(:disabled) {
-            background: #2c5f4f;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Result Screen */
-        .result-header {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .result-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
-            color: #2c5f4f;
-            font-size: 2.5rem;
-            font-weight: 900;
-            padding: 15px 40px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .result-header h2 {
-            font-size: 1.9rem;
-            font-weight: 800;
-            color: #2c5f4f;
-            margin-bottom: 12px;
-        }
-
-        .result-header p {
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-        .result-content {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .result-section {
-            margin-bottom: 30px;
-        }
-
-        .result-section h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #2c5f4f;
-            margin-bottom: 20px;
-        }
-
-        .trait-bar {
-            margin-bottom: 20px;
-        }
-
-        .trait-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95rem;
-        }
-
-        .trait-progress {
-            height: 14px;
-            background: #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .trait-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #2c5f4f 0%, #d4af37 100%);
-            border-radius: 8px;
-            transition: width 1s ease;
-        }
-
-        .result-list {
-            list-style: none;
-        }
-
-        .result-list li {
-            padding: 12px 18px;
-            background: #f5f7fa;
-            border-left: 4px solid #d4af37;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-
-        .career-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .career-tag {
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            color: #d4af37;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .result-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .test-container {
-                padding: 15px 12px;
-            }
-
-            .test-header {
-                padding: 25px 20px;
-            }
-
-            .test-header h1 {
-                font-size: 1.6rem;
-            }
-
-            .start-screen {
-                padding: 30px 20px;
-            }
-
-            .test-info {
-                grid-template-columns: 1fr;
-            }
-
-            .question-card {
-                padding: 28px 20px;
-            }
-
-            .question-text {
-                font-size: 1.3rem;
-            }
-
-            .answer-btn {
-                padding: 16px 20px;
-            }
-
-            .test-navigation {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
+        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
+        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
     </style>
 </head>
 <body>
@@ -438,7 +41,9 @@
         <nav class="page-nav">
             <div class="page-nav-left">
                 <a href="index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon-text">M</div>
+                    <div class="page-nav-logo-icon-text">
+                        <i class="fas fa-brain"></i>
+                    </div>
                     <span class="page-nav-logo-text">Mentora</span>
                 </a>
                 <div class="page-nav-divider"></div>
@@ -460,6 +65,11 @@
     <!-- 페이지 컨텐츠 -->
     <div class="page-content-wrapper">
     <div class="test-container">
+        <div class="test-header">
+            <h1>👥 MBTI 성격유형검사</h1>
+            <p>16가지 성격 유형으로 나를 이해하기</p>
+        </div>
+
         <div id="startScreen" class="start-screen">
             <div class="start-icon">👥</div>
             <h2>MBTI 성격유형검사를 시작합니다</h2>
@@ -483,238 +93,46 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="startTest()">
-                <i class="fas fa-play-circle"></i> 검사 시작하기
-            </button>
-            <button class="btn btn-secondary" onclick="location.href='index.html'" style="margin-top: 15px;">
-                <i class="fas fa-home"></i> 홈으로 돌아가기
-            </button>
+            <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
+            <a href="index.html" class="btn btn-secondary" style="margin-top: 1rem;">홈으로 돌아가기</a>
         </div>
 
         <div id="testScreen" style="display: none;">
             <div class="progress-container">
-                <div class="progress-text">
-                    <span id="currentQuestion">1</span> / <span id="totalQuestions">60</span>
+                <div class="progress-info">
+                    <span id="progressText">질문 1 / 60</span>
+                    <span id="progressPercent">0%</span>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressBar"></div>
-                </div>
-            </div>
-
-            <div class="question-card">
-                <h3 class="question-text" id="questionText">질문이 여기에 표시됩니다</h3>
-                
-                <div class="answer-options">
-                    <button class="answer-btn" onclick="selectAnswer(1)">
-                        <span class="answer-number">1</span>
-                        <span class="answer-text">전혀 아니다</span>
-                    </button>
-                    <button class="answer-btn" onclick="selectAnswer(2)">
-                        <span class="answer-number">2</span>
-                        <span class="answer-text">아니다</span>
-                    </button>
-                    <button class="answer-btn" onclick="selectAnswer(3)">
-                        <span class="answer-number">3</span>
-                        <span class="answer-text">보통이다</span>
-                    </button>
-                    <button class="answer-btn" onclick="selectAnswer(4)">
-                        <span class="answer-number">4</span>
-                        <span class="answer-text">그렇다</span>
-                    </button>
-                    <button class="answer-btn" onclick="selectAnswer(5)">
-                        <span class="answer-number">5</span>
-                        <span class="answer-text">매우 그렇다</span>
-                    </button>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progressBar"></div>
                 </div>
             </div>
 
-            <div class="test-navigation">
-                <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn" disabled>
-                    <i class="fas fa-arrow-left"></i> 이전
-                </button>
-                <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>
-                    다음 <i class="fas fa-arrow-right"></i>
-                </button>
+            <div class="question-container">
+                <h3 class="question-text" id="questionText"></h3>
+                <div class="answer-options" id="answerOptions"></div>
             </div>
         </div>
 
         <div id="resultScreen" style="display: none;">
-            <div class="result-header">
-                <div class="result-badge">
-                    <span id="resultType">ENFP</span>
-                </div>
-                <h2 id="resultTitle">재기발랄한 활동가</h2>
-                <p id="resultDescription">열정적이고 창의적인 당신은 사람들에게 영감을 주는 존재입니다</p>
-            </div>
-
-            <div class="result-content">
-                <div class="result-section">
-                    <h3>📊 성격 특성</h3>
-                    <div class="trait-bars">
-                        <div class="trait-bar">
-                            <div class="trait-label">
-                                <span>외향 (E)</span>
-                                <span class="trait-value">75%</span>
-                            </div>
-                            <div class="trait-progress">
-                                <div class="trait-fill" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div class="trait-bar">
-                            <div class="trait-label">
-                                <span>직관 (N)</span>
-                                <span class="trait-value">80%</span>
-                            </div>
-                            <div class="trait-progress">
-                                <div class="trait-fill" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="trait-bar">
-                            <div class="trait-label">
-                                <span>감정 (F)</span>
-                                <span class="trait-value">70%</span>
-                            </div>
-                            <div class="trait-progress">
-                                <div class="trait-fill" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="trait-bar">
-                            <div class="trait-label">
-                                <span>인식 (P)</span>
-                                <span class="trait-value">65%</span>
-                            </div>
-                            <div class="trait-progress">
-                                <div class="trait-fill" style="width: 65%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="result-section">
-                    <h3>💪 강점</h3>
-                    <ul class="result-list">
-                        <li>창의적이고 혁신적인 사고</li>
-                        <li>뛰어난 의사소통 능력</li>
-                        <li>열정적이고 에너지 넘침</li>
-                        <li>다양한 관점 이해</li>
-                    </ul>
-                </div>
-
-                <div class="result-section">
-                    <h3>⚠️ 약점</h3>
-                    <ul class="result-list">
-                        <li>세부사항 놓치기 쉬움</li>
-                        <li>일관성 부족</li>
-                        <li>쉽게 지루함을 느낌</li>
-                        <li>결정 내리기 어려움</li>
-                    </ul>
-                </div>
-
-                <div class="result-section">
-                    <h3>💼 추천 직업</h3>
-                    <div class="career-tags">
-                        <span class="career-tag">마케팅 전문가</span>
-                        <span class="career-tag">작가</span>
-                        <span class="career-tag">상담사</span>
-                        <span class="career-tag">기획자</span>
-                        <span class="career-tag">교사</span>
-                    </div>
-                </div>
+            <div class="result-container">
+                <div class="result-icon" id="resultIcon">🎉</div>
+                <h2 class="result-title" id="resultTitle">당신의 성격 유형은</h2>
+                <div class="result-type" id="resultType">INFP</div>
+                <div class="result-nickname" id="resultNickname">열정적인 중재자</div>
+                <p class="result-description" id="resultDescription">
+                    이상주의적이고 창의적인 성격으로, 다른 사람들을 돕는 것에 큰 기쁨을 느낍니다.
+                </p>
 
                 <div class="result-actions">
-                    <button class="btn btn-primary" onclick="saveResult()">
-                        <i class="fas fa-save"></i> 결과 저장하기
-                    </button>
-                    <button class="btn btn-secondary" onclick="shareResult()">
-                        <i class="fas fa-share-alt"></i> 공유하기
-                    </button>
-                    <button class="btn btn-secondary" onclick="location.href='index.html'">
-                        <i class="fas fa-home"></i> 홈으로
-                    </button>
+                    <button class="btn btn-primary" onclick="saveAndView()">결과 저장하기</button>
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">다른 검사하기</button>
                 </div>
             </div>
         </div>
     </div>
     </div>
 
-    <script>
-        const questions = [
-            "나는 사람들과 어울리는 것이 좋다",
-            "나는 새로운 사람을 만나는 것을 즐긴다",
-            "나는 혼자 있는 시간이 필요하다",
-            "나는 파티나 모임을 좋아한다",
-            "나는 실용적인 것을 중요하게 생각한다"
-        ];
-
-        let currentQuestionIndex = 0;
-        let answers = [];
-
-        function startTest() {
-            document.getElementById('startScreen').style.display = 'none';
-            document.getElementById('testScreen').style.display = 'block';
-            showQuestion(0);
-        }
-
-        function showQuestion(index) {
-            currentQuestionIndex = index;
-            document.getElementById('questionText').textContent = questions[index % questions.length];
-            document.getElementById('currentQuestion').textContent = index + 1;
-            document.getElementById('totalQuestions').textContent = 60;
-            
-            const progress = ((index + 1) / 60) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-            
-            document.getElementById('prevBtn').disabled = index === 0;
-            
-            document.querySelectorAll('.answer-btn').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-            
-            if (answers[index]) {
-                document.querySelectorAll('.answer-btn')[answers[index] - 1].classList.add('selected');
-                document.getElementById('nextBtn').disabled = false;
-            } else {
-                document.getElementById('nextBtn').disabled = true;
-            }
-        }
-
-        function selectAnswer(value) {
-            answers[currentQuestionIndex] = value;
-            
-            document.querySelectorAll('.answer-btn').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-            event.target.closest('.answer-btn').classList.add('selected');
-            
-            document.getElementById('nextBtn').disabled = false;
-        }
-
-        function nextQuestion() {
-            if (currentQuestionIndex < 59) {
-                showQuestion(currentQuestionIndex + 1);
-            } else {
-                showResult();
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQuestionIndex > 0) {
-                showQuestion(currentQuestionIndex - 1);
-            }
-        }
-
-        function showResult() {
-            document.getElementById('testScreen').style.display = 'none';
-            document.getElementById('resultScreen').style.display = 'block';
-        }
-
-        function saveResult() {
-            alert('결과가 저장되었습니다! (프리미엄 기능)');
-        }
-
-        function shareResult() {
-            alert('공유 기능이 곧 추가됩니다!');
-        }
-    </script>
+    <script src="js/test-mbti.js"></script>
 </body>
 </html>
