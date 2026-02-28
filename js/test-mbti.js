@@ -165,16 +165,16 @@ let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
 // 화면 전환
 function showScreen(screenName) {
-    document.querySelector('.start-screen').style.display = 'none';
-    document.querySelector('.test-screen').style.display = 'none';
-    document.querySelector('.result-screen').style.display = 'none';
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('testScreen').style.display = 'none';
+    document.getElementById('resultScreen').style.display = 'none';
     
     if (screenName === 'start') {
-        document.querySelector('.start-screen').style.display = 'block';
+        document.getElementById('startScreen').style.display = 'block';
     } else if (screenName === 'test') {
-        document.querySelector('.test-screen').classList.add('active');
+        document.getElementById('testScreen').style.display = 'block';
     } else if (screenName === 'result') {
-        document.querySelector('.result-screen').classList.add('active');
+        document.getElementById('resultScreen').style.display = 'block';
     }
 }
 
@@ -193,16 +193,16 @@ function loadQuestion() {
     const questionNum = currentQuestion + 1;
     
     // 질문 텍스트 업데이트
-    document.getElementById('question-text').textContent = question.text;
+    document.getElementById('questionText').textContent = question.text;
     
     // 진행률 업데이트
     const progress = (questionNum / mbtiQuestions.length) * 100;
-    document.getElementById('progress-fill').style.width = progress + '%';
-    document.getElementById('current-question').textContent = questionNum;
-    document.getElementById('progress-percent').textContent = Math.round(progress) + '%';
+    document.getElementById('progressBar').style.width = progress + '%';
+    document.getElementById('progressText').textContent = `질문 ${questionNum} / 60`;
+    document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
     
     // 답변 옵션 생성
-    const answerOptions = document.getElementById('answer-options');
+    const answerOptions = document.getElementById('answerOptions');
     answerOptions.innerHTML = '';
     
     const options = [
@@ -271,10 +271,10 @@ function showResult() {
     const typeInfo = mbtiTypes[type];
     
     // 결과 화면 업데이트
-    document.getElementById('result-icon').textContent = typeInfo.icon;
-    document.getElementById('result-type').textContent = type;
-    document.getElementById('result-nickname').textContent = typeInfo.nickname;
-    document.getElementById('result-description-text').textContent = typeInfo.description;
+    document.getElementById('resultIcon').textContent = typeInfo.icon;
+    document.getElementById('resultType').textContent = type;
+    document.getElementById('resultNickname').textContent = typeInfo.nickname;
+    document.getElementById('resultDescription').textContent = typeInfo.description;
     
     // 로컬 스토리지에 결과 저장
     const result = {
