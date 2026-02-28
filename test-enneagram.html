@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>에니어그램 검사 - Mentora</title>
-    <meta name="description" content="9가지 성격 유형으로 나를 이해하는 에니어그램 검사">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/nav-common.css">
-    <link rel="stylesheet" href="css/test-common.css">
+    <title>에니어그램 성격유형검사 - Mentora | 무료 에니어그램 검사</title>
+    <meta name="description" content="과학적으로 검증된 에니어그램 성격유형검사로 나를 이해하세요. 9가지 성격 유형 분석, 90개 문항, 20분 완성. 무료 에니어그램 검사.">
+    <meta name="keywords" content="에니어그램, 에니어그램 검사, 성격유형검사, 9가지 성격, 에니어그램 테스트, 무료검사, 성격 분석">
+    <meta name="author" content="Mentora">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mentora.co.kr/test-enneagram.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="에니어그램 성격유형검사 - Mentora">
+    <meta property="og:description" content="9가지 성격 유형으로 나를 이해하는 에니어그램 검사. 무료 성격 분석.">
+    <meta property="og:url" content="https://mentora.co.kr/test-enneagram.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mentora.co.kr/images/logo-brain-hd.png">
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TF2P4SJKT"></script>
@@ -18,9 +25,296 @@
       gtag('js', new Date());
       gtag('config', 'G-9TF2P4SJKT');
     </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
     <style>
-        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
-        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2c5f4f;
+            --accent-gold: #d4af37;
+            --bg-light: #f5f7fa;
+            --text-dark: #1a1a1a;
+            --text-gray: #666666;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%);
+            min-height: 100vh;
+        }
+
+        /* 컨테이너 */
+        .page-content-wrapper {
+            padding: 1.5rem 1rem;
+        }
+
+        .test-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* 헤더 */
+        .test-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .test-header p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* 시작 화면 */
+        .start-screen {
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .start-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .start-screen h2 {
+            color: var(--primary-green);
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .start-screen p {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 정보 카드 */
+        .test-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-label {
+            color: var(--text-gray);
+            font-size: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-value {
+            color: var(--primary-green);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        /* 버튼 */
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b8962f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        /* 검사 화면 */
+        #testScreen {
+            padding: 2rem;
+        }
+
+        .progress-container {
+            margin-bottom: 2rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
+
+        .progress-bar-bg {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .question-container {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .question-text {
+            color: var(--text-dark);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .answer-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 1rem;
+        }
+
+        .answer-btn:hover {
+            border-color: var(--accent-gold);
+            transform: translateX(5px);
+        }
+
+        .answer-btn.selected {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            color: white;
+        }
+
+        /* 결과 화면 */
+        #resultScreen {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .result-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-title {
+            color: var(--text-gray);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-type {
+            color: var(--primary-green);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-nickname {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-description {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            .test-info {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .test-header h1 {
+                font-size: 1.25rem;
+            }
+
+            .start-screen h2 {
+                font-size: 1.125rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .result-type {
+                font-size: 2.5rem;
+            }
+
+            .result-actions {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -35,7 +329,7 @@
                     <span class="page-nav-logo-text">Mentora</span>
                 </a>
                 <div class="page-nav-divider"></div>
-                <h2 class="page-nav-title">에니어그램 검사</h2>
+                <h2 class="page-nav-title">에니어그램 성격유형검사</h2>
             </div>
             <div class="page-nav-right">
                 <button class="page-nav-btn page-nav-btn-back" onclick="history.back()">
@@ -52,102 +346,72 @@
 
     <!-- 페이지 컨텐츠 -->
     <div class="page-content-wrapper">
-    <div class="test-container">
-        <div class="test-header">
-            <h1>🎭 에니어그램 검사</h1>
-            <p>9가지 성격 유형으로 나를 이해하기</p>
-        </div>
+        <div class="test-container">
+            <div class="test-header">
+                <h1>🌟 에니어그램 성격유형검사</h1>
+                <p>9가지 성격 유형으로 나를 이해하기</p>
+            </div>
 
-        <div id="startScreen" class="start-screen">
-            <div class="start-icon">🎭</div>
-            <h2>에니어그램 검사를 시작합니다</h2>
-            <p>18개의 질문으로 당신의 핵심 성격 유형을 찾아드립니다.<br>각 문장이 얼마나 자신과 일치하는지 솔직하게 답변해주세요.</p>
+            <div id="startScreen" class="start-screen">
+                <div class="start-icon">🎭</div>
+                <h2>에니어그램 성격유형검사를 시작합니다</h2>
+                <p>90개의 질문으로 당신의 성격 유형을 찾아드립니다.<br>각 문장이 얼마나 자신과 일치하는지 솔직하게 답변해주세요.</p>
 
-            <div class="test-info">
-                <div class="info-item">
-                    <div class="info-icon">⏱️</div>
-                    <div class="info-label">소요 시간</div>
-                    <div class="info-value">20분</div>
+                <div class="test-info">
+                    <div class="info-item">
+                        <div class="info-icon">🕐</div>
+                        <div class="info-label">소요 시간</div>
+                        <div class="info-value">20분</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">💰</div>
+                        <div class="info-label">질문 수</div>
+                        <div class="info-value">90개</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">👥</div>
+                        <div class="info-label">유형</div>
+                        <div class="info-value">9가지</div>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">📊</div>
-                    <div class="info-label">질문 수</div>
-                    <div class="info-value">18개</div>
+
+                <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
+            </div>
+
+            <div id="testScreen" style="display: none;">
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span id="progressText">질문 1 / 90</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <div class="info-icon">🎯</div>
-                    <div class="info-label">유형</div>
-                    <div class="info-value">9가지</div>
+
+                <div class="question-container">
+                    <h3 class="question-text" id="questionText"></h3>
+                    <div class="answer-options" id="answerOptions"></div>
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
-        </div>
+            <div id="resultScreen" style="display: none;">
+                <div class="result-container">
+                    <div class="result-icon" id="resultIcon">🎉</div>
+                    <h2 class="result-title" id="resultTitle">당신의 성격 유형은</h2>
+                    <div class="result-type" id="resultType">유형 4</div>
+                    <div class="result-nickname" id="resultNickname">예술가</div>
+                    <p class="result-description" id="resultDescription">
+                        창의적이고 감성적인 성격으로, 독특함을 추구합니다.
+                    </p>
 
-        <div id="testScreen" style="display: none;">
-            <div class="progress-container">
-                <div class="progress-info">
-                    <span id="progressText">질문 1 / 18</span>
-                    <span id="progressPercent">6%</span>
-                </div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar" id="progressBar"></div>
-                </div>
-            </div>
-
-            <div class="question-area">
-                <div class="question-number" id="questionNumber">Question 1</div>
-                <div class="question-text" id="questionText"></div>
-                <div class="scale-options" id="optionsContainer">
-                    <div class="scale-option" data-score="1">전혀 아니다</div>
-                    <div class="scale-option" data-score="2">아니다</div>
-                    <div class="scale-option" data-score="3">보통이다</div>
-                    <div class="scale-option" data-score="4">그렇다</div>
-                    <div class="scale-option" data-score="5">매우 그렇다</div>
-                </div>
-            </div>
-
-            <div class="button-area">
-                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">이전</button>
-                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
-            </div>
-        </div>
-
-        <div id="resultScreen" style="display: none;">
-            <div class="result-screen">
-                <div class="result-type">
-                    <div class="result-badge" id="resultType">Type 1</div>
-                    <h2 class="result-title" id="resultTitle">완벽주의자</h2>
-                    <p class="result-description" id="resultDescription"></p>
-                </div>
-
-                <div class="result-details">
-                    <h3>📊 핵심 동기</h3>
-                    <p id="resultMotivation"></p>
-                </div>
-
-                <div class="result-details">
-                    <h3>💪 강점</h3>
-                    <p id="resultStrengths"></p>
-                </div>
-
-                <div class="result-details">
-                    <h3>⚠️ 약점</h3>
-                    <p id="resultWeaknesses"></p>
-                </div>
-
-                <div class="result-details">
-                    <h3>🌱 성장 방향</h3>
-                    <p id="resultGrowth"></p>
-                </div>
-
-                <div class="result-actions">
-                    <button class="btn btn-secondary" onclick="location.href='index.html'">홈으로</button>
-                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">프리미엄 리포트</button>
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="saveAndView()">결과 저장하기</button>
+                        <button class="btn btn-primary" onclick="location.href='index.html'">다른 검사하기</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script src="js/test-enneagram.js"></script>
