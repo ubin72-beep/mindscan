@@ -18,8 +18,41 @@ async function initTestsPage() {
 
 // Load Tests
 async function loadTests() {
-    // Mock data
-    allTests = AdminUtils.generateMockTests();
+    try {
+        // RESTful Table API에서 실제 검사 데이터 가져오기
+        const response = await fetch('/tables/test_results?limit=10000');
+        const data = await response.json();
+        
+        if (data && data.data) {
+            // 검사별 통계 계산
+            const testStats = {};
+            
+            data.data.forEach(result => {
+                const testName = result.test_name;
+                if (!testStats[testName]) {
+                    testStats[testName] = {
+                        name: testName,
+                        completed: 0,
+                        satisfaction: 4.5,
+                        avgDuration: '15분'
+                    };
+                }
+                testStats[testName].completed++;
+            });
+            
+            allTests = Object.values(testStats);
+            
+            console.log('✅ 검사 데이터 로드 완료:', allTests);
+        } else {
+            // 데이터 없으면 기본값
+            allTests = AdminUtils.generateMockTests();
+        }
+    } catch (error) {
+        console.error('❌ 검사 데이터 로드 실패:', error);
+        
+        // 에러 시 Mock 데이터 사용
+        allTests = AdminUtils.generateMockTests();
+    }
 }
 
 // Load Test Stats
