@@ -5,366 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>에니어그램 검사 - Mentora</title>
     <meta name="description" content="9가지 성격 유형으로 나를 이해하는 에니어그램 검사">
-    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/nav-common.css">
+    <link rel="stylesheet" href="css/test-common.css">
     
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TF2P4SJKT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9TF2P4SJKT');
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%);
-            min-height: 100vh;
-        }
-
-        .test-container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .start-screen {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .start-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .start-screen h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2c5f4f;
-            margin-bottom: 15px;
-        }
-
-        .start-screen p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .test-info {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .info-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 15px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .info-item i {
-            font-size: 1.8rem;
-            color: #d4af37;
-            margin-bottom: 8px;
-        }
-
-        .info-label {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .info-value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2c5f4f;
-        }
-
-        .btn-start {
-            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
-            color: white;
-            border: none;
-            padding: 15px 50px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn-start:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.6);
-        }
-
-        .test-screen,
-        .result-screen {
-            display: none;
-        }
-
-        .progress-container {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .progress-text {
-            text-align: center;
-            margin-bottom: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #2c5f4f;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: rgba(212, 175, 55, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #d4af37 0%, #f0d98c 100%);
-            border-radius: 10px;
-            transition: width 0.3s ease;
-            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
-        }
-
-        .question-card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 20px;
-            padding: 25px 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .question-text {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #2c5f4f;
-            text-align: center;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .answers {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .answer-btn {
-            background: white;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .answer-btn:hover {
-            border-color: #d4af37;
-            transform: translateX(3px);
-            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        .answer-btn.selected {
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
-            border-color: #d4af37;
-            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .answer-number {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #2c5f4f;
-            flex-shrink: 0;
-        }
-
-        .answer-btn.selected .answer-number {
-            background: linear-gradient(135deg, #d4af37 0%, #f0d98c 100%);
-            color: white;
-        }
-
-        .answer-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #333;
-            text-align: left;
-        }
-
-        .test-navigation {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #d4af37 0%, #b8962f 100%);
-            color: white;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
-        }
-
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #666;
-            border: 2px solid #e9ecef;
-        }
-
-        .btn-secondary:hover:not(:disabled) {
-            border-color: #d4af37;
-            color: #d4af37;
-        }
-
-        .btn-secondary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .result-screen {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .result-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .result-type {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #d4af37;
-            margin-bottom: 10px;
-        }
-
-        .result-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2c5f4f;
-            margin-bottom: 15px;
-        }
-
-        .result-description {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.7;
-        }
-
-        .result-section {
-            margin: 25px 0;
-        }
-
-        .result-section h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #2c5f4f;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .result-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .result-section li {
-            padding: 12px 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            border-left: 4px solid #d4af37;
-            font-size: 0.95rem;
-            color: #333;
-        }
-
-        .result-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .test-container {
-                padding: 15px;
-            }
-
-            .question-text {
-                font-size: 1.05rem;
-            }
-
-            .test-info {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .result-actions {
-                flex-direction: column;
-            }
-        }
+        body { background: linear-gradient(135deg, #2c5f4f 0%, #1a4838 100%); }
+        .test-header { background: linear-gradient(135deg, #d4af37, #b8962f); }
     </style>
 </head>
 <body>
+    <!-- 네비게이션 바 -->
     <header class="page-header">
         <nav class="page-nav">
             <div class="page-nav-left">
                 <a href="index.html" class="page-nav-logo">
-                    <div class="page-nav-logo-icon-text">M</div>
+                    <div class="page-nav-logo-icon-text">
+                        <i class="fas fa-brain"></i>
+                    </div>
                     <span class="page-nav-logo-text">Mentora</span>
                 </a>
                 <div class="page-nav-divider"></div>
@@ -383,86 +50,104 @@
         </nav>
     </header>
 
+    <!-- 페이지 컨텐츠 -->
     <div class="page-content-wrapper">
-        <div class="test-container">
-            <div class="start-screen">
-                <div class="start-icon">🎭</div>
-                <h2>에니어그램 검사를 시작합니다</h2>
-                <p>9가지 성격 유형으로 당신의 성격을 깊이 있게 이해하세요.</p>
-                
-                <div class="test-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <div class="info-label">소요 시간</div>
-                        <div class="info-value">20분</div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-question-circle"></i>
-                        <div class="info-label">질문 수</div>
-                        <div class="info-value">18개</div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-users"></i>
-                        <div class="info-label">유형</div>
-                        <div class="info-value">9가지</div>
-                    </div>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🎭 에니어그램 검사</h1>
+            <p>9가지 성격 유형으로 나를 이해하기</p>
+        </div>
+
+        <div id="startScreen" class="start-screen">
+            <div class="start-icon">🎭</div>
+            <h2>에니어그램 검사를 시작합니다</h2>
+            <p>18개의 질문으로 당신의 핵심 성격 유형을 찾아드립니다.<br>각 문장이 얼마나 자신과 일치하는지 솔직하게 답변해주세요.</p>
+
+            <div class="test-info">
+                <div class="info-item">
+                    <div class="info-icon">⏱️</div>
+                    <div class="info-label">소요 시간</div>
+                    <div class="info-value">20분</div>
                 </div>
-
-                <button class="btn-start" onclick="startTest()">검사 시작하기</button>
-            </div>
-
-            <div class="test-screen">
-                <div class="progress-container">
-                    <div class="progress-text">
-                        <span id="currentQuestion">1</span> / <span id="totalQuestions">18</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
+                <div class="info-item">
+                    <div class="info-icon">📊</div>
+                    <div class="info-label">질문 수</div>
+                    <div class="info-value">18개</div>
                 </div>
-
-                <div class="question-card">
-                    <div class="question-text" id="questionText"></div>
-                    <div class="answers" id="answersContainer"></div>
-                </div>
-
-                <div class="test-navigation">
-                    <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">
-                        <i class="fas fa-arrow-left"></i> 이전
-                    </button>
-                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
-                        다음 <i class="fas fa-arrow-right"></i>
-                    </button>
+                <div class="info-item">
+                    <div class="info-icon">🎯</div>
+                    <div class="info-label">유형</div>
+                    <div class="info-value">9가지</div>
                 </div>
             </div>
 
+            <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
+        </div>
+
+        <div id="testScreen" style="display: none;">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progressText">질문 1 / 18</span>
+                    <span id="progressPercent">6%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="question-area">
+                <div class="question-number" id="questionNumber">Question 1</div>
+                <div class="question-text" id="questionText"></div>
+                <div class="scale-options" id="optionsContainer">
+                    <div class="scale-option" data-score="1">전혀 아니다</div>
+                    <div class="scale-option" data-score="2">아니다</div>
+                    <div class="scale-option" data-score="3">보통이다</div>
+                    <div class="scale-option" data-score="4">그렇다</div>
+                    <div class="scale-option" data-score="5">매우 그렇다</div>
+                </div>
+            </div>
+
+            <div class="button-area">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()">이전</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>다음</button>
+            </div>
+        </div>
+
+        <div id="resultScreen" style="display: none;">
             <div class="result-screen">
-                <div class="result-header">
-                    <div class="result-type" id="resultType"></div>
-                    <h2 class="result-title" id="resultTitle"></h2>
+                <div class="result-type">
+                    <div class="result-badge" id="resultType">Type 1</div>
+                    <h2 class="result-title" id="resultTitle">완벽주의자</h2>
                     <p class="result-description" id="resultDescription"></p>
                 </div>
 
-                <div class="result-section">
-                    <h3><i class="fas fa-star"></i> 주요 특징</h3>
-                    <ul id="resultTraits"></ul>
+                <div class="result-details">
+                    <h3>📊 핵심 동기</h3>
+                    <p id="resultMotivation"></p>
                 </div>
 
-                <div class="result-section">
-                    <h3><i class="fas fa-seedling"></i> 성장 방향</h3>
-                    <ul id="resultGrowth"></ul>
+                <div class="result-details">
+                    <h3>💪 강점</h3>
+                    <p id="resultStrengths"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>⚠️ 약점</h3>
+                    <p id="resultWeaknesses"></p>
+                </div>
+
+                <div class="result-details">
+                    <h3>🌱 성장 방향</h3>
+                    <p id="resultGrowth"></p>
                 </div>
 
                 <div class="result-actions">
-                    <a href="index.html" class="btn btn-secondary">
-                        <i class="fas fa-home"></i> 홈으로
-                    </a>
-                    <a href="payment/checkout.html" class="btn btn-primary">
-                        <i class="fas fa-crown"></i> 프리미엄 리포트
-                    </a>
+                    <button class="btn btn-secondary" onclick="location.href='index.html'">홈으로</button>
+                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">프리미엄 리포트</button>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="js/test-enneagram.js"></script>
