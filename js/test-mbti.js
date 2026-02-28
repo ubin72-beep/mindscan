@@ -289,8 +289,43 @@ function showResult() {
     
     localStorage.setItem('mbtiResult', JSON.stringify(result));
     
+    // RESTful Table API에도 저장
+    saveToAPI(result);
+    
     // 결과 화면 표시
     showScreen('result');
+}
+
+// RESTful Table API에 결과 저장
+async function saveToAPI(result) {
+    try {
+        const response = await fetch('/tables/test_results', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                test_name: 'MBTI',
+                test_type: result.type,
+                result_nickname: result.nickname,
+                result_icon: result.icon,
+                result_description: result.description,
+                scores: JSON.stringify(result.scores),
+                completed_at: result.date,
+                user_email: localStorage.getItem('user_email') || 'anonymous@example.com',
+                user_name: localStorage.getItem('user_name') || '익명'
+            })
+        });
+        
+        if (response.ok) {
+            console.log('✅ MBTI 검사 결과가 서버에 저장되었습니다.');
+        } else {
+            console.warn('⚠️ 서버 저장 실패 (로컬 저장은 완료됨)');
+        }
+    } catch (error) {
+        console.error('❌ API 저장 오류:', error);
+        // 에러 발생해도 로컬 저장은 유지
+    }
 }
 
 // 결과 저장
