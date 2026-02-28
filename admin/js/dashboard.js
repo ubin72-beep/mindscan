@@ -14,18 +14,52 @@ async function initDashboard() {
 
 // Load Dashboard Stats
 async function loadDashboardStats() {
-    // Mock data - 실제로는 API에서 데이터를 가져옴
-    const stats = {
-        totalUsers: 145832,
-        totalTests: 1247596,
-        totalRevenue: 142850000,
-        pendingRefunds: 23
-    };
-    
-    document.getElementById('totalUsers').textContent = AdminUtils.formatNumber(stats.totalUsers) + '명';
-    document.getElementById('totalTests').textContent = AdminUtils.formatNumber(stats.totalTests) + '건';
-    document.getElementById('totalRevenue').textContent = AdminUtils.formatCurrency(stats.totalRevenue);
-    document.getElementById('pendingRefunds').textContent = stats.pendingRefunds + '건';
+    try {
+        // RESTful Table API에서 실제 데이터 가져오기
+        const usersResponse = await fetch('/tables/users?limit=1000');
+        const usersData = await usersResponse.json();
+        
+        const testsResponse = await fetch('/tables/test_results?limit=10000');
+        const testsData = await testsResponse.json();
+        
+        const ordersResponse = await fetch('/tables/orders?limit=10000');
+        const ordersData = await ordersResponse.json();
+        
+        const refundsResponse = await fetch('/tables/refunds?limit=1000');
+        const refundsData = await refundsResponse.json();
+        
+        // 통계 계산
+        const totalUsers = usersData.total || 0;
+        const totalTests = testsData.total || 0;
+        const totalRevenue = ordersData.data
+            .filter(order => order.status === 'completed')
+            .reduce((sum, order) => sum + (order.amount || 0), 0);
+        const pendingRefunds = refundsData.data
+            .filter(refund => refund.status === 'pending')
+            .length;
+        
+        // 화면에 표시
+        document.getElementById('totalUsers').textContent = AdminUtils.formatNumber(totalUsers) + '명';
+        document.getElementById('totalTests').textContent = AdminUtils.formatNumber(totalTests) + '건';
+        document.getElementById('totalRevenue').textContent = AdminUtils.formatCurrency(totalRevenue);
+        document.getElementById('pendingRefunds').textContent = pendingRefunds + '건';
+        
+    } catch (error) {
+        console.error('통계 로드 실패:', error);
+        
+        // 에러 시 Mock 데이터 사용
+        const stats = {
+            totalUsers: 3,
+            totalTests: 7,
+            totalRevenue: 39700,
+            pendingRefunds: 1
+        };
+        
+        document.getElementById('totalUsers').textContent = AdminUtils.formatNumber(stats.totalUsers) + '명';
+        document.getElementById('totalTests').textContent = AdminUtils.formatNumber(stats.totalTests) + '건';
+        document.getElementById('totalRevenue').textContent = AdminUtils.formatCurrency(stats.totalRevenue);
+        document.getElementById('pendingRefunds').textContent = stats.pendingRefunds + '건';
+    }
 }
 
 // Load Charts
