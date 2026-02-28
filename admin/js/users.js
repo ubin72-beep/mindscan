@@ -18,9 +18,33 @@ async function initUsersPage() {
 
 // Load Users
 async function loadUsers() {
-    // Mock data - 실제로는 API에서 데이터를 가져옴
-    allUsers = AdminUtils.generateMockUsers(150);
-    filteredUsers = [...allUsers];
+    try {
+        // RESTful Table API에서 실제 사용자 데이터 가져오기
+        const response = await fetch('/tables/users?limit=1000&sort=-created_at');
+        const data = await response.json();
+        
+        if (data && data.data) {
+            allUsers = data.data.map(user => ({
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                plan: user.premium_count > 0 ? 'premium' : 'free',
+                joinDate: user.join_date || user.created_at,
+                lastLogin: user.updated_at,
+                testsCompleted: user.test_count || 0,
+                status: user.status || 'active'
+            }));
+            filteredUsers = [...allUsers];
+            
+            console.log('✅ 사용자 데이터 로드 완료:', allUsers.length, '명');
+        }
+    } catch (error) {
+        console.error('❌ 사용자 데이터 로드 실패:', error);
+        
+        // 에러 시 Mock 데이터 사용
+        allUsers = AdminUtils.generateMockUsers(10);
+        filteredUsers = [...allUsers];
+    }
 }
 
 // Update Users Stats
