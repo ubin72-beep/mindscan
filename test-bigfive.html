@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Five 성격검사 - Mentora</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/nav-common.css">
+    <title>Big Five 성격검사 - Mentora | 무료 Big Five 검사</title>
+    <meta name="description" content="과학적으로 검증된 Big Five 성격검사로 나를 이해하세요. 5가지 성격 특성 분석, 50개 문항, 15분 완성. 무료 성격 검사.">
+    <meta name="keywords" content="Big Five, 빅파이브, 성격검사, 5요인 모델, 성격 특성, 무료검사, 성격 분석">
+    <meta name="author" content="Mentora">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mentora.co.kr/test-bigfive.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Big Five 성격검사 - Mentora">
+    <meta property="og:description" content="5가지 성격 특성으로 나를 이해하는 Big Five 검사. 무료 성격 분석.">
+    <meta property="og:url" content="https://mentora.co.kr/test-bigfive.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mentora.co.kr/images/logo-brain-hd.png">
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9TF2P4SJKT"></script>
@@ -18,6 +25,10 @@
       gtag('js', new Date());
       gtag('config', 'G-9TF2P4SJKT');
     </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/nav-common.css">
     <style>
         * {
             margin: 0;
@@ -25,392 +36,275 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        :root {
+            --primary-green: #2c5f4f;
+            --accent-gold: #d4af37;
+            --bg-light: #f5f7fa;
+            --text-dark: #1a1a1a;
+            --text-gray: #666666;
         }
 
-        .container {
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecef 100%);
+            min-height: 100vh;
+        }
+
+        /* 컨테이너 */
+        .page-content-wrapper {
+            padding: 1.5rem 1rem;
+        }
+
+        .test-container {
             max-width: 700px;
-            width: 100%;
+            margin: 0 auto;
             background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
             overflow: hidden;
         }
 
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px;
+        /* 헤더 */
+        .test-header {
+            background: var(--primary-green);
+            color: white;
+            padding: 1.5rem;
             text-align: center;
-            color: white;
-            position: relative;
         }
 
-        .back-btn {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .header h1 {
-            font-size: 1.8rem;
+        .test-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
-            margin-bottom: 8px;
         }
 
-        .header p {
-            font-size: 0.95rem;
-            opacity: 0.95;
+        .test-header p {
+            font-size: 0.875rem;
+            opacity: 0.9;
         }
 
-        .content {
-            padding: 40px 30px;
-        }
-
-        #startScreen {
+        /* 시작 화면 */
+        .start-screen {
+            padding: 2rem 1.5rem;
             text-align: center;
         }
 
+        .start-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .start-screen h2 {
+            color: var(--primary-green);
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .start-screen p {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 정보 카드 */
         .test-info {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 35px 0;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
         .info-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
         }
 
         .info-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .info-label {
-            font-size: 0.85rem;
-            color: #64748b;
-            font-weight: 500;
+            color: var(--text-gray);
+            font-size: 0.75rem;
+            margin-bottom: 0.25rem;
         }
 
         .info-value {
-            font-size: 1.1rem;
+            color: var(--primary-green);
+            font-size: 1.25rem;
             font-weight: 700;
-            color: #1e293b;
         }
 
-        .start-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 16px 50px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
+        /* 버튼 */
+        .btn {
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        .start-btn:hover {
+        .btn-primary {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b8962f;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
         }
 
+        /* 검사 화면 */
         #testScreen {
-            display: none;
+            padding: 2rem;
         }
 
         .progress-container {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 2rem;
         }
 
         .progress-info {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 0.9rem;
-            color: #64748b;
+            margin-bottom: 0.5rem;
+            color: var(--text-gray);
+            font-size: 0.875rem;
         }
 
-        .progress-bar {
-            width: 100%;
+        .progress-bar-bg {
+            background: #e0e0e0;
             height: 8px;
-            background: #e2e8f0;
             border-radius: 10px;
             overflow: hidden;
         }
 
-        .progress-fill {
+        .progress-bar {
+            background: linear-gradient(90deg, var(--primary-green), var(--accent-gold));
             height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
             border-radius: 10px;
+            transition: width 0.3s;
         }
 
-        .question-card {
-            background: #f8fafc;
-            padding: 30px 25px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        .question-container {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 16px;
         }
 
         .question-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #1e293b;
-            margin-bottom: 25px;
+            color: var(--text-dark);
+            font-size: 1.25rem;
             font-weight: 600;
+            margin-bottom: 2rem;
             text-align: center;
         }
 
-        .answers {
+        .answer-options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 1rem;
         }
 
         .answer-btn {
             background: white;
-            border: 2px solid #e2e8f0;
-            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            padding: 1rem;
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            transition: all 0.3s;
             text-align: left;
-        }
-
-        .answer-number {
-            width: 32px;
-            height: 32px;
-            background: #f1f5f9;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #64748b;
+            font-family: 'Noto Sans KR', sans-serif;
             font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        .answer-text {
-            flex: 1;
-            font-size: 0.95rem;
-            color: #334155;
-            font-weight: 600;
         }
 
         .answer-btn:hover {
-            border-color: #667eea;
-            background: #f8f9ff;
+            border-color: var(--accent-gold);
             transform: translateX(5px);
         }
 
         .answer-btn.selected {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-color: #667eea;
-        }
-
-        .answer-btn.selected .answer-number {
-            background: rgba(255, 255, 255, 0.3);
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
             color: white;
         }
 
-        .answer-btn.selected .answer-text {
-            color: white;
-        }
-
-        .test-navigation {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #64748b;
-        }
-
-        .btn-secondary:hover {
-            background: #cbd5e1;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            flex: 1;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
+        /* 결과 화면 */
         #resultScreen {
-            display: none;
-        }
-
-        .result-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 30px;
-            border-radius: 20px;
+            padding: 3rem 2rem;
             text-align: center;
-            color: white;
-            margin-bottom: 25px;
         }
 
-        .result-type {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 15px;
+        .result-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .result-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
 
         .result-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
+            color: var(--text-gray);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-type {
+            color: var(--primary-green);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
         }
 
         .result-description {
+            color: var(--text-gray);
             font-size: 1rem;
             line-height: 1.6;
-            opacity: 0.95;
+            margin-bottom: 2rem;
         }
 
-        .result-section {
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-        }
-
-        .result-section h3 {
-            color: #1e293b;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .result-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .result-section li {
-            padding: 12px 0;
-            color: #475569;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .result-section li:last-child {
-            border-bottom: none;
-        }
-
-        .result-section li:before {
-            content: "✓";
-            color: #667eea;
-            font-weight: 700;
-            margin-right: 10px;
-        }
-
-        .action-buttons {
+        .result-actions {
             display: flex;
-            gap: 12px;
-            margin-top: 25px;
+            gap: 1rem;
+            justify-content: center;
         }
 
-        .action-buttons .btn {
-            flex: 1;
-        }
-
-        @media (max-width: 640px) {
-            .header h1 {
-                font-size: 1.4rem;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
             .test-info {
-                gap: 15px;
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
-            .info-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
+            .test-header h1 {
+                font-size: 1.25rem;
             }
 
-            .question-text {
-                font-size: 1.05rem;
+            .start-screen h2 {
+                font-size: 1.125rem;
             }
 
-            .answer-text {
-                font-size: 0.9rem;
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.95rem;
             }
 
-            .action-buttons {
+            .result-type {
+                font-size: 1.75rem;
+            }
+
+            .result-actions {
                 flex-direction: column;
             }
         }
@@ -445,97 +339,71 @@
 
     <!-- 페이지 컨텐츠 -->
     <div class="page-content-wrapper">
-    <div class="container">
-        <div class="header">
-            <button class="back-btn" onclick="window.location.href='index.html'">
-                <i class="fas fa-arrow-left"></i>
-            </button>
-            <h1>Big Five 성격검사</h1>
-            <p>5가지 성격 요인 분석</p>
-        </div>
+        <div class="test-container">
+            <div class="test-header">
+                <h1>📊 Big Five 성격검사</h1>
+                <p>5가지 성격 특성으로 나를 이해하기</p>
+            </div>
 
-        <div class="content">
-            <div id="startScreen">
+            <div id="startScreen" class="start-screen">
+                <div class="start-icon">📈</div>
+                <h2>Big Five 성격검사를 시작합니다</h2>
+                <p>50개의 질문으로 당신의 성격 특성을 찾아드립니다.<br>각 문장이 얼마나 자신과 일치하는지 솔직하게 답변해주세요.</p>
+
                 <div class="test-info">
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
+                        <div class="info-icon">🕐</div>
                         <div class="info-label">소요 시간</div>
                         <div class="info-value">15분</div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-list"></i>
-                        </div>
+                        <div class="info-icon">💰</div>
                         <div class="info-label">질문 수</div>
                         <div class="info-value">50개</div>
                     </div>
                     <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
+                        <div class="info-icon">👥</div>
                         <div class="info-label">요인</div>
                         <div class="info-value">5가지</div>
                     </div>
                 </div>
-                <button class="start-btn" onclick="startTest()">검사 시작하기</button>
+
+                <button class="btn btn-primary" onclick="startTest()">검사 시작하기</button>
             </div>
 
-            <div id="testScreen">
+            <div id="testScreen" style="display: none;">
                 <div class="progress-container">
                     <div class="progress-info">
-                        <span><span id="currentQuestion">1</span> / <span id="totalQuestions">50</span></span>
-                        <span><a href="payment/checkout.html" style="color: #667eea; text-decoration: none;">🌟 프리미엄 리포트</a></span>
+                        <span id="progressText">질문 1 / 50</span>
+                        <span id="progressPercent">0%</span>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar" id="progressBar"></div>
                     </div>
                 </div>
 
-                <div class="question-card">
-                    <div class="question-text" id="questionText"></div>
-                    <div class="answers" id="answersContainer"></div>
-                </div>
-
-                <div class="test-navigation">
-                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">
-                        <i class="fas fa-arrow-left"></i> 이전
-                    </button>
-                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">
-                        다음 <i class="fas fa-arrow-right"></i>
-                    </button>
+                <div class="question-container">
+                    <h3 class="question-text" id="questionText"></h3>
+                    <div class="answer-options" id="answerOptions"></div>
                 </div>
             </div>
 
-            <div id="resultScreen">
-                <div class="result-card">
-                    <div class="result-type" id="resultType"></div>
-                    <h2 class="result-title" id="resultTitle"></h2>
-                    <p class="result-description" id="resultDescription"></p>
-                </div>
+            <div id="resultScreen" style="display: none;">
+                <div class="result-container">
+                    <div class="result-icon" id="resultIcon">🎉</div>
+                    <h2 class="result-title" id="resultTitle">당신의 Big Five 성격 프로필</h2>
+                    <div class="result-type" id="resultType">분석 완료</div>
+                    <p class="result-description" id="resultDescription">
+                        5가지 성격 특성에 대한 상세한 분석 결과입니다.
+                    </p>
 
-                <div class="result-section">
-                    <h3>📊 상세 분석</h3>
-                    <ul id="resultTraits"></ul>
-                </div>
-
-                <div class="result-section">
-                    <h3>💡 성장 방향</h3>
-                    <ul id="resultGrowth"></ul>
-                </div>
-
-                <div class="action-buttons">
-                    <button class="btn btn-secondary" onclick="location.href='index.html'">
-                        <i class="fas fa-home"></i> 홈으로
-                    </button>
-                    <button class="btn btn-primary" onclick="location.href='payment/checkout.html'">
-                        <i class="fas fa-star"></i> 프리미엄 리포트
-                    </button>
+                    <div class="result-actions">
+                        <button class="btn btn-primary" onclick="saveAndView()">결과 저장하기</button>
+                        <button class="btn btn-primary" onclick="location.href='index.html'">다른 검사하기</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script src="js/test-bigfive.js"></script>
