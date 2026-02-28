@@ -18,9 +18,60 @@ async function initRefundsPage() {
 
 // Load Refunds
 async function loadRefunds() {
-    // Mock data - 실제로는 API에서 데이터를 가져옴
-    allRefunds = AdminUtils.generateMockRefunds(80);
-    filteredRefunds = [...allRefunds];
+    try {
+        // RESTful Table API에서 실제 환불 데이터 가져오기
+        const response = await fetch('/tables/refunds?limit=1000&sort=-request_date');
+        const data = await response.json();
+        
+        if (data && data.data) {
+            // 주문 정보도 함께 가져오기
+            const ordersResponse = await fetch('/tables/orders?limit=1000');
+            const ordersData = await ordersResponse.json();
+            const ordersMap = {};
+            if (ordersData && ordersData.data) {
+                ordersData.data.forEach(order => {
+                    ordersMap[order.id] = order;
+                });
+            }
+            
+            // 사용자 정보도 함께 가져오기
+            const usersResponse = await fetch('/tables/users?limit=1000');
+            const usersData = await usersResponse.json();
+            const usersMap = {};
+            if (usersData && usersData.data) {
+                usersData.data.forEach(user => {
+                    usersMap[user.id] = user;
+                });
+            }
+            
+            allRefunds = data.data.map(refund => {
+                const order = ordersMap[refund.order_id] || {};
+                const user = usersMap[refund.user_id] || {};
+                
+                return {
+                    id: refund.id,
+                    orderId: refund.order_id,
+                    userName: user.name || '알 수 없음',
+                    product: order.product_name || '상품명 없음',
+                    amount: order.amount || 0,
+                    refundAmount: order.amount || 0,
+                    requestDate: refund.request_date || refund.created_at,
+                    reason: refund.reason || '사유 없음',
+                    status: refund.status || 'pending',
+                    processedDate: refund.processed_date
+                };
+            });
+            filteredRefunds = [...allRefunds];
+            
+            console.log('✅ 환불 데이터 로드 완료:', allRefunds.length, '건');
+        }
+    } catch (error) {
+        console.error('❌ 환불 데이터 로드 실패:', error);
+        
+        // 에러 시 Mock 데이터 사용
+        allRefunds = AdminUtils.generateMockRefunds(10);
+        filteredRefunds = [...allRefunds];
+    }
 }
 
 // Update Refunds Stats
