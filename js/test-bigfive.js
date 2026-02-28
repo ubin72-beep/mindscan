@@ -204,8 +204,52 @@ function showResult() {
     
     localStorage.setItem('bigFiveResult', JSON.stringify(result));
     
+    // RESTful Table API에도 저장
+    saveToAPI(result, percentages);
+    
     // 결과 화면 표시
     showScreen('result');
+}
+
+// RESTful Table API에 결과 저장
+async function saveToAPI(result, percentages) {
+    try {
+        // Big Five 결과 요약 생성
+        let summary = '';
+        for (let factor in percentages) {
+            const info = bigFiveFactors[factor];
+            const percentage = percentages[factor];
+            summary += `${info.name}: ${percentage}% | `;
+        }
+        summary = summary.slice(0, -3); // 마지막 " | " 제거
+        
+        const response = await fetch('/tables/test_results', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                test_name: 'BigFive',
+                test_type: 'Big Five 성격 분석',
+                result_nickname: summary,
+                result_icon: '📊',
+                result_description: 'Big Five 5가지 성격 요인 분석 완료',
+                scores: JSON.stringify(result.scores),
+                completed_at: result.date,
+                user_email: localStorage.getItem('user_email') || 'anonymous@example.com',
+                user_name: localStorage.getItem('user_name') || '익명'
+            })
+        });
+        
+        if (response.ok) {
+            console.log('✅ Big Five 검사 결과가 서버에 저장되었습니다.');
+        } else {
+            console.warn('⚠️ 서버 저장 실패 (로컬 저장은 완료됨)');
+        }
+    } catch (error) {
+        console.error('❌ API 저장 오류:', error);
+        // 에러 발생해도 로컬 저장은 유지
+    }
 }
 
 // 결과 저장
